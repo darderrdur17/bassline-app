@@ -1,20 +1,23 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import React from 'react';
+import AppNavigator from './src/navigation/AppNavigator';
+import { useFonts } from 'expo-font';
+import { Anton_400Regular } from '@expo-google-fonts/anton';
+import { Bungee_400Regular } from '@expo-google-fonts/bungee';
+import { Oswald_400Regular, Oswald_600SemiBold } from '@expo-google-fonts/oswald';
+import { Roboto_400Regular } from '@expo-google-fonts/roboto';
 
 export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
-}
+  const [fontsLoaded] = useFonts({
+    Anton_400Regular,
+    Bungee_400Regular,
+    Oswald_400Regular,
+    Oswald_600SemiBold,
+    Roboto_400Regular,
+  });
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+  if (!fontsLoaded) {
+    return null; // Optionally render a splash or loader here
+  }
+
+  return <AppNavigator />;
+}
