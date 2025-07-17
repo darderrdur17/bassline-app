@@ -9,9 +9,12 @@ import {
   SafeAreaView,
   Linking,
   Alert,
+  FlatList,
 } from 'react-native';
+import { LinearGradient } from 'expo-linear-gradient';
 import { Ionicons } from '@expo/vector-icons';
 import { colors, typography, spacing, borderRadius, shadows } from '../styles/theme';
+// custom fonts not loaded yet
 
 export default function VenueDetailScreen({ navigation, route }) {
   const { venue } = route.params;
@@ -50,6 +53,11 @@ export default function VenueDetailScreen({ navigation, route }) {
     ]);
   };
 
+  const openUrl = (url) => {
+    if (!url) return;
+    Linking.openURL(url).catch(() => Alert.alert('Error', 'Unable to open link'));
+  };
+
   return (
     <SafeAreaView style={styles.container}>
       {/* Header */}
@@ -67,10 +75,27 @@ export default function VenueDetailScreen({ navigation, route }) {
       </View>
 
       <ScrollView style={styles.content} showsVerticalScrollIndicator={false}>
-        {/* Hero Image */}
+        {/* Hero Image / Gallery */}
         <View style={styles.heroContainer}>
           <Image source={{ uri: venue.heroImage }} style={styles.heroImage} />
-          <View style={styles.heroOverlay}>
+          {venue.gallery && (
+            <FlatList
+              data={venue.gallery}
+              keyExtractor={(item, idx) => idx.toString()}
+              horizontal
+              showsHorizontalScrollIndicator={false}
+              style={styles.galleryList}
+              renderItem={({ item }) => (
+                <Image source={{ uri: item }} style={styles.galleryImage} />
+              )}
+            />
+          )}
+          <LinearGradient
+            colors={['rgba(0,0,0,0.6)', 'transparent']}
+            style={styles.heroOverlay}
+            start={{ x: 0.5, y: 1 }}
+            end={{ x: 0.5, y: 0 }}
+          >
             <View style={styles.venueTypeTag}>
               <Text style={styles.venueTypeText}>{venue.type.toUpperCase()}</Text>
             </View>
@@ -78,7 +103,7 @@ export default function VenueDetailScreen({ navigation, route }) {
               <Ionicons name="star" size={16} color="#FFD700" />
               <Text style={styles.ratingText}>{venue.rating}</Text>
             </View>
-          </View>
+          </LinearGradient>
         </View>
 
         {/* Main Info */}
@@ -189,6 +214,30 @@ export default function VenueDetailScreen({ navigation, route }) {
             <Ionicons name="call" size={20} color={colors.primary} />
             <Text style={styles.secondaryButtonText}>CALL VENUE</Text>
           </TouchableOpacity>
+
+          {/* External links row */}
+          <View style={styles.linksRow}>
+            {venue.yelpUrl && (
+              <TouchableOpacity onPress={() => openUrl(venue.yelpUrl)} style={styles.linkIconBtn}>
+                <Ionicons name="globe-outline" size={24} color={colors.primary} />
+              </TouchableOpacity>
+            )}
+            {(venue.resyUrl || venue.openTableUrl) && (
+              <TouchableOpacity onPress={() => openUrl(venue.resyUrl || venue.openTableUrl)} style={styles.linkIconBtn}>
+                <Ionicons name="restaurant" size={24} color={colors.primary} />
+              </TouchableOpacity>
+            )}
+            {venue.instagram && (
+              <TouchableOpacity onPress={() => openUrl(venue.instagram)} style={styles.linkIconBtn}>
+                <Ionicons name="logo-instagram" size={24} color={colors.primary} />
+              </TouchableOpacity>
+            )}
+            {venue.tiktok && (
+              <TouchableOpacity onPress={() => openUrl(venue.tiktok)} style={styles.linkIconBtn}>
+                <Ionicons name="logo-tiktok" size={24} color={colors.primary} />
+              </TouchableOpacity>
+            )}
+          </View>
         </View>
 
         <View style={styles.bottomSpacing} />
@@ -236,6 +285,16 @@ const styles = StyleSheet.create({
     width: '100%',
     height: '100%',
     resizeMode: 'cover',
+  },
+  galleryList: {
+    position: 'absolute',
+    bottom: 0,
+  },
+  galleryImage: {
+    width: 120,
+    height: 80,
+    marginRight: spacing.sm,
+    borderRadius: borderRadius.small,
   },
   heroOverlay: {
     position: 'absolute',
@@ -320,6 +379,9 @@ const styles = StyleSheet.create({
     marginTop: spacing.sm,
     paddingVertical: spacing.md,
     paddingHorizontal: spacing.md,
+    borderTopWidth: 2,
+    borderBottomWidth: 2,
+    borderColor: colors.border,
   },
   statItem: {
     flex: 1,
@@ -346,14 +408,17 @@ const styles = StyleSheet.create({
     padding: spacing.md,
   },
   detailCard: {
-    backgroundColor: colors.white,
+    backgroundColor: '#FFFDF5', // subtle cream
     borderRadius: borderRadius.medium,
     padding: spacing.md,
     marginBottom: spacing.md,
+    borderWidth: 2,
+    borderColor: colors.primary,
     ...shadows.small,
   },
   detailTitle: {
     ...typography.small,
+    fontSize: 18,
     color: colors.primary,
     fontWeight: 'bold',
     letterSpacing: 0.5,
@@ -365,12 +430,14 @@ const styles = StyleSheet.create({
   },
   detailLabel: {
     ...typography.small,
+    fontSize: 12,
     color: colors.textSecondary,
-    width: 80,
+    width: 90,
     fontWeight: 'bold',
   },
   detailValue: {
     ...typography.small,
+    fontSize: 14,
     color: colors.text,
     flex: 1,
   },
@@ -441,5 +508,13 @@ const styles = StyleSheet.create({
   },
   bottomSpacing: {
     height: spacing.xxl,
+  },
+  linksRow: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    marginTop: spacing.md,
+  },
+  linkIconBtn: {
+    marginHorizontal: spacing.sm,
   },
 }); 

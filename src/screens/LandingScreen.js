@@ -108,13 +108,14 @@ const styles = StyleSheet.create({
   },
   content: {
     flexGrow: 1,
+    justifyContent: 'center',
     paddingHorizontal: spacing.lg,
     paddingVertical: spacing.xl,
   },
   heroSection: {
     alignItems: 'center',
     marginBottom: spacing.xl,
-    marginTop: spacing.xxl,
+    marginTop: spacing.xl,
   },
   characterContainer: {
     alignItems: 'center',
@@ -215,15 +216,17 @@ const styles = StyleSheet.create({
   moodsGrid: {
     flexDirection: 'row',
     flexWrap: 'wrap',
-    justifyContent: 'space-between',
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   moodButton: {
-    width: '30%',
+    width: '28%',
     aspectRatio: 1,
     borderRadius: borderRadius.medium,
     justifyContent: 'center',
     alignItems: 'center',
     marginBottom: spacing.md,
+    marginHorizontal: spacing.xs,
   },
   moodEmoji: {
     fontSize: 24,

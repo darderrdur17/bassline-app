@@ -31,6 +31,8 @@ export const fonts = {
   oswaldRegular: 'Oswald_400Regular',
   oswaldSemiBold: 'Oswald_600SemiBold',
   roboto: 'Roboto_400Regular',
+  komsomol: 'Anton_400Regular',
+  helveticaWorld: 'Roboto_400Regular',
 };
 
 export const typography = {
@@ -53,7 +55,7 @@ export const typography = {
   
   // Venue names
   venue: {
-    fontSize: 20,
+    fontSize: 52,
     fontWeight: 'bold',
     fontFamily: fonts.anton,
   },

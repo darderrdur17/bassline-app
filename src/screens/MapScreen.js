@@ -310,6 +310,26 @@ export default function MapScreen({ navigation, route }) {
         <View style={styles.resultsInline}>
           <Text style={styles.resultsText}>{filteredVenues.length} venues found</Text>
         </View>
+
+        {/* Pin Color Legend */}
+        <View style={styles.legendContainer}>
+          <View style={styles.legendItem}>
+            <View style={[styles.legendDot, { backgroundColor: colors.primary }]} />
+            <Text style={styles.legendLabel}>Bar</Text>
+          </View>
+          <View style={styles.legendItem}>
+            <View style={[styles.legendDot, { backgroundColor: colors.crowdModerate }]} />
+            <Text style={styles.legendLabel}>Restaurant</Text>
+          </View>
+          <View style={styles.legendItem}>
+            <View style={[styles.legendDot, { backgroundColor: colors.crowdBusy }]} />
+            <Text style={styles.legendLabel}>Lounge</Text>
+          </View>
+          <View style={styles.legendItem}>
+            <View style={[styles.legendDot, { backgroundColor: colors.primaryDark }]} />
+            <Text style={styles.legendLabel}>Club</Text>
+          </View>
+        </View>
       </View>
 
       {/* Filter Panel */}
@@ -563,8 +583,9 @@ const styles = StyleSheet.create({
     borderColor: colors.primary,
   },
   mapPreviewWrapper: {
-    height: 280,
-    width: '92%',
+    // Increase height to utilize more screen space (roughly 55% of viewport height)
+    height: height * 0.55,
+    width: '95%',
     alignSelf: 'center',
     borderRadius: borderRadius.medium,
     overflow: 'hidden',
@@ -627,5 +648,29 @@ const styles = StyleSheet.create({
     opacity: 0.9,
     textAlign: 'center',
     letterSpacing: 0.5,
+  },
+  legendContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    marginTop: spacing.sm,
+    marginBottom: spacing.sm,
+    paddingHorizontal: spacing.md,
+    backgroundColor: 'rgba(0,0,0,0.6)',
+    borderRadius: borderRadius.small,
+  },
+  legendItem: {
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  legendDot: {
+    width: 10,
+    height: 10,
+    borderRadius: 5,
+    marginRight: spacing.xs,
+  },
+  legendLabel: {
+    ...typography.small,
+    color: colors.white,
+    fontWeight: 'bold',
   },
 }); 

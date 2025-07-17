@@ -8,6 +8,7 @@ import HomeScreen from '../screens/HomeScreen';
 import ExploreScreen from '../screens/ExploreScreen';
 import SavedScreen from '../screens/SavedScreen';
 import SocialScreen from '../screens/SocialScreen';
+import InfoScreen from '../screens/InfoScreen';
 import MapScreen from '../screens/MapScreen';
 import VenueDetailScreen from '../screens/VenueDetailScreen';
 
@@ -36,6 +37,7 @@ function MainTabs() {
             Explore: 'compass',
             Saved: 'bookmark',
             Social: 'people',
+            Info: 'information-circle',
           };
           return <Ionicons name={icons[route.name]} size={size} color={color} />;
         },
@@ -45,6 +47,7 @@ function MainTabs() {
       <Tab.Screen name="Explore" component={ExploreScreen} />
       <Tab.Screen name="Saved" component={SavedScreen} />
       <Tab.Screen name="Social" component={SocialScreen} />
+      <Tab.Screen name="Info" component={InfoScreen} />
     </Tab.Navigator>
   );
 }

@@ -13,6 +13,9 @@ export default function App() {
     Oswald_400Regular,
     Oswald_600SemiBold,
     Roboto_400Regular,
+    // TODO: add custom font files then uncomment lines below
+    // Komsomol_400Regular: require('./assets/fonts/Komsomol-Regular.ttf'),
+    // HelveticaWorld_400Regular: require('./assets/fonts/HelveticaWorld-Regular.ttf'),
   });
 
   if (!fontsLoaded) {

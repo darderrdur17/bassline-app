@@ -23,8 +23,16 @@ export const venues = [
     waitTime: 15,
     estimatedUber: "$12",
     hours: "5 PM - 2 AM",
-    heroImage: "https://images.unsplash.com/photo-1514933651103-005eec06c04b?w=400",
+    heroImage: "https://images.unsplash.com/photo-1514933651103-005eec06c04b?w=400", // red-lit bar
     description: "Darklit red lights with vinyl listening bar and dance floor",
+    yelpUrl: "https://www.yelp.com/biz/bar-part-time-san-francisco",
+    resyUrl: "https://resy.com/cities/sf/bar-part-time",
+    instagram: "https://instagram.com/barparttime",
+    gallery: [
+      "https://images.unsplash.com/photo-1514933651103-005eec06c04b?w=400",
+      "https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=400",
+      "https://images.unsplash.com/photo-1532634896-26909d0d0b9f?w=400",
+    ],
   },
   {
     id: 2,
@@ -49,8 +57,16 @@ export const venues = [
     waitTime: 20,
     estimatedUber: "$10",
     hours: "6 PM - 2 AM",
-    heroImage: "https://images.unsplash.com/photo-1543007630-9710e4a00a20?w=400",
+    heroImage: "https://images.unsplash.com/photo-1543007630-9710e4a00a20?w=400", // modern restaurant
     description: "Hip Gen Z spot with New American food and drinks",
+    yelpUrl: "https://www.yelp.com/biz/key-klub-san-francisco",
+    resyUrl: "https://resy.com/cities/sf/key-klub",
+    instagram: "https://instagram.com/keyklubsf",
+    gallery: [
+      "https://images.unsplash.com/photo-1543007630-9710e4a00a20?w=400",
+      "https://images.unsplash.com/photo-1515162305281-4524d839d4a5?w=400",
+      "https://images.unsplash.com/photo-1510626176961-4b0b5a2a7f91?w=400",
+    ],
   },
   {
     id: 3,
@@ -75,8 +91,13 @@ export const venues = [
     waitTime: 30,
     estimatedUber: "$15",
     hours: "5:30 PM - 11 PM",
-    heroImage: "https://images.unsplash.com/photo-1551024506-0bccd828d307?w=400",
+    heroImage: require('../../bassline-app/assets/Verjus.png'),
     description: "Sophisticated French dining with extensive wine selection",
+    gallery: [
+      require('../../bassline-app/assets/Verjus.png'),
+      require('../../bassline-app/assets/Verjus-2.png'),
+      require('../../bassline-app/assets/Verjus-3.png'),
+    ],
   },
   {
     id: 4,
@@ -101,8 +122,13 @@ export const venues = [
     waitTime: 15,
     estimatedUber: "$11",
     hours: "7 PM - 2 AM",
-    heroImage: "https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=400",
+    heroImage: "https://images.unsplash.com/photo-1510735166794-1e22c7d230f1?w=400", // vinyl records
     description: "Record store meets cocktail bar with live DJ sets",
+    gallery: [
+      "https://images.unsplash.com/photo-1510735166794-1e22c7d230f1?w=400",
+      "https://images.unsplash.com/photo-1505925456422-1d8a438d4f88?w=400",
+      "https://images.unsplash.com/photo-1453090927415-5f45085b65c0?w=400",
+    ],
   },
   {
     id: 5,
@@ -127,8 +153,13 @@ export const venues = [
     waitTime: 25,
     estimatedUber: "$13",
     hours: "5 PM - 11 PM",
-    heroImage: "https://images.unsplash.com/photo-1551024709-8f23befc6f87?w=400",
+    heroImage: "https://images.unsplash.com/photo-1553621042-f6e147245754?w=400", // seafood dishes
     description: "Cozy seafood-focused bar with classical music ambiance",
+    gallery: [
+      "https://images.unsplash.com/photo-1553621042-f6e147245754?w=400",
+      "https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=400",
+      "https://images.unsplash.com/photo-1467003909585-2f8a72700288?w=400",
+    ],
   },
   {
     id: 6,
@@ -153,8 +184,13 @@ export const venues = [
     waitTime: 20,
     estimatedUber: "$10",
     hours: "6 PM - 12 AM",
-    heroImage: "https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=400",
+    heroImage: "https://images.unsplash.com/photo-1595424762791-7ef88838ad01?w=400", // sake/Japanese
     description: "Minimalist sake bar with Japanese-inspired snacks and vinyl sets",
+    gallery: [
+      "https://images.unsplash.com/photo-1595424762791-7ef88838ad01?w=400",
+      "https://images.unsplash.com/photo-1532634896-26909d0d0b9f?w=400",
+      "https://images.unsplash.com/photo-1544547082-0426b6c7e49f?w=400",
+    ],
   },
   {
     id: 7,
@@ -179,8 +215,13 @@ export const venues = [
     waitTime: 30,
     estimatedUber: "$14",
     hours: "5:30 PM - 11 PM",
-    heroImage: "https://images.unsplash.com/photo-1544148103-0773bf10d330?w=400",
+    heroImage: "https://images.unsplash.com/photo-1544148103-bf50c5e7836b?w=400", // Mediterranean
     description: "Intimate Mediterranean bar perfect for date nights",
+    gallery: [
+      "https://images.unsplash.com/photo-1544148103-bf50c5e7836b?w=400",
+      "https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=400",
+      "https://images.unsplash.com/photo-1550096462-ea0621244d6d?w=400",
+    ],
   },
   {
     id: 8,
@@ -205,8 +246,13 @@ export const venues = [
     waitTime: 15,
     estimatedUber: "$12",
     hours: "7 PM - 2 AM",
-    heroImage: "https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=400",
+    heroImage: "https://images.unsplash.com/photo-1556817411-31ae72fa3ea0?w=400", // futuristic lighting
     description: "Futuristic space-themed bar with immersive cocktail experience",
+    gallery: [
+      "https://images.unsplash.com/photo-1556817411-31ae72fa3ea0?w=400",
+      "https://images.unsplash.com/photo-1519671482749-fd09be7ccebf?w=400",
+      "https://images.unsplash.com/photo-1512453979798-5ea266f8880c?w=400",
+    ],
   },
   {
     id: 9,
@@ -231,8 +277,13 @@ export const venues = [
     waitTime: 20,
     estimatedUber: "$11",
     hours: "6 PM - 1 AM",
-    heroImage: "https://images.unsplash.com/photo-1470337458703-46ad1756a187?w=400",
+    heroImage: "https://images.unsplash.com/photo-1506377247377-2a5b3b417ebb?w=400", // natural wine
     description: "Cozy natural wine bar with soul and funk vinyl sets",
+    gallery: [
+      "https://images.unsplash.com/photo-1506377247377-2a5b3b417ebb?w=400",
+      "https://images.unsplash.com/photo-1497534446932-c925b458314e?w=400",
+      "https://images.unsplash.com/photo-1470337458703-46ad1756a187?w=400",
+    ],
   },
   {
     id: 10,
@@ -257,8 +308,13 @@ export const venues = [
     waitTime: 45,
     estimatedUber: "$18",
     hours: "4 PM - 12 AM",
-    heroImage: "https://images.unsplash.com/photo-1513475382585-d06e58bcb0e0?w=400",
+    heroImage: "https://images.unsplash.com/photo-1491316037411-40279662960e?w=400", // rooftop view
     description: "Sophisticated rooftop lounge with panoramic city views",
+    gallery: [
+      "https://images.unsplash.com/photo-1491316037411-40279662960e?w=400",
+      "https://images.unsplash.com/photo-1518916171747-a2f21ddcb7ee?w=400",
+      "https://images.unsplash.com/photo-1520083772178-a6b6f48f071b?w=400",
+    ],
   },
 ];
 
@@ -266,9 +322,9 @@ export const venues = [
 export const filterOptions = {
   venueType: ['Bar', 'Restaurant', 'Lounge', 'Club'],
   pricing: ['$', '$$', '$$$'],
-  musicGenre: ['House', 'Jazz', 'Electronic', 'Classical', 'Mixed', 'Lo-fi'],
+  musicGenre: ['House', 'Jazz', 'Electronic', 'Classical', 'Mixed', 'Lo-fi', 'Hip-Hop', 'Soul', 'Funk', 'Disco', 'Synthwave'],
   ambiance: ['Darklit', 'Cozy', 'Rooftop', 'Minimalist', 'Futuristic'],
-  crowd: ['Gen Z', 'Millennial', 'Indie', 'Professionals'],
+  crowd: ['Gen Z', 'Millennial', 'Indie', 'Professionals', 'Tourists', 'Couples', 'Creatives', 'Wine Lovers'],
   dressCode: ['Casual', 'Smart Casual', 'Trendy', 'Upscale'],
   neighborhood: ['Mission', 'SOMA', 'Castro', 'Financial District'],
   hours: ['Open Now', 'Past 2 AM', '24 Hours'],
