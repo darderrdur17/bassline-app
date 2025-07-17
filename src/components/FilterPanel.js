@@ -103,33 +103,33 @@ export default function FilterPanel({ filters, onFiltersChange, onClearFilters }
         {filterCategories
           .filter((cat) => cat.key === activeCategory)
           .map((category) => (
-            <View key={category.key} style={styles.filterCategory}>
-              <Text style={styles.categoryTitle}>{category.label}</Text>
-              <View style={styles.optionsGrid}>
-                {category.options.map((option) => {
-                  const isActive = isFilterActive(category.key, option);
-                  
-                  return (
-                    <TouchableOpacity
-                      key={option}
-                      style={[
-                        styles.optionButton,
-                        isActive && styles.optionButtonActive,
-                      ]}
-                      onPress={() => toggleFilter(category.key, option)}
-                    >
-                      <Text style={[
-                        styles.optionText,
-                        isActive && styles.optionTextActive,
-                      ]}>
-                        {option}
-                      </Text>
-                    </TouchableOpacity>
-                  );
-                })}
-              </View>
+          <View key={category.key} style={styles.filterCategory}>
+            <Text style={styles.categoryTitle}>{category.label}</Text>
+            <View style={styles.optionsGrid}>
+              {category.options.map((option) => {
+                const isActive = isFilterActive(category.key, option);
+                
+                return (
+                  <TouchableOpacity
+                    key={option}
+                    style={[
+                      styles.optionButton,
+                      isActive && styles.optionButtonActive,
+                    ]}
+                    onPress={() => toggleFilter(category.key, option)}
+                  >
+                    <Text style={[
+                      styles.optionText,
+                      isActive && styles.optionTextActive,
+                    ]}>
+                      {option}
+                    </Text>
+                  </TouchableOpacity>
+                );
+              })}
             </View>
-          ))}
+          </View>
+        ))}
       </ScrollView>
     </View>
   );

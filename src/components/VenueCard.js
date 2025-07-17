@@ -61,9 +61,9 @@ export default function VenueCard({ venue, onPress, onClose, preview = false, on
       <TouchableOpacity style={[styles.card, previewStyles]} onPress={onPress} activeOpacity={0.9}>
         {/* Close Button */}
         {!preview && (
-          <TouchableOpacity style={styles.closeButton} onPress={onClose}>
-            <Ionicons name="close" size={20} color={colors.textSecondary} />
-          </TouchableOpacity>
+        <TouchableOpacity style={styles.closeButton} onPress={onClose}>
+          <Ionicons name="close" size={20} color={colors.textSecondary} />
+        </TouchableOpacity>
         )}
 
         {preview && (

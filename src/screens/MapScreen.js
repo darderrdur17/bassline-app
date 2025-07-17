@@ -267,23 +267,23 @@ export default function MapScreen({ navigation, route }) {
           <Text style={styles.tagline}>THE CITY NEVER SLEEPS, NEITHER SHOULD YOU.</Text>
         </View>
       ) : (
-        <View style={styles.header}>
-          <TouchableOpacity 
-            style={styles.backButton} 
-            onPress={() => navigation.goBack()}
-          >
-            <Ionicons name="arrow-back" size={24} color={colors.primary} />
-          </TouchableOpacity>
-          <Text style={styles.headerTitle}>BASSLINE</Text>
+      <View style={styles.header}>
+        <TouchableOpacity 
+          style={styles.backButton} 
+          onPress={() => navigation.goBack()}
+        >
+          <Ionicons name="arrow-back" size={24} color={colors.primary} />
+        </TouchableOpacity>
+        <Text style={styles.headerTitle}>BASSLINE</Text>
           {!isRoot && (
-            <TouchableOpacity 
-              style={styles.filterToggle}
+        <TouchableOpacity 
+          style={styles.filterToggle}
               onPress={toggleFilters}
-            >
-              <Ionicons name="options" size={24} color={colors.primary} />
-            </TouchableOpacity>
+        >
+          <Ionicons name="options" size={24} color={colors.primary} />
+        </TouchableOpacity>
           )}
-        </View>
+      </View>
       )}
 
       {/* Search Bar */}
@@ -291,16 +291,16 @@ export default function MapScreen({ navigation, route }) {
         <Text style={styles.searchLabel}>WHAT ARE YOU FEELING TONIGHT?</Text>
         <View style={{ flexDirection: 'row', alignItems: 'center' }}>
           <View style={[styles.searchContainer, { flex: 1 }] }>
-            <TextInput
-              style={styles.searchInput}
-              placeholder="Search venues, moods, music..."
-              placeholderTextColor={colors.textSecondary}
-              value={searchText}
-              onChangeText={handleSearch}
-            />
-            <TouchableOpacity style={styles.searchButton}>
-              <Ionicons name="search" size={20} color={colors.textSecondary} />
-            </TouchableOpacity>
+          <TextInput
+            style={styles.searchInput}
+            placeholder="Search venues, moods, music..."
+            placeholderTextColor={colors.textSecondary}
+            value={searchText}
+            onChangeText={handleSearch}
+          />
+          <TouchableOpacity style={styles.searchButton}>
+            <Ionicons name="search" size={20} color={colors.textSecondary} />
+          </TouchableOpacity>
           </View>
           <TouchableOpacity style={styles.filterIconBtn} onPress={toggleFilters}>
             <Ionicons name="options" size={24} color={colors.primary} />
