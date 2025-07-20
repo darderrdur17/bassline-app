@@ -91,12 +91,12 @@ export const venues = [
     waitTime: 30,
     estimatedUber: "$15",
     hours: "5:30 PM - 11 PM",
-    heroImage: require('../../bassline-app/assets/Verjus.png'),
+    heroImage: require('../../assets/Verjus.png'),
     description: "Sophisticated French dining with extensive wine selection",
     gallery: [
-      require('../../bassline-app/assets/Verjus.png'),
-      require('../../bassline-app/assets/Verjus-2.png'),
-      require('../../bassline-app/assets/Verjus-3.png'),
+      require('../../assets/Verjus.png'),
+      require('../../assets/Verjus-2.png'),
+      require('../../assets/Verjus-3.png'),
     ],
   },
   {
