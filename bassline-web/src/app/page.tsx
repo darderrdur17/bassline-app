@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import { venues } from '@/data/venues.js';
 import dynamic from 'next/dynamic';
-const Map = dynamic(() => import('@/components/Map'), { ssr: false });
+const DynamicMap = dynamic(() => import('@/components/Map'), { ssr: false, loading: () => <div style={{ height: 400 }} /> });
 import VenueModal from '@/components/VenueModal';
 import React from 'react';
 import FilterDrawer from '@/components/FilterDrawer';
@@ -112,11 +112,13 @@ export default function Home() {
 
       {/* Map Container */}
       <div className="flex-1">
-        <Map
+        {typeof window !== 'undefined' && (
+        <DynamicMap
           venues={filteredVenues as any}
           selectedVenue={selectedVenue}
           onVenueSelect={(v) => setSelectedVenue(v)}
         />
+        )}
         {selectedVenue && (
           <VenueModal venue={selectedVenue} onClose={() => setSelectedVenue(null)} />
         )}
