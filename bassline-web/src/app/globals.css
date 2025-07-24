@@ -20,6 +20,9 @@
 /* Tailwind import */
 @import "tailwindcss";
 
+/* Leaflet map styles */
+@import url('https://unpkg.com/leaflet@1.9.4/dist/leaflet.css');
+
 :root {
   --background: #ffffff;
   --foreground: #171717;
