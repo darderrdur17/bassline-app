@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, Text, StyleSheet, ScrollView, Image } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
-import { colors, spacing, typography, borderRadius, shadows } from '../styles/theme';
+import { colors, spacing, typography, borderRadius, shadows, fonts } from '../styles/theme';
 
 export default function InfoScreen() {
   return (
@@ -17,13 +17,13 @@ export default function InfoScreen() {
       <View style={styles.card}>
         <View style={styles.cardHeader}>
           <Ionicons name="bulb" size={24} color={colors.primary} />
-          <Text style={styles.cardTitle}>How It Works</Text>
+          <Text style={styles.cardTitle}>How Bassline Works</Text>
         </View>
         <Text style={styles.paragraph}>
-          • Search by mood, venue name or music genre.
-          {'\n'}• Tap coloured pins to preview spots.
-          {'\n'}• Swipe left / right on the card to browse.
-          {'\n'}• Open full details for photos, hours & more.
+          • Discover the best bars, restaurants, lounges, and clubs in San Francisco.
+          {'\n'}• Search by mood, venue name, music genre, or neighborhood.
+          {'\n'}• Tap colored pins on the map to preview spots and see details.
+          {'\n'}• Save favorites, get directions, and follow venues on social media.
         </Text>
       </View>
 
@@ -31,14 +31,14 @@ export default function InfoScreen() {
       <View style={styles.card}>
         <View style={styles.cardHeader}>
           <Ionicons name="pin" size={24} color={colors.primary} />
-          <Text style={styles.cardTitle}>Pin Colours</Text>
+          <Text style={styles.cardTitle}>Pin Colors</Text>
         </View>
         <View style={styles.legendList}>
           {[
-            { label: 'Bar', color: colors.primary },
-            { label: 'Restaurant', color: colors.crowdModerate },
-            { label: 'Lounge', color: colors.crowdBusy },
-            { label: 'Club', color: colors.primaryDark },
+            { label: 'Bar', color: '#2196F3' }, // Blue
+            { label: 'Restaurant', color: '#E53935' }, // Red
+            { label: 'Lounge', color: '#FFEB3B' }, // Yellow
+            { label: 'Club', color: '#4CAF50' }, // Green
           ].map((item) => (
             <View key={item.label} style={styles.legendRow}>
               <View style={[styles.legendDot, { backgroundColor: item.color }]} />
@@ -55,7 +55,7 @@ export default function InfoScreen() {
           <Text style={styles.cardTitle}>Book & Follow</Text>
         </View>
         <Text style={styles.paragraph}>
-          Open Yelp, Resy / OpenTable or follow venues on Instagram and TikTok – just tap the icons on each venue page.
+          Tap the Instagram, Yelp, or Resy icons on each venue page to book a table, see reviews, or follow your favorite spots.
         </Text>
       </View>
 
@@ -66,9 +66,10 @@ export default function InfoScreen() {
           <Text style={styles.cardTitle}>Pro Tips</Text>
         </View>
         <Text style={styles.paragraph}>
-          • Use the filter panel to layer advanced filters.
+          • Use the filter panel for advanced search (price, ambiance, crowd).
           {'\n'}• Enable location to sort venues by distance.
-          {'\n'}• Save favourites for a personalised map.
+          {'\n'}• Save favorites for a personalized map.
+          {'\n'}• Try the web version for easy sharing: bassline.com
         </Text>
       </View>
     </ScrollView>
@@ -84,8 +85,20 @@ const styles = StyleSheet.create({
   },
   heroWrap: { alignItems: 'center', marginBottom: spacing.xl },
   heroLogo: { width: 80, height: 80, resizeMode: 'contain', marginBottom: spacing.sm },
-  brand: { ...typography.brand, color: colors.primary, textAlign: 'center' },
-  tagline: { ...typography.small, color: colors.primary, textAlign: 'center', letterSpacing: 1 },
+  brand: { 
+    ...typography.brand, 
+    color: colors.primary, 
+    textAlign: 'center',
+    fontSize: 48, // make it bigger like other screens
+  },
+  tagline: { 
+    ...typography.small, 
+    color: colors.primary, 
+    textAlign: 'center', 
+    letterSpacing: 1,
+    fontSize: 20, // make it bigger
+    fontFamily: fonts.helveticaWorld,
+  },
   card: {
     backgroundColor: colors.white,
     borderRadius: borderRadius.medium,
@@ -94,12 +107,29 @@ const styles = StyleSheet.create({
     ...shadows.small,
   },
   cardHeader: { flexDirection: 'row', alignItems: 'center', marginBottom: spacing.sm },
-  cardTitle: { ...typography.venue, color: colors.primary, marginLeft: spacing.sm, fontSize: 20 },
+  cardTitle: { 
+    ...typography.title, 
+    color: colors.primary, 
+    marginLeft: spacing.sm, 
+    fontSize: 24, // make it bigger
+    fontFamily: fonts.komsomol,
+  },
   title: { ...typography.title, color: colors.primary, textAlign: 'center', marginBottom: spacing.lg },
   subtitle: { ...typography.venue, color: colors.primary, marginTop: spacing.lg, marginBottom: spacing.sm },
-  paragraph: { ...typography.body, color: colors.textSecondary, lineHeight: 22 },
+  paragraph: { 
+    ...typography.body, 
+    color: colors.textSecondary, 
+    lineHeight: 24, // increase line height for better readability
+    fontSize: 16, // make it bigger
+    fontFamily: fonts.helveticaWorld,
+  },
   legendList: { marginTop: spacing.sm },
   legendRow: { flexDirection: 'row', alignItems: 'center', marginBottom: spacing.xs },
   legendDot: { width: 12, height: 12, borderRadius: 6, marginRight: spacing.sm },
-  legendLabel: { ...typography.small, color: colors.text },
+  legendLabel: { 
+    ...typography.small, 
+    color: colors.text,
+    fontSize: 16, // make it bigger
+    fontFamily: fonts.helveticaWorld,
+  },
 }); 

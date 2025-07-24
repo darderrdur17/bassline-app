@@ -10,7 +10,7 @@ import {
   Image,
 } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
-import { colors, typography, spacing, borderRadius } from '../styles/theme';
+import { colors, typography, spacing, borderRadius, fonts } from '../styles/theme';
 
 export default function LandingScreen({ navigation }) {
   const [searchText, setSearchText] = useState('');
@@ -138,7 +138,7 @@ const styles = StyleSheet.create({
   },
   brandTitle: {
     ...typography.brand,
-    fontSize: 48,
+    fontSize: 56, // make as wide as tagline visually
     color: colors.primary,
     marginBottom: spacing.sm,
     textAlign: 'center',
@@ -149,6 +149,8 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     letterSpacing: 1,
     fontWeight: 'bold',
+    fontSize: 22, // bigger description
+    fontFamily: fonts.helveticaWorld,
   },
   searchSection: {
     marginBottom: spacing.xl,

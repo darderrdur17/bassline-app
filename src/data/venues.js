@@ -28,6 +28,9 @@ export const venues = [
     yelpUrl: "https://www.yelp.com/biz/bar-part-time-san-francisco",
     resyUrl: "https://resy.com/cities/sf/bar-part-time",
     instagram: "https://instagram.com/barparttime",
+    cuisine: "Natural wine, small plates, bar snacks, pop-up food partners",
+    shortDescription: "Hip natural wine bar with a vinyl listening vibe, DJ sets, and a lively dance floor.",
+    accolades: "Featured in SF nightlife guides and “best bars” lists for music and wine.",
     gallery: [
       "https://images.unsplash.com/photo-1514933651103-005eec06c04b?w=400",
       "https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=400",
@@ -62,6 +65,9 @@ export const venues = [
     yelpUrl: "https://www.yelp.com/biz/key-klub-san-francisco",
     resyUrl: "https://resy.com/cities/sf/key-klub",
     instagram: "https://instagram.com/keyklubsf",
+    cuisine: "New American, cocktails, wine, small plates",
+    shortDescription: "Hip Gen Z spot with New American food and drinks",
+    accolades: "Featured in SF nightlife guides and “best bars” lists for music and wine.",
     gallery: [
       "https://images.unsplash.com/photo-1543007630-9710e4a00a20?w=400",
       "https://images.unsplash.com/photo-1515162305281-4524d839d4a5?w=400",
@@ -93,6 +99,9 @@ export const venues = [
     hours: "5:30 PM - 11 PM",
     heroImage: require('../../assets/Verjus.png'),
     description: "Sophisticated French dining with extensive wine selection",
+    cuisine: "French cuisine, wine, cocktails, small plates",
+    shortDescription: "Sophisticated French dining with extensive wine selection",
+    accolades: "Featured in SF nightlife guides and “best bars” lists for music and wine.",
     gallery: [
       require('../../assets/Verjus.png'),
       require('../../assets/Verjus-2.png'),
@@ -124,6 +133,9 @@ export const venues = [
     hours: "7 PM - 2 AM",
     heroImage: "https://images.unsplash.com/photo-1510735166794-1e22c7d230f1?w=400", // vinyl records
     description: "Record store meets cocktail bar with live DJ sets",
+    cuisine: "Cocktails, wine, small plates, bar snacks",
+    shortDescription: "Record store meets cocktail bar with live DJ sets",
+    accolades: "Featured in SF nightlife guides and “best bars” lists for music and wine.",
     gallery: [
       "https://images.unsplash.com/photo-1510735166794-1e22c7d230f1?w=400",
       "https://images.unsplash.com/photo-1505925456422-1d8a438d4f88?w=400",
@@ -155,6 +167,9 @@ export const venues = [
     hours: "5 PM - 11 PM",
     heroImage: "https://images.unsplash.com/photo-1553621042-f6e147245754?w=400", // seafood dishes
     description: "Cozy seafood-focused bar with classical music ambiance",
+    cuisine: "Seafood, cocktails, wine, small plates",
+    shortDescription: "Cozy seafood-focused bar with classical music ambiance",
+    accolades: "Featured in SF nightlife guides and “best bars” lists for music and wine.",
     gallery: [
       "https://images.unsplash.com/photo-1553621042-f6e147245754?w=400",
       "https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=400",
@@ -186,6 +201,9 @@ export const venues = [
     hours: "6 PM - 12 AM",
     heroImage: "https://images.unsplash.com/photo-1595424762791-7ef88838ad01?w=400", // sake/Japanese
     description: "Minimalist sake bar with Japanese-inspired snacks and vinyl sets",
+    cuisine: "Sake, cocktails, wine, small plates",
+    shortDescription: "Minimalist sake bar with Japanese-inspired snacks and vinyl sets",
+    accolades: "Featured in SF nightlife guides and “best bars” lists for music and wine.",
     gallery: [
       "https://images.unsplash.com/photo-1595424762791-7ef88838ad01?w=400",
       "https://images.unsplash.com/photo-1532634896-26909d0d0b9f?w=400",
@@ -217,6 +235,9 @@ export const venues = [
     hours: "5:30 PM - 11 PM",
     heroImage: "https://images.unsplash.com/photo-1544148103-bf50c5e7836b?w=400", // Mediterranean
     description: "Intimate Mediterranean bar perfect for date nights",
+    cuisine: "Mediterranean cuisine, cocktails, wine, small plates",
+    shortDescription: "Intimate Mediterranean bar perfect for date nights",
+    accolades: "Featured in SF nightlife guides and “best bars” lists for music and wine.",
     gallery: [
       "https://images.unsplash.com/photo-1544148103-bf50c5e7836b?w=400",
       "https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=400",
@@ -248,6 +269,9 @@ export const venues = [
     hours: "7 PM - 2 AM",
     heroImage: "https://images.unsplash.com/photo-1556817411-31ae72fa3ea0?w=400", // futuristic lighting
     description: "Futuristic space-themed bar with immersive cocktail experience",
+    cuisine: "Cocktails, wine, small bites, snacks",
+    shortDescription: "Futuristic space-themed bar with immersive cocktail experience",
+    accolades: "Featured in SF nightlife guides and “best bars” lists for music and wine.",
     gallery: [
       "https://images.unsplash.com/photo-1556817411-31ae72fa3ea0?w=400",
       "https://images.unsplash.com/photo-1519671482749-fd09be7ccebf?w=400",
@@ -279,6 +303,9 @@ export const venues = [
     hours: "6 PM - 1 AM",
     heroImage: "https://images.unsplash.com/photo-1506377247377-2a5b3b417ebb?w=400", // natural wine
     description: "Cozy natural wine bar with soul and funk vinyl sets",
+    cuisine: "Natural wine, cocktails, small plates, charcuterie",
+    shortDescription: "Cozy natural wine bar with soul and funk vinyl sets",
+    accolades: "Featured in SF nightlife guides and “best bars” lists for music and wine.",
     gallery: [
       "https://images.unsplash.com/photo-1506377247377-2a5b3b417ebb?w=400",
       "https://images.unsplash.com/photo-1497534446932-c925b458314e?w=400",
@@ -310,6 +337,9 @@ export const venues = [
     hours: "4 PM - 12 AM",
     heroImage: "https://images.unsplash.com/photo-1491316037411-40279662960e?w=400", // rooftop view
     description: "Sophisticated rooftop lounge with panoramic city views",
+    cuisine: "Upscale bar bites, cocktails, wine, small plates",
+    shortDescription: "Sophisticated rooftop lounge with panoramic city views",
+    accolades: "Featured in SF nightlife guides and “best bars” lists for music and wine.",
     gallery: [
       "https://images.unsplash.com/photo-1491316037411-40279662960e?w=400",
       "https://images.unsplash.com/photo-1518916171747-a2f21ddcb7ee?w=400",

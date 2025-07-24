@@ -7,6 +7,7 @@ import {
   Image,
   Dimensions,
   Animated,
+  Linking,
 } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { colors, typography, spacing, borderRadius, shadows } from '../styles/theme';
@@ -91,7 +92,15 @@ export default function VenueCard({ venue, onPress, onClose, preview = false, on
           <View style={[styles.header, preview && { paddingRight: 40 }]}>
             <View style={styles.titleContainer}>
               <Text style={styles.venueName}>{venue.name}</Text>
+              {/* Short Description */}
+              {venue.shortDescription ? (
+                <Text style={styles.shortDescription}>{venue.shortDescription}</Text>
+              ) : null}
               {preview ? null : <Text style={styles.venueNeighborhood}>{venue.neighborhood}</Text>}
+              {/* Accolades */}
+              {venue.accolades ? (
+                <Text style={styles.accolades}>{venue.accolades}</Text>
+              ) : null}
             </View>
             <View style={styles.pricingContainer}>
               <Text style={styles.pricing}>{venue.pricing}</Text>
@@ -111,13 +120,16 @@ export default function VenueCard({ venue, onPress, onClose, preview = false, on
           <>
           <View style={styles.quickInfo}>
             <View style={styles.infoItem}>
-              <Ionicons name="time-outline" size={16} color={colors.textSecondary} />
-              <Text style={styles.infoText}>{venue.hours}</Text>
-            </View>
-            <View style={styles.infoItem}>
               <Ionicons name="musical-notes-outline" size={16} color={colors.textSecondary} />
               <Text style={styles.infoText}>{venue.musicGenre.join(', ')}</Text>
             </View>
+            {/* Cuisine */}
+            {venue.cuisine ? (
+              <View style={styles.infoItem}>
+                <Ionicons name="restaurant-outline" size={16} color={colors.textSecondary} />
+                <Text style={styles.infoText}>{venue.cuisine}</Text>
+              </View>
+            ) : null}
           </View>
 
           {/* Ambiance & Crowd */}
@@ -143,6 +155,25 @@ export default function VenueCard({ venue, onPress, onClose, preview = false, on
             </View>
             <Text style={styles.waitTime}>{venue.waitTime} min wait</Text>
             <Text style={styles.uberCost}>{venue.estimatedUber} Uber</Text>
+          </View>
+
+          {/* Social Media Buttons */}
+          <View style={{ flexDirection: 'row', marginBottom: spacing.sm }}>
+            {venue.instagram && (
+              <TouchableOpacity onPress={() => Linking.openURL(venue.instagram)} style={{ marginRight: 12 }}>
+                <Ionicons name="logo-instagram" size={22} color={colors.white} />
+              </TouchableOpacity>
+            )}
+            {venue.yelpUrl && (
+              <TouchableOpacity onPress={() => Linking.openURL(venue.yelpUrl)} style={{ marginRight: 12 }}>
+                <Ionicons name="globe-outline" size={22} color={colors.white} />
+              </TouchableOpacity>
+            )}
+            {venue.resyUrl && (
+              <TouchableOpacity onPress={() => Linking.openURL(venue.resyUrl)} style={{ marginRight: 12 }}>
+                <Ionicons name="restaurant" size={22} color={colors.white} />
+              </TouchableOpacity>
+            )}
           </View>
 
           {/* Action Buttons */}
@@ -171,7 +202,8 @@ export default function VenueCard({ venue, onPress, onClose, preview = false, on
             <View style={{ marginTop: spacing.sm }}>
               {[
                 { label: 'VENUE', value: venue.type },
-                { label: 'HOURS', value: venue.hours },
+                // Cuisine descriptor if available
+                ...(venue.cuisine ? [{ label: 'CUISINE', value: venue.cuisine }] : []),
                 { label: 'AMBIANCE', value: venue.ambiance.join(', ') },
                 { label: 'GENRE', value: venue.musicGenre.join(', ') },
                 { label: 'DRESSCODE', value: venue.dressCode },
@@ -290,6 +322,7 @@ const styles = StyleSheet.create({
     fontSize: 14,
     marginLeft: spacing.xs,
     opacity: 0.9,
+    fontFamily: fonts.helveticaWorld,
   },
   detailsRow: {
     marginBottom: spacing.sm,
@@ -310,6 +343,7 @@ const styles = StyleSheet.create({
     fontSize: 12,
     opacity: 0.9,
     flex: 1,
+    fontFamily: fonts.helveticaWorld,
   },
   statusRow: {
     flexDirection: 'row',
@@ -437,5 +471,18 @@ const styles = StyleSheet.create({
     width: '100%',
     height: '100%',
     resizeMode: 'cover',
+  },
+  shortDescription: {
+    color: colors.white,
+    fontSize: 16, // bigger for readability
+    opacity: 0.95,
+    marginBottom: spacing.xs,
+    fontFamily: fonts.helveticaWorld,
+  },
+  accolades: {
+    color: colors.warning,
+    fontSize: 12,
+    fontWeight: 'bold',
+    marginBottom: spacing.xs,
   },
 }); 

@@ -13,7 +13,7 @@ import {
 } from 'react-native';
 import MapView, { Marker } from 'react-native-maps';
 import { Ionicons } from '@expo/vector-icons';
-import { colors, typography, spacing, borderRadius, shadows } from '../styles/theme';
+import { colors, typography, spacing, borderRadius, shadows, fonts } from '../styles/theme';
 import { venues, filterOptions, moodMapping } from '../data/venues';
 import VenueCard from '../components/VenueCard';
 import FilterPanel from '../components/FilterPanel';
@@ -36,6 +36,14 @@ const distanceMiles = (coord1, coord2) => {
   const a = Math.sin(dLat/2)**2 + Math.sin(dLon/2)**2 * Math.cos(lat1) * Math.cos(lat2);
   const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
   return (R * c) / 1609.34; // miles
+};
+
+// 1. Add new pin colors to the color palette import (if not present)
+const pinColors = {
+  Bar: '#2196F3',        // Blue
+  Restaurant: '#E53935', // Red (brand)
+  Lounge: '#FFEB3B',     // Yellow
+  Club: '#4CAF50',       // Green
 };
 
 export default function MapScreen({ navigation, route }) {
@@ -242,11 +250,11 @@ export default function MapScreen({ navigation, route }) {
       return colors.white; // highlight selected
     }
     switch (venue.type) {
-      case 'Bar': return colors.primary;
-      case 'Restaurant': return colors.crowdModerate;
-      case 'Lounge': return colors.crowdBusy;
-      case 'Club': return colors.primaryDark;
-      default: return colors.primary;
+      case 'Bar': return pinColors.Bar;
+      case 'Restaurant': return pinColors.Restaurant;
+      case 'Lounge': return pinColors.Lounge;
+      case 'Club': return pinColors.Club;
+      default: return pinColors.Bar;
     }
   };
 
@@ -310,23 +318,22 @@ export default function MapScreen({ navigation, route }) {
         <View style={styles.resultsInline}>
           <Text style={styles.resultsText}>{filteredVenues.length} venues found</Text>
         </View>
-
         {/* Pin Color Legend */}
         <View style={styles.legendContainer}>
           <View style={styles.legendItem}>
-            <View style={[styles.legendDot, { backgroundColor: colors.primary }]} />
+            <View style={[styles.legendDot, { backgroundColor: pinColors.Bar }]} />
             <Text style={styles.legendLabel}>Bar</Text>
           </View>
           <View style={styles.legendItem}>
-            <View style={[styles.legendDot, { backgroundColor: colors.crowdModerate }]} />
+            <View style={[styles.legendDot, { backgroundColor: pinColors.Restaurant }]} />
             <Text style={styles.legendLabel}>Restaurant</Text>
           </View>
           <View style={styles.legendItem}>
-            <View style={[styles.legendDot, { backgroundColor: colors.crowdBusy }]} />
+            <View style={[styles.legendDot, { backgroundColor: pinColors.Lounge, borderWidth: 1, borderColor: colors.black }]} />
             <Text style={styles.legendLabel}>Lounge</Text>
           </View>
           <View style={styles.legendItem}>
-            <View style={[styles.legendDot, { backgroundColor: colors.primaryDark }]} />
+            <View style={[styles.legendDot, { backgroundColor: pinColors.Club }]} />
             <Text style={styles.legendLabel}>Club</Text>
           </View>
         </View>
@@ -552,6 +559,7 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     marginBottom: spacing.sm,
     letterSpacing: 0.5,
+    fontSize: 16, // make it bigger and more readable
   },
   searchContainer: {
     flexDirection: 'row',
@@ -583,13 +591,12 @@ const styles = StyleSheet.create({
     borderColor: colors.primary,
   },
   mapPreviewWrapper: {
-    // Increase height to utilize more screen space (roughly 55% of viewport height)
-    height: height * 0.55,
-    width: '95%',
+    height: height * 0.72, // Further increase map height
+    width: '98%', // Slightly wider
     alignSelf: 'center',
     borderRadius: borderRadius.medium,
     overflow: 'hidden',
-    marginTop: spacing.md,
+    marginTop: spacing.xs, // Bring map closer to directory
     marginBottom: spacing.md,
   },
   mapPreview: {
@@ -613,14 +620,16 @@ const styles = StyleSheet.create({
     marginTop: spacing.xs,
     alignSelf: 'flex-start',
     marginLeft: spacing.md,
-    backgroundColor: 'rgba(0,0,0,0.6)',
+    backgroundColor: colors.white, // Make background blank/white
     paddingHorizontal: spacing.sm,
     paddingVertical: spacing.xs,
     borderRadius: borderRadius.small,
+    borderWidth: 1.5,
+    borderColor: colors.primary, // Red outline
   },
   resultsText: {
-    color: colors.white,
-    fontSize: 12,
+    color: colors.primary, // change from white to primary color for better contrast
+    fontSize: 14, // make it bigger
     fontWeight: 'bold',
   },
   brandHeader: {
@@ -635,11 +644,11 @@ const styles = StyleSheet.create({
     ...shadows.medium,
   },
   bigTitle: {
-    ...typography.title,
+    ...typography.brand,
     color: colors.white,
-    fontSize: 32,
+    fontSize: 64, // enlarged to approximate tagline width
     fontWeight: 'bold',
-    letterSpacing: 1.2,
+    letterSpacing: 6, // increased spacing for wider appearance
     marginBottom: spacing.xs,
   },
   tagline: {
@@ -648,15 +657,19 @@ const styles = StyleSheet.create({
     opacity: 0.9,
     textAlign: 'center',
     letterSpacing: 0.5,
+    fontSize: 20, // make tagline bigger
+    fontFamily: fonts.helveticaWorld,
   },
   legendContainer: {
     flexDirection: 'row',
     justifyContent: 'space-around',
-    marginTop: spacing.sm,
-    marginBottom: spacing.sm,
+    marginTop: spacing.xs, // Reduce space
+    marginBottom: spacing.xs, // Reduce space
     paddingHorizontal: spacing.md,
-    backgroundColor: 'rgba(0,0,0,0.6)',
+    backgroundColor: colors.white, // Make background blank/white
     borderRadius: borderRadius.small,
+    borderWidth: 1.5,
+    borderColor: colors.primary, // Red outline
   },
   legendItem: {
     flexDirection: 'row',
@@ -670,7 +683,8 @@ const styles = StyleSheet.create({
   },
   legendLabel: {
     ...typography.small,
-    color: colors.white,
+    color: colors.primary, // change from white to primary color for better contrast
     fontWeight: 'bold',
+    fontSize: 14, // make it bigger
   },
 }); 
