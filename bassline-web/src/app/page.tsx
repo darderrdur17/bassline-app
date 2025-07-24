@@ -2,7 +2,8 @@
 
 import { useState } from 'react';
 import { venues } from '@/data/venues.js';
-import Map from '@/components/Map';
+import dynamic from 'next/dynamic';
+const Map = dynamic(() => import('@/components/Map'), { ssr: false });
 import VenueModal from '@/components/VenueModal';
 import React from 'react';
 import FilterDrawer from '@/components/FilterDrawer';
