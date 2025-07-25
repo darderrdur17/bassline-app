@@ -1,9 +1,10 @@
 'use client';
 
-import { useState } from 'react';
-import { venues } from '@/data/venues.js';
+import { useState, useEffect } from 'react';
+import { venues } from '@/data/venues';
+import { moodMapping } from '@/data/venues';
 import dynamic from 'next/dynamic';
-const DynamicMap = dynamic(() => import('@/components/Map'), { ssr: false, loading: () => <div style={{ height: 400 }} /> });
+const DynamicMap = dynamic(() => import('@/components/Map'), { ssr: false, loading: () => <div className="h-96 bg-gray-100 rounded-lg animate-pulse flex items-center justify-center text-gray-500">Loading map...</div> });
 import VenueModal from '@/components/VenueModal';
 import React from 'react';
 import FilterDrawer from '@/components/FilterDrawer';
@@ -15,14 +16,61 @@ export default function Home() {
   const [activeTypes, setActiveTypes] = useState<string[]>([]);
   const [drawerOpen, setDrawerOpen] = useState(false);
   const [advFilters, setAdvFilters] = useState({ neighborhood: [], pricing: [], musicGenre: [] } as { neighborhood: string[]; pricing: string[]; musicGenre: string[] });
+  const [showMap, setShowMap] = useState(true); // Changed to true to show map by default
+  const [showAllVenues, setShowAllVenues] = useState(false);
 
   const handleSearch = (text: string) => {
     setSearchText(text);
-    // Filtering handled in effect below
+    setShowMap(true); // Always show map when searching
   };
 
   const toggleType = (type: string) => {
-    setActiveTypes((prev) => prev.includes(type) ? prev.filter(t => t !== type) : [...prev, type]);
+    setActiveTypes((prev) => {
+      const newTypes = prev.includes(type) ? prev.filter(t => t !== type) : [...prev, type];
+      setShowMap(true); // Always show map when filtering
+      return newTypes;
+    });
+  };
+
+  const handleMoodSelection = (mood: string) => {
+    const moodVenues = moodMapping[mood];
+    if (moodVenues) {
+      const filtered = venues.filter(venue => moodVenues.includes(venue.name));
+      setFilteredVenues(filtered);
+      setShowMap(true);
+      // Scroll to map
+      setTimeout(() => {
+        const mapElement = document.getElementById('venue-map');
+        if (mapElement) {
+          mapElement.scrollIntoView({ behavior: 'smooth' });
+        }
+      }, 100);
+    }
+  };
+
+  const handleShowAllVenues = () => {
+    setFilteredVenues(venues);
+    setShowMap(true);
+    setSearchText('');
+    setActiveTypes([]);
+    setAdvFilters({ neighborhood: [], pricing: [], musicGenre: [] });
+    // Scroll to map
+    setTimeout(() => {
+      const mapElement = document.getElementById('venue-map');
+      if (mapElement) {
+        mapElement.scrollIntoView({ behavior: 'smooth' });
+      }
+    }, 100);
+  };
+
+  const handleShowAllVenuesList = () => {
+    setShowAllVenues(true);
+    setTimeout(() => {
+      const allVenuesElement = document.getElementById('all-venues');
+      if (allVenuesElement) {
+        allVenuesElement.scrollIntoView({ behavior: 'smooth' });
+      }
+    }, 100);
   };
 
   // Compute filtered venues when search or filters change
@@ -62,68 +110,257 @@ export default function Home() {
     setFilteredVenues(filtered);
   }, [searchText, activeTypes, advFilters]);
 
-  return (
-    <div className="min-h-screen flex flex-col bg-[#F5F5DC]">
-      {/* Header */}
-      <div className="bg-[#E53935] text-white p-6">
-        <div className="max-w-4xl mx-auto">
-          <h1 className="text-4xl font-bold text-center mb-2 tracking-wider">
-            BASSLINE
-          </h1>
-          <p className="text-lg text-center mb-6 opacity-90 tracking-wide">
-            THE CITY NEVER SLEEPS, NEITHER SHOULD YOU.
-          </p>
-          
-          {/* Search Section */}
-          <div className="mb-4">
-            <p className="text-center mb-3 font-semibold">
-              WHAT ARE YOU FEELING TONIGHT?
-            </p>
-            <div className="flex gap-3 max-w-md mx-auto">
-              <input
-                type="text"
-                placeholder="Search venues, moods, music..."
-                value={searchText}
-                onChange={(e) => handleSearch(e.target.value)}
-                className="flex-1 px-4 py-2 rounded-lg border-2 border-white bg-white text-gray-800 placeholder-gray-500"
-              />
-              <button className="px-4 py-2 bg-white text-[#E53935] rounded-lg font-semibold">
-                🔍
-              </button>
-            </div>
-          </div>
+  const featuredVenues = venues.slice(0, 3);
+  const moodOptions = ['chill', 'party', 'date', 'classy', 'music', 'drinks'];
 
-          {/* Type Filter Chips */}
-          <div className="flex justify-center gap-3 mt-2 flex-wrap">
-            {['Bar', 'Restaurant', 'Lounge', 'Club'].map((type) => (
-              <button
-                key={type}
-                onClick={() => toggleType(type)}
-                className={`px-3 py-1 rounded-full border-2 font-semibold text-sm ${activeTypes.includes(type) ? 'bg-white text-[#E53935]' : 'bg-transparent text-white'} border-white`}
-              >
-                {type}
-              </button>
-            ))}
-          </div>
-
-          {/* The pinch directory overlay is handled within Map component */}
+  // Component for venue card
+  const VenueCard = ({ venue, index = 0 }: { venue: any; index?: number }) => (
+    <div 
+      key={venue.id}
+      className="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 cursor-pointer group"
+      style={{ animationDelay: `${index * 0.1}s` }}
+      onClick={() => setSelectedVenue(venue)}
+      role="button"
+      tabIndex={0}
+      onKeyDown={(e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          setSelectedVenue(venue);
+        }
+      }}
+      aria-label={`View details for ${venue.name}`}
+    >
+      <div className="relative overflow-hidden">
+        <img 
+          src={venue.heroImage} 
+          alt={`${venue.name} interior`}
+          className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
+        />
+        <div className="absolute top-3 right-3">
+          <span className="px-2 py-1 bg-black/70 text-white text-xs rounded-full font-body">
+            {venue.type}
+          </span>
         </div>
       </div>
-
-      {/* Map Container */}
-      <div className="flex-1" suppressHydrationWarning>
-        {typeof window !== 'undefined' && (
-        <DynamicMap
-          venues={filteredVenues as any}
-          selectedVenue={selectedVenue}
-          onVenueSelect={(v) => setSelectedVenue(v)}
-        />
-        )}
-        {selectedVenue && (
-          <VenueModal venue={selectedVenue} onClose={() => setSelectedVenue(null)} />
-        )}
-        <FilterDrawer open={drawerOpen} filters={advFilters} onFiltersChange={setAdvFilters} onClose={() => setDrawerOpen(false)} />
+      <div className="p-4">
+        <h3 className="text-lg font-brand font-bold mb-2 text-[#E53935] group-hover:text-[#C62D2D] transition-colors">
+          {venue.name}
+        </h3>
+        <p className="text-gray-600 mb-3 text-sm font-body line-clamp-2">
+          {venue.shortDescription}
+        </p>
+        <div className="flex justify-between items-center text-sm text-gray-500 font-body mb-3">
+          <span className="flex items-center gap-1">📍 {venue.neighborhood}</span>
+          <span className="flex items-center gap-1">
+            <span aria-label="Rating">⭐</span> {venue.rating}
+          </span>
+        </div>
+        <div className="flex items-center justify-between mb-3">
+          <span className="text-sm font-semibold text-gray-700 font-body">{venue.pricing}</span>
+          <span className="text-xs text-gray-500 font-body">{venue.hours}</span>
+        </div>
+        <div className="flex gap-2 flex-wrap">
+          {venue.musicGenre.slice(0, 2).map((genre: string) => (
+            <span key={genre} className="px-2 py-1 bg-[#E53935]/10 text-[#E53935] rounded text-xs font-medium font-body">
+              {genre}
+            </span>
+          ))}
+        </div>
       </div>
     </div>
   );
+
+  return (
+    <div className="min-h-screen bg-[#F5F5DC]">
+      {/* Hero Section */}
+      <div className="bg-[#E53935] text-white relative overflow-hidden">
+        <div className="absolute inset-0 bg-black/10"></div>
+        <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 py-12 sm:py-16">
+          <div className="text-center animate-fade-in-up">
+            <h1 className="text-4xl sm:text-6xl md:text-8xl font-brand font-bold tracking-wider mb-4">
+              BASSLINE
+            </h1>
+            <p className="text-lg sm:text-xl md:text-2xl mb-2 opacity-90 tracking-wide font-body">
+              THE CITY NEVER SLEEPS, NEITHER SHOULD YOU.
+            </p>
+            <p className="text-base sm:text-lg mb-8 sm:mb-12 opacity-80 max-w-2xl mx-auto font-body">
+              Discover San Francisco's best nightlife venues with mood-based discovery
+            </p>
+            
+            <div className="mb-8">
+              <h2 className="text-xl sm:text-2xl font-semibold mb-6 font-body">
+                WHAT ARE YOU FEELING TONIGHT?
+              </h2>
+              
+              {/* Search Bar */}
+              <div className="flex flex-col sm:flex-row gap-3 max-w-md mx-auto mb-6">
+                <input 
+                  type="text"
+                  placeholder="Search venues, moods, music..."
+                  className="flex-1 px-4 py-3 rounded-lg border-2 border-white bg-white text-gray-800 placeholder-gray-500 text-base sm:text-lg focus:outline-none focus:ring-2 focus:ring-white/50 font-body"
+                  aria-label="Search venues"
+                  value={searchText}
+                  onChange={(e) => handleSearch(e.target.value)}
+                />
+                <button 
+                  className="px-6 py-3 bg-white text-[#E53935] rounded-lg font-semibold text-lg hover:bg-gray-100 focus:bg-gray-100 transition-colors focus:outline-none focus:ring-2 focus:ring-white/50 font-body"
+                  aria-label="Search"
+                >
+                  🔍
+                </button>
+              </div>
+              
+              {/* Mood Buttons */}
+              <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-2 sm:gap-3 max-w-2xl mx-auto mb-6">
+                {moodOptions.map((mood) => (
+                  <button
+                    key={mood}
+                    onClick={() => handleMoodSelection(mood)}
+                    className="px-3 py-2 sm:px-4 sm:py-3 bg-white/10 backdrop-blur-sm rounded-lg border border-white/20 hover:bg-white/20 focus:bg-white/20 transition-all capitalize font-semibold text-sm sm:text-base focus:outline-none focus:ring-2 focus:ring-white/50 font-body"
+                    aria-label={`Find ${mood} venues`}
+                  >
+                    {mood}
+                  </button>
+                ))}
+              </div>
+              
+              {/* Type Filters */}
+              <div className="flex justify-center gap-2 sm:gap-3 flex-wrap">
+                {['Bar', 'Restaurant', 'Lounge', 'Club'].map((type) => (
+                  <button
+                    key={type}
+                    onClick={() => toggleType(type)}
+                    className={`px-3 py-2 sm:px-4 sm:py-2 rounded-full border-2 font-semibold text-sm sm:text-base transition-all focus:outline-none focus:ring-2 focus:ring-white/50 font-body ${
+                      activeTypes.includes(type)
+                        ? 'bg-white text-[#E53935] border-white'
+                        : 'bg-transparent text-white border-white hover:scale-105 focus:scale-105'
+                    }`}
+                    aria-label={`Filter by ${type}`}
+                    aria-pressed={activeTypes.includes(type)}
+                  >
+                    {type}
+                  </button>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Featured Venues Section */}
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 py-12 sm:py-16">
+        <h2 className="text-3xl sm:text-4xl font-brand font-bold text-center mb-8 sm:mb-12 text-[#E53935] animate-fade-in-up">
+          FEATURED VENUES
+        </h2>
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+          {featuredVenues.map((venue, index) => (
+            <VenueCard key={venue.id} venue={venue} index={index} />
+          ))}
+        </div>
+        
+        <div className="text-center mt-8 sm:mt-12 space-y-4">
+          <button 
+            onClick={handleShowAllVenues}
+            className="px-6 sm:px-8 py-3 sm:py-4 bg-[#E53935] text-white rounded-lg font-semibold text-base sm:text-lg hover:bg-[#C62D2D] focus:bg-[#C62D2D] transition-colors focus:outline-none focus:ring-2 focus:ring-[#E53935]/50 font-body mr-4"
+          >
+            Explore Map
+          </button>
+          <button 
+            onClick={handleShowAllVenuesList}
+            className="px-6 sm:px-8 py-3 sm:py-4 bg-white text-[#E53935] border-2 border-[#E53935] rounded-lg font-semibold text-base sm:text-lg hover:bg-[#E53935] hover:text-white focus:bg-[#E53935] focus:text-white transition-colors focus:outline-none focus:ring-2 focus:ring-[#E53935]/50 font-body"
+          >
+            View All Venues
+          </button>
+        </div>
+      </div>
+
+      {/* All Venues Section */}
+      {showAllVenues && (
+        <div id="all-venues" className="max-w-6xl mx-auto px-4 sm:px-6 py-12 sm:py-16 bg-white">
+          <h2 className="text-3xl sm:text-4xl font-brand font-bold text-center mb-8 sm:mb-12 text-[#E53935]">
+            ALL VENUES ({venues.length})
+          </h2>
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+            {venues.map((venue, index) => (
+              <VenueCard key={venue.id} venue={venue} index={index} />
+            ))}
+          </div>
+        </div>
+      )}
+
+      {/* Map Section - Mobile App Style */}
+      {showMap && (
+        <div id="venue-map" className="bg-white shadow-lg animate-fade-in-up">
+          <div className="max-w-6xl mx-auto">
+            <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-6 p-4 sm:px-6">
+              <h2 className="text-2xl sm:text-3xl font-brand font-bold text-[#E53935]">
+                VENUE MAP
+              </h2>
+              <div className="flex gap-2">
+                <button
+                  onClick={() => setDrawerOpen(true)}
+                  className="px-4 py-2 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 focus:bg-gray-200 transition-colors focus:outline-none focus:ring-2 focus:ring-gray-300 font-body"
+                  aria-label="Open filters"
+                >
+                  Filters
+                </button>
+              </div>
+            </div>
+            <div className="h-96 sm:h-[600px] rounded-lg overflow-hidden shadow-md touch-pan-x touch-pan-y" suppressHydrationWarning>
+              {typeof window !== 'undefined' && (
+                <DynamicMap
+                  venues={filteredVenues as any}
+                  selectedVenue={selectedVenue}
+                  onVenueSelect={(v) => setSelectedVenue(v)}
+                />
+              )}
+            </div>
+            {filteredVenues.length > 0 && (
+              <p className="text-center mt-4 text-gray-600 font-body p-4">
+                Showing {filteredVenues.length} venue{filteredVenues.length !== 1 ? 's' : ''}
+              </p>
+            )}
+            {filteredVenues.length === 0 && (searchText.trim() || activeTypes.length > 0) && (
+              <p className="text-center mt-4 text-gray-600 font-body p-4">
+                No venues found matching your criteria. Try adjusting your search or filters.
+              </p>
+            )}
+          </div>
+        </div>
+      )}
+
+      {/* Footer CTA */}
+      <div className="bg-[#E53935] text-white py-12 sm:py-16">
+        <div className="max-w-4xl mx-auto text-center px-4 sm:px-6">
+          <h2 className="text-2xl sm:text-3xl font-brand font-bold mb-4">
+            READY TO EXPLORE?
+          </h2>
+          <p className="text-base sm:text-lg mb-6 sm:mb-8 font-body">
+            Discover your perfect night out in San Francisco
+          </p>
+          <button 
+            onClick={handleShowAllVenues}
+            className="px-6 sm:px-8 py-3 sm:py-4 bg-white text-[#E53935] rounded-lg font-semibold text-base sm:text-lg hover:bg-gray-100 focus:bg-gray-100 transition-colors focus:outline-none focus:ring-2 focus:ring-white/50 font-body"
+          >
+            Start Exploring
+          </button>
+        </div>
+      </div>
+
+      {/* Venue Modal */}
+      {selectedVenue && (
+        <VenueModal venue={selectedVenue} onClose={() => setSelectedVenue(null)} />
+      )}
+
+      {/* Filter Drawer */}
+      <FilterDrawer 
+        open={drawerOpen} 
+        onClose={() => setDrawerOpen(false)}
+        filters={advFilters}
+        onFiltersChange={setAdvFilters}
+      />
+    </div>
+  );
 }
+
+

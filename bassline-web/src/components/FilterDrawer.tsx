@@ -1,5 +1,5 @@
 import React from 'react';
-import { filterOptions } from '@/data/venues.js';
+import { filterOptions } from '@/data/venues';
 
 interface Props {
   open: boolean;

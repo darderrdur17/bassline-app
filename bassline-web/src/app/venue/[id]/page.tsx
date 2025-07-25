@@ -1,5 +1,5 @@
 import { notFound } from 'next/navigation';
-import { venues } from '@/data/venues.js';
+import { venues } from '@/data/venues';
 import { Metadata } from 'next';
 
 export async function generateMetadata({ params }: { params: { id: string } }): Promise<Metadata> {
