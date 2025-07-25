@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect } from 'react';
-import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
+import { MapContainer, TileLayer, Marker, Popup, useMap } from 'react-leaflet';
 import { DivIcon } from 'leaflet';
 import { Venue } from '@/types/venue';
 import { colors } from '@/lib/theme';
@@ -46,11 +46,25 @@ const getMarkerColor = (venue: Venue) => {
   return pinColors[venue.type as keyof typeof pinColors] || colors.primary;
 };
 
+// Helper component to auto-fit the map to current venues
+function AutoFitBounds({ venues }: { venues: Venue[] }) {
+  const map = useMap();
+  useEffect(() => {
+    if (!venues || venues.length === 0) return;
+    const bounds = L.latLngBounds(
+      venues.map((v) => [v.coordinates.latitude, v.coordinates.longitude] as [number, number])
+    );
+    map.fitBounds(bounds, { padding: [60, 60] });
+  }, [venues, map]);
+  return null;
+}
+
 export default function Map({ venues, selectedVenue, onVenueSelect }: MapProps) {
   return (
-    <div className="relative w-full h-full">
+    // Flex-box wrapper stretches; h-[calc(100vh-...] can also be used but flex is simpler.
+    <div className="relative w-full flex-1">
       {/* Pin Directory Overlay */}
-      <div className="absolute top-2 left-1/2 -translate-x-1/2 z-20 flex flex-col items-center space-y-1">
+      <div className="absolute top-4 left-1/2 -translate-x-1/2 z-20 flex flex-col items-center space-y-1">
         {/* Results Count */}
         <div className="px-4 py-1 bg-white border-2 border-red-600 rounded-full shadow-sm text-sm font-semibold" style={{ fontFamily: 'var(--font-body)', color: '#E53935' }}>
           {venues.length} venues found
@@ -83,10 +97,13 @@ export default function Map({ venues, selectedVenue, onVenueSelect }: MapProps) 
       </div>
 
       <MapContainer
-        center={[37.7749, -122.4194]} // San Francisco
+        center={[37.7749, -122.4194]}
         zoom={13}
         style={{ height: '100%', width: '100%' }}
+        scrollWheelZoom={true}
       >
+        {/* auto-fit to venues */}
+        <AutoFitBounds venues={venues} />
         <TileLayer
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"

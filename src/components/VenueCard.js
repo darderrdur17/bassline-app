@@ -10,7 +10,7 @@ import {
   Linking,
 } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
-import { colors, typography, spacing, borderRadius, shadows } from '../styles/theme';
+import { colors, typography, spacing, borderRadius, shadows, fonts } from '../styles/theme';
 
 const { width } = Dimensions.get('window');
 
@@ -93,8 +93,8 @@ export default function VenueCard({ venue, onPress, onClose, preview = false, on
             <View style={styles.titleContainer}>
               <Text style={styles.venueName}>{venue.name}</Text>
               {/* Short Description */}
-              {venue.shortDescription ? (
-                <Text style={styles.shortDescription}>{venue.shortDescription}</Text>
+              {venue.description ? (
+                <Text style={styles.shortDescription}>{venue.description}</Text>
               ) : null}
               {preview ? null : <Text style={styles.venueNeighborhood}>{venue.neighborhood}</Text>}
               {/* Accolades */}
@@ -124,10 +124,10 @@ export default function VenueCard({ venue, onPress, onClose, preview = false, on
               <Text style={styles.infoText}>{venue.musicGenre.join(', ')}</Text>
             </View>
             {/* Cuisine */}
-            {venue.cuisine ? (
+            {venue.food ? (
               <View style={styles.infoItem}>
                 <Ionicons name="restaurant-outline" size={16} color={colors.textSecondary} />
-                <Text style={styles.infoText}>{venue.cuisine}</Text>
+                <Text style={styles.infoText}>{venue.food}</Text>
               </View>
             ) : null}
           </View>
@@ -203,7 +203,7 @@ export default function VenueCard({ venue, onPress, onClose, preview = false, on
               {[
                 { label: 'VENUE', value: venue.type },
                 // Cuisine descriptor if available
-                ...(venue.cuisine ? [{ label: 'CUISINE', value: venue.cuisine }] : []),
+                ...(venue.food ? [{ label: 'CUISINE', value: venue.food }] : []),
                 { label: 'AMBIANCE', value: venue.ambiance.join(', ') },
                 { label: 'GENRE', value: venue.musicGenre.join(', ') },
                 { label: 'DRESSCODE', value: venue.dressCode },
@@ -474,7 +474,7 @@ const styles = StyleSheet.create({
   },
   shortDescription: {
     color: colors.white,
-    fontSize: 16, // bigger for readability
+    fontSize: 18,
     opacity: 0.95,
     marginBottom: spacing.xs,
     fontFamily: fonts.helveticaWorld,

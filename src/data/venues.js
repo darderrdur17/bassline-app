@@ -23,6 +23,7 @@ export const venues = [
     waitTime: 15,
     estimatedUber: "$12",
     hours: "5 PM - 2 AM",
+    accolades: "World's 50 Best Bars 2023",
     heroImage: "https://images.unsplash.com/photo-1514933651103-005eec06c04b?w=400", // red-lit bar
     description: "Darklit red lights with vinyl listening bar and dance floor",
     yelpUrl: "https://www.yelp.com/biz/bar-part-time-san-francisco",
@@ -97,6 +98,7 @@ export const venues = [
     waitTime: 30,
     estimatedUber: "$15",
     hours: "5:30 PM - 11 PM",
+    accolades: "Michelin Guide Recommended",
     heroImage: require('../../assets/Verjus.png'),
     description: "Sophisticated French dining with extensive wine selection",
     cuisine: "French cuisine, wine, cocktails, small plates",
@@ -165,6 +167,7 @@ export const venues = [
     waitTime: 25,
     estimatedUber: "$13",
     hours: "5 PM - 11 PM",
+    accolades: "James Beard Award Finalist",
     heroImage: "https://images.unsplash.com/photo-1553621042-f6e147245754?w=400", // seafood dishes
     description: "Cozy seafood-focused bar with classical music ambiance",
     cuisine: "Seafood, cocktails, wine, small plates",

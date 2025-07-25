@@ -111,7 +111,7 @@ export default function Home() {
       </div>
 
       {/* Map Container */}
-      <div className="flex-1">
+      <div className="flex-1" suppressHydrationWarning>
         {typeof window !== 'undefined' && (
         <DynamicMap
           venues={filteredVenues as any}

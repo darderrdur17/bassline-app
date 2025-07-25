@@ -30,8 +30,8 @@ export const fonts = {
   bungee: 'Bungee_400Regular',
   oswaldRegular: 'Oswald_400Regular',
   oswaldSemiBold: 'Oswald_600SemiBold',
-  komsomol: 'Komsomol',
-  helveticaWorld: 'Helvetica World',
+  komsomol: 'Bungee_400Regular', // using Bungee as stand-in for Komsomol
+  helveticaWorld: 'Roboto_400Regular', // using Roboto as stand-in for Helvetica World
 };
 
 export const typography = {

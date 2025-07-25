@@ -35,10 +35,10 @@ export default function InfoScreen() {
         </View>
         <View style={styles.legendList}>
           {[
-            { label: 'Bar', color: '#2196F3' }, // Blue
-            { label: 'Restaurant', color: '#E53935' }, // Red
-            { label: 'Lounge', color: '#FFEB3B' }, // Yellow
-            { label: 'Club', color: '#4CAF50' }, // Green
+            { label: 'Bar', color: '#2196F3' },        // Blue
+            { label: 'Restaurant', color: colors.primary }, // Red (brand)
+            { label: 'Lounge', color: '#FFEB3B' },    // Yellow
+            { label: 'Club', color: '#4CAF50' },      // Green
           ].map((item) => (
             <View key={item.label} style={styles.legendRow}>
               <View style={[styles.legendDot, { backgroundColor: item.color }]} />
