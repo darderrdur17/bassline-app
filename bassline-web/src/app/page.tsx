@@ -4,7 +4,17 @@ import { useState, useEffect } from 'react';
 import { venues } from '@/data/venues';
 import { moodMapping } from '@/data/venues';
 import dynamic from 'next/dynamic';
-const DynamicMap = dynamic(() => import('@/components/Map'), { ssr: false, loading: () => <div className="h-96 bg-gray-100 rounded-lg animate-pulse flex items-center justify-center text-gray-500">Loading map...</div> });
+const DynamicMap = dynamic(() => import('@/components/Map'), { 
+  ssr: false, 
+  loading: () => (
+    <div className="h-96 sm:h-[600px] bg-gray-100 rounded-lg animate-pulse flex items-center justify-center text-gray-500">
+      <div className="text-center">
+        <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-[#E53935] mx-auto mb-2"></div>
+        <p>Loading map...</p>
+      </div>
+    </div>
+  )
+});
 import VenueModal from '@/components/VenueModal';
 import React from 'react';
 import FilterDrawer from '@/components/FilterDrawer';
@@ -180,7 +190,7 @@ export default function Home() {
             <h1 className="text-4xl sm:text-6xl md:text-8xl font-brand font-bold tracking-wider mb-4">
               BASSLINE
             </h1>
-            <p className="text-lg sm:text-xl md:text-2xl mb-2 opacity-90 tracking-wide font-body">
+            <p className="text-lg sm:text-xl md:text-2xl mb-2 opacity-90 tracking-wide font-bold font-body">
               THE CITY NEVER SLEEPS, NEITHER SHOULD YOU.
             </p>
             <p className="text-base sm:text-lg mb-8 sm:mb-12 opacity-80 max-w-2xl mx-auto font-body">
@@ -188,7 +198,7 @@ export default function Home() {
             </p>
             
             <div className="mb-8">
-              <h2 className="text-xl sm:text-2xl font-semibold mb-6 font-body">
+              <h2 className="text-lg sm:text-xl md:text-2xl font-semibold mb-6 font-body whitespace-nowrap">
                 WHAT ARE YOU FEELING TONIGHT?
               </h2>
               
@@ -203,10 +213,12 @@ export default function Home() {
                   onChange={(e) => handleSearch(e.target.value)}
                 />
                 <button 
-                  className="px-6 py-3 bg-white text-[#E53935] rounded-lg font-semibold text-lg hover:bg-gray-100 focus:bg-gray-100 transition-colors focus:outline-none focus:ring-2 focus:ring-white/50 font-body"
+                  className="px-6 py-3 bg-white text-[#E53935] rounded-lg font-semibold text-lg hover:bg-gray-100 focus:bg-gray-100 transition-colors focus:outline-none focus:ring-2 focus:ring-white/50 font-button"
                   aria-label="Search"
                 >
-                  🔍
+                  <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                    <path fillRule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clipRule="evenodd" />
+                  </svg>
                 </button>
               </div>
               
@@ -216,7 +228,7 @@ export default function Home() {
                   <button
                     key={mood}
                     onClick={() => handleMoodSelection(mood)}
-                    className="px-3 py-2 sm:px-4 sm:py-3 bg-white/10 backdrop-blur-sm rounded-lg border border-white/20 hover:bg-white/20 focus:bg-white/20 transition-all capitalize font-semibold text-sm sm:text-base focus:outline-none focus:ring-2 focus:ring-white/50 font-body"
+                    className="px-3 py-2 sm:px-4 sm:py-3 bg-white/10 backdrop-blur-sm rounded-lg border border-white/20 hover:bg-white/20 focus:bg-white/20 transition-all capitalize font-semibold text-sm sm:text-base focus:outline-none focus:ring-2 focus:ring-white/50 font-button"
                     aria-label={`Find ${mood} venues`}
                   >
                     {mood}
@@ -226,11 +238,11 @@ export default function Home() {
               
               {/* Type Filters */}
               <div className="flex justify-center gap-2 sm:gap-3 flex-wrap">
-                {['Bar', 'Restaurant', 'Lounge', 'Club'].map((type) => (
+                {['Bar', 'Restaurant', 'Club'].map((type) => (
                   <button
                     key={type}
                     onClick={() => toggleType(type)}
-                    className={`px-3 py-2 sm:px-4 sm:py-2 rounded-full border-2 font-semibold text-sm sm:text-base transition-all focus:outline-none focus:ring-2 focus:ring-white/50 font-body ${
+                    className={`px-3 py-2 sm:px-4 sm:py-2 rounded-full border-2 font-semibold text-sm sm:text-base transition-all focus:outline-none focus:ring-2 focus:ring-white/50 font-button ${
                       activeTypes.includes(type)
                         ? 'bg-white text-[#E53935] border-white'
                         : 'bg-transparent text-white border-white hover:scale-105 focus:scale-105'
@@ -247,9 +259,58 @@ export default function Home() {
         </div>
       </div>
 
-      {/* Featured Venues Section */}
+      {/* Map Section - Always visible */}
+      <div id="venue-map" className="bg-white shadow-lg animate-fade-in-up">
+        <div className="max-w-6xl mx-auto">
+          <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-6 p-4 sm:px-6">
+            <h2 className="text-2xl sm:text-3xl font-title font-bold text-[#E53935]">
+              VENUE MAP
+            </h2>
+            <div className="flex gap-2">
+              <button
+                onClick={() => setDrawerOpen(true)}
+                className="px-4 py-2 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 focus:bg-gray-200 transition-colors focus:outline-none focus:ring-2 focus:ring-gray-300 font-button"
+                aria-label="Open filters"
+              >
+                Filters
+              </button>
+            </div>
+          </div>
+          <div className="h-96 sm:h-[600px] rounded-lg overflow-hidden shadow-md touch-pan-x touch-pan-y">
+            <DynamicMap
+              venues={filteredVenues as any}
+              selectedVenue={selectedVenue}
+              onVenueSelect={(v) => setSelectedVenue(v)}
+            />
+          </div>
+          {filteredVenues.length > 0 && (
+            <p className="text-center mt-4 text-gray-600 font-body p-4">
+              Showing {filteredVenues.length} venue{filteredVenues.length !== 1 ? 's' : ''}
+            </p>
+          )}
+          {filteredVenues.length === 0 && (searchText.trim() || activeTypes.length > 0) && (
+            <p className="text-center mt-4 text-gray-600 font-body p-4">
+              No venues found matching your criteria. Try adjusting your search or filters.
+            </p>
+          )}
+        </div>
+      </div>
+
+      {/* All Venues Section - Always visible */}
+      <div id="all-venues" className="max-w-6xl mx-auto px-4 sm:px-6 py-12 sm:py-16 bg-white">
+        <h2 className="text-3xl sm:text-4xl font-title font-bold text-center mb-8 sm:mb-12 text-[#E53935]">
+          ALL VENUES ({venues.length})
+        </h2>
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+          {venues.map((venue, index) => (
+            <VenueCard key={venue.id} venue={venue} index={index} />
+          ))}
+        </div>
+      </div>
+
+      {/* Featured Venues Section - Always visible */}
       <div className="max-w-6xl mx-auto px-4 sm:px-6 py-12 sm:py-16">
-        <h2 className="text-3xl sm:text-4xl font-brand font-bold text-center mb-8 sm:mb-12 text-[#E53935] animate-fade-in-up">
+        <h2 className="text-3xl sm:text-4xl font-title font-bold text-center mb-8 sm:mb-12 text-[#E53935] animate-fade-in-up">
           FEATURED VENUES
         </h2>
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
@@ -260,79 +321,34 @@ export default function Home() {
         
         <div className="text-center mt-8 sm:mt-12 space-y-4">
           <button 
-            onClick={handleShowAllVenues}
-            className="px-6 sm:px-8 py-3 sm:py-4 bg-[#E53935] text-white rounded-lg font-semibold text-base sm:text-lg hover:bg-[#C62D2D] focus:bg-[#C62D2D] transition-colors focus:outline-none focus:ring-2 focus:ring-[#E53935]/50 font-body mr-4"
+            onClick={() => {
+              const mapElement = document.getElementById('venue-map');
+              if (mapElement) {
+                mapElement.scrollIntoView({ behavior: 'smooth' });
+              }
+            }}
+            className="px-6 sm:px-8 py-3 sm:py-4 bg-[#E53935] text-white rounded-lg font-semibold text-base sm:text-lg hover:bg-[#C62D2D] focus:bg-[#C62D2D] transition-colors focus:outline-none focus:ring-2 focus:ring-[#E53935]/50 font-button mr-4"
           >
             Explore Map
           </button>
           <button 
-            onClick={handleShowAllVenuesList}
-            className="px-6 sm:px-8 py-3 sm:py-4 bg-white text-[#E53935] border-2 border-[#E53935] rounded-lg font-semibold text-base sm:text-lg hover:bg-[#E53935] hover:text-white focus:bg-[#E53935] focus:text-white transition-colors focus:outline-none focus:ring-2 focus:ring-[#E53935]/50 font-body"
+            onClick={() => {
+              const allVenuesElement = document.getElementById('all-venues');
+              if (allVenuesElement) {
+                allVenuesElement.scrollIntoView({ behavior: 'smooth' });
+              }
+            }}
+            className="px-6 sm:px-8 py-3 sm:py-4 bg-white text-[#E53935] border-2 border-[#E53935] rounded-lg font-semibold text-base sm:text-lg hover:bg-[#E53935] hover:text-white focus:bg-[#E53935] focus:text-white transition-colors focus:outline-none focus:ring-2 focus:ring-[#E53935]/50 font-button"
           >
             View All Venues
           </button>
         </div>
       </div>
 
-      {/* All Venues Section */}
-      {showAllVenues && (
-        <div id="all-venues" className="max-w-6xl mx-auto px-4 sm:px-6 py-12 sm:py-16 bg-white">
-          <h2 className="text-3xl sm:text-4xl font-brand font-bold text-center mb-8 sm:mb-12 text-[#E53935]">
-            ALL VENUES ({venues.length})
-          </h2>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-            {venues.map((venue, index) => (
-              <VenueCard key={venue.id} venue={venue} index={index} />
-            ))}
-          </div>
-        </div>
-      )}
-
-      {/* Map Section - Mobile App Style */}
-      {showMap && (
-        <div id="venue-map" className="bg-white shadow-lg animate-fade-in-up">
-          <div className="max-w-6xl mx-auto">
-            <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-6 p-4 sm:px-6">
-              <h2 className="text-2xl sm:text-3xl font-brand font-bold text-[#E53935]">
-                VENUE MAP
-              </h2>
-              <div className="flex gap-2">
-                <button
-                  onClick={() => setDrawerOpen(true)}
-                  className="px-4 py-2 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 focus:bg-gray-200 transition-colors focus:outline-none focus:ring-2 focus:ring-gray-300 font-body"
-                  aria-label="Open filters"
-                >
-                  Filters
-                </button>
-              </div>
-            </div>
-            <div className="h-96 sm:h-[600px] rounded-lg overflow-hidden shadow-md touch-pan-x touch-pan-y" suppressHydrationWarning>
-              {typeof window !== 'undefined' && (
-                <DynamicMap
-                  venues={filteredVenues as any}
-                  selectedVenue={selectedVenue}
-                  onVenueSelect={(v) => setSelectedVenue(v)}
-                />
-              )}
-            </div>
-            {filteredVenues.length > 0 && (
-              <p className="text-center mt-4 text-gray-600 font-body p-4">
-                Showing {filteredVenues.length} venue{filteredVenues.length !== 1 ? 's' : ''}
-              </p>
-            )}
-            {filteredVenues.length === 0 && (searchText.trim() || activeTypes.length > 0) && (
-              <p className="text-center mt-4 text-gray-600 font-body p-4">
-                No venues found matching your criteria. Try adjusting your search or filters.
-              </p>
-            )}
-          </div>
-        </div>
-      )}
-
       {/* Footer CTA */}
       <div className="bg-[#E53935] text-white py-12 sm:py-16">
         <div className="max-w-4xl mx-auto text-center px-4 sm:px-6">
-          <h2 className="text-2xl sm:text-3xl font-brand font-bold mb-4">
+          <h2 className="text-2xl sm:text-3xl font-title font-bold mb-4">
             READY TO EXPLORE?
           </h2>
           <p className="text-base sm:text-lg mb-6 sm:mb-8 font-body">
@@ -340,7 +356,7 @@ export default function Home() {
           </p>
           <button 
             onClick={handleShowAllVenues}
-            className="px-6 sm:px-8 py-3 sm:py-4 bg-white text-[#E53935] rounded-lg font-semibold text-base sm:text-lg hover:bg-gray-100 focus:bg-gray-100 transition-colors focus:outline-none focus:ring-2 focus:ring-white/50 font-body"
+            className="px-6 sm:px-8 py-3 sm:py-4 bg-white text-[#E53935] rounded-lg font-semibold text-base sm:text-lg hover:bg-gray-100 focus:bg-gray-100 transition-colors focus:outline-none focus:ring-2 focus:ring-white/50 font-button"
           >
             Start Exploring
           </button>

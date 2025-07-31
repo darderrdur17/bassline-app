@@ -1,17 +1,19 @@
-/* Google Fonts import for reliable web fonts */
-@import url('https://fonts.googleapis.com/css2?family=Bungee:wght@400&family=Inter:wght@400;500;600;700&display=swap');
+/* Google Fonts import for reliable web fonts - matching mobile app */
+@import url('https://fonts.googleapis.com/css2?family=Anton:wght@400&family=Bungee:wght@400&family=Oswald:wght@400;600&family=Roboto:wght@400;500;600;700&display=swap');
 
 /* Tailwind import */
 @import "tailwindcss";
 
 /* Leaflet map styles */
-@import url('https://unpkg.com/leaflet@1.9.4/dist/leaflet.css');
+@import 'leaflet/dist/leaflet.css';
 
 :root {
   --background: #ffffff;
   --foreground: #171717;
   --font-brand: 'Bungee', 'Impact', Arial Black, sans-serif;
-  --font-body: 'Inter', 'Helvetica Neue', Arial, sans-serif;
+  --font-body: 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+  --font-title: 'Anton', 'Impact', Arial Black, sans-serif;
+  --font-button: 'Oswald', 'Arial', sans-serif;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -56,6 +58,14 @@ html {
 
 .font-body {
   font-family: var(--font-body) !important;
+}
+
+.font-title {
+  font-family: var(--font-title) !important;
+}
+
+.font-button {
+  font-family: var(--font-button) !important;
 }
 
 /* Custom map styles */

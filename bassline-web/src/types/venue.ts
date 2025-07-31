@@ -1,35 +1,29 @@
 export interface Venue {
   id: number;
   name: string;
-  pricing: string;
-  ambiance: string[];
-  musicGenre: string[];
-  food: string | null;
-  dressCode: string;
-  crowd: string | string[];
-  optimalTime: string;
-  recommendedDrinks: string[];
-  tags: string[];
   coordinates: {
     latitude: number;
     longitude: number;
   };
-  type: 'Bar' | 'Restaurant' | 'Lounge' | 'Club';
+  type: 'Bar' | 'Restaurant' | 'Club';
   neighborhood: string;
   rating: number;
-  crowdLevel: 'empty' | 'moderate' | 'busy' | 'packed';
-  waitTime: number;
-  estimatedUber: string;
+  pricing: string;
   hours: string;
   heroImage: string;
+  musicGenre: string[];
+  tags: string[];
   description: string;
+  ambiance: string[];
+
+  cuisine: string | null;
+  dressCode?: string;
+  waitTime?: string;
+  shortDescription?: string;
+  accolades?: string;
   yelpUrl?: string;
   resyUrl?: string;
   instagram?: string;
-  gallery?: string[];
-  cuisine?: string;
-  shortDescription?: string;
-  accolades?: string;
 }
 
 export interface FilterOptions {
@@ -37,12 +31,10 @@ export interface FilterOptions {
   pricing: string[];
   musicGenre: string[];
   ambiance: string[];
-  crowd: string[];
   dressCode: string[];
   neighborhood: string[];
   hours: string[];
   ambianceDensity: string[];
-  crowdScene: string[];
   distance: string[];
 }
 

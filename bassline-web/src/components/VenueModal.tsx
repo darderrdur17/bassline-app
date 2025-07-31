@@ -110,13 +110,6 @@ export default function VenueModal({ venue, onClose }: Props) {
                 ))}
               </div>
             </div>
-            
-            <div>
-              <h4 className="font-semibold text-gray-700 mb-2 font-body">Crowd:</h4>
-              <p className="text-gray-900 text-sm font-body">
-                {Array.isArray(venue.crowd) ? venue.crowd.join(', ') : venue.crowd}
-              </p>
-            </div>
 
             {venue.cuisine && (
               <div>

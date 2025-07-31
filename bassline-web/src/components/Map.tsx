@@ -9,11 +9,11 @@ import { Venue } from '@/types/venue';
 import L from 'leaflet';
 delete (L.Icon.Default.prototype as any)._getIconUrl;
 
-const pinColors = {
-  Bar: '#E53935',        // Red (matches mobile app)
-  Restaurant: '#E53935', // Red (matches mobile app)
-  Lounge: '#FF9800',     // Orange/Yellow
-  Club: '#4CAF50',       // Green
+
+const typeColors = {
+  Bar: '#E53935',        // Red
+  Restaurant: '#4CAF50', // Green  
+  Club: '#9C27B0',       // Purple
 };
 
 // Cache icons by color to avoid recreating
@@ -33,7 +33,7 @@ const getColoredIcon = (color: string): DivIcon => {
 };
 
 const getMarkerColor = (venue: Venue) => {
-  return pinColors[venue.type as keyof typeof pinColors] || pinColors.Bar;
+  return typeColors[venue.type as keyof typeof typeColors] || typeColors.Bar;
 };
 
 // Helper component to auto-fit the map to current venues
@@ -43,16 +43,20 @@ function AutoFitBounds({ venues }: { venues: Venue[] }) {
   useEffect(() => {
     if (!venues || venues.length === 0) return;
     
-    const bounds = L.latLngBounds(
-      venues.map((v) => [v.coordinates.latitude, v.coordinates.longitude] as [number, number])
-    );
-    
-    map.fitBounds(bounds, { 
-      padding: [30, 30],
-      maxZoom: 15,
-      animate: true,
-      duration: 1
-    });
+    try {
+      const bounds = L.latLngBounds(
+        venues.map((v) => [v.coordinates.latitude, v.coordinates.longitude] as [number, number])
+      );
+      
+      map.fitBounds(bounds, { 
+        padding: [30, 30],
+        maxZoom: 15,
+        animate: true,
+        duration: 1
+      });
+    } catch (error) {
+      console.error('Error fitting bounds:', error);
+    }
   }, [venues, map]);
   
   return null;
@@ -65,230 +69,101 @@ interface MapProps {
 }
 
 export default function Map({ venues, selectedVenue, onVenueSelect }: MapProps) {
-  const [searchText, setSearchText] = useState('');
-  const [activeFilters, setActiveFilters] = useState<string[]>([]);
+  const [mapError, setMapError] = useState<string | null>(null);
+  
+  // Set up Leaflet icons properly
+  useEffect(() => {
+    try {
+      L.Icon.Default.mergeOptions({
+        iconRetinaUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-icon-2x.png',
+        iconUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-icon.png',
+        shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-shadow.png',
+      });
+    } catch (error) {
+      console.error('Error setting up icons:', error);
+    }
+  }, []);
+  
+  // Filter venues based on props
+  const filteredVenues = venues || [];
 
-  const toggleFilter = (type: string) => {
-    setActiveFilters(prev => 
-      prev.includes(type) ? prev.filter(t => t !== type) : [...prev, type]
-    );
-  };
+  console.log('Map component rendered with venues:', venues?.length || 0, 'filtered:', filteredVenues.length);
 
-  // Filter venues based on search and active filters
-  const filteredVenues = venues.filter(venue => {
-    const matchesSearch = searchText.trim() === '' || 
-      venue.name.toLowerCase().includes(searchText.toLowerCase()) ||
-      venue.neighborhood.toLowerCase().includes(searchText.toLowerCase()) ||
-      venue.tags.some(tag => tag.toLowerCase().includes(searchText.toLowerCase()));
-    
-    const matchesFilter = activeFilters.length === 0 || activeFilters.includes(venue.type);
-    
-    return matchesSearch && matchesFilter;
-  });
-
-  console.log('Map component rendered with venues:', venues.length, 'filtered:', filteredVenues.length);
-
-  return (
-    <div className="h-full flex flex-col bg-white">
-      {/* Header - Red Banner */}
-      <div className="bg-[#E53935] text-white px-4 pt-4 pb-4">
-        <div className="text-center">
-          <h1 className="text-2xl font-brand font-bold tracking-wider mb-1">
-            BASSLINE
-          </h1>
-          <p className="text-xs opacity-90">
-            THE CITY NEVER SLEEPS, NEITHER SHOULD YOU.
-          </p>
-        </div>
-      </div>
-
-      {/* Search Section - White Background */}
-      <div className="bg-white px-4 py-3">
-        <p className="text-center text-sm mb-3 text-black font-medium">
-          WHAT ARE YOU FEELING TONIGHT?
-        </p>
-
-        <div className="flex gap-2 mb-3">
-          <div className="flex-1 relative">
-            <input
-              type="text"
-              placeholder="Search venues, moods, music..."
-              value={searchText}
-              onChange={(e) => setSearchText(e.target.value)}
-              className="w-full px-4 py-2 rounded-lg bg-gray-100 text-gray-800 placeholder-gray-500 text-sm focus:outline-none focus:ring-2 focus:ring-[#E53935]"
-            />
-            <span className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400">
-              🔍
-            </span>
-          </div>
+  if (mapError) {
+    return (
+      <div className="h-full w-full flex items-center justify-center bg-gray-100">
+        <div className="text-center p-4">
+          <p className="text-red-600 mb-2">Map failed to load</p>
+          <p className="text-gray-600 text-sm">{mapError}</p>
           <button 
-            className="px-3 py-2 bg-gray-200 rounded-lg"
-            aria-label="Open filters"
+            onClick={() => setMapError(null)}
+            className="mt-2 px-4 py-2 bg-[#E53935] text-white rounded hover:bg-[#C62D2D]"
           >
-            <svg className="w-5 h-5 text-gray-600" fill="currentColor" viewBox="0 0 20 20">
-              <path fillRule="evenodd" d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h6a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h4a1 1 0 110 2H4a1 1 0 01-1-1z" clipRule="evenodd" />
-            </svg>
+            Retry
           </button>
         </div>
-
-        {/* Venues count - Red pill */}
-        <div className="mb-3">
-          <div className="inline-block bg-[#E53935] text-white rounded-full px-3 py-1 text-xs font-medium">
-            {filteredVenues.length} venues found
-          </div>
-        </div>
-
-        {/* Filter pills */}
-        <div className="flex gap-2 justify-center">
-          {Object.entries(pinColors).map(([type, color]) => (
-            <button
-              key={type}
-              onClick={() => toggleFilter(type)}
-              className={`flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-medium transition-all ${
-                activeFilters.includes(type) 
-                  ? 'bg-gray-200 shadow-sm' 
-                  : 'bg-gray-100'
-              }`}
-            >
-              <span
-                className="w-2.5 h-2.5 rounded-full"
-                style={{ backgroundColor: color }}
-              />
-              {type}
-            </button>
-          ))}
-        </div>
       </div>
+    );
+  }
 
-      {/* Map */}
-      <div className="flex-1 relative" style={{ minHeight: '400px' }}>
-        {typeof window !== 'undefined' && (
-          <MapContainer
-            center={[37.7749, -122.4194]}
-            zoom={13}
-            style={{ height: '100%', width: '100%', minHeight: '400px' }}
-            zoomControl={true}
-            attributionControl={false}
-            scrollWheelZoom={true}
-            touchZoom={true}
-            doubleClickZoom={true}
-            dragging={true}
-            zoomSnap={0.5}
-            zoomDelta={0.5}
-          >
-            <TileLayer
-              url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-              maxZoom={19}
-            />
-            <AutoFitBounds venues={filteredVenues} />
-            
-            {filteredVenues.map((venue) => (
-              <Marker
-                key={venue.id}
-                position={[venue.coordinates.latitude, venue.coordinates.longitude]}
-                icon={getColoredIcon(getMarkerColor(venue))}
-                eventHandlers={{
-                  click: () => onVenueSelect(venue),
-                }}
-              >
-                <Popup>
-                  <div className="p-3 min-w-[200px]">
-                    <h3 className="font-brand font-bold text-base text-[#E53935] mb-2">
-                      {venue.name}
-                    </h3>
-                    <div className="space-y-1 text-xs text-gray-700">
-                      <div className="flex justify-between">
-                        <span className="font-medium">Type:</span>
-                        <span>{venue.type}</span>
-                      </div>
-                      <div className="flex justify-between">
-                        <span className="font-medium">Rating:</span>
-                        <span>⭐ {venue.rating}</span>
-                      </div>
-                      <div className="flex justify-between">
-                        <span className="font-medium">Price:</span>
-                        <span>{venue.pricing}</span>
-                      </div>
-                    </div>
-                    {venue.shortDescription && (
-                      <p className="text-xs mt-2 text-gray-600 border-t pt-2">
-                        {venue.shortDescription}
-                      </p>
-                    )}
-                    <button 
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        onVenueSelect(venue);
-                      }}
-                      className="mt-2 w-full px-3 py-1.5 bg-[#E53935] text-white rounded text-xs font-medium hover:bg-[#C62D2D] transition-colors"
-                    >
-                      View Details
-                    </button>
+  try {
+    return (
+      <div className="h-full w-full relative">
+        <MapContainer
+          center={[37.7749, -122.4194]}
+          zoom={13}
+          style={{ height: '100%', width: '100%', minHeight: '400px' }}
+          zoomControl={true}
+          attributionControl={false}
+          scrollWheelZoom={true}
+          touchZoom={true}
+          doubleClickZoom={true}
+          dragging={true}
+          zoomSnap={0.5}
+          zoomDelta={0.5}
+        >
+          <TileLayer
+            url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+            maxZoom={19}
+            attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+          />
+          <AutoFitBounds venues={filteredVenues} />
+          
+          {filteredVenues.map((venue) => (
+            <Marker
+              key={venue.id}
+              position={[venue.coordinates.latitude, venue.coordinates.longitude]}
+              icon={getColoredIcon(getMarkerColor(venue))}
+              eventHandlers={{
+                click: () => onVenueSelect(venue),
+              }}
+            >
+              <Popup>
+                <div className="p-3 max-w-xs">
+                  <h3 className="font-bold text-[#E53935] mb-2 text-base">{venue.name}</h3>
+                  <p className="text-sm text-gray-600 mb-2">{venue.type} • {venue.neighborhood}</p>
+                  <p className="text-sm text-gray-600 mb-2">⭐ {venue.rating} • {venue.pricing}</p>
+                  {venue.shortDescription && (
+                    <p className="text-xs text-gray-500 mb-2 leading-relaxed">{venue.shortDescription}</p>
+                  )}
+                  <div className="flex gap-1 flex-wrap">
+                    {venue.musicGenre.slice(0, 2).map((genre) => (
+                      <span key={genre} className="px-2 py-1 bg-[#E53935]/10 text-[#E53935] rounded text-xs font-medium">
+                        {genre}
+                      </span>
+                    ))}
                   </div>
-                </Popup>
-              </Marker>
-            ))}
-          </MapContainer>
-        )}
-      </div>
-
-      {/* Bottom navigation */}
-      <div className="bg-white border-t border-gray-200 px-4 py-2">
-        <div className="flex justify-around items-center">
-          {[
-            { icon: '🏠', label: 'Home', active: true },
-            { icon: '🗺️', label: 'Explore', active: false },
-            { icon: '💾', label: 'Saved', active: false },
-            { icon: '👥', label: 'Social', active: false },
-            { icon: 'ℹ️', label: 'Info', active: false },
-          ].map((item) => (
-            <button
-              key={item.label}
-              className={`flex flex-col items-center py-1 px-2 ${
-                item.active ? 'text-[#E53935]' : 'text-gray-500'
-              }`}
-            >
-              <span className="text-lg mb-0.5">{item.icon}</span>
-              <span className="text-xs font-medium">{item.label}</span>
-            </button>
+                </div>
+              </Popup>
+            </Marker>
           ))}
-        </div>
-      </div>
+        </MapContainer>
 
-      {/* Selected venue overlay */}
-      {selectedVenue && (
-        <div className="absolute bottom-20 left-4 right-4 z-[1000]">
-          <div className="bg-white rounded-lg shadow-xl p-4">
-            <div className="flex justify-between items-start mb-2">
-              <h3 className="font-brand font-bold text-lg text-[#E53935]">
-                {selectedVenue.name}
-              </h3>
-              <button 
-                onClick={() => onVenueSelect(null as any)}
-                className="text-gray-400 hover:text-gray-600 p-1"
-              >
-                ✕
-              </button>
-            </div>
-            <div className="space-y-1 text-sm text-gray-600">
-              <p><span className="font-medium">Type:</span> {selectedVenue.type}</p>
-              <p><span className="font-medium">Rating:</span> ⭐ {selectedVenue.rating}</p>
-              <p><span className="font-medium">Neighborhood:</span> {selectedVenue.neighborhood}</p>
-            </div>
-            {selectedVenue.shortDescription && (
-              <p className="text-sm mt-2 text-gray-700 border-t pt-2">
-                {selectedVenue.shortDescription}
-              </p>
-            )}
-            <button 
-              onClick={() => onVenueSelect(selectedVenue)}
-              className="w-full mt-3 px-4 py-2 bg-[#E53935] text-white rounded-lg font-medium hover:bg-[#C62D2D] transition-colors"
-            >
-              View Full Details
-            </button>
-          </div>
-        </div>
-      )}
-    </div>
-  );
+
+      </div>
+    );
+  } catch (error) {
+    setMapError(error instanceof Error ? error.message : 'Unknown error occurred');
+    return null;
+  }
 } 
