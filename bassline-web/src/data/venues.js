@@ -1,49 +1,598 @@
-// Fallback JS dataset kept in sync with TS source. If you use TS, prefer importing from '@/data/venues'.
 export const venues = [
   {
-    id: 1,
-    name: "Bar Part Time",
-    pricing: "$$",
-    ambiance: ["Darklit", "Red Lights", "Incense"],
-    musicGenre: ["House", "Disco"],
-    food: null,
-    dressCode: "Casual",
-    optimalTime: "11:00 PM",
-    recommendedDrinks: ["Natural Wine"],
-    tags: ["listening bar", "dance floor", "happy hour", "vinyl"],
-    coordinates: { latitude: 37.7599, longitude: -122.4148 },
-    type: "Bar",
-    neighborhood: "Mission",
-    rating: 4.3,
-    waitTime: 15,
-    estimatedUber: "$12",
-    hours: "5 PM - 2 AM",
-    heroImage: "https://images.unsplash.com/photo-1514933651103-005eec06c04b?w=400",
-    description: "Darklit red lights with vinyl listening bar and dance floor",
-    instagram: "https://instagram.com/barparttime",
-    cuisine: "Natural wine, bar snacks, pop-up food partners",
-    shortDescription: "Hip natural wine bar with a vinyl listening vibe, DJ sets, and a lively dance floor.",
-    accolades: "Featured in SF nightlife guides and 'best bars' lists for music and wine.",
+    "id": 5,
+    "name": "Anchovy Bar",
+    "pricing": "$$$",
+    "ambiance": [
+      "Cozy"
+    ],
+    "musicGenre": [
+      "Classical"
+    ],
+    "food": "Seafood (Small Plates)",
+    "dressCode": "Casual",
+    "crowd": [
+      "Millennial",
+      "Boomer"
+    ],
+    "optimalTime": "7:00 PM",
+    "recommendedDrinks": [
+      "Beer",
+      "Wine"
+    ],
+    "tags": [
+      "seafood",
+      "intimate",
+      "date night"
+    ],
+    "coordinates": {
+      "latitude": 37.7849,
+      "longitude": -122.4144
+    },
+    "type": "Bar",
+    "neighborhood": "Castro",
+    "rating": 4.2,
+    "crowdLevel": "moderate",
+    "waitTime": 25,
+    "estimatedUber": "$13",
+    "hours": "5 PM - 11 PM",
+    "accolades": "James Beard Award Finalist",
+    "heroImage": "https://images.unsplash.com/photo-1553621042-f6e147245754?w=400",
+    "description": "Cozy seafood-focused bar with classical music ambiance",
+    "gallery": [
+      "https://images.unsplash.com/photo-1553621042-f6e147245754?w=400",
+      "https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=400",
+      "https://images.unsplash.com/photo-1467003909585-2f8a72700288?w=400"
+    ]
   },
+  {
+    "id": 9,
+    "name": "Bar Gemini",
+    "pricing": "$$",
+    "ambiance": [
+      "Warm Wood",
+      "Vinyl Bar",
+      "Cozy"
+    ],
+    "musicGenre": [
+      "Soul",
+      "Funk",
+      "Jazz Vinyl Sets"
+    ],
+    "food": "Light bites / charcuterie",
+    "dressCode": "Casual",
+    "crowd": [
+      "Millennials",
+      "Wine Lovers"
+    ],
+    "optimalTime": "8:00 PM",
+    "recommendedDrinks": [
+      "Natural Wine",
+      "Sherry"
+    ],
+    "tags": [
+      "natural wine",
+      "vinyl",
+      "cozy",
+      "date spot"
+    ],
+    "coordinates": {
+      "latitude": 37.7549,
+      "longitude": -122.4244
+    },
+    "type": "Bar",
+    "neighborhood": "Mission",
+    "rating": 4.4,
+    "crowdLevel": "moderate",
+    "waitTime": 20,
+    "estimatedUber": "$11",
+    "hours": "6 PM - 1 AM",
+    "heroImage": "https://images.unsplash.com/photo-1506377247377-2a5b3b417ebb?w=400",
+    "description": "Cozy natural wine bar with soul and funk vinyl sets",
+    "gallery": [
+      "https://images.unsplash.com/photo-1506377247377-2a5b3b417ebb?w=400",
+      "https://images.unsplash.com/photo-1497534446932-c925b458314e?w=400",
+      "https://images.unsplash.com/photo-1470337458703-46ad1756a187?w=400"
+    ]
+  },
+  {
+    "id": 1,
+    "name": "Bar Part Time",
+    "pricing": "$$",
+    "ambiance": [
+      "Darklit",
+      "Red Lights",
+      "Incense"
+    ],
+    "musicGenre": [
+      "House",
+      "Disco"
+    ],
+    "food": null,
+    "dressCode": "Casual",
+    "crowd": "Indie",
+    "optimalTime": "11:00 PM",
+    "recommendedDrinks": [
+      "Natural Wine"
+    ],
+    "tags": [
+      "listening bar",
+      "dance floor",
+      "happy hour",
+      "vinyl"
+    ],
+    "coordinates": {
+      "latitude": 37.7599,
+      "longitude": -122.4148
+    },
+    "type": "Bar",
+    "neighborhood": "Mission",
+    "rating": 4.3,
+    "crowdLevel": "moderate",
+    "waitTime": 15,
+    "estimatedUber": "$12",
+    "hours": "5 PM - 2 AM",
+    "accolades": "World's 50 Best Bars 2023",
+    "heroImage": "https://images.unsplash.com/photo-1514933651103-005eec06c04b?w=400",
+    "description": "Darklit red lights with vinyl listening bar and dance floor",
+    "yelpUrl": "https://www.yelp.com/biz/bar-part-time-san-francisco",
+    "resyUrl": "https://resy.com/cities/sf/bar-part-time",
+    "instagram": "https://instagram.com/barparttime",
+    "gallery": [
+      "https://images.unsplash.com/photo-1514933651103-005eec06c04b?w=400",
+      "https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=400",
+      "https://images.unsplash.com/photo-1532634896-26909d0d0b9f?w=400"
+    ],
+    "cuisine": "Natural wine, bar snacks, pop-up food partners",
+    "shortDescription": "Hip natural wine bar with a vinyl listening vibe, DJ sets, and a lively dance floor."
+  },
+  {
+    "id": 7,
+    "name": "Celeste",
+    "pricing": "$$$",
+    "ambiance": [
+      "Mediterranean Coastal",
+      "Candlelit",
+      "Intimate"
+    ],
+    "musicGenre": [
+      "Jazz",
+      "Soulful Electronic"
+    ],
+    "food": "Mediterranean (Small Plates)",
+    "dressCode": "Smart Casual",
+    "crowd": [
+      "Couples",
+      "Professionals"
+    ],
+    "optimalTime": "7:00 PM",
+    "recommendedDrinks": [
+      "Vermouth",
+      "Herbal Cocktails"
+    ],
+    "tags": [
+      "date night",
+      "mediterranean",
+      "cozy",
+      "romantic"
+    ],
+    "coordinates": {
+      "latitude": 37.7749,
+      "longitude": -122.4094
+    },
+    "type": "Bar",
+    "neighborhood": "SOMA",
+    "rating": 4.5,
+    "crowdLevel": "moderate",
+    "waitTime": 30,
+    "estimatedUber": "$14",
+    "hours": "5:30 PM - 11 PM",
+    "heroImage": "https://images.unsplash.com/photo-1544148103-bf50c5e7836b?w=400",
+    "description": "Intimate Mediterranean bar perfect for date nights",
+    "gallery": [
+      "https://images.unsplash.com/photo-1544148103-bf50c5e7836b?w=400",
+      "https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=400",
+      "https://images.unsplash.com/photo-1550096462-ea0621244d6d?w=400"
+    ]
+  },
+  {
+    "id": 10,
+    "name": "Charmaine's",
+    "pricing": "$$$",
+    "ambiance": [
+      "Rooftop Lounge",
+      "Panoramic Views"
+    ],
+    "musicGenre": [
+      "Chill Electronic",
+      "Lounge"
+    ],
+    "food": "Upscale bar bites",
+    "dressCode": "Upscale",
+    "crowd": [
+      "Tourists",
+      "Professionals"
+    ],
+    "optimalTime": "Sunset hours",
+    "recommendedDrinks": [
+      "Craft Cocktails"
+    ],
+    "tags": [
+      "scenic views",
+      "elegant",
+      "trendy",
+      "rooftop"
+    ],
+    "coordinates": {
+      "latitude": 37.7879,
+      "longitude": -122.4074
+    },
+    "type": "Lounge",
+    "neighborhood": "Financial District",
+    "rating": 4.2,
+    "crowdLevel": "busy",
+    "waitTime": 45,
+    "estimatedUber": "$18",
+    "hours": "4 PM - 12 AM",
+    "heroImage": "https://images.unsplash.com/photo-1491316037411-40279662960e?w=400",
+    "description": "Sophisticated rooftop lounge with panoramic city views",
+    "gallery": [
+      "https://images.unsplash.com/photo-1491316037411-40279662960e?w=400",
+      "https://images.unsplash.com/photo-1518916171747-a2f21ddcb7ee?w=400",
+      "https://images.unsplash.com/photo-1520083772178-a6b6f48f071b?w=400"
+    ]
+  },
+  {
+    "id": 4,
+    "name": "Harlan Records",
+    "pricing": "$$",
+    "ambiance": [
+      "Darklit"
+    ],
+    "musicGenre": [
+      "House"
+    ],
+    "food": null,
+    "dressCode": "Casual",
+    "crowd": "Music Lovers",
+    "optimalTime": "10:00 PM",
+    "recommendedDrinks": [
+      "Craft Cocktails"
+    ],
+    "tags": [
+      "music venue",
+      "records",
+      "DJ sets"
+    ],
+    "coordinates": {
+      "latitude": 37.7649,
+      "longitude": -122.4248
+    },
+    "type": "Bar",
+    "neighborhood": "Mission",
+    "rating": 4.4,
+    "crowdLevel": "busy",
+    "waitTime": 15,
+    "estimatedUber": "$11",
+    "hours": "7 PM - 2 AM",
+    "heroImage": "https://images.unsplash.com/photo-1510735166794-1e22c7d230f1?w=400",
+    "description": "Record store meets cocktail bar with live DJ sets",
+    "gallery": [
+      "https://images.unsplash.com/photo-1510735166794-1e22c7d230f1?w=400",
+      "https://images.unsplash.com/photo-1505925456422-1d8a438d4f88?w=400",
+      "https://images.unsplash.com/photo-1453090927415-5f45085b65c0?w=400"
+    ]
+  },
+  {
+    "id": 2,
+    "name": "Key Klub",
+    "pricing": "$$",
+    "ambiance": [
+      "Darklit",
+      "Red Lights"
+    ],
+    "musicGenre": [
+      "Mixed"
+    ],
+    "food": "New American (Big Plates, Small Bites)",
+    "dressCode": "Casual",
+    "crowd": "Gen Z",
+    "optimalTime": "9:00 PM",
+    "recommendedDrinks": [
+      "Natural Wine"
+    ],
+    "tags": [
+      "dinner",
+      "drinks",
+      "young crowd"
+    ],
+    "coordinates": {
+      "latitude": 37.7749,
+      "longitude": -122.4194
+    },
+    "type": "Bar",
+    "neighborhood": "Mission",
+    "rating": 4.1,
+    "crowdLevel": "busy",
+    "waitTime": 20,
+    "estimatedUber": "$10",
+    "hours": "6 PM - 2 AM",
+    "heroImage": "https://images.unsplash.com/photo-1543007630-9710e4a00a20?w=400",
+    "description": "Hip Gen Z spot with New American food and drinks",
+    "yelpUrl": "https://www.yelp.com/biz/key-klub-san-francisco",
+    "resyUrl": "https://resy.com/cities/sf/key-klub",
+    "instagram": "https://instagram.com/keyklubsf",
+    "gallery": [
+      "https://images.unsplash.com/photo-1543007630-9710e4a00a20?w=400",
+      "https://images.unsplash.com/photo-1515162305281-4524d839d4a5?w=400",
+      "https://images.unsplash.com/photo-1510626176961-4b0b5a2a7f91?w=400"
+    ],
+    "cuisine": "New American, cocktails, wine",
+    "shortDescription": "Hip Gen Z spot with New American food and drinks",
+    "accolades": "Featured in SF nightlife guides and 'best bars' lists for music and wine."
+  },
+  {
+    "id": 6,
+    "name": "Millay",
+    "pricing": "$$",
+    "ambiance": [
+      "Minimalist",
+      "Modern",
+      "Cozy"
+    ],
+    "musicGenre": [
+      "Lo-fi",
+      "Ambient",
+      "Eclectic Vinyl"
+    ],
+    "food": "Japanese-inspired bar snacks (light)",
+    "dressCode": "Casual Chic",
+    "crowd": [
+      "Millennials",
+      "Creative Professionals"
+    ],
+    "optimalTime": "8:30 PM",
+    "recommendedDrinks": [
+      "Sake",
+      "Highballs"
+    ],
+    "tags": [
+      "sake bar",
+      "date spot",
+      "intimate",
+      "natural wine"
+    ],
+    "coordinates": {
+      "latitude": 37.7549,
+      "longitude": -122.4194
+    },
+    "type": "Bar",
+    "neighborhood": "Mission",
+    "rating": 4.3,
+    "crowdLevel": "moderate",
+    "waitTime": 20,
+    "estimatedUber": "$10",
+    "hours": "6 PM - 12 AM",
+    "heroImage": "https://images.unsplash.com/photo-1595424762791-7ef88838ad01?w=400",
+    "description": "Minimalist sake bar with Japanese-inspired snacks and vinyl sets",
+    "gallery": [
+      "https://images.unsplash.com/photo-1595424762791-7ef88838ad01?w=400",
+      "https://images.unsplash.com/photo-1532634896-26909d0d0b9f?w=400",
+      "https://images.unsplash.com/photo-1544547082-0426b6c7e49f?w=400"
+    ]
+  },
+  {
+    "id": 8,
+    "name": "Mothership",
+    "pricing": "$$",
+    "ambiance": [
+      "Futuristic",
+      "Colorful Lighting",
+      "Space-themed"
+    ],
+    "musicGenre": [
+      "Synthwave",
+      "Retro-funk",
+      "Electronic"
+    ],
+    "food": "Small bites/snacks",
+    "dressCode": "Trendy / Fun",
+    "crowd": [
+      "Gen Z",
+      "Creatives"
+    ],
+    "optimalTime": "10:00 PM",
+    "recommendedDrinks": [
+      "Themed Cocktails"
+    ],
+    "tags": [
+      "space bar",
+      "immersive",
+      "cocktails",
+      "funky"
+    ],
+    "coordinates": {
+      "latitude": 37.7649,
+      "longitude": -122.4294
+    },
+    "type": "Bar",
+    "neighborhood": "Mission",
+    "rating": 4.1,
+    "crowdLevel": "busy",
+    "waitTime": 15,
+    "estimatedUber": "$12",
+    "hours": "7 PM - 2 AM",
+    "heroImage": "https://images.unsplash.com/photo-1556817411-31ae72fa3ea0?w=400",
+    "description": "Futuristic space-themed bar with immersive cocktail experience",
+    "gallery": [
+      "https://images.unsplash.com/photo-1556817411-31ae72fa3ea0?w=400",
+      "https://images.unsplash.com/photo-1519671482749-fd09be7ccebf?w=400",
+      "https://images.unsplash.com/photo-1512453979798-5ea266f8880c?w=400"
+    ]
+  },
+  {
+    "id": 3,
+    "name": "Verjus",
+    "pricing": "$$$",
+    "ambiance": [
+      "Darklit"
+    ],
+    "musicGenre": [
+      "Jazz"
+    ],
+    "food": "French (Big & Small Plates)",
+    "dressCode": "Casual",
+    "crowd": "Millennial",
+    "optimalTime": "7:00 PM",
+    "recommendedDrinks": [
+      "Wine",
+      "Cocktails"
+    ],
+    "tags": [
+      "french cuisine",
+      "wine bar",
+      "upscale"
+    ],
+    "coordinates": {
+      "latitude": 37.7849,
+      "longitude": -122.4094
+    },
+    "type": "Restaurant",
+    "neighborhood": "SOMA",
+    "rating": 4.5,
+    "crowdLevel": "moderate",
+    "waitTime": 30,
+    "estimatedUber": "$15",
+    "hours": "5:30 PM - 11 PM",
+    "accolades": "Michelin Guide Recommended",
+    "heroImage": "https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=400",
+    "description": "Sophisticated French dining with extensive wine selection",
+    "gallery": [
+      "",
+      "",
+      ""
+    ],
+    "cuisine": "French cuisine, wine, cocktails",
+    "shortDescription": "Sophisticated French dining with extensive wine selection"
+  }
 ];
 
 export const filterOptions = {
-  venueType: ['Bar', 'Restaurant', 'Club'],
-  pricing: ['$', '$$', '$$$'],
-  musicGenre: ['House', 'Jazz', 'Electronic', 'Classical', 'Mixed', 'Lo-fi', 'Hip-Hop', 'Soul', 'Funk', 'Disco', 'Synthwave'],
-  ambiance: ['Darklit', 'Cozy', 'Rooftop', 'Minimalist', 'Futuristic', 'Red Lights'],
-  dressCode: ['Casual', 'Smart Casual', 'Trendy', 'Upscale'],
-  neighborhood: ['Mission', 'SOMA', 'Castro', 'Financial District'],
-  hours: ['Open Now', 'Past 2 AM', '24 Hours'],
-  ambianceDensity: ['Chill', 'Lively', 'High-energy', 'VIP'],
-  distance: ['<0.5 mi', '<1 mi', '<2 mi', '<5 mi'],
+  "venueType": [
+    "Bar",
+    "Lounge",
+    "Restaurant"
+  ],
+  "pricing": [
+    "$$$",
+    "$$"
+  ],
+  "musicGenre": [
+    "Classical",
+    "Soul",
+    "Funk",
+    "Jazz Vinyl Sets",
+    "House",
+    "Disco",
+    "Jazz",
+    "Soulful Electronic",
+    "Chill Electronic",
+    "Lounge",
+    "Mixed",
+    "Lo-fi",
+    "Ambient",
+    "Eclectic Vinyl",
+    "Synthwave",
+    "Retro-funk",
+    "Electronic"
+  ],
+  "ambiance": [
+    "Cozy",
+    "Warm Wood",
+    "Vinyl Bar",
+    "Darklit",
+    "Red Lights",
+    "Incense",
+    "Mediterranean Coastal",
+    "Candlelit",
+    "Intimate",
+    "Rooftop Lounge",
+    "Panoramic Views",
+    "Minimalist",
+    "Modern",
+    "Futuristic",
+    "Colorful Lighting",
+    "Space-themed"
+  ],
+  "dressCode": [
+    "Casual",
+    "Smart Casual",
+    "Upscale",
+    "Casual Chic",
+    "Trendy / Fun"
+  ],
+  "neighborhood": [
+    "Castro",
+    "Mission",
+    "SOMA",
+    "Financial District"
+  ],
+  "hours": [
+    "Open Now",
+    "Past 2 AM",
+    "24 Hours"
+  ],
+  "ambianceDensity": [
+    "Chill",
+    "Lively",
+    "High-energy",
+    "VIP"
+  ],
+  "distance": [
+    "<0.5 mi",
+    "<1 mi",
+    "<2 mi",
+    "<5 mi"
+  ]
 };
 
 export const moodMapping = {
-  chill: ['Millay', 'Bar Gemini', 'Anchovy Bar'],
-  party: ['Mothership', 'Harlan Records', 'Bar Part Time'],
-  date: ['Celeste', 'Verjus', 'Millay'],
-  classy: ["Charmaine's Rooftop", 'Verjus', 'Celeste'],
-  music: ['Harlan Records', 'Bar Part Time', 'Bar Gemini'],
-  drinks: ['Bar Part Time', 'Key Klub', 'Mothership'],
+  "chill": [
+    "Anchovy Bar",
+    "Bar Gemini",
+    "Celeste",
+    "Charmaine's",
+    "Millay"
+  ],
+  "party": [
+    "Bar Part Time",
+    "Harlan Records"
+  ],
+  "date": [
+    "Anchovy Bar",
+    "Bar Gemini",
+    "Celeste",
+    "Millay"
+  ],
+  "classy": [
+    "Charmaine's"
+  ],
+  "music": [
+    "Anchovy Bar",
+    "Bar Gemini",
+    "Bar Part Time",
+    "Celeste",
+    "Charmaine's",
+    "Harlan Records",
+    "Key Klub",
+    "Millay",
+    "Mothership",
+    "Verjus"
+  ],
+  "drinks": [
+    "Bar Gemini",
+    "Bar Part Time",
+    "Millay",
+    "Mothership"
+  ]
 };

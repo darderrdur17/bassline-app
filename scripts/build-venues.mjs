@@ -265,10 +265,42 @@ function main() {
   const webBaseJS = parseExistingArrayJS(readText(existingWebJsPath));
   const webBaseTS = parseExistingArrayJS(readText(existingWebPath));
   const rootBase = parseExistingArrayJS(readText(existingRootPath));
-  // Prefer web TS file for types? We'll use the richer JS ones for breadth
+
+  // Merge base records per name, preferring objects with more defined fields
+  const candidatesByName = new Map();
+  const pushCand = (arr, source) => {
+    for (const v of arr) {
+      if (!v || !v.name) continue;
+      const key = v.name.toLowerCase();
+      const list = candidatesByName.get(key) || [];
+      list.push({ ...v });
+      candidatesByName.set(key, list);
+    }
+  };
+  pushCand(appBase, 'app');
+  pushCand(webBaseTS, 'webts');
+  pushCand(webBaseJS, 'webjs');
+  pushCand(rootBase, 'root');
+
   const baseByName = new Map();
-  for (const v of [...appBase, ...webBaseJS, ...webBaseTS, ...rootBase]) {
-    if (v && v.name) baseByName.set(v.name.toLowerCase(), v);
+  const mergeObjects = (objs) => {
+    return objs.reduce((acc, obj) => {
+      for (const [k, val] of Object.entries(obj)) {
+        if (acc[k] == null || acc[k] === '' || (Array.isArray(acc[k]) && acc[k].length === 0)) {
+          acc[k] = val;
+        }
+      }
+      return acc;
+    }, {});
+  };
+  for (const [key, list] of candidatesByName.entries()) {
+    // Merge in order: app -> webts -> webjs -> root
+    const ordered = [
+      list.find(() => true),
+    ];
+    // Simpler: just merge all
+    const merged = mergeObjects(list);
+    baseByName.set(key, merged);
   }
   // If still empty, bail out without writing
   if (baseByName.size === 0) {
