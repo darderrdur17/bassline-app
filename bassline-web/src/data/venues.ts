@@ -2,7 +2,7 @@ import { Venue, FilterOptions, MoodMapping } from '@/types/venue';
 
 export const venues: Venue[] = [
   {
-    id: "1",
+    id: 1,
     name: "Bar Part Time",
     coordinates: {
       latitude: 37.7599,
@@ -24,7 +24,7 @@ export const venues: Venue[] = [
     accolades: "Featured in SF nightlife guides and 'best bars' lists for music and wine.",
   },
   {
-    id: "2", 
+    id: 2, 
     name: "Key Klub",
     coordinates: {
       latitude: 37.7849,
@@ -46,7 +46,7 @@ export const venues: Venue[] = [
     accolades: "Featured in SF nightlife guides and 'best bars' lists for music and wine.",
   },
   {
-    id: "3",
+    id: 3,
     name: "Verjus", 
     coordinates: {
       latitude: 37.7949,
@@ -90,4 +90,4 @@ export const moodMapping: MoodMapping = {
   classy: ['Charmaine\'s Rooftop', 'Verjus', 'Celeste'],
   music: ['Harlan Records', 'Bar Part Time', 'Bar Gemini'],
   drinks: ['Bar Part Time', 'Key Klub', 'Mothership'],
-}; 
+};
