@@ -52,7 +52,15 @@ function parseExistingArrayJS(jsText) {
 
 function parseCSV(filePath) {
   if (!fs.existsSync(filePath)) return [];
-  const content = fs.readFileSync(filePath, 'utf8');
+  let content = fs.readFileSync(filePath, 'utf8');
+  // Normalize BOM and drop a leading empty header line (commas only) if present
+  content = content.replace(/^\uFEFF/, '');
+  const lines = content.split(/\r?\n/);
+  if (lines.length > 1 && /^(""|\s|,)*$/.test(lines[0])) {
+    // First line is just commas/empty cells → remove so the next line becomes header
+    lines.shift();
+    content = lines.join('\n');
+  }
   const parsed = Papa.parse(content, { header: true, skipEmptyLines: 'greedy' });
   const rows = parsed.data || [];
   // Some CSVs have a leading empty column; drop empty-key fields and trim keys
@@ -65,6 +73,8 @@ function parseCSV(filePath) {
       if (value === '' || value == null) continue;
       cleaned[keyTrim] = value;
     }
+    if (Object.keys(cleaned).length === 0) return null;
+    cleaned.__source = path.basename(filePath);
     return cleaned;
   });
 }
@@ -76,6 +86,32 @@ function splitList(val) {
     .split(/,|;|\band\b|\&/i)
     .map((s) => s.trim())
     .filter(Boolean);
+}
+
+function normalizeKey(k) {
+  return String(k || '')
+    .replace(/[\u200B-\u200D\uFEFF]/g, '') // zero-width
+    .toLowerCase()
+    .replace(/\s+/g, ' ')
+    .trim();
+}
+
+function getField(row, baseKey) {
+  if (!row) return undefined;
+  // Try exact, then suffixed forms that Papa might create for duplicate headers
+  const candidates = [baseKey, `${baseKey}_1`, `${baseKey}_2`, `${baseKey}_3`];
+  for (const k of candidates) {
+    if (row[k] != null && String(row[k]).trim() !== '') return String(row[k]).trim();
+  }
+  // Try normalized match across all keys (case-insensitive, trimmed, zero-width removed)
+  const target = normalizeKey(baseKey);
+  for (const key of Object.keys(row)) {
+    if (normalizeKey(key) === target) {
+      const v = row[key];
+      if (v != null && String(v).trim() !== '') return String(v).trim();
+    }
+  }
+  return undefined;
 }
 
 function mergeFields(base, incoming) {
@@ -165,6 +201,136 @@ function mergeFields(base, incoming) {
   }
 
   return copy;
+}
+
+// Neighborhood to approximate coordinates (centroids) for SF/Oakland
+const NEIGHBORHOOD_COORDS = {
+  // San Francisco
+  'mission': { latitude: 37.7599, longitude: -122.4148 },
+  'soma': { latitude: 37.7786, longitude: -122.4059 },
+  'castro': { latitude: 37.7627, longitude: -122.4350 },
+  'financial district': { latitude: 37.7946, longitude: -122.3999 },
+  'nob hill': { latitude: 37.7930, longitude: -122.4162 },
+  'lower nob hill': { latitude: 37.7890, longitude: -122.4133 },
+  'north beach': { latitude: 37.8061, longitude: -122.4106 },
+  'japantown': { latitude: 37.7850, longitude: -122.4300 },
+  'chinatown': { latitude: 37.7941, longitude: -122.4078 },
+  'outer sunset': { latitude: 37.7534, longitude: -122.4944 },
+  'inner richmond': { latitude: 37.7802, longitude: -122.4630 },
+  'union square': { latitude: 37.7881, longitude: -122.4075 },
+  'civic center': { latitude: 37.7793, longitude: -122.4193 },
+  'ocean ave': { latitude: 37.7249, longitude: -122.4543 },
+  'outer richmond': { latitude: 37.7787, longitude: -122.4871 },
+  'noe valley': { latitude: 37.7502, longitude: -122.4337 },
+  'marina': { latitude: 37.8021, longitude: -122.4360 },
+  'haight': { latitude: 37.7690, longitude: -122.4469 },
+  'lower pacific heights': { latitude: 37.7862, longitude: -122.4367 },
+  'hayes valley': { latitude: 37.7763, longitude: -122.4240 },
+  'potrero hill': { latitude: 37.7594, longitude: -122.4068 },
+  'dogpatch': { latitude: 37.7577, longitude: -122.3885 },
+  'bernals heights': { latitude: 37.7397, longitude: -122.4157 },
+  'bernal heights': { latitude: 37.7397, longitude: -122.4157 },
+  'sunset': { latitude: 37.7534, longitude: -122.4944 },
+  'richmond': { latitude: 37.7802, longitude: -122.4630 },
+  'inner sunset': { latitude: 37.7621, longitude: -122.4677 },
+  'glen park': { latitude: 37.7336, longitude: -122.4337 },
+  'pacific heights': { latitude: 37.7925, longitude: -122.4382 },
+  'russian hill': { latitude: 37.8011, longitude: -122.4196 },
+  // Oakland
+  '__oakland__': { latitude: 37.8044, longitude: -122.2712 },
+  'uptown': { latitude: 37.8091, longitude: -122.2712 },
+  'downtown oakland': { latitude: 37.8044, longitude: -122.2712 },
+  'temescal': { latitude: 37.8376, longitude: -122.2648 },
+  'rockridge': { latitude: 37.8443, longitude: -122.2510 },
+  'grand lake': { latitude: 37.8100, longitude: -122.2453 },
+  'jack london square': { latitude: 37.7952, longitude: -122.2771 },
+};
+
+function inferType(row) {
+  const type = getField(row, 'Bar Type') || row.type || getField(row, 'Genre') || '';
+  if (/club/i.test(type)) return 'Club';
+  if (/restaurant/i.test(type)) return 'Restaurant';
+  if (/lounge/i.test(type)) return 'Lounge';
+  if (/bar|speakeasy|sake/i.test(type)) return 'Bar';
+  return 'Bar';
+}
+
+function inferNeighborhood(row, source) {
+  const n = getField(row, 'Neighborhood');
+  if (n) return n;
+  // If Oakland CSV, default Oakland
+  if (/Oakland\.csv$/i.test(source)) return 'Oakland';
+  return 'San Francisco';
+}
+
+function inferCoordinates(neighborhood, source) {
+  const key = (neighborhood || '').toLowerCase();
+  if (NEIGHBORHOOD_COORDS[key]) return NEIGHBORHOOD_COORDS[key];
+  if (/Oakland\.csv$/i.test(source)) return NEIGHBORHOOD_COORDS['__oakland__'];
+  // Default SF center
+  return { latitude: 37.7749, longitude: -122.4194 };
+}
+
+function assignHeroAndGallery(v) {
+  if (v.heroImage && v.heroImage.length > 0) return v;
+  const text = `${(v.tags || []).join(' ')} ${(v.musicGenre || []).join(' ')} ${(v.cuisine || '')} ${(v.description || '')}`.toLowerCase();
+  const picks = [];
+  const images = {
+    rooftop: 'https://images.unsplash.com/photo-1491316037411-40279662960e?w=800',
+    vinyl: 'https://images.unsplash.com/photo-1510735166794-1e22c7d230f1?w=800',
+    records: 'https://images.unsplash.com/photo-1505925456422-1d8a438d4f88?w=800',
+    club: 'https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?w=800',
+    neon: 'https://images.unsplash.com/photo-1571266028243-b4e4d3d70130?w=800',
+    cocktail: 'https://images.unsplash.com/photo-1506377247377-2a5b3b417ebb?w=800',
+    wine: 'https://images.unsplash.com/photo-1470337458703-46ad1756a187?w=800',
+    seafood: 'https://images.unsplash.com/photo-1553621042-f6e147245754?w=800',
+    japanese: 'https://images.unsplash.com/photo-1595424762791-7ef88838ad01?w=800',
+    mediterranean: 'https://images.unsplash.com/photo-1424847651672-bf20a4b0982b?w=800',
+    bar: 'https://images.unsplash.com/photo-1514933651103-005eec06c04b?w=800',
+  };
+  if (/rooftop|view|panoramic/.test(text)) picks.push(images.rooftop);
+  if (/vinyl|listening|records/.test(text)) picks.push(images.vinyl, images.records);
+  if (/club|dj|electronic|synthwave|disco/.test(text)) picks.push(images.club, images.neon);
+  if (/cocktail|aperitif|vermouth|negroni|martini/.test(text)) picks.push(images.cocktail);
+  if (/natural wine|wine bar|wine/.test(text)) picks.push(images.wine);
+  if (/oyster|seafood|anchovy/.test(text)) picks.push(images.seafood);
+  if (/japanese|sake|izakaya|ramen/.test(text)) picks.push(images.japanese);
+  if (/mediterranean|spanish|tapas|pintxos/.test(text)) picks.push(images.mediterranean);
+  if (picks.length === 0) picks.push(images.bar);
+  v.heroImage = picks[0];
+  v.gallery = [picks[0], picks[1] || images.bar, picks[2] || images.cocktail].filter(Boolean);
+  return v;
+}
+
+function createVenueFromRow(row, nextId) {
+  const rawName = getField(row, 'Name') || row.name;
+  if (!rawName) return null;
+  const name = String(rawName).replace(/[\u200B-\u200D\uFEFF]/g, '').trim();
+  const neighborhood = inferNeighborhood(row, row.__source);
+  const v = {
+    id: nextId,
+    name,
+    coordinates: inferCoordinates(neighborhood, row.__source),
+    type: inferType(row),
+    neighborhood,
+    rating: 4.3,
+    pricing: getField(row, 'Pricing') || getField(row, 'Price') || '$$',
+    hours: getField(row, 'Hours') || '',
+    heroImage: '',
+    musicGenre: splitList(getField(row, 'Music Genre')),
+    tags: splitList(getField(row, 'Tags')),
+    description: getField(row, 'Description') || getField(row, 'Extra Info') || '',
+    ambiance: splitList(getField(row, 'Ambiance')),
+    cuisine: getField(row, 'Cuisine') || null,
+    dressCode: getField(row, 'Dress code') || undefined,
+    waitTime: getField(row, 'Wait Time') ? String(parseInt(String(getField(row, 'Wait Time')).replace(/[^0-9]/g, ''), 10) || '') : undefined,
+    shortDescription: undefined,
+    accolades: getField(row, 'Accolades') || getField(row, 'As seen on') || undefined,
+    yelpUrl: undefined,
+    resyUrl: undefined,
+    instagram: getField(row, 'Social media') && String(getField(row, 'Social media')).startsWith('http') ? getField(row, 'Social media') : undefined,
+  };
+  return v;
 }
 
 function deriveMoodBuckets(venues) {
@@ -309,24 +475,40 @@ function main() {
   }
 
   // Parse CSVs and merge into base where names match
-  const csvRows = CSV_FILES.flatMap(parseCSV);
+  const perFile = CSV_FILES.map((f) => ({ file: path.basename(f), rows: parseCSV(f).filter(Boolean) }));
+  const csvRows = perFile.flatMap((x) => x.rows);
   let updated = Array.from(baseByName.values());
 
+  // Generate next id base
+  let maxId = updated.reduce((m, v) => Math.max(m, Number(v.id) || 0), 0);
+
+  let added = 0;
+  let mergedCount = 0;
+  let debugPrinted = 0;
   for (const row of csvRows) {
-    const name = (row.Name || row.name || '').trim();
+    const name = (getField(row, 'Name') || row.name || '').trim();
     if (!name) continue;
     const key = name.toLowerCase();
     const existing = baseByName.get(key);
     if (!existing) {
-      // Skip adding new entries without coordinates
-      continue;
+      // Create a new record from row with inferred fields
+      const newVenue = createVenueFromRow(row, ++maxId);
+      if (newVenue) {
+        baseByName.set(key, newVenue);
+        added++;
+      }
+    } else {
+      const merged = mergeFields(existing, row);
+      baseByName.set(key, merged);
+      mergedCount++;
     }
-    const merged = mergeFields(existing, row);
-    baseByName.set(key, merged);
   }
 
   updated = Array.from(baseByName.values());
   updated = stableSortByName(updated);
+
+  // Enrich hero images and galleries where missing
+  updated = updated.map((v) => assignHeroAndGallery(v));
 
   const filterOptions = buildFilterOptions(updated);
   const moodMapping = deriveMoodBuckets(updated);
@@ -343,6 +525,15 @@ function main() {
   fs.writeFileSync(existingAppPath, webJS, 'utf8');
   if (fs.existsSync(existingRootPath)) fs.writeFileSync(existingRootPath, webJS, 'utf8');
 
+  const totalRows = csvRows.length;
+  const namedRows = csvRows.filter((r) => (getField(r, 'Name') || r.name || '').trim()).length;
+  if (namedRows === 0 && totalRows > 0) {
+    console.warn('No Name column detected; sample row keys:');
+    for (const r of csvRows.slice(0, 3)) {
+      console.warn(Object.keys(r));
+    }
+  }
+  console.log(`Parsed CSV rows: ${totalRows} (with names: ${namedRows}). Added: ${added}, merged: ${mergedCount}.`);
   console.log(`Updated ${updated.length} venues. Files written:\n - ${existingWebPath}\n - ${existingWebJsPath}\n - ${existingAppPath}\n - ${existingRootPath}`);
 }
 
