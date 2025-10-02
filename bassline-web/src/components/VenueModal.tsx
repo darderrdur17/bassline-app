@@ -80,10 +80,6 @@ export default function VenueModal({ venue, onClose }: Props) {
                 <span className="font-semibold text-gray-700">Wait Time:</span>
                 <span className="text-gray-900">{venue.waitTime} min</span>
               </div>
-              <div className="flex justify-between">
-                <span className="font-semibold text-gray-700">Crowd Level:</span>
-                <span className="text-gray-900 capitalize">{venue.crowdLevel}</span>
-              </div>
             </div>
           </div>
 

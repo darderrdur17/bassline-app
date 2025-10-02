@@ -11,10 +11,11 @@ import vm from 'vm';
 
 const ROOT = path.resolve(process.cwd());
 const CSV_FILES = [
-  path.join(ROOT, 'Database - Bars V2.csv'),
-  path.join(ROOT, 'Database - Oakland.csv'),
+  // Updated datasets
+  path.join(ROOT, 'Database - Bars V4.csv'),
   path.join(ROOT, 'Database - SF Afters_Restaurants.csv'),
-  path.join(ROOT, 'Database - SF.csv'),
+  path.join(ROOT, 'Database - SF Clubs.csv'),
+  path.join(ROOT, 'Database - Oakland.csv'),
 ];
 
 const existingWebPath = path.join(ROOT, 'bassline-web/src/data/venues.ts');
@@ -125,10 +126,14 @@ function mergeFields(base, incoming) {
   const aliases = {
     Pricing: 'pricing',
     Price: 'pricing',
+    'Average Drink Price': 'averageDrinkPrice',
     Description: 'description',
     'Extra Info': 'description',
     'Where you go if': 'whereIf',
     'Bar Type': 'type',
+    'Type/Vibe': 'type',
+    'You can expect': 'ambiance',
+    'Good to know': 'knownFor',
     Hours: 'hours',
     'Known for': 'knownFor',
     Ambiance: 'ambiance',
@@ -247,7 +252,7 @@ const NEIGHBORHOOD_COORDS = {
 };
 
 function inferType(row) {
-  const type = getField(row, 'Bar Type') || row.type || getField(row, 'Genre') || '';
+  const type = getField(row, 'Bar Type') || getField(row, 'Type/Vibe') || row.type || getField(row, 'Genre') || '';
   if (/club/i.test(type)) return 'Club';
   if (/restaurant/i.test(type)) return 'Restaurant';
   if (/lounge/i.test(type)) return 'Lounge';

@@ -5,7 +5,7 @@ export interface Venue {
     latitude: number;
     longitude: number;
   };
-  type: 'Bar' | 'Restaurant' | 'Club';
+  type: string;
   neighborhood: string;
   rating: number;
   pricing: string;
