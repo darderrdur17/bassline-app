@@ -2,2680 +2,2299 @@ import { Venue, FilterOptions, MoodMapping } from '@/types/venue';
 
 export const venues: Venue[] = [
   {
-    "id": 94,
-    "name": "1015 Folsom",
-    "coordinates": {
-      "latitude": 37.7786,
-      "longitude": -122.4059
-    },
-    "type": "Club",
-    "neighborhood": "SoMa",
-    "rating": 4.3,
-    "pricing": "$$",
-    "hours": "10pm–3am",
-    "heroImage": "https://images.unsplash.com/photo-1514933651103-005eec06c04b?w=800",
-    "musicGenre": [],
-    "tags": [],
-    "description": "",
-    "ambiance": [],
-    "cuisine": null
-  },
-  {
-    "id": 24,
-    "name": "20 Spot",
-    "coordinates": {
-      "latitude": 37.7749,
-      "longitude": -122.4194
-    },
-    "type": "Bar",
-    "neighborhood": "San Francisco",
-    "rating": 4.3,
-    "pricing": "$$",
-    "hours": "",
-    "heroImage": "https://images.unsplash.com/photo-1514933651103-005eec06c04b?w=800",
-    "musicGenre": [],
-    "tags": [],
-    "description": "",
-    "ambiance": [],
-    "cuisine": null
-  },
-  {
-    "id": 27,
-    "name": "ABV",
-    "coordinates": {
-      "latitude": 37.7749,
-      "longitude": -122.4194
-    },
-    "type": "Cocktail Bar",
-    "neighborhood": "Mission",
-    "rating": 4.3,
-    "pricing": "$$",
-    "hours": "Daily 4–2 (Kitchen till Midnight)",
-    "heroImage": "https://images.unsplash.com/photo-1514933651103-005eec06c04b?w=800",
-    "musicGenre": [],
-    "tags": [
-      "classic",
-      "fast",
-      "reliable",
-      "often crowded—go early"
-    ],
-    "description": "Beloved neighborhood cocktail bar with a concise, dialed menu.",
-    "ambiance": [
-      "Quick service",
-      "standing room"
-    ],
-    "cuisine": "Snacky",
-    "shortDescription": "Beloved neighborhood cocktail bar with a concise, dialed menu.",
-    "accolades": "World’s 50 Best Bars (featured)",
-    "instagram": "https://www.instagram.com/abvsf"
-  },
-  {
-    "id": 5,
-    "name": "Anchovy Bar",
-    "coordinates": {
-      "latitude": 37.7849,
-      "longitude": -122.4144
-    },
-    "type": "Wine Bar",
-    "neighborhood": "Fillmore District",
-    "rating": 4.2,
-    "pricing": "$$$",
-    "hours": "Mon–Fri 5:30–9; Sat–Sun 5–9",
-    "heroImage": "https://images.unsplash.com/photo-1553621042-f6e147245754?w=400",
-    "musicGenre": [
-      "Classical"
-    ],
-    "tags": [
-      "seafood",
-      "intimate",
-      "date night",
-      "anchovy emphasis",
-      "small plates",
-      "walk‑ins close ~9pm",
-      "same group as state bird provisions",
-      "the progress"
-    ],
-    "description": "Leafy, coastal‑vibe seafood and wine bar by the State Bird team.",
-    "ambiance": [
-      "Cozy",
-      "Anchovy‑forward plates",
-      "oysters",
-      "inventive snacks"
-    ],
-    "cuisine": "Seafood / Western",
-    "dressCode": "Casual",
-    "waitTime": "25",
-    "shortDescription": "Leafy, coastal‑vibe seafood and wine bar by the State Bird team.",
-    "accolades": "James Beard nominee",
-    "instagram": "https://www.instagram.com/theanchovybar"
-  },
-  {
-    "id": 88,
-    "name": "Anina",
-    "coordinates": {
-      "latitude": 37.7763,
-      "longitude": -122.424
-    },
-    "type": "Bar",
-    "neighborhood": "Hayes Valley",
-    "rating": 4.3,
-    "pricing": "$$",
-    "hours": "Inside: Mon–Fri 2–2; Sat–Sun 12–2 (Patio hours vary)",
-    "heroImage": "https://images.unsplash.com/photo-1514933651103-005eec06c04b?w=800",
-    "musicGenre": [],
-    "tags": [
-      "patio",
-      "group‑friendly",
-      "daytime"
-    ],
-    "description": "Sunny Hayes Valley patio bar with spritz towers and palm vibes.",
-    "ambiance": [],
-    "cuisine": "None",
-    "accolades": "—",
-    "instagram": "https://www.instagram.com/aninasf"
-  },
-  {
-    "id": 51,
-    "name": "Arcana",
-    "coordinates": {
-      "latitude": 37.7749,
-      "longitude": -122.4194
-    },
-    "type": "Bar",
-    "neighborhood": "San Francisco",
-    "rating": 4.3,
-    "pricing": "$$",
-    "hours": "",
-    "heroImage": "https://images.unsplash.com/photo-1514933651103-005eec06c04b?w=800",
-    "musicGenre": [],
-    "tags": [],
-    "description": "",
-    "ambiance": [],
-    "cuisine": null
-  },
-  {
-    "id": 91,
-    "name": "Audio",
-    "coordinates": {
-      "latitude": 37.7786,
-      "longitude": -122.4059
-    },
-    "type": "Club",
-    "neighborhood": "SoMa",
-    "rating": 4.3,
-    "pricing": "$$",
-    "hours": "10pm–2am+",
-    "heroImage": "https://images.unsplash.com/photo-1514933651103-005eec06c04b?w=800",
-    "musicGenre": [],
-    "tags": [],
-    "description": "",
-    "ambiance": [],
-    "cuisine": null
-  },
-  {
-    "id": 34,
-    "name": "Bar April Jean",
-    "coordinates": {
-      "latitude": 37.7749,
-      "longitude": -122.4194
-    },
-    "type": "Bar",
-    "neighborhood": "San Francisco",
-    "rating": 4.3,
-    "pricing": "$$",
-    "hours": "",
-    "heroImage": "https://images.unsplash.com/photo-1514933651103-005eec06c04b?w=800",
-    "musicGenre": [],
-    "tags": [],
-    "description": "",
-    "ambiance": [],
-    "cuisine": null
-  },
-  {
-    "id": 33,
-    "name": "Bar Crenn",
-    "coordinates": {
-      "latitude": 37.7749,
-      "longitude": -122.4194
-    },
-    "type": "Cocktail Salon",
-    "neighborhood": "Cow Hollow",
-    "rating": 4.3,
-    "pricing": "$$$$",
-    "hours": "Tue–Thu 4:30–11; Fri–Sat 4:30–12; Sun–Mon Closed",
-    "heroImage": "https://images.unsplash.com/photo-1514933651103-005eec06c04b?w=800",
-    "musicGenre": [],
-    "tags": [
-      "luxury",
-      "omakase",
-      "special occasion",
-      "reservations essential"
-    ],
-    "description": "Elegant salon by Atelier Crenn—French omakase counter + lounge for canapés & cocktails.",
-    "ambiance": [
-      "Refined service",
-      "seasonal pairings"
-    ],
-    "cuisine": "French",
-    "shortDescription": "Elegant salon by Atelier Crenn—French omakase counter + lounge for canapés & cocktails.",
-    "accolades": "Michelin‑starred restaurant group",
-    "instagram": "https://www.instagram.com/barcrenn"
-  },
-  {
-    "id": 9,
-    "name": "Bar Gemini",
-    "coordinates": {
-      "latitude": 37.7549,
-      "longitude": -122.4244
-    },
-    "type": "Wine Bar",
-    "neighborhood": "Mission",
-    "rating": 4.4,
-    "pricing": "$$",
-    "hours": "Mon–Tue 5–10; Wed 5–10; Thu 5–11; Fri–Sat 4–12; Sun Closed",
-    "heroImage": "https://images.unsplash.com/photo-1506377247377-2a5b3b417ebb?w=400",
-    "musicGenre": [
-      "Soul",
-      "Funk",
-      "Jazz Vinyl Sets",
-      "funk",
-      "jazz vinyl sets"
-    ],
-    "tags": [
-      "natural wine",
-      "vinyl",
-      "cozy",
-      "date spot",
-      "reservations recommended weekends"
-    ],
-    "description": "Minimal, sleek natural‑wine bar with low‑intervention gems.",
-    "ambiance": [
-      "Warm Wood",
-      "Vinyl Bar",
-      "Cozy",
-      "Warm wood",
-      "vinyl bar",
-      "cozy",
-      "Vinyl on",
-      "candlelight",
-      "quiet chatter"
-    ],
-    "cuisine": "Western snacks",
-    "dressCode": "Casual",
-    "waitTime": "20",
-    "shortDescription": "Minimal, sleek natural‑wine bar with low‑intervention gems.",
-    "accolades": "—",
-    "instagram": "https://www.instagram.com/bargeminisf"
-  },
-  {
-    "id": 49,
-    "name": "Bar Jabroni",
-    "coordinates": {
-      "latitude": 37.7749,
-      "longitude": -122.4194
-    },
-    "type": "Bar",
-    "neighborhood": "San Francisco",
-    "rating": 4.3,
-    "pricing": "$$",
-    "hours": "",
-    "heroImage": "https://images.unsplash.com/photo-1514933651103-005eec06c04b?w=800",
-    "musicGenre": [],
-    "tags": [],
-    "description": "",
-    "ambiance": [],
-    "cuisine": null
-  },
-  {
     "id": 1,
     "name": "Bar Part Time",
-    "coordinates": {
-      "latitude": 37.7599,
-      "longitude": -122.4148
-    },
     "type": "Wine Bar",
     "neighborhood": "Mission",
     "rating": 4.3,
     "pricing": "$$",
+    "averageDrinkPrice": "$14–16 per wine glass",
     "hours": "Tue 5–11; Wed 5–11; Thu 5–12; Fri 5–1; Sat 5–1; Sun–Mon Closed",
-    "heroImage": "https://images.unsplash.com/photo-1514933651103-005eec06c04b?w=400",
-    "musicGenre": [
-      "House",
-      "Disco"
-    ],
+    "heroImage": "/images/venues/bar-sprezzatura-hero.jpg",
+    "description": "A glittering disco ball crowns a tight dance floor of natural‑wine lovers and vinyl DJs.",
     "tags": [
       "listening bar",
       "dance floor",
       "happy hour",
-      "vinyl",
-      "international djs",
-      "$10 cover on weekends"
+      "vinyl"
     ],
-    "description": "A glittering disco ball crowns a tight dance floor of natural‑wine lovers and vinyl DJs.",
+    "cuisine": null,
+    "shortDescription": "A glittering disco ball crowns a tight dance floor of natural‑wine lovers and vinyl DJs.",
+    "instagram": "https://www.instagram.com/barparttime",
     "ambiance": [
-      "Darklit",
-      "Red Lights",
-      "Incense",
       "Dance floor",
       "international DJs",
       "weekend parties"
     ],
-    "cuisine": "None",
-    "dressCode": "Casual",
-    "waitTime": "15",
-    "shortDescription": "A glittering disco ball crowns a tight dance floor of natural‑wine lovers and vinyl DJs.",
-    "accolades": "—",
-    "yelpUrl": "https://www.yelp.com/biz/bar-part-time-san-francisco",
-    "resyUrl": "https://resy.com/cities/sf/bar-part-time",
-    "instagram": "https://www.instagram.com/barparttime"
-  },
-  {
-    "id": 56,
-    "name": "Bar Shiru",
-    "coordinates": {
-      "latitude": 37.8044,
-      "longitude": -122.2712
-    },
-    "type": "Bar",
-    "neighborhood": "Oakland",
-    "rating": 4.3,
-    "pricing": "$$",
-    "hours": "",
-    "heroImage": "https://images.unsplash.com/photo-1514933651103-005eec06c04b?w=800",
-    "musicGenre": [],
-    "tags": [],
-    "description": "",
-    "ambiance": [],
-    "cuisine": null
-  },
-  {
-    "id": 18,
-    "name": "Bar Sprezzatura",
+    "recommendedDrinks": [
+      "Natural Wine",
+      "Beer"
+    ],
+    "recommendations": [
+      "Pet-nat by the glass",
+      "orange wine flights"
+    ],
     "coordinates": {
       "latitude": 37.7749,
       "longitude": -122.4194
     },
-    "type": "Cocktail Bar",
-    "neighborhood": "Jackson Square",
-    "rating": 4.3,
-    "pricing": "$$$",
-    "hours": "Mon–Wed 11–9; Thu–Fri 11–10; Sat 4–10; Sun Closed",
-    "heroImage": "https://images.unsplash.com/photo-1514933651103-005eec06c04b?w=800",
-    "musicGenre": [],
-    "tags": [
-      "aperitivo",
-      "elegant",
-      "classic",
-      "dress‑ier crowd"
-    ],
-    "description": "Italian‑leaning cocktail & aperitivo lounge with refined service.",
-    "ambiance": [
-      "Martinis",
-      "negronis",
-      "Italian snacks"
-    ],
-    "cuisine": "Italian",
-    "shortDescription": "Italian‑leaning cocktail & aperitivo lounge with refined service.",
-    "accolades": "—",
-    "instagram": "https://www.instagram.com/bar.sprezzatura"
+    "goodToKnow": "$10 cover on weekends",
+    "whereToGoIf": "you want to dance",
+    "gallery": [
+      "/images/venues/bar-part-time-2.jpg"
+    ]
   },
   {
-    "id": 74,
-    "name": "Bay Pocha",
-    "coordinates": {
-      "latitude": 37.7249,
-      "longitude": -122.4543
-    },
-    "type": "Bar",
-    "neighborhood": "Ocean Ave",
-    "rating": 4.3,
-    "pricing": "$$",
-    "hours": "Mon–Thu 5pm–11pm; Fri–Sat 5pm–12am; Sun 5pm–10pm",
-    "heroImage": "https://images.unsplash.com/photo-1514933651103-005eec06c04b?w=800",
-    "musicGenre": [],
-    "tags": [],
-    "description": "",
-    "ambiance": [],
-    "cuisine": "Korean"
-  },
-  {
-    "id": 87,
-    "name": "Beaux",
-    "coordinates": {
-      "latitude": 37.7627,
-      "longitude": -122.435
-    },
-    "type": "Club",
-    "neighborhood": "Castro",
-    "rating": 4.3,
-    "pricing": "$$",
-    "hours": "Daily 3–2 (Sun from 12)",
-    "heroImage": "https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?w=800",
-    "musicGenre": [],
-    "tags": [
-      "drag",
-      "dance",
-      "nightclub"
-    ],
-    "description": "Popular Castro nightclub with themed drag/dance nights.",
-    "ambiance": [],
-    "cuisine": "None",
-    "accolades": "—",
-    "instagram": "https://www.instagram.com/beauxsf"
-  },
-  {
-    "id": 75,
-    "name": "Beep's Burgers",
-    "coordinates": {
-      "latitude": 37.7249,
-      "longitude": -122.4543
-    },
-    "type": "Bar",
-    "neighborhood": "Ocean Ave",
-    "rating": 4.3,
-    "pricing": "$",
-    "hours": "Daily 11am–12am",
-    "heroImage": "https://images.unsplash.com/photo-1514933651103-005eec06c04b?w=800",
-    "musicGenre": [],
-    "tags": [],
-    "description": "",
-    "ambiance": [],
-    "cuisine": "Western"
-  },
-  {
-    "id": 44,
-    "name": "Birba",
-    "coordinates": {
-      "latitude": 37.7749,
-      "longitude": -122.4194
-    },
-    "type": "Bar",
-    "neighborhood": "San Francisco",
-    "rating": 4.3,
-    "pricing": "$$",
-    "hours": "",
-    "heroImage": "https://images.unsplash.com/photo-1514933651103-005eec06c04b?w=800",
-    "musicGenre": [],
-    "tags": [],
-    "description": "",
-    "ambiance": [],
-    "cuisine": null
-  },
-  {
-    "id": 69,
-    "name": "Bob's Donut",
-    "coordinates": {
-      "latitude": 37.793,
-      "longitude": -122.4162
-    },
-    "type": "Bar",
+    "id": 2,
+    "name": "Key Klub",
+    "type": "Wine Bar",
     "neighborhood": "Nob Hill",
     "rating": 4.3,
-    "pricing": "$",
-    "hours": "Daily 24h",
+    "pricing": "$$",
+    "averageDrinkPrice": "$16–18 wine, $8 beer pint",
+    "hours": "Tue–Wed 4–11; Thu–Fri 4–12; Sat 2–12; Sun–Mon Closed",
     "heroImage": "https://images.unsplash.com/photo-1514933651103-005eec06c04b?w=800",
-    "musicGenre": [],
-    "tags": [],
-    "description": "",
-    "ambiance": [],
-    "cuisine": "Western"
-  },
-  {
-    "id": 82,
-    "name": "Bodega",
+    "description": "Glowing lights, New American bites, and natural wine pours in a photogenic space.",
+    "tags": [
+      "wine bar",
+      "new american",
+      "date spot"
+    ],
+    "cuisine": "Western",
+    "shortDescription": "Glowing lights, New American bites, and natural wine pours in a photogenic space.",
+    "instagram": "https://www.instagram.com/key.klubsf",
+    "ambiance": [
+      "Big plates",
+      "wide wine & beer range"
+    ],
+    "recommendedDrinks": [
+      "Natural Wine",
+      "Beer"
+    ],
+    "recommendations": [
+      "French toast",
+      "Burger"
+    ],
     "coordinates": {
       "latitude": 37.7749,
       "longitude": -122.4194
     },
-    "type": "Bar",
-    "neighborhood": "San Francisco",
-    "rating": 4.3,
-    "pricing": "$$",
-    "hours": "",
-    "heroImage": "https://images.unsplash.com/photo-1514933651103-005eec06c04b?w=800",
-    "musicGenre": [],
-    "tags": [],
-    "description": "",
-    "ambiance": [],
-    "cuisine": "Vietnamese"
+    "goodToKnow": "Sister spot to Bodega & Celeste",
+    "whereToGoIf": "you want good pictures"
   },
   {
-    "id": 11,
-    "name": "Bodega North Beach",
+    "id": 3,
+    "name": "Verjus",
+    "type": "Wine Bar",
+    "neighborhood": "Financial District",
+    "rating": 4.3,
+    "pricing": "$$$",
+    "averageDrinkPrice": "$16–18 per glass",
+    "hours": "Tue–Wed 4–10; Thu 11:30–10; Fri–Sat 11:30–11; Sun–Mon Closed",
+    "heroImage": "https://images.unsplash.com/photo-1514933651103-005eec06c04b?w=800",
+    "description": "Parisian cave à manger with open kitchen and vintage hi‑fi; feels like a dinner party.",
+    "tags": [
+      "wine bar",
+      "vinyl",
+      "small plates",
+      "date spot"
+    ],
+    "cuisine": "French",
+    "shortDescription": "Parisian cave à manger with open kitchen and vintage hi‑fi; feels like a dinner party.",
+    "accolades": "Michelin Guide; James Beard nominee",
+    "instagram": "https://www.instagram.com/verjus_sf",
+    "ambiance": [
+      "Weekly menu",
+      "unique bottles",
+      "great food"
+    ],
+    "recommendedDrinks": [
+      "Wine",
+      "Cocktails"
+    ],
+    "recommendations": [
+      "Pain perdu",
+      "pâté en croûte",
+      "charred sausage w/ manchego"
+    ],
     "coordinates": {
-      "latitude": 37.8061,
-      "longitude": -122.4106
+      "latitude": 37.7749,
+      "longitude": -122.4194
     },
+    "goodToKnow": "Same group as Quince & Cotogna; vinyl à Verjus on weekends",
+    "whereToGoIf": "you miss euro summer"
+  },
+  {
+    "id": 4,
+    "name": "Harlan Records",
+    "type": "Speakeasy / Listening Bar",
+    "neighborhood": "Union Square",
+    "rating": 4.3,
+    "pricing": "$$",
+    "averageDrinkPrice": "$12–18 per drink",
+    "hours": "Mon 2–12; Tue–Fri 2–1:30; Sat 4–1:30; Sun 4–12",
+    "heroImage": "https://images.unsplash.com/photo-1514933651103-005eec06c04b?w=800",
+    "description": "Alley‑hidden Japanese‑leaning listening bar with eclectic vinyl sets.",
+    "tags": [
+      "listening bar",
+      "vinyl",
+      "retro",
+      "intimate"
+    ],
+    "cuisine": null,
+    "shortDescription": "Alley‑hidden Japanese‑leaning listening bar with eclectic vinyl sets.",
+    "instagram": "https://www.instagram.com/harlanrecordssf",
+    "ambiance": [
+      "Music‑inspired cocktails",
+      "live vinyl DJs"
+    ],
+    "recommendedDrinks": [
+      "Cocktails"
+    ],
+    "recommendations": [
+      "Espresso Martini",
+      "Japanese whisky highball"
+    ],
+    "coordinates": {
+      "latitude": 37.7749,
+      "longitude": -122.4194
+    },
+    "goodToKnow": "Small space; arrive early",
+    "whereToGoIf": "you love vinyl"
+  },
+  {
+    "id": 5,
+    "name": "Bodega North Beach",
     "type": "Wine Bar",
     "neighborhood": "North Beach",
     "rating": 4.3,
     "pricing": "$$",
+    "averageDrinkPrice": "$12–18 per glass",
     "hours": "Tue–Fri 4–11; Sat 9–11; Sun 1–8; Mon Closed",
-    "heroImage": "https://images.unsplash.com/photo-1470337458703-46ad1756a187?w=800",
-    "musicGenre": [],
+    "heroImage": "https://images.unsplash.com/photo-1514933651103-005eec06c04b?w=800",
+    "description": "Neon‑pink corner shop pouring natural wine with playful New American bites.",
     "tags": [
       "natural wine",
       "small plates",
       "date night",
-      "casual dining",
-      "natural wine focus",
-      "casual",
-      "sister to key klub",
-      "celeste"
-    ],
-    "description": "Neon‑pink corner shop pouring natural wine with playful New American bites.",
-    "ambiance": [
-      "Lively",
-      "Cozy",
-      "Dimly lit",
-      "Small plates",
-      "natural wine focus"
+      "casual"
     ],
     "cuisine": "Western",
     "shortDescription": "Neon‑pink corner shop pouring natural wine with playful New American bites.",
-    "accolades": "—",
-    "instagram": "https://www.instagram.com/bodeganorthbeach"
-  },
-  {
-    "id": 14,
-    "name": "Buddy",
-    "coordinates": {
-      "latitude": 37.7749,
-      "longitude": -122.4194
-    },
-    "type": "Neighborhood / Cocktail Bar",
-    "neighborhood": "Mission",
-    "rating": 4.3,
-    "pricing": "$$",
-    "hours": "Sun–Fri 4–10; Sat 2–10",
-    "heroImage": "https://images.unsplash.com/photo-1514933651103-005eec06c04b?w=800",
-    "musicGenre": [],
-    "tags": [
-      "casual",
-      "amaro",
-      "sandwiches",
-      "neighborhood",
-      "walk‑in friendly"
-    ],
-    "description": "Chill neighborhood bar with amari, natty wine, and satisfying sandwiches.",
+    "instagram": "https://www.instagram.com/bodeganorthbeach",
     "ambiance": [
-      "Friendly staff",
-      "counter‑service vibes"
+      "Small plates",
+      "natural wine focus"
     ],
-    "cuisine": "New American",
-    "shortDescription": "Chill neighborhood bar with amari, natty wine, and satisfying sandwiches.",
-    "accolades": "—",
-    "instagram": "https://www.instagram.com/buddysf"
-  },
-  {
-    "id": 45,
-    "name": "Cantina Los Mayas",
+    "recommendedDrinks": [
+      "Natural Wine",
+      "Beer"
+    ],
+    "recommendations": [
+      "Mushroom toast",
+      "breakfast burrito (wknd)"
+    ],
     "coordinates": {
       "latitude": 37.7749,
       "longitude": -122.4194
     },
-    "type": "Bar",
-    "neighborhood": "San Francisco",
-    "rating": 4.3,
-    "pricing": "$$",
-    "hours": "",
-    "heroImage": "https://images.unsplash.com/photo-1514933651103-005eec06c04b?w=800",
-    "musicGenre": [],
-    "tags": [],
-    "description": "",
-    "ambiance": [],
-    "cuisine": null
+    "goodToKnow": "Sister to Key Klub & Celeste",
+    "whereToGoIf": "you want a burrito with your mimosa"
   },
   {
-    "id": 31,
-    "name": "Cavana",
+    "id": 6,
+    "name": "Anchovy Bar",
+    "type": "Wine Bar",
+    "neighborhood": "Fillmore District",
+    "rating": 4.3,
+    "pricing": "$$$",
+    "averageDrinkPrice": "$9–13 beer, $15–22 wine",
+    "hours": "Mon–Fri 5:30–9; Sat–Sun 5–9",
+    "heroImage": "https://images.unsplash.com/photo-1514933651103-005eec06c04b?w=800",
+    "description": "Leafy, coastal‑vibe seafood and wine bar by the State Bird team.",
+    "tags": [
+      "seafood",
+      "date night",
+      "small plates"
+    ],
+    "cuisine": "Seafood / Western",
+    "shortDescription": "Leafy, coastal‑vibe seafood and wine bar by the State Bird team.",
+    "accolades": "James Beard nominee",
+    "instagram": "https://www.instagram.com/theanchovybar",
+    "ambiance": [
+      "Anchovy‑forward plates",
+      "oysters",
+      "inventive snacks"
+    ],
+    "recommendedDrinks": [
+      "Beer",
+      "Wine",
+      "Vermouth"
+    ],
+    "recommendations": [
+      "Anchovy toast",
+      "oysters"
+    ],
     "coordinates": {
       "latitude": 37.7749,
       "longitude": -122.4194
     },
-    "type": "Bar",
-    "neighborhood": "San Francisco",
-    "rating": 4.3,
-    "pricing": "$$",
-    "hours": "",
-    "heroImage": "https://images.unsplash.com/photo-1514933651103-005eec06c04b?w=800",
-    "musicGenre": [],
-    "tags": [],
-    "description": "",
-    "ambiance": [],
-    "cuisine": null
+    "goodToKnow": "Walk‑ins close ~9pm; same group as State Bird Provisions and The Progress",
+    "whereToGoIf": "you want fresh seafood"
   },
   {
     "id": 7,
-    "name": "Celeste",
+    "name": "Millay",
+    "type": "Sake Bar / Wine Bar",
+    "neighborhood": "Mission",
+    "rating": 4.3,
+    "pricing": "$$",
+    "averageDrinkPrice": "$12–16 per glass",
+    "hours": "Mon/Wed/Thu 5–10; Fri 5–12; Sat 3–12; Sun 3–8; Tue Closed",
+    "heroImage": "https://images.unsplash.com/photo-1514933651103-005eec06c04b?w=800",
+    "description": "Stylish sake‑and‑wine bar with pink neon, wood seating, and a tiny disco ball.",
+    "tags": [
+      "natural wine",
+      "sake bar",
+      "date spot",
+      "intimate"
+    ],
+    "cuisine": "Japanese",
+    "shortDescription": "Stylish sake‑and‑wine bar with pink neon, wood seating, and a tiny disco ball.",
+    "instagram": "https://www.instagram.com/millaysf",
+    "ambiance": [
+      "Cozy room",
+      "by‑the‑glass list",
+      "light bites"
+    ],
+    "recommendedDrinks": [
+      "Sake",
+      "Wine",
+      "Highballs"
+    ],
+    "recommendations": [
+      "Highballs",
+      "junmai flights"
+    ],
     "coordinates": {
       "latitude": 37.7749,
-      "longitude": -122.4094
+      "longitude": -122.4194
     },
+    "goodToKnow": "Bar‑only seating; limited tables",
+    "whereToGoIf": "you want to try sake and natural wine"
+  },
+  {
+    "id": 8,
+    "name": "Celeste",
     "type": "Wine Bar",
     "neighborhood": "Marina",
-    "rating": 4.5,
+    "rating": 4.3,
     "pricing": "$$",
+    "averageDrinkPrice": "$14–18 per glass",
     "hours": "Tue–Thu 4–11:30; Fri 2–12:30; Sat 2–12; Sun 11–7; Mon Closed",
-    "heroImage": "https://images.unsplash.com/photo-1544148103-bf50c5e7836b?w=400",
-    "musicGenre": [
-      "Jazz",
-      "Soulful Electronic",
-      "soulful electronic"
-    ],
+    "heroImage": "https://images.unsplash.com/photo-1514933651103-005eec06c04b?w=800",
+    "description": "Trendy, red‑lit wine bar with upbeat tunes and Mediterranean‑leaning bites.",
     "tags": [
       "date night",
-      "mediterranean",
-      "cozy",
-      "romantic",
-      "sister to key klub",
-      "bodega"
+      "Mediterranean",
+      "cozy"
     ],
-    "description": "Trendy, red‑lit wine bar with upbeat tunes and Mediterranean‑leaning bites.",
+    "cuisine": "Mediterranean",
+    "shortDescription": "Trendy, red‑lit wine bar with upbeat tunes and Mediterranean‑leaning bites.",
+    "instagram": "https://www.instagram.com/celestesf",
     "ambiance": [
-      "Mediterranean Coastal",
-      "Candlelit",
-      "Intimate",
-      "Mediterranean coastal",
-      "candlelit",
-      "intimate",
       "Breakfast burritos (select hours)",
       "shareables"
     ],
-    "cuisine": "Mediterranean",
-    "dressCode": "Smart casual",
-    "waitTime": "30",
-    "shortDescription": "Trendy, red‑lit wine bar with upbeat tunes and Mediterranean‑leaning bites.",
-    "accolades": "—",
-    "instagram": "https://www.instagram.com/celestesf"
-  },
-  {
-    "id": 21,
-    "name": "Chambers",
+    "recommendedDrinks": [
+      "Wine",
+      "Cocktails",
+      "Vermouth"
+    ],
+    "recommendations": [
+      "Herbal spritz",
+      "vermouth & soda"
+    ],
     "coordinates": {
       "latitude": 37.7749,
       "longitude": -122.4194
     },
-    "type": "Hotel Bar",
-    "neighborhood": "Tenderloin",
+    "goodToKnow": "Sister to Key Klub & Bodega",
+    "whereToGoIf": "you want mediterranean food with your wine"
+  },
+  {
+    "id": 9,
+    "name": "Mothership",
+    "type": "Cocktail Bar",
+    "neighborhood": "Mission",
     "rating": 4.3,
-    "pricing": "$$$",
-    "hours": "Thu 5–11; Fri–Sat 5–12; Sun–Wed Closed",
-    "heroImage": "https://images.unsplash.com/photo-1514933651103-005eec06c04b?w=800",
-    "musicGenre": [],
+    "pricing": "$$",
+    "averageDrinkPrice": "$13–17 cocktails",
+    "hours": "Tue–Thu 4–12; Fri 4–2; Sat 2–2; Sun 2–10; Mon Closed",
+    "heroImage": "/images/venues/the-midway-hero.jpg",
+    "description": "Verdant, space‑themed Mission hideaway with inventive drinks and a lush patio.",
     "tags": [
-      "retro",
-      "patio",
-      "hotel bar",
-      "great before/after shows"
+      "space bar",
+      "immersive",
+      "cocktails",
+      "funky"
     ],
-    "description": "Poolside‑adjacent lounge with mid‑century flair at the Phoenix Hotel.",
+    "cuisine": null,
+    "shortDescription": "Verdant, space‑themed Mission hideaway with inventive drinks and a lush patio.",
+    "instagram": "https://www.instagram.com/mothershipsf",
     "ambiance": [
-      "Outdoor patio",
-      "records wall"
+      "Creative cocktails",
+      "relaxed crowd",
+      "plants"
     ],
-    "cuisine": "Cal‑American",
-    "shortDescription": "Poolside‑adjacent lounge with mid‑century flair at the Phoenix Hotel.",
-    "accolades": "Michelin Guide mention",
-    "instagram": "https://www.instagram.com/chambers_sf"
+    "recommendedDrinks": [
+      "Cocktails"
+    ],
+    "recommendations": [
+      "Frozen specials",
+      "seasonal signatures"
+    ],
+    "coordinates": {
+      "latitude": 37.7749,
+      "longitude": -122.4194
+    },
+    "goodToKnow": "Back patio closes earlier than bar",
+    "whereToGoIf": "you want a great back patio",
+    "gallery": [
+      "/images/venues/the-midway-1.jpg",
+      "/images/venues/the-midway-2.jpg"
+    ]
   },
   {
     "id": 10,
-    "name": "Charmaine's",
+    "name": "Bar Gemini",
+    "type": "Wine Bar",
+    "neighborhood": "Mission",
+    "rating": 4.3,
+    "pricing": "$$",
+    "averageDrinkPrice": "$14–18 per glass",
+    "hours": "Mon–Tue 5–10; Wed 5–10; Thu 5–11; Fri–Sat 4–12; Sun Closed",
+    "heroImage": "https://images.unsplash.com/photo-1514933651103-005eec06c04b?w=800",
+    "description": "Minimal, sleek natural‑wine bar with low‑intervention gems.",
+    "tags": [
+      "natural wine",
+      "vinyl",
+      "cozy",
+      "date spot"
+    ],
+    "cuisine": "Western snacks",
+    "shortDescription": "Minimal, sleek natural‑wine bar with low‑intervention gems.",
+    "instagram": "https://www.instagram.com/bargeminisf",
+    "ambiance": [
+      "Vinyl on",
+      "candlelight",
+      "quiet chatter"
+    ],
+    "recommendedDrinks": [
+      "Natural Wine",
+      "Sherry"
+    ],
+    "recommendations": [
+      "Sherry pour",
+      "skin‑contact picks"
+    ],
     "coordinates": {
-      "latitude": 37.7879,
-      "longitude": -122.4074
+      "latitude": 37.7749,
+      "longitude": -122.4194
     },
+    "goodToKnow": "Reservations recommended weekends",
+    "whereToGoIf": "you like rare bottles and clean design"
+  },
+  {
+    "id": 11,
+    "name": "Gigi's",
+    "type": "Neighborhood Bar",
+    "neighborhood": "NoPa",
+    "rating": 4.3,
+    "pricing": "$",
+    "averageDrinkPrice": "$6–9 beer, $10–12 cocktails",
+    "hours": "Tue–Sat 4–9; Sun–Mon Closed",
+    "heroImage": "https://images.unsplash.com/photo-1514933651103-005eec06c04b?w=800",
+    "description": "Casual Vietnamese hang with late‑night energy and playful drinks.",
+    "tags": [
+      "casual",
+      "cheap eats",
+      "lively"
+    ],
+    "cuisine": "Vietnamese",
+    "shortDescription": "Casual Vietnamese hang with late‑night energy and playful drinks.",
+    "ambiance": [
+      "Loud",
+      "lively",
+      "crowd‑pleasing bites"
+    ],
+    "recommendedDrinks": [
+      "Beer",
+      "Cocktails",
+      "Chambong"
+    ],
+    "recommendations": [
+      "Chili‑salt wings",
+      "chambong"
+    ],
+    "coordinates": {
+      "latitude": 37.7749,
+      "longitude": -122.4194
+    },
+    "goodToKnow": "Great for groups; limited seating",
+    "whereToGoIf": "you want Vietnamese snacks with cheap drinks"
+  },
+  {
+    "id": 12,
+    "name": "Charmaine's",
     "type": "Rooftop Bar",
     "neighborhood": "Mid‑Market",
-    "rating": 4.2,
+    "rating": 4.3,
     "pricing": "$$$",
+    "averageDrinkPrice": "$17–22 cocktails",
     "hours": "Mon–Thu 5–11; Fri–Sat 4–12; Sun 4–11",
-    "heroImage": "https://images.unsplash.com/photo-1491316037411-40279662960e?w=400",
-    "musicGenre": [
-      "Chill Electronic",
-      "Lounge",
-      "Chill electronic",
-      "lounge"
-    ],
+    "heroImage": "https://images.unsplash.com/photo-1514933651103-005eec06c04b?w=800",
+    "description": "Euro‑inspired rooftop lounge with fire pits and postcard skyline views.",
     "tags": [
       "scenic views",
       "elegant",
-      "trendy",
-      "rooftop",
-      "heaters on",
-      "windy evenings"
+      "trendy"
     ],
-    "description": "Euro‑inspired rooftop lounge with fire pits and postcard skyline views.",
+    "cuisine": "Western",
+    "shortDescription": "Euro‑inspired rooftop lounge with fire pits and postcard skyline views.",
+    "instagram": "https://www.instagram.com/charmainessf",
     "ambiance": [
-      "Rooftop Lounge",
-      "Panoramic Views",
-      "Rooftop lounge",
-      "panoramic views",
       "Sweeping vistas",
       "stylish crowd"
     ],
-    "cuisine": "Western",
-    "dressCode": "Upscale",
-    "waitTime": "45",
-    "shortDescription": "Euro‑inspired rooftop lounge with fire pits and postcard skyline views.",
-    "accolades": "—",
-    "instagram": "https://www.instagram.com/charmainessf"
-  },
-  {
-    "id": 29,
-    "name": "Chotto Matte",
-    "coordinates": {
-      "latitude": 37.7749,
-      "longitude": -122.4194
-    },
-    "type": "Bar",
-    "neighborhood": "San Francisco",
-    "rating": 4.3,
-    "pricing": "$$",
-    "hours": "",
-    "heroImage": "https://images.unsplash.com/photo-1514933651103-005eec06c04b?w=800",
-    "musicGenre": [],
-    "tags": [],
-    "description": "",
-    "ambiance": [],
-    "cuisine": null
-  },
-  {
-    "id": 62,
-    "name": "Cocobang",
-    "coordinates": {
-      "latitude": 37.789,
-      "longitude": -122.4133
-    },
-    "type": "Bar",
-    "neighborhood": "Lower Nob Hill",
-    "rating": 4.3,
-    "pricing": "$$",
-    "hours": "Daily 5pm–2am",
-    "heroImage": "https://images.unsplash.com/photo-1514933651103-005eec06c04b?w=800",
-    "musicGenre": [],
-    "tags": [],
-    "description": "",
-    "ambiance": [],
-    "cuisine": "Korean"
-  },
-  {
-    "id": 89,
-    "name": "Dalva",
-    "coordinates": {
-      "latitude": 37.7599,
-      "longitude": -122.4148
-    },
-    "type": "Bar",
-    "neighborhood": "Mission",
-    "rating": 4.3,
-    "pricing": "$",
-    "hours": "Mon–Tue 5–12; Wed–Sat 5–2; Sun 5–12",
-    "heroImage": "https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?w=800",
-    "musicGenre": [],
-    "tags": [
-      "dance",
-      "DJs",
-      "classic"
+    "recommendedDrinks": [
+      "Cocktails",
+      "Wine"
     ],
-    "description": "Beloved Mission standby; back‑room ‘Hideout’ hosts DJs and dancing.",
-    "ambiance": [],
-    "cuisine": "None",
-    "accolades": "—",
-    "instagram": "https://www.instagram.com/dalvasf"
-  },
-  {
-    "id": 46,
-    "name": "Decant",
+    "recommendations": [
+      "Martinis",
+      "spritzes"
+    ],
     "coordinates": {
       "latitude": 37.7749,
       "longitude": -122.4194
     },
-    "type": "Bar",
-    "neighborhood": "San Francisco",
-    "rating": 4.3,
-    "pricing": "$$",
-    "hours": "",
-    "heroImage": "https://images.unsplash.com/photo-1514933651103-005eec06c04b?w=800",
-    "musicGenre": [],
-    "tags": [],
-    "description": "",
-    "ambiance": [],
-    "cuisine": null
+    "goodToKnow": "Heaters on; windy evenings",
+    "whereToGoIf": "you want to feel glamorous with a view"
   },
   {
     "id": 13,
     "name": "El Chato",
-    "coordinates": {
-      "latitude": 37.7749,
-      "longitude": -122.4194
-    },
     "type": "Wine Bar",
     "neighborhood": "Mission District",
     "rating": 4.3,
     "pricing": "$$$",
+    "averageDrinkPrice": "$14–18 wine, $12–16 vermouth",
     "hours": "Mon–Thu 4–10; Fri–Sat 4–11; Sun 3–9",
-    "heroImage": "https://images.unsplash.com/photo-1424847651672-bf20a4b0982b?w=800",
-    "musicGenre": [
-      "Live bands",
-      "indie sleaze",
-      "Spanish pop"
-    ],
+    "heroImage": "https://images.unsplash.com/photo-1514933651103-005eec06c04b?w=800",
+    "description": "Spanish taberna pouring curated wines, vermouth, and pintxos/tapas.",
     "tags": [
       "porróns",
-      "live music",
       "communal tables",
       "intimate",
-      "late-night vibe",
-      "late‑night",
-      "small space",
-      "porrón etiquette encouraged"
+      "late‑night"
     ],
-    "description": "Spanish taberna pouring curated wines, vermouth, and pintxos/tapas.",
+    "cuisine": "Spanish",
+    "shortDescription": "Spanish taberna pouring curated wines, vermouth, and pintxos/tapas.",
+    "instagram": "https://www.instagram.com/elchatosf",
     "ambiance": [
-      "Intimate",
-      "playful",
-      "Mural-lit pink walls",
       "Porróns",
       "tinto",
       "jamón",
       "occasional live music"
     ],
-    "cuisine": "Spanish",
-    "shortDescription": "Spanish taberna pouring curated wines, vermouth, and pintxos/tapas.",
-    "accolades": "—",
-    "instagram": "https://www.instagram.com/elchatosf"
-  },
-  {
-    "id": 47,
-    "name": "Fool's Errand",
-    "coordinates": {
-      "latitude": 37.7749,
-      "longitude": -122.4194
-    },
-    "type": "Bar",
-    "neighborhood": "San Francisco",
-    "rating": 4.3,
-    "pricing": "$$",
-    "hours": "",
-    "heroImage": "https://images.unsplash.com/photo-1514933651103-005eec06c04b?w=800",
-    "musicGenre": [],
-    "tags": [],
-    "description": "",
-    "ambiance": [],
-    "cuisine": null
-  },
-  {
-    "id": 57,
-    "name": "Friends and Family",
-    "coordinates": {
-      "latitude": 37.8044,
-      "longitude": -122.2712
-    },
-    "type": "Bar",
-    "neighborhood": "Oakland",
-    "rating": 4.3,
-    "pricing": "$$",
-    "hours": "",
-    "heroImage": "https://images.unsplash.com/photo-1514933651103-005eec06c04b?w=800",
-    "musicGenre": [],
-    "tags": [],
-    "description": "",
-    "ambiance": [
-      "Retro",
-      "Neighborhood-y",
-      "Pink Tones"
+    "recommendedDrinks": [
+      "Wine",
+      "Vermouth"
     ],
-    "cuisine": null
-  },
-  {
-    "id": 12,
-    "name": "Gigi's",
+    "recommendations": [
+      "Tinto",
+      "porrón of vino blanco"
+    ],
     "coordinates": {
       "latitude": 37.7749,
       "longitude": -122.4194
     },
-    "type": "Neighborhood Bar",
-    "neighborhood": "NoPa",
+    "goodToKnow": "Small space; porrón etiquette encouraged",
+    "whereToGoIf": "you’re craving Spain"
+  },
+  {
+    "id": 14,
+    "name": "Buddy",
+    "type": "Neighborhood / Cocktail Bar",
+    "neighborhood": "Mission",
     "rating": 4.3,
-    "pricing": "$",
-    "hours": "Tue–Sat 4–9; Sun–Mon Closed",
+    "pricing": "$$",
+    "averageDrinkPrice": "$12–15 cocktails",
+    "hours": "Sun–Fri 4–10; Sat 2–10",
     "heroImage": "https://images.unsplash.com/photo-1514933651103-005eec06c04b?w=800",
-    "musicGenre": [],
+    "description": "Chill neighborhood bar with amari, natty wine, and satisfying sandwiches.",
     "tags": [
       "casual",
-      "cheap eats",
-      "lively",
-      "great for groups",
-      "limited seating"
+      "amaro",
+      "sandwiches",
+      "neighborhood"
     ],
-    "description": "Casual Vietnamese hang with late‑night energy and playful drinks.",
+    "cuisine": "New American",
+    "shortDescription": "Chill neighborhood bar with amari, natty wine, and satisfying sandwiches.",
+    "instagram": "https://www.instagram.com/buddysf",
     "ambiance": [
-      "Retro-chic",
-      "warm lighting",
-      "Loud",
-      "lively",
-      "crowd‑pleasing bites"
+      "Friendly staff",
+      "counter‑service vibes"
     ],
-    "cuisine": "Vietnamese",
-    "dressCode": "Casual, trendy",
-    "shortDescription": "Casual Vietnamese hang with late‑night energy and playful drinks.",
-    "accolades": "—"
+    "recommendedDrinks": [
+      "Wine",
+      "Cocktails",
+      "Beer"
+    ],
+    "recommendations": [
+      "Amaro highball",
+      "mortadella sando"
+    ],
+    "coordinates": {
+      "latitude": 37.7749,
+      "longitude": -122.4194
+    },
+    "goodToKnow": "Walk‑in friendly",
+    "whereToGoIf": "you want low‑key drinks & good snacks"
   },
   {
-    "id": 61,
-    "name": "Grubstake",
-    "coordinates": {
-      "latitude": 37.789,
-      "longitude": -122.4133
-    },
-    "type": "Bar",
-    "neighborhood": "Lower Nob Hill",
-    "rating": 4.3,
-    "pricing": "$$",
-    "hours": "Daily 5pm–4am",
-    "heroImage": "https://images.unsplash.com/photo-1514933651103-005eec06c04b?w=800",
-    "musicGenre": [],
-    "tags": [],
-    "description": "",
-    "ambiance": [],
-    "cuisine": "Western"
-  },
-  {
-    "id": 72,
-    "name": "Gyro Xpress",
-    "coordinates": {
-      "latitude": 37.7627,
-      "longitude": -122.435
-    },
-    "type": "Bar",
-    "neighborhood": "Castro",
-    "rating": 4.3,
-    "pricing": "$",
-    "hours": "Mon–Sat 11am–10pm; Sun Closed",
-    "heroImage": "https://images.unsplash.com/photo-1424847651672-bf20a4b0982b?w=800",
-    "musicGenre": [],
-    "tags": [],
-    "description": "",
-    "ambiance": [],
-    "cuisine": "Mediterranean"
-  },
-  {
-    "id": 92,
-    "name": "Halcyon",
-    "coordinates": {
-      "latitude": 37.7786,
-      "longitude": -122.4059
-    },
-    "type": "Bar",
+    "id": 15,
+    "name": "Peacekeeper",
+    "type": "Cocktail Bar",
     "neighborhood": "SoMa",
     "rating": 4.3,
     "pricing": "$$",
-    "hours": "11pm–late",
-    "heroImage": "https://images.unsplash.com/photo-1514933651103-005eec06c04b?w=800",
-    "musicGenre": [],
-    "tags": [],
-    "description": "",
-    "ambiance": [],
-    "cuisine": null
-  },
-  {
-    "id": 4,
-    "name": "Harlan Records",
-    "coordinates": {
-      "latitude": 37.7649,
-      "longitude": -122.4248
-    },
-    "type": "Speakeasy / Listening Bar",
-    "neighborhood": "Union Square",
-    "rating": 4.4,
-    "pricing": "$$",
-    "hours": "Mon 2–12; Tue–Fri 2–1:30; Sat 4–1:30; Sun 4–12",
-    "heroImage": "https://images.unsplash.com/photo-1510735166794-1e22c7d230f1?w=400",
-    "musicGenre": [
-      "House"
-    ],
+    "averageDrinkPrice": "$13–16 cocktails",
+    "hours": "Mon–Thu 2–2; Fri 2–2; Sat–Sun 1–2",
+    "heroImage": "/images/venues/peacekeeper-hero.jpg",
+    "description": "Bi‑level cocktail bar with a retractable roof and pool/arcade games.",
     "tags": [
-      "music venue",
-      "records",
-      "dj sets",
-      "listening bar",
-      "vinyl",
-      "retro",
-      "music inspired cocktails",
-      "live vinyl dj sets",
-      "intimate",
-      "small space",
-      "arrive early"
-    ],
-    "description": "Alley‑hidden Japanese‑leaning listening bar with eclectic vinyl sets.",
-    "ambiance": [
-      "Darklit",
-      "Retro",
-      "Dive",
-      "Music‑inspired cocktails",
-      "live vinyl DJs"
-    ],
-    "cuisine": "None",
-    "dressCode": "Casual",
-    "waitTime": "15",
-    "shortDescription": "Alley‑hidden Japanese‑leaning listening bar with eclectic vinyl sets.",
-    "accolades": "—",
-    "instagram": "https://www.instagram.com/harlanrecordssf"
-  },
-  {
-    "id": 86,
-    "name": "Hi‑Tops",
-    "coordinates": {
-      "latitude": 37.7627,
-      "longitude": -122.435
-    },
-    "type": "Bar",
-    "neighborhood": "Castro",
-    "rating": 4.3,
-    "pricing": "$",
-    "hours": "Mon–Wed 12–12; Thu–Fri 12–2; Sat 10–2; Sun 10–12",
-    "heroImage": "https://images.unsplash.com/photo-1514933651103-005eec06c04b?w=800",
-    "musicGenre": [],
-    "tags": [
-      "queer",
-      "sports",
+      "retractable roof",
+      "games",
       "lively"
     ],
-    "description": "Lively sports‑centric Castro bar with a big, friendly crowd.",
-    "ambiance": [],
-    "cuisine": "Bar snacks",
-    "accolades": "—",
-    "instagram": "https://www.instagram.com/hitopssf"
-  },
-  {
-    "id": 43,
-    "name": "High Treason",
-    "coordinates": {
-      "latitude": 37.7749,
-      "longitude": -122.4194
-    },
-    "type": "Wine Bar",
-    "neighborhood": "Inner Richmond",
-    "rating": 4.3,
-    "pricing": "$$",
-    "hours": "Daily 4–11 (Fri–Sat until Midnight)",
-    "heroImage": "https://images.unsplash.com/photo-1514933651103-005eec06c04b?w=800",
-    "musicGenre": [],
-    "tags": [
-      "vinyl",
-      "retail",
-      "cozy",
-      "retail bottle shop pricing to‑go"
-    ],
-    "description": "Chill neighborhood wine bar with eclectic vinyl and smart bottle list.",
+    "cuisine": null,
+    "shortDescription": "Bi‑level cocktail bar with a retractable roof and pool/arcade games.",
+    "instagram": "https://www.instagram.com/peacekeepersf",
     "ambiance": [
-      "Vinyl spins",
-      "retail bottles"
+      "Roof open on warm nights",
+      "lively crowd"
     ],
-    "cuisine": "None",
-    "shortDescription": "Chill neighborhood wine bar with eclectic vinyl and smart bottle list.",
-    "accolades": "—",
-    "instagram": "https://www.instagram.com/hightreasonsf"
-  },
-  {
-    "id": 63,
-    "name": "Hinodeya",
-    "coordinates": {
-      "latitude": 37.785,
-      "longitude": -122.43
-    },
-    "type": "Bar",
-    "neighborhood": "Japantown",
-    "rating": 4.3,
-    "pricing": "$$",
-    "hours": "Daily 11am–9:30pm",
-    "heroImage": "https://images.unsplash.com/photo-1595424762791-7ef88838ad01?w=800",
-    "musicGenre": [],
-    "tags": [],
-    "description": "",
-    "ambiance": [],
-    "cuisine": "Japanese"
-  },
-  {
-    "id": 53,
-    "name": "Jilli",
+    "recommendedDrinks": [
+      "Cocktails",
+      "Beer",
+      "Wine"
+    ],
+    "recommendations": [
+      "Margaritas",
+      "mezcal cocktails"
+    ],
     "coordinates": {
       "latitude": 37.7749,
       "longitude": -122.4194
     },
-    "type": "Bar",
-    "neighborhood": "San Francisco",
-    "rating": 4.3,
-    "pricing": "$$",
-    "hours": "",
-    "heroImage": "https://images.unsplash.com/photo-1514933651103-005eec06c04b?w=800",
-    "musicGenre": [],
-    "tags": [],
-    "description": "",
-    "ambiance": [],
-    "cuisine": null
-  },
-  {
-    "id": 67,
-    "name": "Joyful Garden",
-    "coordinates": {
-      "latitude": 37.7627,
-      "longitude": -122.435
-    },
-    "type": "Bar",
-    "neighborhood": "Castro",
-    "rating": 4.3,
-    "pricing": "$$",
-    "hours": "Daily 11am–10pm",
-    "heroImage": "https://images.unsplash.com/photo-1514933651103-005eec06c04b?w=800",
-    "musicGenre": [],
-    "tags": [],
-    "description": "",
-    "ambiance": [],
-    "cuisine": "Chinese"
-  },
-  {
-    "id": 2,
-    "name": "Key Klub",
-    "coordinates": {
-      "latitude": 37.7749,
-      "longitude": -122.4194
-    },
-    "type": "Wine Bar",
-    "neighborhood": "Nob Hill",
-    "rating": 4.1,
-    "pricing": "$$",
-    "hours": "Tue–Wed 4–11; Thu–Fri 4–12; Sat 2–12; Sun–Mon Closed",
-    "heroImage": "https://images.unsplash.com/photo-1543007630-9710e4a00a20?w=400",
-    "musicGenre": [
-      "Mixed"
-    ],
-    "tags": [
-      "dinner",
-      "drinks",
-      "young crowd",
-      "wine bar",
-      "new american",
-      "big plates",
-      "wide range of wine",
-      "beer",
-      "date spot",
-      "sister spot to bodega",
-      "celeste"
-    ],
-    "description": "Glowing lights, New American bites, and natural wine pours in a photogenic space.",
-    "ambiance": [
-      "Darklit",
-      "Red Lights",
-      "Exposed brick",
-      "Brooklyn vibe",
-      "Big plates",
-      "wide wine",
-      "beer range"
-    ],
-    "cuisine": "Western",
-    "dressCode": "Casual",
-    "waitTime": "20",
-    "shortDescription": "Glowing lights, New American bites, and natural wine pours in a photogenic space.",
-    "accolades": "—",
-    "yelpUrl": "https://www.yelp.com/biz/key-klub-san-francisco",
-    "resyUrl": "https://resy.com/cities/sf/key-klub",
-    "instagram": "https://www.instagram.com/key.klubsf"
-  },
-  {
-    "id": 26,
-    "name": "Kis cafe",
-    "coordinates": {
-      "latitude": 37.7749,
-      "longitude": -122.4194
-    },
-    "type": "Bar",
-    "neighborhood": "San Francisco",
-    "rating": 4.3,
-    "pricing": "$$",
-    "hours": "",
-    "heroImage": "https://images.unsplash.com/photo-1514933651103-005eec06c04b?w=800",
-    "musicGenre": [],
-    "tags": [],
-    "description": "",
-    "ambiance": [],
-    "cuisine": null
-  },
-  {
-    "id": 80,
-    "name": "Kowloon Tong Dessert Cafe",
-    "coordinates": {
-      "latitude": 37.7534,
-      "longitude": -122.4944
-    },
-    "type": "Bar",
-    "neighborhood": "Outer Sunset",
-    "rating": 4.3,
-    "pricing": "$",
-    "hours": "Daily 1pm–12am",
-    "heroImage": "https://images.unsplash.com/photo-1514933651103-005eec06c04b?w=800",
-    "musicGenre": [],
-    "tags": [],
-    "description": "",
-    "ambiance": [],
-    "cuisine": "Chinese"
-  },
-  {
-    "id": 22,
-    "name": "Left Door",
-    "coordinates": {
-      "latitude": 37.7749,
-      "longitude": -122.4194
-    },
-    "type": "Bar",
-    "neighborhood": "San Francisco",
-    "rating": 4.3,
-    "pricing": "$$",
-    "hours": "",
-    "heroImage": "https://images.unsplash.com/photo-1514933651103-005eec06c04b?w=800",
-    "musicGenre": [],
-    "tags": [],
-    "description": "",
-    "ambiance": [],
-    "cuisine": null
-  },
-  {
-    "id": 84,
-    "name": "Li Po Cocktail Lounge",
-    "coordinates": {
-      "latitude": 37.7941,
-      "longitude": -122.4078
-    },
-    "type": "Bar",
-    "neighborhood": "Chinatown",
-    "rating": 4.3,
-    "pricing": "$",
-    "hours": "Mon–Wed 2–1; Thu–Fri 2–2; Sat 1–2; Sun 1–1",
-    "heroImage": "https://images.unsplash.com/photo-1514933651103-005eec06c04b?w=800",
-    "musicGenre": [],
-    "tags": [
-      "historic",
-      "dive",
-      "neon"
-    ],
-    "description": "Historic Chinatown dive with the infamous Chinese Mai Tai.",
-    "ambiance": [],
-    "cuisine": "None",
-    "accolades": "—"
-  },
-  {
-    "id": 30,
-    "name": "Madrone Art Bar",
-    "coordinates": {
-      "latitude": 37.7749,
-      "longitude": -122.4194
-    },
-    "type": "Bar",
-    "neighborhood": "San Francisco",
-    "rating": 4.3,
-    "pricing": "$$",
-    "hours": "",
-    "heroImage": "https://images.unsplash.com/photo-1514933651103-005eec06c04b?w=800",
-    "musicGenre": [],
-    "tags": [],
-    "description": "",
-    "ambiance": [],
-    "cuisine": null
-  },
-  {
-    "id": 85,
-    "name": "Make‑Out Room",
-    "coordinates": {
-      "latitude": 37.7599,
-      "longitude": -122.4148
-    },
-    "type": "Bar",
-    "neighborhood": "Mission",
-    "rating": 4.3,
-    "pricing": "$",
-    "hours": "Tue–Sun 6–2; Mon Closed",
-    "heroImage": "https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?w=800",
-    "musicGenre": [],
-    "tags": [
-      "indie",
-      "dance floor",
-      "live music"
-    ],
-    "description": "Mission institution for live bands, DJ nights, and indie dance parties.",
-    "ambiance": [],
-    "cuisine": "None",
-    "accolades": "—",
-    "instagram": "https://www.instagram.com/makeoutroomsf"
-  },
-  {
-    "id": 54,
-    "name": "Mari's Mogura",
-    "coordinates": {
-      "latitude": 37.7749,
-      "longitude": -122.4194
-    },
-    "type": "Bar",
-    "neighborhood": "San Francisco",
-    "rating": 4.3,
-    "pricing": "$$",
-    "hours": "",
-    "heroImage": "https://images.unsplash.com/photo-1514933651103-005eec06c04b?w=800",
-    "musicGenre": [],
-    "tags": [],
-    "description": "",
-    "ambiance": [],
-    "cuisine": null
-  },
-  {
-    "id": 6,
-    "name": "Millay",
-    "coordinates": {
-      "latitude": 37.7549,
-      "longitude": -122.4194
-    },
-    "type": "Sake Bar / Wine Bar",
-    "neighborhood": "Mission",
-    "rating": 4.3,
-    "pricing": "$$",
-    "hours": "Mon/Wed/Thu 5–10; Fri 5–12; Sat 3–12; Sun 3–8; Tue Closed",
-    "heroImage": "https://images.unsplash.com/photo-1595424762791-7ef88838ad01?w=400",
-    "musicGenre": [
-      "Lo-fi",
-      "Ambient",
-      "Eclectic Vinyl",
-      "Low-fi",
-      "ambient",
-      "eclectic vinyl sets"
-    ],
-    "tags": [
-      "sake bar",
-      "date spot",
-      "intimate",
-      "natural wine",
-      "bar‑only seating",
-      "limited tables"
-    ],
-    "description": "Stylish sake‑and‑wine bar with pink neon, wood seating, and a tiny disco ball.",
-    "ambiance": [
-      "Minimalist",
-      "Modern",
-      "Cozy",
-      "Cozy room",
-      "by‑the‑glass list",
-      "light bites"
-    ],
-    "cuisine": "Japanese",
-    "dressCode": "Casual chic",
-    "waitTime": "20",
-    "shortDescription": "Stylish sake‑and‑wine bar with pink neon, wood seating, and a tiny disco ball.",
-    "accolades": "—",
-    "instagram": "https://www.instagram.com/millaysf"
-  },
-  {
-    "id": 90,
-    "name": "Monroe's",
-    "coordinates": {
-      "latitude": 37.8061,
-      "longitude": -122.4106
-    },
-    "type": "Club",
-    "neighborhood": "North Beach",
-    "rating": 4.3,
-    "pricing": "$$",
-    "hours": "10pm–2am",
-    "heroImage": "https://images.unsplash.com/photo-1514933651103-005eec06c04b?w=800",
-    "musicGenre": [],
-    "tags": [],
-    "description": "",
-    "ambiance": [],
-    "cuisine": null
-  },
-  {
-    "id": 8,
-    "name": "Mothership",
-    "coordinates": {
-      "latitude": 37.7649,
-      "longitude": -122.4294
-    },
-    "type": "Cocktail Bar",
-    "neighborhood": "Mission",
-    "rating": 4.1,
-    "pricing": "$$",
-    "hours": "Tue–Thu 4–12; Fri 4–2; Sat 2–2; Sun 2–10; Mon Closed",
-    "heroImage": "https://images.unsplash.com/photo-1556817411-31ae72fa3ea0?w=400",
-    "musicGenre": [
-      "Synthwave",
-      "Retro-funk",
-      "Electronic",
-      "retro-funk",
-      "electronic"
-    ],
-    "tags": [
-      "space bar",
-      "immersive",
-      "cocktails",
-      "funky",
-      "back patio closes earlier than bar"
-    ],
-    "description": "Verdant, space‑themed Mission hideaway with inventive drinks and a lush patio.",
-    "ambiance": [
-      "Futuristic",
-      "Colorful Lighting",
-      "Space-themed",
-      "colorful lighting",
-      "space-themed",
-      "Creative cocktails",
-      "relaxed crowd",
-      "plants"
-    ],
-    "cuisine": "None",
-    "dressCode": "Trendy / fun",
-    "waitTime": "15",
-    "shortDescription": "Verdant, space‑themed Mission hideaway with inventive drinks and a lush patio.",
-    "accolades": "—",
-    "instagram": "https://www.instagram.com/mothershipsf"
-  },
-  {
-    "id": 70,
-    "name": "Naan N Curry",
-    "coordinates": {
-      "latitude": 37.7793,
-      "longitude": -122.4193
-    },
-    "type": "Bar",
-    "neighborhood": "Civic Center",
-    "rating": 4.3,
-    "pricing": "$$",
-    "hours": "Daily 11am–3am",
-    "heroImage": "https://images.unsplash.com/photo-1514933651103-005eec06c04b?w=800",
-    "musicGenre": [],
-    "tags": [],
-    "description": "",
-    "ambiance": [],
-    "cuisine": "Indian"
-  },
-  {
-    "id": 68,
-    "name": "Orphan Andy's",
-    "coordinates": {
-      "latitude": 37.7627,
-      "longitude": -122.435
-    },
-    "type": "Bar",
-    "neighborhood": "Castro",
-    "rating": 4.3,
-    "pricing": "$",
-    "hours": "Daily 24h",
-    "heroImage": "https://images.unsplash.com/photo-1514933651103-005eec06c04b?w=800",
-    "musicGenre": [],
-    "tags": [],
-    "description": "",
-    "ambiance": [],
-    "cuisine": "Western"
-  },
-  {
-    "id": 48,
-    "name": "Palm City",
-    "coordinates": {
-      "latitude": 37.7749,
-      "longitude": -122.4194
-    },
-    "type": "Wine Bar / Deli",
-    "neighborhood": "Outer Sunset",
-    "rating": 4.3,
-    "pricing": "$$",
-    "hours": "Wed–Sun 12–9 (beer & wine till 9); Mon–Tue 4–10 (kitchen till 9)",
-    "heroImage": "https://images.unsplash.com/photo-1514933651103-005eec06c04b?w=800",
-    "musicGenre": [],
-    "tags": [
-      "hoagies",
-      "natural wine",
-      "casual",
-      "order early—sandos sell out"
-    ],
-    "description": "South‑side hang known for hoagies, natural wine, and an easy vibe.",
-    "ambiance": [
-      "Hoagies till sell‑out"
-    ],
-    "cuisine": "Deli / American",
-    "shortDescription": "South‑side hang known for hoagies, natural wine, and an easy vibe.",
-    "accolades": "—",
-    "instagram": "https://www.instagram.com/palmcitysf"
-  },
-  {
-    "id": 76,
-    "name": "Panchita's Pupuseria Restaurant",
-    "coordinates": {
-      "latitude": 37.7599,
-      "longitude": -122.4148
-    },
-    "type": "Bar",
-    "neighborhood": "Mission",
-    "rating": 4.3,
-    "pricing": "$",
-    "hours": "Mon–Thu & Sun 10am–11pm; Fri–Sat 10am–2:30am",
-    "heroImage": "https://images.unsplash.com/photo-1514933651103-005eec06c04b?w=800",
-    "musicGenre": [],
-    "tags": [],
-    "description": "",
-    "ambiance": [],
-    "cuisine": "Salvadoran"
+    "goodToKnow": "Lines form on weekends",
+    "whereToGoIf": "you want open‑air drinks and games"
   },
   {
     "id": 16,
-    "name": "PCH",
-    "coordinates": {
-      "latitude": 37.7749,
-      "longitude": -122.4194
-    },
-    "type": "Bar",
-    "neighborhood": "San Francisco",
-    "rating": 4.3,
-    "pricing": "$$",
-    "hours": "",
-    "heroImage": "https://images.unsplash.com/photo-1514933651103-005eec06c04b?w=800",
-    "musicGenre": [],
-    "tags": [],
-    "description": "",
-    "ambiance": [],
-    "cuisine": null,
-    "accolades": "World’s Best 50 Bars"
-  },
-  {
-    "id": 83,
     "name": "PCH (Pacific Cocktail Haven)",
-    "coordinates": {
-      "latitude": 37.7881,
-      "longitude": -122.4075
-    },
-    "type": "Bar",
+    "type": "Cocktail Bar",
     "neighborhood": "Union Square",
     "rating": 4.3,
     "pricing": "$$$",
+    "averageDrinkPrice": "$16–20 cocktails",
     "hours": "Mon–Sat 5–12; Sun Closed",
-    "heroImage": "https://images.unsplash.com/photo-1506377247377-2a5b3b417ebb?w=800",
-    "musicGenre": [],
+    "heroImage": "/images/venues/pch-pacific-cocktail-haven-hero.jpg",
+    "description": "Renowned cocktail bar with Pacific/Asian flavor profiles and creative technique.",
     "tags": [
       "award‑winning",
       "inventive",
       "date spot"
     ],
-    "description": "Renowned cocktail bar with Pacific/Asian flavor profiles and creative technique.",
-    "ambiance": [],
-    "cuisine": "None",
+    "cuisine": null,
+    "shortDescription": "Renowned cocktail bar with Pacific/Asian flavor profiles and creative technique.",
     "accolades": "World’s 50 Best Bars (featured)",
-    "instagram": "https://www.instagram.com/pchsfo"
-  },
-  {
-    "id": 15,
-    "name": "Peacekeeper",
-    "coordinates": {
-      "latitude": 37.7749,
-      "longitude": -122.4194
-    },
-    "type": "Cocktail Bar",
-    "neighborhood": "SoMa",
-    "rating": 4.3,
-    "pricing": "$$",
-    "hours": "Mon–Thu 2–2; Fri 2–2; Sat–Sun 1–2",
-    "heroImage": "https://images.unsplash.com/photo-1514933651103-005eec06c04b?w=800",
-    "musicGenre": [],
-    "tags": [
-      "retractable roof",
-      "games",
-      "lively",
-      "lines form on weekends"
-    ],
-    "description": "Bi‑level cocktail bar with a retractable roof and pool/arcade games.",
+    "instagram": "https://www.instagram.com/pchsfo",
     "ambiance": [
-      "Roof open on warm nights",
-      "lively crowd"
+      "Balanced",
+      "inventive signatures"
     ],
-    "cuisine": "None",
-    "shortDescription": "Bi‑level cocktail bar with a retractable roof and pool/arcade games.",
-    "accolades": "—",
-    "instagram": "https://www.instagram.com/peacekeepersf"
-  },
-  {
-    "id": 28,
-    "name": "Phonobar",
+    "recommendedDrinks": [
+      "Cocktails"
+    ],
+    "recommendations": [
+      "Claremont Club",
+      "Banana Life"
+    ],
     "coordinates": {
       "latitude": 37.7749,
       "longitude": -122.4194
     },
-    "type": "Bar",
-    "neighborhood": "San Francisco",
-    "rating": 4.3,
-    "pricing": "$$",
-    "hours": "",
-    "heroImage": "https://images.unsplash.com/photo-1514933651103-005eec06c04b?w=800",
-    "musicGenre": [],
-    "tags": [],
-    "description": "",
-    "ambiance": [],
-    "cuisine": null
-  },
-  {
-    "id": 59,
-    "name": "Pinecrest",
-    "coordinates": {
-      "latitude": 37.7881,
-      "longitude": -122.4075
-    },
-    "type": "Bar",
-    "neighborhood": "Union Square",
-    "rating": 4.3,
-    "pricing": "$",
-    "hours": "Mon–Wed 7am–11pm; Thu 7am–12am; Fri–Sat 24h; Sun 12am–11pm",
-    "heroImage": "https://images.unsplash.com/photo-1514933651103-005eec06c04b?w=800",
-    "musicGenre": [],
-    "tags": [],
-    "description": "",
-    "ambiance": [],
-    "cuisine": "Western"
-  },
-  {
-    "id": 42,
-    "name": "Press Club",
-    "coordinates": {
-      "latitude": 37.7749,
-      "longitude": -122.4194
-    },
-    "type": "Wine Lounge",
-    "neighborhood": "SoMa",
-    "rating": 4.3,
-    "pricing": "$$$",
-    "hours": "Wed–Thu 5–11; Fri–Sat 4–12; Sun 3–9; Mon–Tue Closed",
-    "heroImage": "https://images.unsplash.com/photo-1514933651103-005eec06c04b?w=800",
-    "musicGenre": [],
-    "tags": [
-      "sleek",
-      "corporate‑friendly",
-      "spacious",
-      "great for groups/events"
-    ],
-    "description": "Sleek subterranean wine lounge pouring flights from notable producers.",
-    "ambiance": [
-      "Large space",
-      "events"
-    ],
-    "cuisine": "None",
-    "shortDescription": "Sleek subterranean wine lounge pouring flights from notable producers.",
-    "accolades": "—",
-    "instagram": "https://www.instagram.com/pressclubsf"
-  },
-  {
-    "id": 77,
-    "name": "Primo Pizza",
-    "coordinates": {
-      "latitude": 37.7802,
-      "longitude": -122.463
-    },
-    "type": "Bar",
-    "neighborhood": "Inner Richmond",
-    "rating": 4.3,
-    "pricing": "$",
-    "hours": "Mon–Thu 11am–10pm; Fri–Sat 11am–11pm; Sun 12pm–10pm",
-    "heroImage": "https://images.unsplash.com/photo-1514933651103-005eec06c04b?w=800",
-    "musicGenre": [],
-    "tags": [],
-    "description": "",
-    "ambiance": [],
-    "cuisine": "Italian"
-  },
-  {
-    "id": 64,
-    "name": "Public Izakaya",
-    "coordinates": {
-      "latitude": 37.789,
-      "longitude": -122.4133
-    },
-    "type": "Bar",
-    "neighborhood": "Lower Nob Hill",
-    "rating": 4.3,
-    "pricing": "$$",
-    "hours": "Tue–Sat 5pm–11pm; Sun–Mon Closed",
-    "heroImage": "https://images.unsplash.com/photo-1595424762791-7ef88838ad01?w=800",
-    "musicGenre": [],
-    "tags": [],
-    "description": "",
-    "ambiance": [],
-    "cuisine": "Japanese"
-  },
-  {
-    "id": 93,
-    "name": "Public Works",
-    "coordinates": {
-      "latitude": 37.7599,
-      "longitude": -122.4148
-    },
-    "type": "Bar",
-    "neighborhood": "Mission",
-    "rating": 4.3,
-    "pricing": "$$",
-    "hours": "9pm–3am",
-    "heroImage": "https://images.unsplash.com/photo-1514933651103-005eec06c04b?w=800",
-    "musicGenre": [],
-    "tags": [],
-    "description": "",
-    "ambiance": [],
-    "cuisine": null
-  },
-  {
-    "id": 40,
-    "name": "Roaming Goat",
-    "coordinates": {
-      "latitude": 37.7749,
-      "longitude": -122.4194
-    },
-    "type": "Bar",
-    "neighborhood": "San Francisco",
-    "rating": 4.3,
-    "pricing": "$$",
-    "hours": "",
-    "heroImage": "https://images.unsplash.com/photo-1514933651103-005eec06c04b?w=800",
-    "musicGenre": [],
-    "tags": [],
-    "description": "",
-    "ambiance": [],
-    "cuisine": null
-  },
-  {
-    "id": 41,
-    "name": "robberbaron",
-    "coordinates": {
-      "latitude": 37.7749,
-      "longitude": -122.4194
-    },
-    "type": "Bar",
-    "neighborhood": "San Francisco",
-    "rating": 4.3,
-    "pricing": "$$",
-    "hours": "",
-    "heroImage": "https://images.unsplash.com/photo-1514933651103-005eec06c04b?w=800",
-    "musicGenre": [],
-    "tags": [],
-    "description": "",
-    "ambiance": [],
-    "cuisine": null
-  },
-  {
-    "id": 79,
-    "name": "Sam's",
-    "coordinates": {
-      "latitude": 37.8061,
-      "longitude": -122.4106
-    },
-    "type": "Bar",
-    "neighborhood": "North Beach",
-    "rating": 4.3,
-    "pricing": "$",
-    "hours": "Daily 11am–3am",
-    "heroImage": "https://images.unsplash.com/photo-1514933651103-005eec06c04b?w=800",
-    "musicGenre": [],
-    "tags": [],
-    "description": "",
-    "ambiance": [],
-    "cuisine": "Western"
-  },
-  {
-    "id": 20,
-    "name": "Shoji",
-    "coordinates": {
-      "latitude": 37.7749,
-      "longitude": -122.4194
-    },
-    "type": "Cocktail Bar",
-    "neighborhood": "SoMa",
-    "rating": 4.3,
-    "pricing": "$$$",
-    "hours": "Tuesday-Saturday from 5:00 PM to 12:00 AM",
-    "heroImage": "https://images.unsplash.com/photo-1514933651103-005eec06c04b?w=800",
-    "musicGenre": [],
-    "tags": [
-      "speakeasy feel",
-      "seasonal menu",
-      "date night",
-      "reservations recommended"
-    ],
-    "description": "Japanese cocktail bar blending omakase-style hospitality with high-end mixology.",
-    "ambiance": [
-      "Japanese ingredients",
-      "elegant space",
-      "outdoor space"
-    ],
-    "cuisine": "Japanese",
-    "shortDescription": "Japanese cocktail bar blending omakase-style hospitality with high-end mixology.",
-    "accolades": "-",
-    "instagram": "https://www.instagram.com/shojisf"
+    "goodToKnow": "Reservations recommended",
+    "whereToGoIf": "you want top‑tier cocktails",
+    "gallery": [
+      "/images/venues/peacekeeper-1.jpg",
+      "/images/venues/peacekeeper-2.jpg"
+    ]
   },
   {
     "id": 17,
-    "name": "Shuggie's Trash Pizza",
-    "coordinates": {
-      "latitude": 37.7749,
-      "longitude": -122.4194
-    },
-    "type": "Bar",
-    "neighborhood": "San Francisco",
+    "name": "Bar Sprezzatura",
+    "type": "Cocktail Bar",
+    "neighborhood": "Jackson Square",
     "rating": 4.3,
-    "pricing": "$$",
-    "hours": "",
+    "pricing": "$$$",
+    "averageDrinkPrice": "$16–20 cocktails",
+    "hours": "Mon–Wed 11–9; Thu–Fri 11–10; Sat 4–10; Sun Closed",
     "heroImage": "https://images.unsplash.com/photo-1514933651103-005eec06c04b?w=800",
-    "musicGenre": [],
-    "tags": [],
-    "description": "",
-    "ambiance": [],
-    "cuisine": null
-  },
-  {
-    "id": 35,
-    "name": "Smuggler's Cove",
-    "coordinates": {
-      "latitude": 37.7749,
-      "longitude": -122.4194
-    },
-    "type": "Tiki Bar",
-    "neighborhood": "Hayes Valley",
-    "rating": 4.3,
-    "pricing": "$$",
-    "hours": "Daily 5–1:15",
-    "heroImage": "https://images.unsplash.com/photo-1514933651103-005eec06c04b?w=800",
-    "musicGenre": [],
+    "description": "Italian‑leaning cocktail & aperitivo lounge with refined service.",
     "tags": [
-      "tiki",
-      "immersive",
-      "rum",
-      "membership grog club exists"
+      "aperitivo",
+      "elegant",
+      "classic"
     ],
-    "description": "Iconic multi‑level tiki temple with hundreds of rums.",
+    "cuisine": "Italian",
+    "shortDescription": "Italian‑leaning cocktail & aperitivo lounge with refined service.",
+    "instagram": "https://www.instagram.com/bar.sprezzatura",
     "ambiance": [
-      "Tiki mugs",
-      "elaborate garnishes"
+      "old-school vibe",
+      "seafood",
+      "big plates"
     ],
-    "cuisine": "None",
-    "shortDescription": "Iconic multi‑level tiki temple with hundreds of rums.",
-    "accolades": "World’s 50 Best Bars (featured)",
-    "instagram": "https://www.instagram.com/smugglerscovesf"
-  },
-  {
-    "id": 55,
-    "name": "Snail Bar",
-    "coordinates": {
-      "latitude": 37.8044,
-      "longitude": -122.2712
-    },
-    "type": "Bar",
-    "neighborhood": "Oakland",
-    "rating": 4.3,
-    "pricing": "$$",
-    "hours": "",
-    "heroImage": "https://images.unsplash.com/photo-1514933651103-005eec06c04b?w=800",
-    "musicGenre": [],
-    "tags": [],
-    "description": "",
-    "ambiance": [
-      "Hip",
-      "minimalist",
-      "intimate"
+    "recommendedDrinks": [
+      "Cocktails",
+      "Amari"
     ],
-    "cuisine": null
-  },
-  {
-    "id": 23,
-    "name": "Starlite",
+    "recommendations": [
+      "Sbagliato",
+      "Martini",
+      "Negronis",
+      "tuna carpaccio"
+    ],
     "coordinates": {
       "latitude": 37.7749,
       "longitude": -122.4194
     },
-    "type": "Bar",
-    "neighborhood": "San Francisco",
-    "rating": 4.3,
-    "pricing": "$$",
-    "hours": "",
-    "heroImage": "https://images.unsplash.com/photo-1514933651103-005eec06c04b?w=800",
-    "musicGenre": [],
-    "tags": [],
-    "description": "",
-    "ambiance": [],
-    "cuisine": null
+    "goodToKnow": "Dress‑ier crowd",
+    "whereToGoIf": "you want aperitivo hour done right"
   },
   {
-    "id": 60,
-    "name": "Taishan",
-    "coordinates": {
-      "latitude": 37.7941,
-      "longitude": -122.4078
-    },
-    "type": "Bar",
-    "neighborhood": "Chinatown",
-    "rating": 4.3,
-    "pricing": "$$",
-    "hours": "Daily 11am–3am",
-    "heroImage": "https://images.unsplash.com/photo-1514933651103-005eec06c04b?w=800",
-    "musicGenre": [],
-    "tags": [],
-    "description": "",
-    "ambiance": [],
-    "cuisine": "Chinese"
-  },
-  {
-    "id": 58,
-    "name": "Tallboy",
-    "coordinates": {
-      "latitude": 37.8044,
-      "longitude": -122.2712
-    },
-    "type": "Bar",
-    "neighborhood": "Oakland",
-    "rating": 4.3,
-    "pricing": "$$",
-    "hours": "",
-    "heroImage": "https://images.unsplash.com/photo-1514933651103-005eec06c04b?w=800",
-    "musicGenre": [
-      "Indie",
-      "house",
-      "playful hits"
-    ],
-    "tags": [],
-    "description": "",
-    "ambiance": [
-      "Laid-back",
-      "Nostalgic"
-    ],
-    "cuisine": null
-  },
-  {
-    "id": 66,
-    "name": "Taqueria El Farolito",
-    "coordinates": {
-      "latitude": 37.7599,
-      "longitude": -122.4148
-    },
-    "type": "Bar",
-    "neighborhood": "Mission",
-    "rating": 4.3,
-    "pricing": "$",
-    "hours": "Daily 10am–2:30am",
-    "heroImage": "https://images.unsplash.com/photo-1514933651103-005eec06c04b?w=800",
-    "musicGenre": [],
-    "tags": [],
-    "description": "",
-    "ambiance": [],
-    "cuisine": "Mexican"
-  },
-  {
-    "id": 96,
-    "name": "Temple",
-    "coordinates": {
-      "latitude": 37.7786,
-      "longitude": -122.4059
-    },
-    "type": "Bar",
-    "neighborhood": "SoMa",
-    "rating": 4.3,
-    "pricing": "$$",
-    "hours": "10pm–4am",
-    "heroImage": "https://images.unsplash.com/photo-1514933651103-005eec06c04b?w=800",
-    "musicGenre": [],
-    "tags": [],
-    "description": "",
-    "ambiance": [],
-    "cuisine": null
-  },
-  {
-    "id": 39,
-    "name": "The Halfway Club",
-    "coordinates": {
-      "latitude": 37.7749,
-      "longitude": -122.4194
-    },
-    "type": "Bar",
-    "neighborhood": "San Francisco",
-    "rating": 4.3,
-    "pricing": "$$",
-    "hours": "",
-    "heroImage": "https://images.unsplash.com/photo-1514933651103-005eec06c04b?w=800",
-    "musicGenre": [],
-    "tags": [],
-    "description": "",
-    "ambiance": [],
-    "cuisine": null
-  },
-  {
-    "id": 95,
-    "name": "The Midway",
-    "coordinates": {
-      "latitude": 37.7577,
-      "longitude": -122.3885
-    },
-    "type": "Bar",
-    "neighborhood": "Dogpatch",
-    "rating": 4.3,
-    "pricing": "$$",
-    "hours": "6pm–3am",
-    "heroImage": "https://images.unsplash.com/photo-1514933651103-005eec06c04b?w=800",
-    "musicGenre": [],
-    "tags": [],
-    "description": "",
-    "ambiance": [],
-    "cuisine": null
-  },
-  {
-    "id": 37,
-    "name": "Tommy's Mexican Restaurant",
-    "coordinates": {
-      "latitude": 37.7749,
-      "longitude": -122.4194
-    },
-    "type": "Mexican Restaurant Bar",
-    "neighborhood": "Outer Richmond",
-    "rating": 4.3,
-    "pricing": "$$",
-    "hours": "Wed–Fri 5–8:30; Sat–Sun 1–8:30; Mon–Tue Closed",
-    "heroImage": "https://images.unsplash.com/photo-1514933651103-005eec06c04b?w=800",
-    "musicGenre": [],
-    "tags": [
-      "tequila",
-      "classic",
-      "institution",
-      "ask about the tequila club"
-    ],
-    "description": "Legendary tequila shrine famed for its classic margarita.",
-    "ambiance": [
-      "Tequila list bible",
-      "no‑frills room"
-    ],
-    "cuisine": "Mexican",
-    "shortDescription": "Legendary tequila shrine famed for its classic margarita.",
-    "accolades": "World’s 50 Best Bars (featured)",
-    "instagram": "https://www.instagram.com/tommysmexicansf"
-  },
-  {
-    "id": 65,
-    "name": "Toyose",
-    "coordinates": {
-      "latitude": 37.7534,
-      "longitude": -122.4944
-    },
-    "type": "Bar",
-    "neighborhood": "Outer Sunset",
-    "rating": 4.3,
-    "pricing": "$$",
-    "hours": "Daily 6pm–2am",
-    "heroImage": "https://images.unsplash.com/photo-1514933651103-005eec06c04b?w=800",
-    "musicGenre": [],
-    "tags": [],
-    "description": "",
-    "ambiance": [],
-    "cuisine": "Korean"
-  },
-  {
-    "id": 19,
+    "id": 18,
     "name": "Trick Dog",
-    "coordinates": {
-      "latitude": 37.7749,
-      "longitude": -122.4194
-    },
     "type": "Cocktail Bar",
     "neighborhood": "Mission",
     "rating": 4.3,
     "pricing": "$$$",
+    "averageDrinkPrice": "$15–19 cocktails",
     "hours": "Sun–Thu 4–12; Fri–Sat 4–2",
-    "heroImage": "https://images.unsplash.com/photo-1514933651103-005eec06c04b?w=800",
-    "musicGenre": [],
+    "heroImage": "/images/venues/trick-dog-hero.jpg",
+    "description": "Ever‑changing themed menus and playful, world‑class cocktails.",
     "tags": [
       "themed menus",
       "inventive",
-      "buzzy",
-      "menu changes periodically—collect the zines"
+      "buzzy"
     ],
-    "description": "Ever‑changing themed menus and playful, world‑class cocktails.",
+    "cuisine": null,
+    "shortDescription": "Ever‑changing themed menus and playful, world‑class cocktails.",
+    "accolades": "World’s 50 Best Bars; Tales; JBF nominee",
+    "instagram": "https://www.instagram.com/trickdogbar",
     "ambiance": [
       "Creative menus",
       "lively buzz"
     ],
-    "cuisine": "None",
-    "shortDescription": "Ever‑changing themed menus and playful, world‑class cocktails.",
-    "accolades": "World’s 50 Best Bars; Tales; JBF nominee",
-    "instagram": "https://www.instagram.com/trickdogbar"
-  },
-  {
-    "id": 36,
-    "name": "True Laurel",
+    "recommendedDrinks": [
+      "Cocktails"
+    ],
+    "recommendations": [
+      "Whatever’s on the current themed list"
+    ],
     "coordinates": {
       "latitude": 37.7749,
       "longitude": -122.4194
     },
+    "goodToKnow": "Menu changes periodically—collect the zines",
+    "whereToGoIf": "you want a menu that’s a concept",
+    "gallery": [
+      "/images/venues/trick-dog-1.jpg",
+      "/images/venues/trick-dog-2.jpg"
+    ]
+  },
+  {
+    "id": 19,
+    "name": "Chambers",
+    "type": "Hotel Bar",
+    "neighborhood": "Tenderloin",
+    "rating": 4.3,
+    "pricing": "$$$",
+    "averageDrinkPrice": "$15–19 cocktails",
+    "hours": "Thu 5–11; Fri–Sat 5–12; Sun–Wed Closed",
+    "heroImage": "/images/venues/chambers-hero.jpg",
+    "description": "Poolside‑adjacent lounge with mid‑century flair at the Phoenix Hotel.",
+    "tags": [
+      "retro",
+      "patio",
+      "hotel bar"
+    ],
+    "cuisine": "Cal‑American",
+    "shortDescription": "Poolside‑adjacent lounge with mid‑century flair at the Phoenix Hotel.",
+    "accolades": "Michelin Guide mention",
+    "instagram": "https://www.instagram.com/chambers_sf",
+    "ambiance": [
+      "Outdoor patio",
+      "records wall"
+    ],
+    "recommendedDrinks": [
+      "Cocktails",
+      "Wine"
+    ],
+    "recommendations": [
+      "Old Fashioned",
+      "spritz"
+    ],
+    "coordinates": {
+      "latitude": 37.7749,
+      "longitude": -122.4194
+    },
+    "goodToKnow": "Great before/after shows",
+    "whereToGoIf": "you want a stylish retro night"
+  },
+  {
+    "id": 20,
+    "name": "ABV",
+    "type": "Cocktail Bar",
+    "neighborhood": "Mission",
+    "rating": 4.3,
+    "pricing": "$$",
+    "averageDrinkPrice": "$12–16 cocktails",
+    "hours": "Daily 4–2 (Kitchen till Midnight)",
+    "heroImage": "/images/venues/abv-hero.jpg",
+    "description": "Beloved neighborhood cocktail bar with a concise, dialed menu.",
+    "tags": [
+      "classic",
+      "fast",
+      "reliable"
+    ],
+    "cuisine": "Snacky",
+    "shortDescription": "Beloved neighborhood cocktail bar with a concise, dialed menu.",
+    "accolades": "World’s 50 Best Bars (featured)",
+    "instagram": "https://www.instagram.com/abvsf",
+    "ambiance": [
+      "Quick service",
+      "standing room"
+    ],
+    "recommendedDrinks": [
+      "Cocktails",
+      "Beer"
+    ],
+    "recommendations": [
+      "Gimlet",
+      "Old Fashioned"
+    ],
+    "coordinates": {
+      "latitude": 37.7749,
+      "longitude": -122.4194
+    },
+    "goodToKnow": "Often crowded—go early",
+    "whereToGoIf": "you want flawless classics",
+    "gallery": [
+      "/images/venues/chambers-1.jpg",
+      "/images/venues/chambers-2.jpg"
+    ]
+  },
+  {
+    "id": 21,
+    "name": "Smuggler's Cove",
+    "type": "Tiki Bar",
+    "neighborhood": "Hayes Valley",
+    "rating": 4.3,
+    "pricing": "$$",
+    "averageDrinkPrice": "$12–16 cocktails",
+    "hours": "Daily 5–1:15",
+    "heroImage": "https://images.unsplash.com/photo-1514933651103-005eec06c04b?w=800",
+    "description": "Iconic multi‑level tiki temple with hundreds of rums.",
+    "tags": [
+      "tiki",
+      "immersive",
+      "rum"
+    ],
+    "cuisine": null,
+    "shortDescription": "Iconic multi‑level tiki temple with hundreds of rums.",
+    "accolades": "World’s 50 Best Bars (featured)",
+    "instagram": "https://www.instagram.com/smugglerscovesf",
+    "ambiance": [
+      "Tiki mugs",
+      "elaborate garnishes"
+    ],
+    "recommendedDrinks": [
+      "Rum",
+      "Tiki Cocktails"
+    ],
+    "recommendations": [
+      "Mai Tai",
+      "Zombie"
+    ],
+    "coordinates": {
+      "latitude": 37.7749,
+      "longitude": -122.4194
+    },
+    "goodToKnow": "Membership grog club exists",
+    "whereToGoIf": "you want tiki escapism"
+  },
+  {
+    "id": 22,
+    "name": "True Laurel",
     "type": "Cocktail Bar",
     "neighborhood": "Mission",
     "rating": 4.3,
     "pricing": "$$$",
+    "averageDrinkPrice": "$15–19 cocktails",
     "hours": "Tue–Wed 4–10; Thu 4–11; Fri 4–12; Sat 11–12; Sun 11–10; Mon Closed",
-    "heroImage": "https://images.unsplash.com/photo-1514933651103-005eec06c04b?w=800",
-    "musicGenre": [],
+    "heroImage": "/images/venues/true-laurel-hero.jpg",
+    "description": "Chef‑driven cocktail den pairing seasonal drinks with inventive bar food.",
     "tags": [
       "seasonal",
       "chef‑y",
-      "inventive",
-      "food is a must here"
-    ],
-    "description": "Chef‑driven cocktail den pairing seasonal drinks with inventive bar food.",
-    "ambiance": [
-      "House ferments",
-      "seasonal flavors"
+      "inventive"
     ],
     "cuisine": "New American",
     "shortDescription": "Chef‑driven cocktail den pairing seasonal drinks with inventive bar food.",
     "accolades": "World’s 50 Best Bars (featured)",
-    "instagram": "https://www.instagram.com/truelaurelsf"
-  },
-  {
-    "id": 73,
-    "name": "Turtle Tower",
-    "coordinates": {
-      "latitude": 37.7946,
-      "longitude": -122.3999
-    },
-    "type": "Bar",
-    "neighborhood": "Financial District",
-    "rating": 4.3,
-    "pricing": "$$",
-    "hours": "Daily 10am–9pm",
-    "heroImage": "https://images.unsplash.com/photo-1514933651103-005eec06c04b?w=800",
-    "musicGenre": [],
-    "tags": [],
-    "description": "",
-    "ambiance": [],
-    "cuisine": "Vietnamese"
-  },
-  {
-    "id": 78,
-    "name": "Uncle Boy's",
-    "coordinates": {
-      "latitude": 37.7802,
-      "longitude": -122.463
-    },
-    "type": "Bar",
-    "neighborhood": "Inner Richmond",
-    "rating": 4.3,
-    "pricing": "$",
-    "hours": "Daily 5pm–12am",
-    "heroImage": "https://images.unsplash.com/photo-1514933651103-005eec06c04b?w=800",
-    "musicGenre": [],
-    "tags": [],
-    "description": "",
-    "ambiance": [],
-    "cuisine": "Western"
-  },
-  {
-    "id": 50,
-    "name": "Ungrafted",
-    "coordinates": {
-      "latitude": 37.7749,
-      "longitude": -122.4194
-    },
-    "type": "Wine Bar / Restaurant",
-    "neighborhood": "Dogpatch",
-    "rating": 4.3,
-    "pricing": "$$$",
-    "hours": "Tue–Wed 12–8; Thu–Sat 12–9; Sun–Mon Closed",
-    "heroImage": "https://images.unsplash.com/photo-1514933651103-005eec06c04b?w=800",
-    "musicGenre": [],
-    "tags": [
-      "somm‑run",
-      "flights",
-      "date night",
-      "reservations suggested"
-    ],
-    "description": "Sommelier‑run wine bar & restaurant with deep bottle list and snacks.",
+    "instagram": "https://www.instagram.com/truelaurelsf",
     "ambiance": [
-      "Flights",
-      "serious bottle list"
+      "House ferments",
+      "seasonal flavors"
     ],
-    "cuisine": "Cal‑American",
-    "shortDescription": "Sommelier‑run wine bar & restaurant with deep bottle list and snacks.",
-    "accolades": "—",
-    "instagram": "https://www.instagram.com/ungraftedsf"
+    "recommendedDrinks": [
+      "Cocktails",
+      "Low‑ABV"
+    ],
+    "recommendations": [
+      "TL Margarita",
+      "patty melt"
+    ],
+    "coordinates": {
+      "latitude": 37.7749,
+      "longitude": -122.4194
+    },
+    "goodToKnow": "Food is a must here",
+    "whereToGoIf": "you want chef energy with cocktails",
+    "gallery": [
+      "/images/venues/true-laurel-1.jpg",
+      "/images/venues/true-laurel-2.jpg"
+    ]
   },
   {
-    "id": 3,
-    "name": "Verjus",
-    "coordinates": {
-      "latitude": 37.7849,
-      "longitude": -122.4094
-    },
-    "type": "Wine Bar",
-    "neighborhood": "Financial District",
-    "rating": 4.5,
-    "pricing": "$$$",
-    "hours": "Tue–Wed 4–10; Thu 11:30–10; Fri–Sat 11:30–11; Sun–Mon Closed",
-    "heroImage": "https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=400",
-    "musicGenre": [
-      "Jazz"
-    ],
+    "id": 23,
+    "name": "Tommy's Mexican Restaurant",
+    "type": "Mexican Restaurant Bar",
+    "neighborhood": "Outer Richmond",
+    "rating": 4.3,
+    "pricing": "$$",
+    "averageDrinkPrice": "$12–15 tequila/margs",
+    "hours": "Wed–Fri 5–8:30; Sat–Sun 1–8:30; Mon–Tue Closed",
+    "heroImage": "https://images.unsplash.com/photo-1514933651103-005eec06c04b?w=800",
+    "description": "Legendary tequila shrine famed for its classic margarita.",
     "tags": [
-      "french cuisine",
-      "wine bar",
-      "upscale",
-      "vinyl",
-      "small plates",
-      "date spot",
-      "weekly changing menu",
-      "unique wines",
-      "delicious food",
-      "same group as quince",
-      "cotogna",
-      "vinyl à verjus on weekends"
+      "tequila",
+      "classic",
+      "institution"
     ],
-    "description": "Parisian cave à manger with open kitchen and vintage hi‑fi; feels like a dinner party.",
+    "cuisine": "Mexican",
+    "shortDescription": "Legendary tequila shrine famed for its classic margarita.",
+    "accolades": "World’s 50 Best Bars (featured)",
+    "instagram": "https://www.instagram.com/tommysmexicansf",
     "ambiance": [
-      "Darklit",
-      "Dimly lit",
-      "Rustic",
-      "Conserva",
-      "Red ceiling",
-      "Weekly menu",
-      "unique bottles",
-      "great food"
+      "Tequila list bible",
+      "no‑frills room"
     ],
-    "cuisine": "French",
-    "dressCode": "Casual",
-    "waitTime": "30",
-    "shortDescription": "Parisian cave à manger with open kitchen and vintage hi‑fi; feels like a dinner party.",
-    "accolades": "Michelin Guide; James Beard nominee",
-    "instagram": "https://www.instagram.com/verjus_sf"
-  },
-  {
-    "id": 25,
-    "name": "Waystone",
+    "recommendedDrinks": [
+      "Tequila",
+      "Margaritas"
+    ],
+    "recommendations": [
+      "Tommy’s Margarita"
+    ],
     "coordinates": {
       "latitude": 37.7749,
       "longitude": -122.4194
     },
-    "type": "Bar",
-    "neighborhood": "San Francisco",
-    "rating": 4.3,
-    "pricing": "$$",
-    "hours": "",
-    "heroImage": "https://images.unsplash.com/photo-1514933651103-005eec06c04b?w=800",
-    "musicGenre": [],
-    "tags": [],
-    "description": "",
-    "ambiance": [],
-    "cuisine": null
+    "goodToKnow": "Ask about the tequila club",
+    "whereToGoIf": "you love agave spirits"
   },
   {
-    "id": 32,
-    "name": "White Rabbit",
-    "coordinates": {
-      "latitude": 37.7749,
-      "longitude": -122.4194
-    },
-    "type": "Bar",
-    "neighborhood": "San Francisco",
-    "rating": 4.3,
-    "pricing": "$$",
-    "hours": "",
-    "heroImage": "https://images.unsplash.com/photo-1514933651103-005eec06c04b?w=800",
-    "musicGenre": [],
-    "tags": [],
-    "description": "",
-    "ambiance": [],
-    "cuisine": null
-  },
-  {
-    "id": 38,
+    "id": 24,
     "name": "Wildhawk",
-    "coordinates": {
-      "latitude": 37.7749,
-      "longitude": -122.4194
-    },
     "type": "Cocktail Bar",
     "neighborhood": "Mission",
     "rating": 4.3,
     "pricing": "$$",
+    "averageDrinkPrice": "$13–16 cocktails",
     "hours": "Tue–Wed 5–12; Thu–Sat 5–2; Sun–Mon Closed",
-    "heroImage": "https://images.unsplash.com/photo-1514933651103-005eec06c04b?w=800",
-    "musicGenre": [],
+    "heroImage": "/images/venues/wildhawk-hero.jpg",
+    "description": "Colorful corner cocktail bar with sherry and aperitif leanings.",
     "tags": [
       "aperitif",
       "neighborhood",
-      "colorful",
-      "good for small groups"
+      "colorful"
     ],
-    "description": "Colorful corner cocktail bar with sherry and aperitif leanings.",
+    "cuisine": null,
+    "shortDescription": "Colorful corner cocktail bar with sherry and aperitif leanings.",
+    "instagram": "https://www.instagram.com/wildhawksf",
     "ambiance": [
       "Friendly bartenders",
       "neighborhood vibe"
     ],
-    "cuisine": "None",
-    "shortDescription": "Colorful corner cocktail bar with sherry and aperitif leanings.",
-    "accolades": "—",
-    "instagram": "https://www.instagram.com/wildhawksf"
+    "recommendedDrinks": [
+      "Cocktails",
+      "Sherry"
+    ],
+    "recommendations": [
+      "Sherry cobbler",
+      "martini"
+    ],
+    "coordinates": {
+      "latitude": 37.7749,
+      "longitude": -122.4194
+    },
+    "goodToKnow": "Good for small groups",
+    "whereToGoIf": "you want aperitif‑forward drinks",
+    "gallery": [
+      "/images/venues/wildhawk-1.jpg",
+      "/images/venues/wildhawk-2.jpg"
+    ]
   },
   {
-    "id": 71,
-    "name": "Wok Station",
+    "id": 25,
+    "name": "Bar Crenn",
+    "type": "Cocktail Salon",
+    "neighborhood": "Cow Hollow",
+    "rating": 4.3,
+    "pricing": "$$$$",
+    "averageDrinkPrice": "$22–30+ cocktails / pairings",
+    "hours": "Tue–Thu 4:30–11; Fri–Sat 4:30–12; Sun–Mon Closed",
+    "heroImage": "https://images.unsplash.com/photo-1514933651103-005eec06c04b?w=800",
+    "description": "Elegant salon by Atelier Crenn—French omakase counter + lounge for canapés & cocktails.",
+    "tags": [
+      "luxury",
+      "omakase",
+      "special occasion"
+    ],
+    "cuisine": "French",
+    "shortDescription": "Elegant salon by Atelier Crenn—French omakase counter + lounge for canapés & cocktails.",
+    "accolades": "Michelin‑starred restaurant group",
+    "instagram": "https://www.instagram.com/barcrenn",
+    "ambiance": [
+      "Refined service",
+      "seasonal pairings"
+    ],
+    "recommendedDrinks": [
+      "Cocktails",
+      "Wine",
+      "Champagne"
+    ],
+    "recommendations": [
+      "Martini service",
+      "seasonal omakase"
+    ],
     "coordinates": {
-      "latitude": 37.7534,
-      "longitude": -122.4944
+      "latitude": 37.7749,
+      "longitude": -122.4194
     },
-    "type": "Bar",
+    "goodToKnow": "Reservations essential",
+    "whereToGoIf": "you want a high‑end, artistic experience"
+  },
+  {
+    "id": 26,
+    "name": "Press Club",
+    "type": "Wine Lounge",
+    "neighborhood": "SoMa",
+    "rating": 4.3,
+    "pricing": "$$$",
+    "averageDrinkPrice": "$16–20 wine flights",
+    "hours": "Wed–Thu 5–11; Fri–Sat 4–12; Sun 3–9; Mon–Tue Closed",
+    "heroImage": "/images/venues/press-club-hero.jpg",
+    "description": "Sleek subterranean wine lounge pouring flights from notable producers.",
+    "tags": [
+      "sleek",
+      "corporate‑friendly",
+      "spacious"
+    ],
+    "cuisine": null,
+    "shortDescription": "Sleek subterranean wine lounge pouring flights from notable producers.",
+    "instagram": "https://www.instagram.com/pressclubsf",
+    "ambiance": [
+      "Large space",
+      "events"
+    ],
+    "recommendedDrinks": [
+      "Wine",
+      "Champagne"
+    ],
+    "recommendations": [
+      "Producer flights"
+    ],
+    "coordinates": {
+      "latitude": 37.7749,
+      "longitude": -122.4194
+    },
+    "goodToKnow": "Great for groups/events",
+    "whereToGoIf": "you want a polished tasting lounge"
+  },
+  {
+    "id": 27,
+    "name": "High Treason",
+    "type": "Wine Bar",
+    "neighborhood": "Inner Richmond",
+    "rating": 4.3,
+    "pricing": "$$",
+    "averageDrinkPrice": "$12–16 per glass",
+    "hours": "Daily 4–11 (Fri–Sat until Midnight)",
+    "heroImage": "/images/venues/high-treason-hero.jpg",
+    "description": "Chill neighborhood wine bar with eclectic vinyl and smart bottle list.",
+    "tags": [
+      "vinyl",
+      "retail",
+      "cozy"
+    ],
+    "cuisine": null,
+    "shortDescription": "Chill neighborhood wine bar with eclectic vinyl and smart bottle list.",
+    "instagram": "https://www.instagram.com/hightreasonsf",
+    "ambiance": [
+      "Vinyl spins",
+      "retail bottles"
+    ],
+    "recommendedDrinks": [
+      "Wine",
+      "Beer"
+    ],
+    "recommendations": [
+      "Skin‑contact picks",
+      "sparkling flights"
+    ],
+    "coordinates": {
+      "latitude": 37.7749,
+      "longitude": -122.4194
+    },
+    "goodToKnow": "Retail bottle shop pricing to‑go",
+    "whereToGoIf": "you want low‑key natty wine",
+    "gallery": [
+      "/images/venues/press-club-1.jpg",
+      "/images/venues/press-club-2.jpg"
+    ]
+  },
+  {
+    "id": 28,
+    "name": "Palm City",
+    "type": "Wine Bar / Deli",
+    "neighborhood": "Outer Sunset",
+    "rating": 4.3,
+    "pricing": "$$",
+    "averageDrinkPrice": "$12–15 wine/beer",
+    "hours": "Wed–Sun 12–9 (beer & wine till 9); Mon–Tue 4–10 (kitchen till 9)",
+    "heroImage": "/images/venues/palm-city-hero.jpg",
+    "description": "South‑side hang known for hoagies, natural wine, and an easy vibe.",
+    "tags": [
+      "hoagies",
+      "natural wine",
+      "casual"
+    ],
+    "cuisine": "Deli / American",
+    "shortDescription": "South‑side hang known for hoagies, natural wine, and an easy vibe.",
+    "instagram": "https://www.instagram.com/palmcitysf",
+    "ambiance": [
+      "Hoagies till sell‑out"
+    ],
+    "recommendedDrinks": [
+      "Wine",
+      "Beer"
+    ],
+    "recommendations": [
+      "Italian hoagie",
+      "hoagie salad"
+    ],
+    "coordinates": {
+      "latitude": 37.7749,
+      "longitude": -122.4194
+    },
+    "goodToKnow": "Order early—sandos sell out",
+    "whereToGoIf": "you want excellent sandwiches with wine",
+    "gallery": [
+      "/images/venues/palm-city-1.jpg",
+      "/images/venues/palm-city-2.jpg"
+    ]
+  },
+  {
+    "id": 29,
+    "name": "Ungrafted",
+    "type": "Wine Bar / Restaurant",
+    "neighborhood": "Dogpatch",
+    "rating": 4.3,
+    "pricing": "$$$",
+    "averageDrinkPrice": "$15–20 per glass",
+    "hours": "Tue–Wed 12–8; Thu–Sat 12–9; Sun–Mon Closed",
+    "heroImage": "/images/venues/ungrafted-hero.jpg",
+    "description": "Sommelier‑run wine bar & restaurant with deep bottle list and snacks.",
+    "tags": [
+      "somm‑run",
+      "flights",
+      "date night"
+    ],
+    "cuisine": "Cal‑American",
+    "shortDescription": "Sommelier‑run wine bar & restaurant with deep bottle list and snacks.",
+    "instagram": "https://www.instagram.com/ungraftedsf",
+    "ambiance": [
+      "Flights",
+      "serious bottle list"
+    ],
+    "recommendedDrinks": [
+      "Wine",
+      "Champagne"
+    ],
+    "recommendations": [
+      "Blind flight",
+      "sparkling picks"
+    ],
+    "coordinates": {
+      "latitude": 37.7749,
+      "longitude": -122.4194
+    },
+    "goodToKnow": "Reservations suggested",
+    "whereToGoIf": "you want som‑level guidance"
+  },
+  {
+    "id": 30,
+    "name": "Li Po Cocktail Lounge",
+    "type": "Dive Bar",
+    "neighborhood": "Chinatown",
+    "rating": 4.3,
+    "pricing": "$",
+    "averageDrinkPrice": "$9–12 cocktails",
+    "hours": "Mon–Wed 2–1; Thu–Fri 2–2; Sat 1–2; Sun 1–1",
+    "heroImage": "/images/venues/li-po-cocktail-lounge-hero.jpg",
+    "description": "Historic Chinatown dive with the infamous Chinese Mai Tai.",
+    "tags": [
+      "historic",
+      "dive",
+      "neon"
+    ],
+    "cuisine": null,
+    "shortDescription": "Historic Chinatown dive with the infamous Chinese Mai Tai.",
+    "ambiance": [
+      "Cash‑only vibe",
+      "neon cave"
+    ],
+    "recommendedDrinks": [
+      "Mai Tais",
+      "Beer"
+    ],
+    "recommendations": [
+      "Chinese Mai Tai"
+    ],
+    "coordinates": {
+      "latitude": 37.7749,
+      "longitude": -122.4194
+    },
+    "goodToKnow": "Cash preferred; strong pours",
+    "whereToGoIf": "you want a classic SF dive",
+    "gallery": [
+      "/images/venues/ungrafted-1.jpg",
+      "/images/venues/ungrafted-2.jpg"
+    ]
+  },
+  {
+    "id": 31,
+    "name": "Make‑Out Room",
+    "type": "Music Venue / Bar",
+    "neighborhood": "Mission",
+    "rating": 4.3,
+    "pricing": "$",
+    "averageDrinkPrice": "$8–12 cocktails/beer",
+    "hours": "Tue–Sun 6–2; Mon Closed",
+    "heroImage": "/images/venues/make-out-room-hero.jpg",
+    "description": "Mission institution for live bands, DJ nights, and indie dance parties.",
+    "tags": [
+      "indie",
+      "dance floor",
+      "live music"
+    ],
+    "cuisine": null,
+    "shortDescription": "Mission institution for live bands, DJ nights, and indie dance parties.",
+    "instagram": "https://www.instagram.com/makeoutroomsf",
+    "ambiance": [
+      "Themed nights",
+      "cover charges"
+    ],
+    "recommendedDrinks": [
+      "Beer",
+      "Cocktails"
+    ],
+    "recommendations": [
+      "Draft beer",
+      "well drinks"
+    ],
+    "coordinates": {
+      "latitude": 37.7749,
+      "longitude": -122.4194
+    },
+    "goodToKnow": "Cash at door for some shows",
+    "whereToGoIf": "you want to dance to indie",
+    "gallery": [
+      "/images/venues/make-out-room-1.jpg",
+      "/images/venues/make-out-room-2.jpg"
+    ]
+  },
+  {
+    "id": 32,
+    "name": "Hi‑Tops",
+    "type": "Sports Bar",
+    "neighborhood": "Castro",
+    "rating": 4.3,
+    "pricing": "$",
+    "averageDrinkPrice": "$8–12 beer/cocktails",
+    "hours": "Mon–Wed 12–12; Thu–Fri 12–2; Sat 10–2; Sun 10–12",
+    "heroImage": "https://images.unsplash.com/photo-1514933651103-005eec06c04b?w=800",
+    "description": "Lively sports‑centric Castro bar with a big, friendly crowd.",
+    "tags": [
+      "queer",
+      "sports",
+      "lively"
+    ],
+    "cuisine": "Bar snacks",
+    "shortDescription": "Lively sports‑centric Castro bar with a big, friendly crowd.",
+    "instagram": "https://www.instagram.com/hitopssf",
+    "ambiance": [
+      "Games on",
+      "pitchers",
+      "shots"
+    ],
+    "recommendedDrinks": [
+      "Beer",
+      "Cocktails"
+    ],
+    "recommendations": [
+      "Frozen drinks",
+      "beer pitchers"
+    ],
+    "coordinates": {
+      "latitude": 37.7749,
+      "longitude": -122.4194
+    },
+    "goodToKnow": "Gets packed during big games",
+    "whereToGoIf": "you want a queer sports bar vibe"
+  },
+  {
+    "id": 33,
+    "name": "Beaux",
+    "type": "Nightclub",
+    "neighborhood": "Castro",
+    "rating": 4.3,
+    "pricing": "$$",
+    "averageDrinkPrice": "$10–14 cocktails",
+    "hours": "Daily 3–2 (Sun from 12)",
+    "heroImage": "/images/venues/beaux-hero.jpg",
+    "description": "Popular Castro nightclub with themed drag/dance nights.",
+    "tags": [
+      "drag",
+      "dance",
+      "nightclub"
+    ],
+    "cuisine": null,
+    "shortDescription": "Popular Castro nightclub with themed drag/dance nights.",
+    "instagram": "https://www.instagram.com/beauxsf",
+    "ambiance": [
+      "Drag shows",
+      "DJs",
+      "lines"
+    ],
+    "recommendedDrinks": [
+      "Cocktails",
+      "Shots"
+    ],
+    "recommendations": [
+      "Specialty slushies"
+    ],
+    "coordinates": {
+      "latitude": 37.7749,
+      "longitude": -122.4194
+    },
+    "goodToKnow": "Arrive early on weekends",
+    "whereToGoIf": "you want a big night out"
+  },
+  {
+    "id": 34,
+    "name": "Anina",
+    "type": "Cocktail Bar",
+    "neighborhood": "Hayes Valley",
+    "rating": 4.3,
+    "pricing": "$$",
+    "averageDrinkPrice": "$11–14 cocktails",
+    "hours": "Inside: Mon–Fri 2–2; Sat–Sun 12–2 (Patio hours vary)",
+    "heroImage": "/images/venues/anina-hero.jpg",
+    "description": "Sunny Hayes Valley patio bar with spritz towers and palm vibes.",
+    "tags": [
+      "patio",
+      "group‑friendly",
+      "daytime"
+    ],
+    "cuisine": null,
+    "shortDescription": "Sunny Hayes Valley patio bar with spritz towers and palm vibes.",
+    "instagram": "https://www.instagram.com/aninasf",
+    "ambiance": [
+      "Large patio",
+      "group tables"
+    ],
+    "recommendedDrinks": [
+      "Cocktails",
+      "Spritzes"
+    ],
+    "recommendations": [
+      "Spritz tower",
+      "slushies"
+    ],
+    "coordinates": {
+      "latitude": 37.7749,
+      "longitude": -122.4194
+    },
+    "goodToKnow": "Great for sunny afternoons",
+    "whereToGoIf": "you want group‑friendly day drinks",
+    "gallery": [
+      "/images/venues/beaux-1.jpg",
+      "/images/venues/beaux-2.jpg"
+    ]
+  },
+  {
+    "id": 35,
+    "name": "Dalva",
+    "type": "Neighborhood Bar + Back Room",
+    "neighborhood": "Mission",
+    "rating": 4.3,
+    "pricing": "$",
+    "averageDrinkPrice": "$9–12 cocktails/beer",
+    "hours": "Mon–Tue 5–12; Wed–Sat 5–2; Sun 5–12",
+    "heroImage": "/images/venues/dalva-hero.jpg",
+    "description": "Beloved Mission standby; back‑room ‘Hideout’ hosts DJs and dancing.",
+    "tags": [
+      "dance",
+      "DJs",
+      "classic"
+    ],
+    "cuisine": null,
+    "shortDescription": "Beloved Mission standby; back‑room ‘Hideout’ hosts DJs and dancing.",
+    "instagram": "https://www.instagram.com/dalvasf",
+    "ambiance": [
+      "Crowded weekends",
+      "DJs in Hideout"
+    ],
+    "recommendedDrinks": [
+      "Beer",
+      "Cocktails"
+    ],
+    "recommendations": [
+      "Shot & beer",
+      "house specials"
+    ],
+    "coordinates": {
+      "latitude": 37.7749,
+      "longitude": -122.4194
+    },
+    "goodToKnow": "Hideout opens later; check nights",
+    "whereToGoIf": "you want a classic Mission night",
+    "gallery": [
+      "/images/venues/dalva-1.jpg",
+      "/images/venues/dalva-2.jpg"
+    ]
+  },
+  {
+    "id": 36,
+    "name": "Shoji",
+    "type": "Cocktail Bar",
+    "neighborhood": "SoMa",
+    "rating": 4.3,
+    "pricing": "$$$",
+    "averageDrinkPrice": "$16–20 cocktails",
+    "hours": "Tuesday-Saturday from 5:00 PM to 12:00 AM",
+    "heroImage": "/images/venues/shoji-hero.jpg",
+    "description": "Japanese cocktail bar blending omakase-style hospitality with high-end mixology.",
+    "tags": [
+      "speakeasy feel",
+      "seasonal menu",
+      "date night"
+    ],
+    "cuisine": "Japanese",
+    "shortDescription": "Japanese cocktail bar blending omakase-style hospitality with high-end mixology.",
+    "accolades": "-",
+    "instagram": "https://www.instagram.com/shojisf",
+    "ambiance": [
+      "Elegant space",
+      "outdoor space"
+    ],
+    "recommendedDrinks": [
+      "Cocktails",
+      "Sake"
+    ],
+    "recommendations": [
+      "Shochu highball",
+      "seasonal cocktail",
+      "matcha",
+      "burger"
+    ],
+    "coordinates": {
+      "latitude": 37.7749,
+      "longitude": -122.4194
+    },
+    "goodToKnow": "Reservations recommended",
+    "whereToGoIf": "you want a good meal with refined Japanese-inspired cocktails",
+    "gallery": [
+      "/images/venues/shoji-1.jpg",
+      "/images/venues/shoji-2.jpg"
+    ]
+  },
+  {
+    "id": 37,
+    "name": "Monroe's",
+    "type": "Club/Lounge",
+    "neighborhood": "North Beach",
+    "rating": 4.3,
+    "pricing": "$$",
+    "hours": "10pm–2am",
+    "heroImage": "https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?w=800",
+    "tags": [
+      "nightlife",
+      "dancing"
+    ],
+    "musicGenre": [
+      "Top 40’s",
+      "rap"
+    ],
+    "openPast2AM": false,
+    "whereToGoIf": "you want a younger crowd",
+    "coordinates": {
+      "latitude": 37.7749,
+      "longitude": -122.4194
+    }
+  },
+  {
+    "id": 38,
+    "name": "Audio",
+    "type": "Club",
+    "neighborhood": "SoMa",
+    "rating": 4.3,
+    "pricing": "$$",
+    "hours": "10pm–2am+",
+    "heroImage": "/images/venues/audio-hero.jpg",
+    "tags": [
+      "nightlife",
+      "dancing"
+    ],
+    "musicGenre": [
+      "House",
+      "techno",
+      "EDM"
+    ],
+    "openPast2AM": true,
+    "whereToGoIf": "you want the best sound system",
+    "coordinates": {
+      "latitude": 37.7749,
+      "longitude": -122.4194
+    }
+  },
+  {
+    "id": 39,
+    "name": "Halcyon",
+    "type": "Warehouse",
+    "neighborhood": "SoMa",
+    "rating": 4.3,
+    "pricing": "$$",
+    "hours": "11pm–late",
+    "heroImage": "/images/venues/halcyon-hero.jpg",
+    "tags": [
+      "nightlife",
+      "dancing"
+    ],
+    "musicGenre": [
+      "Techno",
+      "house"
+    ],
+    "openPast2AM": true,
+    "whereToGoIf": "you're not ready to go home",
+    "coordinates": {
+      "latitude": 37.7749,
+      "longitude": -122.4194
+    }
+  },
+  {
+    "id": 40,
+    "name": "Public Works",
+    "type": "Warehouse",
+    "neighborhood": "Mission",
+    "rating": 4.3,
+    "pricing": "$$",
+    "hours": "9pm–3am",
+    "heroImage": "/images/venues/public-works-hero.jpg",
+    "tags": [
+      "nightlife",
+      "dancing"
+    ],
+    "musicGenre": [
+      "House",
+      "techno",
+      "hip-hop"
+    ],
+    "openPast2AM": true,
+    "whereToGoIf": "you want a warehouse-style party",
+    "coordinates": {
+      "latitude": 37.7749,
+      "longitude": -122.4194
+    }
+  },
+  {
+    "id": 41,
+    "name": "1015 Folsom",
+    "type": "Mega-club",
+    "neighborhood": "SoMa",
+    "rating": 4.3,
+    "pricing": "$$",
+    "hours": "10pm–3am",
+    "heroImage": "/images/venues/1015-folsom-hero.jpg",
+    "tags": [
+      "nightlife",
+      "dancing"
+    ],
+    "musicGenre": [
+      "EDM",
+      "hip-hop",
+      "top 40’s"
+    ],
+    "openPast2AM": true,
+    "whereToGoIf": "you want to experience the most iconic club in the Bay Area",
+    "coordinates": {
+      "latitude": 37.7749,
+      "longitude": -122.4194
+    },
+    "gallery": [
+      "/images/venues/public-works-1.jpg",
+      "/images/venues/public-works-2.jpg"
+    ]
+  },
+  {
+    "id": 42,
+    "name": "The Midway",
+    "type": "Warehouse",
+    "neighborhood": "Dogpatch",
+    "rating": 4.3,
+    "pricing": "$$",
+    "hours": "6pm–3am",
+    "heroImage": "https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?w=800",
+    "tags": [
+      "nightlife",
+      "dancing"
+    ],
+    "musicGenre": [
+      "Electronic",
+      "live shows"
+    ],
+    "openPast2AM": true,
+    "whereToGoIf": "you want a festival-like warehouse experience",
+    "coordinates": {
+      "latitude": 37.7749,
+      "longitude": -122.4194
+    }
+  },
+  {
+    "id": 43,
+    "name": "Temple",
+    "type": "Multi-room",
+    "neighborhood": "SoMa",
+    "rating": 4.3,
+    "pricing": "$$",
+    "hours": "10pm–4am",
+    "heroImage": "/images/venues/temple-hero.jpg",
+    "tags": [
+      "nightlife",
+      "dancing"
+    ],
+    "musicGenre": [
+      "EDM",
+      "house",
+      "hip-hop"
+    ],
+    "openPast2AM": true,
+    "whereToGoIf": "you want multi-level stages & Vegas-style energy",
+    "coordinates": {
+      "latitude": 37.7749,
+      "longitude": -122.4194
+    }
+  },
+  {
+    "id": 44,
+    "name": "Pinecrest",
+    "type": "Restaurant",
+    "neighborhood": "Union Square",
+    "rating": 4.3,
+    "pricing": "$",
+    "hours": "Mon–Wed 7am–11pm; Thu 7am–12am; Fri–Sat 24h; Sun 12am–11pm",
+    "heroImage": "/images/venues/pinecrest-hero.jpg",
+    "description": "Late night Western spot in Union Square",
+    "shortDescription": "Late night Western spot in Union Square",
+    "tags": [
+      "late night",
+      "food",
+      "western"
+    ],
+    "cuisine": "Western",
+    "recommendations": [
+      "Steak & eggs",
+      "chili hash browns",
+      "banana pancakes"
+    ],
+    "whereToGoIf": "you need late night food",
+    "coordinates": {
+      "latitude": 37.7749,
+      "longitude": -122.4194
+    }
+  ,
+    "gallery": [
+      "/images/venues/the-midway-1.jpg",
+      "/images/venues/the-midway-2.jpg"
+    ]},
+  {
+    "id": 45,
+    "name": "Taishan",
+    "type": "Restaurant",
+    "neighborhood": "Chinatown",
+    "rating": 4.3,
+    "pricing": "$$",
+    "hours": "Daily 11am–3am",
+    "heroImage": "/images/venues/taishan-hero.jpg",
+    "description": "Late night Chinese spot in Chinatown",
+    "shortDescription": "Late night Chinese spot in Chinatown",
+    "tags": [
+      "late night",
+      "food",
+      "chinese"
+    ],
+    "cuisine": "Chinese",
+    "recommendations": [
+      "Eel claypot rice",
+      "pork tripe soup",
+      "beef bone pot"
+    ],
+    "whereToGoIf": "you need late night food",
+    "coordinates": {
+      "latitude": 37.7749,
+      "longitude": -122.4194
+    }
+  },
+  {
+    "id": 46,
+    "name": "Grubstake",
+    "type": "Restaurant",
+    "neighborhood": "Lower Nob Hill",
+    "rating": 4.3,
+    "pricing": "$$",
+    "hours": "Daily 5pm–4am",
+    "heroImage": "/images/venues/grubstake-hero.jpg",
+    "description": "Late night Western spot in Lower Nob Hill",
+    "shortDescription": "Late night Western spot in Lower Nob Hill",
+    "tags": [
+      "late night",
+      "food",
+      "western"
+    ],
+    "cuisine": "Western",
+    "recommendations": [
+      "Codfish plate",
+      "cheeseburger",
+      "pie"
+    ],
+    "whereToGoIf": "you need late night food",
+    "coordinates": {
+      "latitude": 37.7749,
+      "longitude": -122.4194
+    }
+  },
+  {
+    "id": 47,
+    "name": "Cocobang",
+    "type": "Restaurant",
+    "neighborhood": "Lower Nob Hill",
+    "rating": 4.3,
+    "pricing": "$$",
+    "hours": "Daily 5pm–2am",
+    "heroImage": "/images/venues/cocobang-hero.jpg",
+    "description": "Late night Korean spot in Lower Nob Hill",
+    "shortDescription": "Late night Korean spot in Lower Nob Hill",
+    "tags": [
+      "late night",
+      "food",
+      "korean"
+    ],
+    "cuisine": "Korean",
+    "recommendations": [
+      "Kimchi fried rice",
+      "corn cheese",
+      "spicy tofu soup"
+    ],
+    "whereToGoIf": "you need late night food",
+    "coordinates": {
+      "latitude": 37.7749,
+      "longitude": -122.4194
+    },
+    "gallery": [
+      "/images/venues/taishan-1.jpg",
+      "/images/venues/taishan-2.jpg"
+    ]
+  },
+  {
+    "id": 48,
+    "name": "Hinodeya",
+    "type": "Restaurant",
+    "neighborhood": "Japantown",
+    "rating": 4.3,
+    "pricing": "$$",
+    "hours": "Daily 11am–9:30pm",
+    "heroImage": "/images/venues/hinodeya-hero.jpg",
+    "description": "Late night Japanese spot in Japantown",
+    "shortDescription": "Late night Japanese spot in Japantown",
+    "tags": [
+      "late night",
+      "food",
+      "japanese"
+    ],
+    "cuisine": "Japanese",
+    "recommendations": [
+      "Spicy miso ramen",
+      "tonkotsu ramen"
+    ],
+    "whereToGoIf": "you need late night food",
+    "coordinates": {
+      "latitude": 37.7749,
+      "longitude": -122.4194
+    },
+    "gallery": [
+      "/images/venues/hinodeya-1.jpg",
+      "/images/venues/hinodeya-2.jpg"
+    ]
+  },
+  {
+    "id": 49,
+    "name": "Public Izakaya",
+    "type": "Restaurant",
+    "neighborhood": "Lower Nob Hill",
+    "rating": 4.3,
+    "pricing": "$$",
+    "hours": "Tue–Sat 5pm–11pm; Sun–Mon Closed",
+    "heroImage": "https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=800",
+    "description": "Late night Japanese spot in Lower Nob Hill",
+    "shortDescription": "Late night Japanese spot in Lower Nob Hill",
+    "tags": [
+      "late night",
+      "food",
+      "japanese"
+    ],
+    "cuisine": "Japanese",
+    "recommendations": [
+      "Yakitori skewers",
+      "karaage"
+    ],
+    "whereToGoIf": "you need late night food",
+    "coordinates": {
+      "latitude": 37.7749,
+      "longitude": -122.4194
+    }
+  },
+  {
+    "id": 50,
+    "name": "Toyose",
+    "type": "Restaurant",
+    "neighborhood": "Outer Sunset",
+    "rating": 4.3,
+    "pricing": "$$",
+    "hours": "Daily 6pm–2am",
+    "heroImage": "/images/venues/toyose-hero.jpg",
+    "description": "Late night Korean spot in Outer Sunset",
+    "shortDescription": "Late night Korean spot in Outer Sunset",
+    "tags": [
+      "late night",
+      "food",
+      "korean"
+    ],
+    "cuisine": "Korean",
+    "recommendations": [
+      "Seafood pancake",
+      "kimchi stew",
+      "fried rice"
+    ],
+    "whereToGoIf": "you need late night food",
+    "coordinates": {
+      "latitude": 37.7749,
+      "longitude": -122.4194
+    }
+  },
+  {
+    "id": 51,
+    "name": "Taqueria El Farolito",
+    "type": "Restaurant",
+    "neighborhood": "Mission",
+    "rating": 4.3,
+    "pricing": "$",
+    "hours": "Daily 10am–2:30am",
+    "heroImage": "/images/venues/taqueria-el-farolito-hero.jpg",
+    "description": "Late night Mexican spot in Mission",
+    "shortDescription": "Late night Mexican spot in Mission",
+    "tags": [
+      "late night",
+      "food",
+      "mexican"
+    ],
+    "cuisine": "Mexican",
+    "recommendations": [
+      "Super burrito",
+      "lengua tacos"
+    ],
+    "whereToGoIf": "you need late night food",
+    "coordinates": {
+      "latitude": 37.7749,
+      "longitude": -122.4194
+    }
+  },
+  {
+    "id": 52,
+    "name": "Joyful Garden",
+    "type": "Restaurant",
+    "neighborhood": "Castro",
+    "rating": 4.3,
+    "pricing": "$$",
+    "hours": "Daily 11am–10pm",
+    "heroImage": "/images/venues/joyful-garden-hero.jpg",
+    "description": "Late night Chinese spot in Castro",
+    "shortDescription": "Late night Chinese spot in Castro",
+    "tags": [
+      "late night",
+      "food",
+      "chinese"
+    ],
+    "cuisine": "Chinese",
+    "recommendations": [
+      "Spicy tofu",
+      "stir-fried noodles"
+    ],
+    "whereToGoIf": "you need late night food",
+    "coordinates": {
+      "latitude": 37.7749,
+      "longitude": -122.4194
+    },
+    "gallery": [
+      "/images/venues/toyose-1.jpg",
+      "/images/venues/toyose-2.jpg"
+    ]
+  },
+  {
+    "id": 53,
+    "name": "Orphan Andy's",
+    "type": "Restaurant",
+    "neighborhood": "Castro",
+    "rating": 4.3,
+    "pricing": "$",
+    "hours": "Daily 24h",
+    "heroImage": "https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=800",
+    "description": "Late night Western spot in Castro",
+    "shortDescription": "Late night Western spot in Castro",
+    "tags": [
+      "late night",
+      "food",
+      "western"
+    ],
+    "cuisine": "Western",
+    "recommendations": [
+      "Patty melt",
+      "chicken-fried steak",
+      "hotcakes"
+    ],
+    "whereToGoIf": "you need late night food",
+    "coordinates": {
+      "latitude": 37.7749,
+      "longitude": -122.4194
+    }
+  },
+  {
+    "id": 54,
+    "name": "Bob's Donut",
+    "type": "Restaurant",
+    "neighborhood": "Nob Hill",
+    "rating": 4.3,
+    "pricing": "$",
+    "hours": "Daily 24h",
+    "heroImage": "https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=800",
+    "description": "Late night Western spot in Nob Hill",
+    "shortDescription": "Late night Western spot in Nob Hill",
+    "tags": [
+      "late night",
+      "food",
+      "western"
+    ],
+    "cuisine": "Western",
+    "recommendations": [
+      "Apple fritter",
+      "bear claw",
+      "glazed donut"
+    ],
+    "whereToGoIf": "you need late night food",
+    "coordinates": {
+      "latitude": 37.7749,
+      "longitude": -122.4194
+    }
+  },
+  {
+    "id": 55,
+    "name": "Naan N Curry",
+    "type": "Restaurant",
+    "neighborhood": "Civic Center",
+    "rating": 4.3,
+    "pricing": "$$",
+    "hours": "Daily 11am–3am",
+    "heroImage": "https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=800",
+    "description": "Late night Indian spot in Civic Center",
+    "shortDescription": "Late night Indian spot in Civic Center",
+    "tags": [
+      "late night",
+      "food",
+      "indian"
+    ],
+    "cuisine": "Indian",
+    "recommendations": [
+      "Chicken tikka masala",
+      "garlic naan",
+      "lamb biryani"
+    ],
+    "whereToGoIf": "you need late night food",
+    "coordinates": {
+      "latitude": 37.7749,
+      "longitude": -122.4194
+    }
+  },
+  {
+    "id": 56,
+    "name": "Wok Station",
+    "type": "Restaurant",
     "neighborhood": "Outer Sunset",
     "rating": 4.3,
     "pricing": "$",
     "hours": "Mon–Sat 11am–9:30pm; Sun 12pm–9pm",
-    "heroImage": "https://images.unsplash.com/photo-1514933651103-005eec06c04b?w=800",
-    "musicGenre": [],
-    "tags": [],
-    "description": "",
-    "ambiance": [],
-    "cuisine": "Chinese"
-  },
-  {
-    "id": 52,
-    "name": "Yokai",
+    "heroImage": "https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=800",
+    "description": "Late night Chinese spot in Outer Sunset",
+    "shortDescription": "Late night Chinese spot in Outer Sunset",
+    "tags": [
+      "late night",
+      "food",
+      "chinese"
+    ],
+    "cuisine": "Chinese",
+    "recommendations": [
+      "Salt & pepper wings",
+      "chow mein",
+      "fried rice"
+    ],
+    "whereToGoIf": "you need late night food",
     "coordinates": {
       "latitude": 37.7749,
       "longitude": -122.4194
-    },
-    "type": "Bar",
-    "neighborhood": "San Francisco",
+    }
+  },
+  {
+    "id": 57,
+    "name": "Gyro Xpress",
+    "type": "Restaurant",
+    "neighborhood": "Castro",
+    "rating": 4.3,
+    "pricing": "$",
+    "hours": "Mon–Sat 11am–10pm; Sun Closed",
+    "heroImage": "https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=800",
+    "description": "Late night Mediterranean spot in Castro",
+    "shortDescription": "Late night Mediterranean spot in Castro",
+    "tags": [
+      "late night",
+      "food",
+      "mediterranean"
+    ],
+    "cuisine": "Mediterranean",
+    "recommendations": [
+      "Lamb gyro plate",
+      "hummus",
+      "fries"
+    ],
+    "whereToGoIf": "you need late night food",
+    "coordinates": {
+      "latitude": 37.7749,
+      "longitude": -122.4194
+    }
+  },
+  {
+    "id": 58,
+    "name": "Turtle Tower",
+    "type": "Restaurant",
+    "neighborhood": "Financial District",
     "rating": 4.3,
     "pricing": "$$",
-    "hours": "",
-    "heroImage": "https://images.unsplash.com/photo-1514933651103-005eec06c04b?w=800",
-    "musicGenre": [],
-    "tags": [],
-    "description": "",
-    "ambiance": [],
-    "cuisine": null
-  },
-  {
-    "id": 81,
-    "name": "ZZAN",
+    "hours": "Daily 10am–9pm",
+    "heroImage": "https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=800",
+    "description": "Late night Vietnamese spot in Financial District",
+    "shortDescription": "Late night Vietnamese spot in Financial District",
+    "tags": [
+      "late night",
+      "food",
+      "vietnamese"
+    ],
+    "cuisine": "Vietnamese",
+    "recommendations": [
+      "Pho ga",
+      "Hanoi fried chicken"
+    ],
+    "whereToGoIf": "you need late night food",
     "coordinates": {
       "latitude": 37.7749,
       "longitude": -122.4194
-    },
-    "type": "Bar",
+    }
+  },
+  {
+    "id": 59,
+    "name": "Bay Pocha",
+    "type": "Restaurant",
+    "neighborhood": "Ocean Ave",
+    "rating": 4.3,
+    "pricing": "$$",
+    "hours": "Mon–Thu 5pm–11pm; Fri–Sat 5pm–12am; Sun 5pm–10pm",
+    "heroImage": "https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=800",
+    "description": "Late night Korean spot in Ocean Ave",
+    "shortDescription": "Late night Korean spot in Ocean Ave",
+    "tags": [
+      "late night",
+      "food",
+      "korean"
+    ],
+    "cuisine": "Korean",
+    "recommendations": [
+      "Bossam pork",
+      "army stew",
+      "corn cheese"
+    ],
+    "whereToGoIf": "you need late night food",
+    "coordinates": {
+      "latitude": 37.7749,
+      "longitude": -122.4194
+    }
+  },
+  {
+    "id": 60,
+    "name": "Beep's Burgers",
+    "type": "Restaurant",
+    "neighborhood": "Ocean Ave",
+    "rating": 4.3,
+    "pricing": "$",
+    "hours": "Daily 11am–12am",
+    "heroImage": "https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=800",
+    "description": "Late night Western spot in Ocean Ave",
+    "shortDescription": "Late night Western spot in Ocean Ave",
+    "tags": [
+      "late night",
+      "food",
+      "western"
+    ],
+    "cuisine": "Western",
+    "recommendations": [
+      "Beep’s burger",
+      "garlic fries",
+      "milkshake"
+    ],
+    "whereToGoIf": "you need late night food",
+    "coordinates": {
+      "latitude": 37.7749,
+      "longitude": -122.4194
+    }
+  },
+  {
+    "id": 61,
+    "name": "Panchita's Pupuseria Restaurant",
+    "type": "Restaurant",
+    "neighborhood": "Mission",
+    "rating": 4.3,
+    "pricing": "$",
+    "hours": "Mon–Thu & Sun 10am–11pm; Fri–Sat 10am–2:30am",
+    "heroImage": "https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=800",
+    "description": "Late night Salvadoran spot in Mission",
+    "shortDescription": "Late night Salvadoran spot in Mission",
+    "tags": [
+      "late night",
+      "food",
+      "salvadoran"
+    ],
+    "cuisine": "Salvadoran",
+    "recommendations": [
+      "Revuelta pupusas",
+      "tamales"
+    ],
+    "whereToGoIf": "you need late night food",
+    "coordinates": {
+      "latitude": 37.7749,
+      "longitude": -122.4194
+    }
+  },
+  {
+    "id": 62,
+    "name": "Primo Pizza",
+    "type": "Restaurant",
+    "neighborhood": "Inner Richmond",
+    "rating": 4.3,
+    "pricing": "$",
+    "hours": "Mon–Thu 11am–10pm; Fri–Sat 11am–11pm; Sun 12pm–10pm",
+    "heroImage": "https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=800",
+    "description": "Late night Italian spot in Inner Richmond",
+    "shortDescription": "Late night Italian spot in Inner Richmond",
+    "tags": [
+      "late night",
+      "food",
+      "italian"
+    ],
+    "cuisine": "Italian",
+    "recommendations": [
+      "Pepperoni slice",
+      "meat lover’s pizza"
+    ],
+    "whereToGoIf": "you need late night food",
+    "coordinates": {
+      "latitude": 37.7749,
+      "longitude": -122.4194
+    }
+  },
+  {
+    "id": 63,
+    "name": "Uncle Boy's",
+    "type": "Restaurant",
+    "neighborhood": "Inner Richmond",
+    "rating": 4.3,
+    "pricing": "$",
+    "hours": "Daily 5pm–12am",
+    "heroImage": "https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=800",
+    "description": "Late night Western spot in Inner Richmond",
+    "shortDescription": "Late night Western spot in Inner Richmond",
+    "tags": [
+      "late night",
+      "food",
+      "western"
+    ],
+    "cuisine": "Western",
+    "recommendations": [
+      "Garlic fries",
+      "burgers"
+    ],
+    "whereToGoIf": "you need late night food",
+    "coordinates": {
+      "latitude": 37.7749,
+      "longitude": -122.4194
+    }
+  },
+  {
+    "id": 64,
+    "name": "Sam's",
+    "type": "Restaurant",
+    "neighborhood": "North Beach",
+    "rating": 4.3,
+    "pricing": "$",
+    "hours": "Daily 11am–3am",
+    "heroImage": "https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=800",
+    "description": "Late night Western spot in North Beach",
+    "shortDescription": "Late night Western spot in North Beach",
+    "tags": [
+      "late night",
+      "food",
+      "western"
+    ],
+    "cuisine": "Western",
+    "recommendations": [
+      "Cheeseburger",
+      "onion rings"
+    ],
+    "whereToGoIf": "you need late night food",
+    "coordinates": {
+      "latitude": 37.7749,
+      "longitude": -122.4194
+    }
+  },
+  {
+    "id": 65,
+    "name": "Kowloon Tong Dessert Cafe",
+    "type": "Restaurant",
+    "neighborhood": "Outer Sunset",
+    "rating": 4.3,
+    "pricing": "$",
+    "hours": "Daily 1pm–12am",
+    "heroImage": "https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=800",
+    "description": "Late night Chinese spot in Outer Sunset",
+    "shortDescription": "Late night Chinese spot in Outer Sunset",
+    "tags": [
+      "late night",
+      "food",
+      "chinese"
+    ],
+    "cuisine": "Chinese",
+    "recommendations": [
+      "Mango sago",
+      "black sesame tofu pudding"
+    ],
+    "whereToGoIf": "you need late night food",
+    "coordinates": {
+      "latitude": 37.7749,
+      "longitude": -122.4194
+    }
+  },
+  {
+    "id": 66,
+    "name": "ZZAN",
+    "type": "Restaurant",
     "neighborhood": "Tenderloin",
     "rating": 4.3,
     "pricing": "$$",
     "hours": "Daily 4pm–1am",
-    "heroImage": "https://images.unsplash.com/photo-1514933651103-005eec06c04b?w=800",
-    "musicGenre": [],
-    "tags": [],
-    "description": "",
-    "ambiance": [],
-    "cuisine": "Korean Fusion"
+    "heroImage": "https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=800",
+    "description": "Late night Korean Fusion spot in Tenderloin",
+    "shortDescription": "Late night Korean Fusion spot in Tenderloin",
+    "tags": [
+      "late night",
+      "food",
+      "korean fusion"
+    ],
+    "cuisine": "Korean Fusion",
+    "recommendations": [
+      "Soju cocktails",
+      "Korean tapas",
+      "corn cheese",
+      "fried chicken"
+    ],
+    "whereToGoIf": "you need late night food",
+    "coordinates": {
+      "latitude": 37.7749,
+      "longitude": -122.4194
+    }
   }
 ];
 
 export const filterOptions: FilterOptions = {
-  "venueType": [
-    "Club",
-    "Bar",
-    "Cocktail Bar",
-    "Wine Bar",
-    "Cocktail Salon",
-    "Neighborhood / Cocktail Bar",
-    "Hotel Bar",
-    "Rooftop Bar",
-    "Neighborhood Bar",
-    "Speakeasy / Listening Bar",
-    "Sake Bar / Wine Bar",
-    "Wine Bar / Deli",
-    "Wine Lounge",
-    "Tiki Bar",
-    "Mexican Restaurant Bar",
-    "Wine Bar / Restaurant"
-  ],
-  "pricing": [
-    "$$",
-    "$$$",
-    "$$$$",
-    "$"
-  ],
-  "musicGenre": [
-    "Classical",
-    "Soul",
-    "Funk",
-    "Jazz Vinyl Sets",
-    "funk",
-    "jazz vinyl sets",
-    "House",
-    "Disco",
-    "Jazz",
-    "Soulful Electronic",
-    "soulful electronic",
-    "Chill Electronic",
-    "Lounge",
-    "Chill electronic",
-    "lounge",
-    "Live bands",
-    "indie sleaze",
-    "Spanish pop",
-    "Mixed",
-    "Lo-fi",
-    "Ambient",
-    "Eclectic Vinyl",
-    "Low-fi",
-    "ambient",
-    "eclectic vinyl sets",
-    "Synthwave",
-    "Retro-funk",
-    "Electronic",
-    "retro-funk",
-    "electronic",
-    "Indie",
-    "house",
-    "playful hits"
-  ],
-  "ambiance": [
-    "Quick service",
-    "standing room",
-    "Cozy",
-    "Anchovy‑forward plates",
-    "oysters",
-    "inventive snacks",
-    "Refined service",
-    "seasonal pairings",
-    "Warm Wood",
-    "Vinyl Bar",
-    "Warm wood",
-    "vinyl bar",
-    "cozy",
-    "Vinyl on",
-    "candlelight",
-    "quiet chatter",
-    "Darklit",
-    "Red Lights",
-    "Incense",
-    "Dance floor",
-    "international DJs",
-    "weekend parties",
-    "Martinis",
-    "negronis",
-    "Italian snacks",
-    "Lively",
-    "Dimly lit",
-    "Small plates",
-    "natural wine focus",
-    "Friendly staff",
-    "counter‑service vibes",
-    "Mediterranean Coastal",
-    "Candlelit",
-    "Intimate",
-    "Mediterranean coastal",
-    "candlelit",
-    "intimate",
-    "Breakfast burritos (select hours)",
-    "shareables",
-    "Outdoor patio",
-    "records wall",
-    "Rooftop Lounge",
-    "Panoramic Views",
-    "Rooftop lounge",
-    "panoramic views",
-    "Sweeping vistas",
-    "stylish crowd",
-    "playful",
-    "Mural-lit pink walls",
-    "Porróns",
-    "tinto",
-    "jamón",
-    "occasional live music",
-    "Retro",
-    "Neighborhood-y",
-    "Pink Tones",
-    "Retro-chic",
-    "warm lighting",
-    "Loud",
-    "lively",
-    "crowd‑pleasing bites",
-    "Dive",
-    "Music‑inspired cocktails",
-    "live vinyl DJs",
-    "Vinyl spins",
-    "retail bottles",
-    "Exposed brick",
-    "Brooklyn vibe",
-    "Big plates",
-    "wide wine",
-    "beer range",
-    "Minimalist",
-    "Modern",
-    "Cozy room",
-    "by‑the‑glass list",
-    "light bites",
-    "Futuristic",
-    "Colorful Lighting",
-    "Space-themed",
-    "colorful lighting",
-    "space-themed",
-    "Creative cocktails",
-    "relaxed crowd",
-    "plants",
-    "Hoagies till sell‑out",
-    "Roof open on warm nights",
-    "lively crowd",
-    "Large space",
-    "events",
-    "Japanese ingredients",
-    "elegant space",
-    "outdoor space",
-    "Tiki mugs",
-    "elaborate garnishes",
-    "Hip",
-    "minimalist",
-    "Laid-back",
-    "Nostalgic",
-    "Tequila list bible",
-    "no‑frills room",
-    "Creative menus",
-    "lively buzz",
-    "House ferments",
-    "seasonal flavors",
-    "Flights",
-    "serious bottle list",
-    "Rustic",
-    "Conserva",
-    "Red ceiling",
-    "Weekly menu",
-    "unique bottles",
-    "great food",
-    "Friendly bartenders",
-    "neighborhood vibe"
-  ],
-  "dressCode": [
-    "Casual",
-    "Smart casual",
-    "Upscale",
-    "Casual, trendy",
-    "Casual chic",
-    "Trendy / fun"
-  ],
-  "neighborhood": [
-    "SoMa",
-    "San Francisco",
-    "Mission",
-    "Fillmore District",
-    "Hayes Valley",
-    "Cow Hollow",
-    "Oakland",
-    "Jackson Square",
-    "Ocean Ave",
-    "Castro",
-    "Nob Hill",
-    "North Beach",
-    "Marina",
-    "Tenderloin",
-    "Mid‑Market",
-    "Lower Nob Hill",
-    "Mission District",
-    "NoPa",
-    "Union Square",
-    "Inner Richmond",
-    "Japantown",
-    "Outer Sunset",
-    "Chinatown",
-    "Civic Center",
-    "Dogpatch",
-    "Outer Richmond",
-    "Financial District"
-  ],
-  "hours": [
-    "Open Now",
-    "Past 2 AM",
-    "24 Hours"
-  ],
-  "ambianceDensity": [
-    "Chill",
-    "Lively",
-    "High-energy",
-    "VIP"
-  ],
-  "distance": [
-    "<0.5 mi",
-    "<1 mi",
-    "<2 mi",
-    "<5 mi"
-  ]
+  "venueType": ["Wine Bar", "Speakeasy / Listening Bar", "Sake Bar / Wine Bar", "Cocktail Bar", "Neighborhood Bar", "Rooftop Bar", "Neighborhood / Cocktail Bar", "Hotel Bar", "Tiki Bar", "Mexican Restaurant Bar", "Cocktail Salon", "Wine Lounge", "Wine Bar / Deli", "Wine Bar / Restaurant", "Dive Bar", "Music Venue / Bar", "Sports Bar", "Nightclub", "Neighborhood Bar + Back Room", "Club/Lounge", "Club", "Warehouse", "Mega-club", "Multi-room", "Restaurant"],
+  "pricing": ["$", "$$", "$$$", "$$$$"],
+  "neighborhood": ["Mission", "Nob Hill", "Financial District", "Union Square", "North Beach", "Fillmore District", "Marina", "NoPa", "Mid‑Market", "Mission District", "SoMa", "Jackson Square", "Tenderloin", "Hayes Valley", "Outer Richmond", "Cow Hollow", "Inner Richmond", "Outer Sunset", "Dogpatch", "Chinatown", "Castro", "Lower Nob Hill", "Japantown", "Civic Center", "Ocean Ave"],
+  "hours": ["Open Now", "Past 2 AM", "24 Hours"]
 };
 
 export const moodMapping: MoodMapping = {
-  "chill": [
-    "Bar Crenn",
-    "Bar Gemini",
-    "Bar Sprezzatura",
-    "Buddy",
-    "Celeste",
-    "Chambers",
-    "Charmaine's",
-    "High Treason",
-    "Press Club"
-  ],
-  "party": [
-    "Bar Part Time",
-    "Beaux",
-    "Chambers",
-    "Dalva",
-    "Harlan Records",
-    "Make‑Out Room",
-    "Smuggler's Cove",
-    "Tommy's Mexican Restaurant"
-  ],
-  "date": [
-    "Anchovy Bar",
-    "Bar Gemini",
-    "Bodega North Beach",
-    "Celeste",
-    "El Chato",
-    "Harlan Records",
-    "High Treason",
-    "Key Klub",
-    "Millay",
-    "PCH (Pacific Cocktail Haven)",
-    "Shoji",
-    "Ungrafted",
-    "Verjus"
-  ],
-  "classy": [
-    "Bar Crenn",
-    "Bar Sprezzatura",
-    "Charmaine's"
-  ],
-  "music": [
-    "Anchovy Bar",
-    "Bar Gemini",
-    "Bar Part Time",
-    "Celeste",
-    "Charmaine's",
-    "El Chato",
-    "Harlan Records",
-    "High Treason",
-    "Key Klub",
-    "Make‑Out Room",
-    "Millay",
-    "Mothership",
-    "Tallboy",
-    "Verjus"
-  ],
-  "drinks": [
-    "Bar Crenn",
-    "Bar Gemini",
-    "Bodega North Beach",
-    "El Chato",
-    "Harlan Records",
-    "Key Klub",
-    "Millay",
-    "Mothership",
-    "Palm City",
-    "Trick Dog",
-    "Wildhawk"
-  ]
+  "chill": ["Key Klub","Verjus","Bodega North Beach","Anchovy Bar","Millay","Celeste","Bar Gemini","PCH (Pacific Cocktail Haven)","High Treason","Ungrafted"],
+  "party": ["Monroe's","Audio","Halcyon","Public Works","1015 Folsom","The Midway","Temple"],
+  "date": ["Key Klub","Verjus","Millay","Bar Gemini","PCH (Pacific Cocktail Haven)"],
+  "lateNight": ["Monroe's","Audio","Halcyon","Public Works","1015 Folsom","The Midway","Temple","Pinecrest","Taishan","Grubstake"]
 };

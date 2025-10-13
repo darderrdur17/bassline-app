@@ -24,6 +24,12 @@ export interface Venue {
   yelpUrl?: string;
   resyUrl?: string;
   instagram?: string;
+  gallery?: string[];
+  recommendedDrinks?: string[];
+  recommendations?: string[];
+  goodToKnow?: string;
+  whereToGoIf?: string;
+  averageDrinkPrice?: string;
 }
 
 export interface FilterOptions {
