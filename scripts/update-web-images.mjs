@@ -44,18 +44,18 @@ function main() {
   
   files.forEach(file => {
     if (/\.(jpg|jpeg|png)$/i.test(file)) {
-      const isHero = file.includes('-hero');
-      const venueName = file.split('-hero')[0].split('-')[0];
+      const baseName = file.replace(/\.(jpg|jpeg|png)$/i, '');
+      const isHero = /-hero$/i.test(baseName);
+      const venueSlug = baseName.replace(/-hero$/i, '').replace(/-\d+$/i, '');
       
       if (isHero) {
-        // Replace heroImage URLs
+        const slugPattern = venueSlug.replace(/-/g, '[- \u00A0]');
         const pattern = new RegExp(
-          `("name":\\s*"[^"]*${venueName.replace(/-/g, '[- ]')}[^"]*"[\\s\\S]*?)"heroImage":\\s*"[^"]*"`,
+          `(\"name\":\\s*\"[^\"]*${slugPattern}[^\"]*\"[\\s\\S]*?)\"heroImage\":\\s*(?:\"[^\"]*\")`,
           'i'
         );
-        
         if (pattern.test(content)) {
-          content = content.replace(pattern, `$1"heroImage": "/images/venues/${file}"`);
+          content = content.replace(pattern, `$1\"heroImage\": \"/images/venues/${file}\"`);
           updates++;
         }
       }
@@ -66,43 +66,38 @@ function main() {
   const venueImages = {};
   files.forEach(file => {
     if (/\.(jpg|jpeg|png)$/i.test(file)) {
-      const parts = file.replace(/\.(jpg|jpeg|png)$/i, '').split('-');
-      const isHero = file.includes('-hero');
-      const lastPart = parts[parts.length - 1];
-      
-      if (!isHero && /^\d+$/.test(lastPart)) {
-        const venueName = parts.slice(0, -1).join('-');
-        if (!venueImages[venueName]) {
-          venueImages[venueName] = [];
+      const withoutExt = file.replace(/\.(jpg|jpeg|png)$/i, '');
+      const isHero = /-hero$/i.test(withoutExt);
+      const numberMatch = withoutExt.match(/-(\d+)$/);
+      if (!isHero && numberMatch) {
+        const venueSlug = withoutExt.replace(/-(\d+)$/i, '');
+        if (!venueImages[venueSlug]) {
+          venueImages[venueSlug] = [];
         }
-        venueImages[venueName].push(file);
+        venueImages[venueSlug].push(file);
       }
     }
   });
   
-  Object.entries(venueImages).forEach(([venueName, images]) => {
-    const imageList = images.map(img => `"/images/venues/${img}"`).join(',\n      ');
-    
-    // Check if gallery already exists
+  Object.entries(venueImages).forEach(([venueSlug, images]) => {
+    const imageList = images.map(img => `\"/images/venues/${img}\"`).join(',\n      ');
+    const slugPattern = venueSlug.replace(/-/g, '[- \u00A0]');
     const hasGalleryPattern = new RegExp(
-      `"name":\\s*"[^"]*${venueName.replace(/-/g, '[- ]')}[^"]*"[\\s\\S]*?"gallery":\\s*\\[`,
+      `\"name\":\\s*\"[^\"]*${slugPattern}[^\"]*\"[\\s\\S]*?\"gallery\":\\s*\\[`,
       'i'
     );
-    
     if (hasGalleryPattern.test(content)) {
-      // Update existing gallery
       const pattern = new RegExp(
-        `("name":\\s*"[^"]*${venueName.replace(/-/g, '[- ]')}[^"]*"[\\s\\S]*?)"gallery":\\s*\\[[^\\]]*\\]`,
+        `(\"name\":\\s*\"[^\"]*${slugPattern}[^\"]*\"[\\s\\S]*?)\"gallery\":\\s*\\[[^\\]]*\\]`,
         'i'
       );
-      content = content.replace(pattern, `$1"gallery": [\n      ${imageList}\n    ]`);
+      content = content.replace(pattern, `$1\"gallery\": [\n      ${imageList}\n    ]`);
     } else {
-      // Add gallery before closing brace
       const pattern = new RegExp(
-        `("name":\\s*"[^"]*${venueName.replace(/-/g, '[- ]')}[^"]*"[\\s\\S]*?)(\\s*}\\s*[,\\]])`,
+        `(\"name\":\\s*\"[^\"]*${slugPattern}[^\"]*\"[\\s\\S]*?)(\\s*}\\s*[,\\]])`,
         'i'
       );
-      content = content.replace(pattern, `$1,\n    "gallery": [\n      ${imageList}\n    ]$2`);
+      content = content.replace(pattern, `$1,\n    \"gallery\": [\n      ${imageList}\n    ]$2`);
     }
   });
   

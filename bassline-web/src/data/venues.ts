@@ -10,7 +10,7 @@ export const venues: Venue[] = [
     "pricing": "$$",
     "averageDrinkPrice": "$14–16 per wine glass",
     "hours": "Tue 5–11; Wed 5–11; Thu 5–12; Fri 5–1; Sat 5–1; Sun–Mon Closed",
-    "heroImage": "/images/venues/bar-sprezzatura-hero.jpg",
+    "heroImage": "/images/venues/bar-part-time-hero.jpg",
     "description": "A glittering disco ball crowns a tight dance floor of natural‑wine lovers and vinyl DJs.",
     "tags": [
       "listening bar",
@@ -653,7 +653,7 @@ export const venues: Venue[] = [
     "pricing": "$$$",
     "averageDrinkPrice": "$16–20 cocktails",
     "hours": "Mon–Wed 11–9; Thu–Fri 11–10; Sat 4–10; Sun Closed",
-    "heroImage": "https://images.unsplash.com/photo-1514933651103-005eec06c04b?w=800",
+    "heroImage": "/images/venues/bar-sprezzatura-hero.jpg",
     "description": "Italian‑leaning cocktail & aperitivo lounge with refined service.",
     "tags": [
       "aperitivo",
@@ -979,7 +979,7 @@ export const venues: Venue[] = [
     "pricing": "$$$$",
     "averageDrinkPrice": "$22–30+ cocktails / pairings",
     "hours": "Tue–Thu 4:30–11; Fri–Sat 4:30–12; Sun–Mon Closed",
-    "heroImage": "https://images.unsplash.com/photo-1514933651103-005eec06c04b?w=800",
+    "heroImage": "/images/venues/bar-crenn-hero.jpg",
     "description": "Elegant salon by Atelier Crenn—French omakase counter + lounge for canapés & cocktails.",
     "tags": [
       "luxury",
@@ -1591,7 +1591,7 @@ export const venues: Venue[] = [
     "rating": 4.3,
     "pricing": "$$",
     "hours": "6pm–3am",
-    "heroImage": "https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?w=800",
+    "heroImage": "/images/venues/the-midway-hero.jpg",
     "tags": [
       "nightlife",
       "dancing"
@@ -1791,7 +1791,7 @@ export const venues: Venue[] = [
     "rating": 4.3,
     "pricing": "$$",
     "hours": "Tue–Sat 5pm–11pm; Sun–Mon Closed",
-    "heroImage": "https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=800",
+    "heroImage": "/images/venues/public-izakaya-hero.jpg",
     "description": "Late night Japanese spot in Lower Nob Hill",
     "shortDescription": "Late night Japanese spot in Lower Nob Hill",
     "tags": [
