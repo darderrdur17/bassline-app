@@ -14,10 +14,32 @@ import {
 import { LinearGradient } from 'expo-linear-gradient';
 import { Ionicons } from '@expo/vector-icons';
 import { colors, typography, spacing, borderRadius, shadows } from '../styles/theme';
+import { venueImages, nameToImageKey } from '../data/venueImages';
 // custom fonts not loaded yet
 
 export default function VenueDetailScreen({ navigation, route }) {
-  const { venue } = route.params;
+  const venue = (route && route.params && route.params.venue) ? route.params.venue : {};
+
+  // Early return if no venue data
+  if (!venue || !venue.name) {
+    return (
+      <SafeAreaView style={styles.container}>
+        <View style={styles.header}>
+          <TouchableOpacity
+            style={styles.backButton}
+            onPress={() => navigation.goBack()}
+          >
+            <Ionicons name="arrow-back" size={24} color={colors.primary} />
+          </TouchableOpacity>
+          <Text style={styles.headerTitle}>VENUE DETAILS</Text>
+          <View style={styles.shareButton} />
+        </View>
+        <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+          <Text style={{ fontSize: 16, color: colors.textSecondary }}>No venue selected</Text>
+        </View>
+      </SafeAreaView>
+    );
+  }
 
   const getCrowdColor = (crowdLevel) => {
     switch (crowdLevel) {
@@ -30,10 +52,15 @@ export default function VenueDetailScreen({ navigation, route }) {
   };
 
   const formatCrowdLevel = (level) => {
+    if (!level || typeof level !== 'string') return 'Moderate';
     return level.charAt(0).toUpperCase() + level.slice(1);
   };
 
   const handleDirections = () => {
+    if (!venue.coordinates || !venue.coordinates.latitude || !venue.coordinates.longitude) {
+      Alert.alert('Error', 'Location information not available');
+      return;
+    }
     const { latitude, longitude } = venue.coordinates;
     const url = `https://maps.google.com?q=${latitude},${longitude}`;
     Linking.openURL(url);
@@ -77,16 +104,19 @@ export default function VenueDetailScreen({ navigation, route }) {
       <ScrollView style={styles.content} showsVerticalScrollIndicator={false}>
         {/* Hero Image / Gallery */}
         <View style={styles.heroContainer}>
-          <Image source={{ uri: venue.heroImage }} style={styles.heroImage} />
-          {venue.gallery && (
+          <Image
+            source={(venueImages[nameToImageKey(venue.name)]?.hero) || (venue.heroImage ? { uri: venue.heroImage } : require('../../assets/icon.png'))}
+            style={styles.heroImage}
+          />
+          {(venueImages[nameToImageKey(venue.name)]?.gallery || (Array.isArray(venue.gallery) ? venue.gallery : [])).length > 0 && (
             <FlatList
-              data={venue.gallery}
+              data={(venueImages[nameToImageKey(venue.name)]?.gallery || venue.gallery || []).filter(Boolean)}
               keyExtractor={(item, idx) => idx.toString()}
               horizontal
               showsHorizontalScrollIndicator={false}
               style={styles.galleryList}
               renderItem={({ item }) => (
-                <Image source={{ uri: item }} style={styles.galleryImage} />
+                <Image source={item} style={styles.galleryImage} />
               )}
             />
           )}
@@ -97,11 +127,11 @@ export default function VenueDetailScreen({ navigation, route }) {
             end={{ x: 0.5, y: 0 }}
           >
             <View style={styles.venueTypeTag}>
-              <Text style={styles.venueTypeText}>{venue.type.toUpperCase()}</Text>
+              <Text style={styles.venueTypeText}>{venue.type ? venue.type.toUpperCase() : 'VENUE'}</Text>
             </View>
             <View style={styles.ratingContainer}>
               <Ionicons name="star" size={16} color="#FFD700" />
-              <Text style={styles.ratingText}>{venue.rating}</Text>
+              <Text style={styles.ratingText}>{venue.rating || 'N/A'}</Text>
             </View>
           </LinearGradient>
         </View>
@@ -114,11 +144,11 @@ export default function VenueDetailScreen({ navigation, route }) {
               <Text style={styles.venueNeighborhood}>{venue.neighborhood}</Text>
             </View>
             <View style={styles.pricingContainer}>
-              <Text style={styles.pricing}>{venue.pricing}</Text>
+              <Text style={styles.pricing}>{venue.pricing || 'N/A'}</Text>
             </View>
           </View>
 
-          <Text style={styles.description}>{venue.description}</Text>
+          <Text style={styles.description}>{venue.description || 'No description available'}</Text>
         </View>
 
         {/* Quick Stats */}
@@ -126,7 +156,7 @@ export default function VenueDetailScreen({ navigation, route }) {
           <View style={styles.statItem}>
             <Ionicons name="time-outline" size={20} color={colors.primary} />
             <Text style={styles.statLabel}>Hours</Text>
-            <Text style={styles.statValue}>{venue.hours}</Text>
+            <Text style={styles.statValue}>{venue.hours || 'N/A'}</Text>
           </View>
           
           <View style={styles.statItem}>
@@ -138,7 +168,7 @@ export default function VenueDetailScreen({ navigation, route }) {
           <View style={styles.statItem}>
             <Ionicons name="car-outline" size={20} color={colors.primary} />
             <Text style={styles.statLabel}>Uber</Text>
-            <Text style={styles.statValue}>{venue.estimatedUber}</Text>
+            <Text style={styles.statValue}>{venue.estimatedUber || 'N/A'}</Text>
           </View>
         </View>
 
@@ -148,15 +178,15 @@ export default function VenueDetailScreen({ navigation, route }) {
             <Text style={styles.detailTitle}>MUSIC & VIBES</Text>
             <View style={styles.detailContent}>
               <Text style={styles.detailLabel}>Genre:</Text>
-              <Text style={styles.detailValue}>{venue.musicGenre.join(', ')}</Text>
+              <Text style={styles.detailValue}>{Array.isArray(venue.musicGenre) ? venue.musicGenre.join(', ') : 'N/A'}</Text>
             </View>
             <View style={styles.detailContent}>
               <Text style={styles.detailLabel}>Ambiance:</Text>
-              <Text style={styles.detailValue}>{venue.ambiance.join(', ')}</Text>
+              <Text style={styles.detailValue}>{Array.isArray(venue.ambiance) ? venue.ambiance.join(', ') : 'N/A'}</Text>
             </View>
             <View style={styles.detailContent}>
               <Text style={styles.detailLabel}>Best Time:</Text>
-              <Text style={styles.detailValue}>{venue.optimalTime}</Text>
+              <Text style={styles.detailValue}>{venue.optimalTime || 'N/A'}</Text>
             </View>
           </View>
 
@@ -168,11 +198,11 @@ export default function VenueDetailScreen({ navigation, route }) {
             </View>
             <View style={styles.detailContent}>
               <Text style={styles.detailLabel}>Dress Code:</Text>
-              <Text style={styles.detailValue}>{venue.dressCode}</Text>
+              <Text style={styles.detailValue}>{venue.dressCode || 'N/A'}</Text>
             </View>
             <View style={styles.detailContent}>
               <Text style={styles.detailLabel}>Wait Time:</Text>
-              <Text style={styles.detailValue}>{venue.waitTime} minutes</Text>
+              <Text style={styles.detailValue}>{venue.waitTime ? `${venue.waitTime} minutes` : 'N/A'}</Text>
             </View>
           </View>
 
@@ -185,7 +215,7 @@ export default function VenueDetailScreen({ navigation, route }) {
               </View>
               <View style={styles.detailContent}>
                 <Text style={styles.detailLabel}>Recommended:</Text>
-                <Text style={styles.detailValue}>{venue.recommendedDrinks.join(', ')}</Text>
+                <Text style={styles.detailValue}>{Array.isArray(venue.recommendedDrinks) ? venue.recommendedDrinks.join(', ') : 'N/A'}</Text>
               </View>
             </View>
           )}
@@ -195,11 +225,13 @@ export default function VenueDetailScreen({ navigation, route }) {
         <View style={styles.tagsSection}>
           <Text style={styles.tagsTitle}>Tags</Text>
           <View style={styles.tagsContainer}>
-            {venue.tags.map((tag, index) => (
+            {Array.isArray(venue.tags) && venue.tags.length > 0 ? venue.tags.map((tag, index) => (
               <View key={index} style={styles.tag}>
                 <Text style={styles.tagText}>{tag}</Text>
               </View>
-            ))}
+            )) : (
+              <Text style={styles.tagText}>No tags available</Text>
+            )}
           </View>
         </View>
 

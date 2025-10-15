@@ -2288,8 +2288,13 @@ export const venues: Venue[] = [
 export const filterOptions: FilterOptions = {
   "venueType": ["Wine Bar", "Speakeasy / Listening Bar", "Sake Bar / Wine Bar", "Cocktail Bar", "Neighborhood Bar", "Rooftop Bar", "Neighborhood / Cocktail Bar", "Hotel Bar", "Tiki Bar", "Mexican Restaurant Bar", "Cocktail Salon", "Wine Lounge", "Wine Bar / Deli", "Wine Bar / Restaurant", "Dive Bar", "Music Venue / Bar", "Sports Bar", "Nightclub", "Neighborhood Bar + Back Room", "Club/Lounge", "Club", "Warehouse", "Mega-club", "Multi-room", "Restaurant"],
   "pricing": ["$", "$$", "$$$", "$$$$"],
+  "musicGenre": [],
+  "ambiance": [],
+  "dressCode": [],
   "neighborhood": ["Mission", "Nob Hill", "Financial District", "Union Square", "North Beach", "Fillmore District", "Marina", "NoPa", "Mid‑Market", "Mission District", "SoMa", "Jackson Square", "Tenderloin", "Hayes Valley", "Outer Richmond", "Cow Hollow", "Inner Richmond", "Outer Sunset", "Dogpatch", "Chinatown", "Castro", "Lower Nob Hill", "Japantown", "Civic Center", "Ocean Ave"],
-  "hours": ["Open Now", "Past 2 AM", "24 Hours"]
+  "hours": ["Open Now", "Past 2 AM", "24 Hours"],
+  "ambianceDensity": [],
+  "distance": []
 };
 
 export const moodMapping: MoodMapping = {

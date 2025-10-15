@@ -93,7 +93,7 @@ export default function Home() {
         venue.name.toLowerCase().includes(term) ||
         venue.neighborhood.toLowerCase().includes(term) ||
         venue.type.toLowerCase().includes(term) ||
-        venue.musicGenre.some((g: string) => g.toLowerCase().includes(term)) ||
+        (venue.musicGenre || []).some((g: string) => g.toLowerCase().includes(term)) ||
         venue.tags.some((t: string) => t.toLowerCase().includes(term))
       );
     }
@@ -114,7 +114,7 @@ export default function Home() {
 
     // Music genre filter
     if (advFilters.musicGenre.length) {
-      filtered = filtered.filter((v: any) => v.musicGenre.some((g: string) => advFilters.musicGenre.includes(g)));
+      filtered = filtered.filter((v: any) => (v.musicGenre || []).some((g: string) => advFilters.musicGenre.includes(g)));
     }
 
     setFilteredVenues(filtered);
@@ -170,7 +170,7 @@ export default function Home() {
           <span className="text-xs text-gray-500 font-body">{venue.hours}</span>
         </div>
         <div className="flex gap-2 flex-wrap">
-          {venue.musicGenre.slice(0, 2).map((genre: string) => (
+          {(venue.musicGenre || []).slice(0, 2).map((genre: string) => (
             <span key={genre} className="px-2 py-1 bg-[#E53935]/10 text-[#E53935] rounded text-xs font-medium font-body">
               {genre}
             </span>

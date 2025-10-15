@@ -32,8 +32,12 @@ export default function VenuePage({ params }: { params: { id: string } }) {
           {venue.cuisine && <p><span className="font-semibold text-gray-900">Cuisine:</span> <span className="text-gray-700">{venue.cuisine}</span></p>}
           <p><span className="font-semibold text-gray-900">Neighborhood:</span> <span className="text-gray-700">{venue.neighborhood}</span></p>
           <p><span className="font-semibold text-gray-900">Hours:</span> <span className="text-gray-700">{venue.hours}</span></p>
-          <p><span className="font-semibold text-gray-900">Ambiance:</span> <span className="text-gray-700">{venue.ambiance.join(', ')}</span></p>
-          <p><span className="font-semibold text-gray-900">Music:</span> <span className="text-gray-700">{venue.musicGenre.join(', ')}</span></p>
+          {venue.ambiance && (
+            <p><span className="font-semibold text-gray-900">Ambiance:</span> <span className="text-gray-700">{venue.ambiance.join(', ')}</span></p>
+          )}
+          {venue.musicGenre && (
+            <p><span className="font-semibold text-gray-900">Music:</span> <span className="text-gray-700">{venue.musicGenre.join(', ')}</span></p>
+          )}
           <p><span className="font-semibold text-gray-900">Dress Code:</span> <span className="text-gray-700">{venue.dressCode}</span></p>
         </div>
 

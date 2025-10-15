@@ -11,12 +11,12 @@ export interface Venue {
   pricing: string;
   hours: string;
   heroImage: string;
-  musicGenre: string[];
+  musicGenre?: string[];
   tags: string[];
-  description: string;
-  ambiance: string[];
+  description?: string;
+  ambiance?: string[];
 
-  cuisine: string | null;
+  cuisine?: string | null;
   dressCode?: string;
   waitTime?: string;
   shortDescription?: string;
@@ -30,6 +30,7 @@ export interface Venue {
   goodToKnow?: string;
   whereToGoIf?: string;
   averageDrinkPrice?: string;
+  openPast2AM?: boolean;
 }
 
 export interface FilterOptions {

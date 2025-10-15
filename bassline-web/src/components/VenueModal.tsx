@@ -78,33 +78,39 @@ export default function VenueModal({ venue, onClose }: Props) {
               </div>
               <div className="flex justify-between">
                 <span className="font-semibold text-gray-700">Wait Time:</span>
-                <span className="text-gray-900">{venue.waitTime} min</span>
+                <span className="text-gray-900">{venue.waitTime}</span>
               </div>
             </div>
           </div>
 
           {/* Additional Details */}
           <div className="space-y-4 mb-6">
-            <div>
-              <h4 className="font-semibold text-gray-700 mb-2 font-body">Ambiance:</h4>
-              <div className="flex flex-wrap gap-2">
-                {venue.ambiance.map((item) => (
-                  <span key={item} className="px-3 py-1 bg-gray-100 text-gray-800 rounded-full text-xs font-medium font-body">
-                    {item}
-                  </span>
-                ))}
-              </div>
-            </div>
+              {venue.ambiance && (
+                <div>
+                  <h4 className="font-semibold text-gray-700 mb-2 font-body">Ambiance:</h4>
+                  <div className="flex flex-wrap gap-2">
+                    {venue.ambiance.map((item) => (
+                      <span key={item} className="px-3 py-1 bg-gray-100 text-gray-800 rounded-full text-xs font-medium font-body">
+                        {item}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              )}
             
             <div>
-              <h4 className="font-semibold text-gray-700 mb-2 font-body">Music:</h4>
-              <div className="flex flex-wrap gap-2">
-                {venue.musicGenre.map((genre) => (
-                  <span key={genre} className="px-3 py-1 bg-[#E53935]/10 text-[#E53935] rounded-full text-xs font-medium font-body">
-                    {genre}
-                  </span>
-                ))}
-              </div>
+              {venue.musicGenre && (
+                <>
+                  <h4 className="font-semibold text-gray-700 mb-2 font-body">Music:</h4>
+                  <div className="flex flex-wrap gap-2">
+                    {venue.musicGenre.map((genre) => (
+                      <span key={genre} className="px-3 py-1 bg-[#E53935]/10 text-[#E53935] rounded-full text-xs font-medium font-body">
+                        {genre}
+                      </span>
+                    ))}
+                  </div>
+                </>
+              )}
             </div>
 
             {venue.cuisine && (

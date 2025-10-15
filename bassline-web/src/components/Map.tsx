@@ -146,13 +146,15 @@ export default function Map({ venues, selectedVenue, onVenueSelect }: MapProps) 
                   {venue.shortDescription && (
                     <p className="text-xs text-gray-500 mb-2 leading-relaxed">{venue.shortDescription}</p>
                   )}
-                  <div className="flex gap-1 flex-wrap">
-                    {venue.musicGenre.slice(0, 2).map((genre) => (
-                      <span key={genre} className="px-2 py-1 bg-[#E53935]/10 text-[#E53935] rounded text-xs font-medium">
-                        {genre}
-                      </span>
-                    ))}
-                  </div>
+                  {venue.musicGenre && (
+                    <div className="flex gap-1 flex-wrap">
+                      {venue.musicGenre.slice(0, 2).map((genre) => (
+                        <span key={genre} className="px-2 py-1 bg-[#E53935]/10 text-[#E53935] rounded text-xs font-medium">
+                          {genre}
+                        </span>
+                      ))}
+                    </div>
+                  )}
                 </div>
               </Popup>
             </Marker>
