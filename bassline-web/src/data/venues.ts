@@ -1008,7 +1008,11 @@ export const venues: Venue[] = [
       "longitude": -122.4194
     },
     "goodToKnow": "Reservations essential",
-    "whereToGoIf": "you want a high‑end, artistic experience"
+    "whereToGoIf": "you want a high‑end, artistic experience",
+    "gallery": [
+      "/images/venues/bar-crenn-1.jpg",
+      "/images/venues/bar-crenn-2.jpg"
+    ]
   },
   {
     "id": 26,
@@ -1365,8 +1369,8 @@ export const venues: Venue[] = [
     "goodToKnow": "Great for sunny afternoons",
     "whereToGoIf": "you want group‑friendly day drinks",
     "gallery": [
-      "/images/venues/beaux-1.jpg",
-      "/images/venues/beaux-2.jpg"
+      "/images/venues/anina-1.jpg",
+      "/images/venues/anina-2.jpg"
     ]
   },
   {
@@ -1809,7 +1813,11 @@ export const venues: Venue[] = [
       "latitude": 37.7749,
       "longitude": -122.4194
     }
-  },
+  ,
+    "gallery": [
+      "/images/venues/public-izakaya-1.jpg",
+      "/images/venues/public-izakaya-2.jpg"
+    ]},
   {
     "id": 50,
     "name": "Toyose",
