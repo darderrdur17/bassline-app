@@ -1587,8 +1587,8 @@ export const venues: Venue[] = [
       "longitude": -122.4194
     },
     "gallery": [
-      "/images/venues/public-works-1.jpg",
-      "/images/venues/public-works-2.jpg"
+      "/images/venues/1015-folsom-1.jpg",
+      "/images/venues/1015-folsom-2.jpg"
     ]
   },
   {
