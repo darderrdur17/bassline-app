@@ -1468,13 +1468,13 @@ export const venues: Venue[] = [
     "rating": 4.3,
     "pricing": "$$",
     "hours": "10pm–2am",
-    "heroImage": "https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?w=800",
+    "heroImage": "/images/venues/monroes-hero.jpg",
     "tags": [
       "nightlife",
       "dancing"
     ],
     "musicGenre": [
-      "Top 40’s",
+      "Top 40's",
       "rap"
     ],
     "openPast2AM": false,
@@ -1482,7 +1482,11 @@ export const venues: Venue[] = [
     "coordinates": {
       "latitude": 37.7749,
       "longitude": -122.4194
-    }
+    },
+    "gallery": [
+      "/images/venues/monroes-1.jpg",
+      "/images/venues/monroes-2.jpg"
+    ]
   },
   {
     "id": 38,

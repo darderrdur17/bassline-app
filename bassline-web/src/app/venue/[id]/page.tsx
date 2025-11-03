@@ -22,6 +22,23 @@ export default function VenuePage({ params }: { params: { id: string } }) {
         <img src={typeof venue.heroImage === 'string' ? venue.heroImage : undefined} alt={venue.name} className="w-full h-60 object-cover" />
       )}
 
+      {/* Gallery */}
+      {venue.gallery && venue.gallery.length > 0 && (
+        <div className="w-full overflow-x-auto px-6 py-4">
+          <div className="flex gap-4 max-w-3xl mx-auto">
+            {venue.gallery.map((image, index) => (
+              // eslint-disable-next-line @next/next/no-img-element
+              <img 
+                key={index}
+                src={image} 
+                alt={`${venue.name} gallery ${index + 1}`} 
+                className="h-48 w-auto object-cover rounded-lg shadow-md flex-shrink-0"
+              />
+            ))}
+          </div>
+        </div>
+      )}
+
       <div className="max-w-3xl w-full px-6 py-4">
         <h1 className="text-4xl font-bold mb-2" style={{ fontFamily: 'var(--font-brand)', color: '#E53935' }}>{venue.name}</h1>
         {venue.shortDescription && <p className="text-lg mb-4 text-gray-800">{venue.shortDescription}</p>}
