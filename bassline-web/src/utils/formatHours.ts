@@ -77,6 +77,11 @@ export const formatVenueHours = (hoursString: string | undefined | null): string
 
     // Handle "Closed" days
     if (/closed/i.test(mainPart)) {
+      // Format closed days nicely: "Sun–Mon Closed" -> "Sun–Mon: Closed"
+      const closedMatch = mainPart.match(/^(.+?)\s*closed/i);
+      if (closedMatch) {
+        return `${closedMatch[1].trim()}: Closed`;
+      }
       return mainPart + note;
     }
 
@@ -114,11 +119,11 @@ export const formatVenueHours = (hoursString: string | undefined | null): string
         // Format end time
         let formattedEnd = formatTime(endTime, endHour, false, isPastMidnight ? startHour : null);
 
-        // Replace the time range in the string
-        mainPart = mainPart.replace(timeRangeRegex, `${formattedStart}–${formattedEnd}`);
+        // Replace the time range in the string with proper spacing
+        mainPart = mainPart.replace(timeRangeRegex, `${formattedStart} – ${formattedEnd}`);
       } else {
-        // Already has AM/PM, just normalize spacing
-        mainPart = mainPart.replace(timeRangeRegex, `${startTime}${timeMatch[3] || ''}–${endTime}${timeMatch[3] || ''}`);
+        // Already has AM/PM, normalize spacing
+        mainPart = mainPart.replace(timeRangeRegex, `${startTime}${timeMatch[3] || ''} – ${endTime}${timeMatch[3] || ''}`);
       }
     }
 
@@ -127,9 +132,17 @@ export const formatVenueHours = (hoursString: string | undefined | null): string
       mainPart = `Daily ${mainPart}`;
     }
 
+    // Add colon after day ranges for better readability
+    // Match day abbreviations (Mon, Tue, Wed, Thu, Fri, Sat, Sun) and ranges
+    const dayPrefixMatch = mainPart.match(/^([A-Za-z]{3}(?:[–-][A-Za-z]{3})*)\s+(.+)$/);
+    if (dayPrefixMatch && !mainPart.includes(':')) {
+      mainPart = `${dayPrefixMatch[1]}: ${dayPrefixMatch[2]}`;
+    }
+
     return mainPart + note;
   });
 
+  // Join with semicolon and space for better readability
   return formattedParts.join('; ');
 };
 
