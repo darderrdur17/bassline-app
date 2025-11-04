@@ -103,9 +103,10 @@ export const formatVenueHours = (hoursString: string | undefined | null): string
 
         // Detect if end time is past midnight
         // Rules: end < start, or end == start (like 2-2 means 2 PM to 2 AM), or end is 12 when start < 12 (midnight)
+        // Special case: if end is 12 and start is 2-11, it's definitely midnight (12 AM), not noon
         const isPastMidnight = endHour < startHour || 
                                (endHour === startHour && startHour >= 2) || 
-                               (endHour === 12 && startHour < 12);
+                               (endHour === 12 && startHour < 12 && startHour >= 1);
 
         // Format start time (venues typically open PM)
         let formattedStart = formatTime(startTime, startHour, true);
