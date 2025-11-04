@@ -59,7 +59,12 @@ export default function VenuePage({ params }: { params: { id: string } }) {
           <p><span className="font-semibold text-gray-900">Neighborhood:</span> <span className="text-gray-700">{venue.neighborhood}</span></p>
           <p><span className="font-semibold text-gray-900">Hours:</span> <span className="text-gray-700">{venue.hours}</span></p>
           {venue.ambiance && (
-            <p><span className="font-semibold text-gray-900">Ambiance:</span> <span className="text-gray-700 uppercase">{venue.ambiance.join(', ').toUpperCase()}</span></p>
+            <p><span className="font-semibold text-gray-900">Ambiance:</span> <span className="text-gray-700" style={{ textTransform: 'uppercase' }}>
+              {(() => {
+                const ambienceText = Array.isArray(venue.ambiance) ? venue.ambiance.join(', ') : venue.ambiance || '';
+                return ambienceText ? ambienceText.toUpperCase() : '';
+              })()}
+            </span></p>
           )}
           {venue.musicGenre && (
             <p><span className="font-semibold text-gray-900">Music:</span> <span className="text-gray-700">{venue.musicGenre.join(', ')}</span></p>
