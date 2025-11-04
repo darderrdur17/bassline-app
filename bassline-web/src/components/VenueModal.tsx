@@ -1,5 +1,6 @@
 import React from 'react';
 import { Venue } from '@/types/venue';
+import { formatVenueHours } from '@/utils/formatHours';
 
 interface Props {
   venue: Venue;
@@ -62,7 +63,7 @@ export default function VenueModal({ venue, onClose }: Props) {
               </div>
               <div className="flex justify-between">
                 <span className="font-semibold text-gray-700">Hours:</span>
-                <span className="text-gray-900">{venue.hours}</span>
+                <span className="text-gray-900">{formatVenueHours(venue.hours)}</span>
               </div>
             </div>
             

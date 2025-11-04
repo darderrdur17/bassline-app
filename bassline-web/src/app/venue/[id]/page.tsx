@@ -1,6 +1,7 @@
 import { notFound } from 'next/navigation';
 import { venues } from '@/data/venues';
 import { Metadata } from 'next';
+import { formatVenueHours } from '@/utils/formatHours';
 
 export async function generateMetadata({ params }: { params: { id: string } }): Promise<Metadata> {
   const venue = venues.find(v => v.id === Number(params.id));
@@ -57,7 +58,7 @@ export default function VenuePage({ params }: { params: { id: string } }) {
           <p><span className="font-semibold text-gray-900">Type:</span> <span className="text-gray-700">{venue.type}</span></p>
           {venue.cuisine && <p><span className="font-semibold text-gray-900">Cuisine:</span> <span className="text-gray-700">{venue.cuisine}</span></p>}
           <p><span className="font-semibold text-gray-900">Neighborhood:</span> <span className="text-gray-700">{venue.neighborhood}</span></p>
-          <p><span className="font-semibold text-gray-900">Hours:</span> <span className="text-gray-700">{venue.hours}</span></p>
+          <p><span className="font-semibold text-gray-900">Hours:</span> <span className="text-gray-700">{formatVenueHours(venue.hours)}</span></p>
           {venue.ambiance && (
             <p><span className="font-semibold text-gray-900">Ambiance:</span> <span className="text-gray-700" style={{ textTransform: 'uppercase' }}>
               {(() => {

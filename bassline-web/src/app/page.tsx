@@ -18,6 +18,7 @@ const DynamicMap = dynamic(() => import('@/components/Map'), {
 import VenueModal from '@/components/VenueModal';
 import React from 'react';
 import FilterDrawer from '@/components/FilterDrawer';
+import { formatVenueHours } from '@/utils/formatHours';
 
 export default function Home() {
   const [searchText, setSearchText] = useState('');
@@ -172,7 +173,7 @@ export default function Home() {
         </div>
         <div className="flex items-center justify-between mb-4">
           <span className="text-sm font-semibold text-gray-700 font-body">{venue.pricing}</span>
-          <span className="text-xs text-gray-500 font-body">{venue.hours}</span>
+          <span className="text-xs text-gray-500 font-body">{formatVenueHours(venue.hours)}</span>
         </div>
         <div className="flex gap-2 flex-wrap">
           {(venue.musicGenre || []).slice(0, 2).map((genre: string) => (
