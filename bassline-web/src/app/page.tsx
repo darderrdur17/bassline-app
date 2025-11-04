@@ -172,7 +172,7 @@ export default function Home() {
           </span>
         </div>
         <div className="flex items-center justify-between mb-4 gap-3">
-          <span className="text-sm font-semibold text-gray-700 font-body">{venue.pricing}</span>
+          <span className="text-sm font-semibold text-gray-700 font-body">{venue.pricing} </span>
           <span className="text-xs text-gray-500 font-body">{formatVenueHours(venue.hours)}</span>
         </div>
         <div className="flex gap-2 flex-wrap">
