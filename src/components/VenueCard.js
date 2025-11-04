@@ -136,14 +136,12 @@ export default function VenueCard({ venue, onPress, onClose, preview = false, on
           <View style={styles.detailsRow}>
             <View style={styles.detailItem}>
               <Text style={styles.detailLabel}>AMBIANCE:</Text>
-              <Text style={styles.detailValue}>{venue.ambiance.join(', ')}</Text>
-            </View>
-          </View>
-
-          <View style={styles.detailsRow}>
-            <View style={styles.detailItem}>
-              <Text style={styles.detailLabel}>DRESS CODE:</Text>
-              <Text style={styles.detailValue}>{venue.dressCode}</Text>
+              <Text style={styles.detailValue}>
+                {(() => {
+                  const ambienceText = Array.isArray(venue.ambiance) ? venue.ambiance.join(', ') : venue.ambiance;
+                  return ambienceText ? ambienceText.toUpperCase() : '';
+                })()}
+              </Text>
             </View>
           </View>
 
@@ -204,9 +202,11 @@ export default function VenueCard({ venue, onPress, onClose, preview = false, on
                 { label: 'VENUE', value: venue.type },
                 // Cuisine descriptor if available
                 ...(venue.food ? [{ label: 'CUISINE', value: venue.food }] : []),
-                { label: 'AMBIANCE', value: venue.ambiance.join(', ') },
+                { label: 'AMBIANCE', value: (() => {
+                    const ambienceText = Array.isArray(venue.ambiance) ? venue.ambiance.join(', ') : venue.ambiance;
+                    return ambienceText ? ambienceText.toUpperCase() : '';
+                  })() },
                 { label: 'GENRE', value: venue.musicGenre.join(', ') },
-                { label: 'DRESSCODE', value: venue.dressCode },
                 { label: 'CROWD', value: Array.isArray(venue.crowd) ? venue.crowd.join(', ') : venue.crowd },
                 { label: 'ESTIMATED UBER', value: venue.estimatedUber },
               ].map((item) => (

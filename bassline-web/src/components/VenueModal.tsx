@@ -91,8 +91,8 @@ export default function VenueModal({ venue, onClose }: Props) {
                   <h4 className="font-semibold text-gray-700 mb-2 font-body">Ambiance:</h4>
                   <div className="flex flex-wrap gap-2">
                     {venue.ambiance.map((item) => (
-                      <span key={item} className="px-3 py-1 bg-gray-100 text-gray-800 rounded-full text-xs font-medium font-body">
-                        {item}
+                      <span key={item} className="px-3 py-1 bg-gray-100 text-gray-800 rounded-full text-xs font-medium font-body uppercase">
+                        {item.toUpperCase()}
                       </span>
                     ))}
                   </div>

@@ -182,7 +182,12 @@ export default function VenueDetailScreen({ navigation, route }) {
             </View>
             <View style={styles.detailContent}>
               <Text style={styles.detailLabel}>Ambiance:</Text>
-              <Text style={styles.detailValue}>{Array.isArray(venue.ambiance) ? venue.ambiance.join(', ') : 'N/A'}</Text>
+              <Text style={styles.detailValue}>
+                {(() => {
+                  const ambienceText = Array.isArray(venue.ambiance) ? venue.ambiance.join(', ') : venue.ambiance;
+                  return ambienceText ? ambienceText.toUpperCase() : 'N/A';
+                })()}
+              </Text>
             </View>
             <View style={styles.detailContent}>
               <Text style={styles.detailLabel}>Best Time:</Text>
@@ -191,14 +196,10 @@ export default function VenueDetailScreen({ navigation, route }) {
           </View>
 
           <View style={styles.detailCard}>
-            <Text style={styles.detailTitle}>CROWD & DRESS</Text>
+            <Text style={styles.detailTitle}>CROWD & INFO</Text>
             <View style={styles.detailContent}>
               <Text style={styles.detailLabel}>Crowd:</Text>
               <Text style={styles.detailValue}>{Array.isArray(venue.crowd) ? venue.crowd.join(', ') : venue.crowd}</Text>
-            </View>
-            <View style={styles.detailContent}>
-              <Text style={styles.detailLabel}>Dress Code:</Text>
-              <Text style={styles.detailValue}>{venue.dressCode || 'N/A'}</Text>
             </View>
             <View style={styles.detailContent}>
               <Text style={styles.detailLabel}>Wait Time:</Text>
