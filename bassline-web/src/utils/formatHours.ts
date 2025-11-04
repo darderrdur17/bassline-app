@@ -1,4 +1,60 @@
 /**
+ * Formats a single time value to 12-hour format with AM/PM
+ */
+const formatTime = (timeStr: string, hour: number, isStart: boolean, startHour: number | null = null): string => {
+  const hasMinutes = timeStr.includes(':');
+  const minutes = hasMinutes ? timeStr.split(':')[1] : '00';
+  const displayMinutes = minutes === '00' && !hasMinutes ? '' : `:${minutes}`;
+  
+  // Handle midnight and noon
+  if (hour === 0) return `12${displayMinutes} AM`;
+  if (hour === 12 && isStart) return `12${displayMinutes} PM`;
+  
+  // For start times: venues typically open in afternoon/evening
+  if (isStart) {
+    // Times 1-11: Usually PM for venues (like 2 PM, 4 PM, 5 PM)
+    if (hour >= 1 && hour <= 11) {
+      return `${hour}${displayMinutes} PM`;
+    }
+    // 12-23: Already PM or next day
+    if (hour >= 12) {
+      return `${hour === 12 ? 12 : hour - 12}${displayMinutes} PM`;
+    }
+  } else {
+    // For end times: handle past midnight
+    // If startHour is provided, check if it's past midnight
+    if (startHour !== null) {
+      // Check if this is past midnight based on hour comparison
+      const isPastMidnight = hour < startHour || 
+                            (hour === startHour && startHour >= 2) || 
+                            (hour === 12 && startHour < 12);
+      
+      if (isPastMidnight) {
+        // Past midnight - these are AM
+        if (hour === 0) return `12${displayMinutes} AM`;
+        if (hour === 12) return `12${displayMinutes} AM`; // Midnight
+        if (hour <= 11) return `${hour}${displayMinutes} AM`;
+        return `${hour - 12}${displayMinutes} AM`;
+      }
+    }
+    
+    // Same day end time (end > start, or no startHour provided)
+    // These should be PM to match the start time
+    if (hour === 0) return `12${displayMinutes} AM`;
+    if (hour === 12) {
+      // If no startHour or startHour is 12, it's noon; otherwise it was handled above as midnight
+      return startHour === null ? `12${displayMinutes} PM` : `12${displayMinutes} AM`;
+    }
+    if (hour <= 11) return `${hour}${displayMinutes} PM`; // Same day PM
+    return `${hour - 12}${displayMinutes} PM`;
+  }
+  
+  // Fallback
+  if (hour < 12) return `${hour}${displayMinutes} AM`;
+  return `${hour === 12 ? 12 : hour - 12}${displayMinutes} PM`;
+};
+
+/**
  * Formats venue hours for better readability
  * Converts ambiguous times to clear AM/PM format
  */
@@ -46,10 +102,10 @@ export const formatVenueHours = (hoursString: string | undefined | null): string
         const endHour = parseInt(endTime.split(':')[0], 10);
 
         // Detect if end time is past midnight
-        // Rules: end < start, or end == start (like 2-2 means 2 PM to 2 AM), or end is 12 (midnight)
+        // Rules: end < start, or end == start (like 2-2 means 2 PM to 2 AM), or end is 12 when start < 12 (midnight)
         const isPastMidnight = endHour < startHour || 
                                (endHour === startHour && startHour >= 2) || 
-                               endHour === 12;
+                               (endHour === 12 && startHour < 12);
 
         // Format start time (venues typically open PM)
         let formattedStart = formatTime(startTime, startHour, true);
@@ -74,52 +130,5 @@ export const formatVenueHours = (hoursString: string | undefined | null): string
   });
 
   return formattedParts.join('; ');
-};
-
-/**
- * Formats a single time value to 12-hour format with AM/PM
- */
-const formatTime = (timeStr: string, hour: number, isStart: boolean, startHour: number | null = null): string => {
-  const hasMinutes = timeStr.includes(':');
-  const minutes = hasMinutes ? timeStr.split(':')[1] : '00';
-  const displayMinutes = minutes === '00' && !hasMinutes ? '' : `:${minutes}`;
-  
-  // Handle midnight and noon
-  if (hour === 0) return `12${displayMinutes} AM`;
-  if (hour === 12) return `12${displayMinutes} PM`;
-  
-  // For start times: venues typically open in afternoon/evening
-  if (isStart) {
-    // Times 1-11: Usually PM for venues (like 2 PM, 4 PM, 5 PM)
-    // Exception: 9-11 might be AM for breakfast venues, but assume PM for bars/restaurants
-    if (hour >= 1 && hour <= 11) {
-      return `${hour}${displayMinutes} PM`;
-    }
-    // 12-23: Already PM or next day
-    if (hour >= 12) {
-      return `${hour === 12 ? 12 : hour - 12}${displayMinutes} PM`;
-    }
-  } else {
-    // For end times: handle past midnight
-    // If end time is less than start time, it's past midnight
-    if (startHour !== null && (hour < startHour || hour === 12)) {
-      // Past midnight - these are AM
-      if (hour === 0) return `12${displayMinutes} AM`;
-      if (hour === 12) return `12${displayMinutes} AM`; // Midnight
-      if (hour <= 11) return `${hour}${displayMinutes} AM`;
-      return `${hour - 12}${displayMinutes} AM`;
-    }
-    
-    // Same day end time (end > start)
-    // These should be PM to match the start time
-    if (hour === 0) return `12${displayMinutes} AM`;
-    if (hour === 12) return `12${displayMinutes} PM`; // Noon (rare for venues but possible)
-    if (hour <= 11) return `${hour}${displayMinutes} PM`; // Same day PM
-    return `${hour - 12}${displayMinutes} PM`;
-  }
-  
-  // Fallback
-  if (hour < 12) return `${hour}${displayMinutes} AM`;
-  return `${hour === 12 ? 12 : hour - 12}${displayMinutes} PM`;
 };
 
