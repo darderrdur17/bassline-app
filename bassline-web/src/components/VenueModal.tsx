@@ -62,7 +62,7 @@ export default function VenueModal({ venue, onClose }: Props) {
                 <span className="text-gray-900">{venue.neighborhood}</span>
               </div>
               <div className="flex justify-between items-start">
-                <span className="font-semibold text-gray-700">Hours:</span>
+                <span className="font-semibold text-gray-700">Hours: </span>
                 <span className="text-gray-900 text-right">
                   {formatVenueHours(venue.hours).split('; ').map((part, idx, arr) => (
                     <React.Fragment key={idx}>

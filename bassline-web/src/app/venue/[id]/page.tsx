@@ -59,7 +59,7 @@ export default function VenuePage({ params }: { params: { id: string } }) {
           {venue.cuisine && <p><span className="font-semibold text-gray-900">Cuisine:</span> <span className="text-gray-700">{venue.cuisine}</span></p>}
           <p><span className="font-semibold text-gray-900">Neighborhood:</span> <span className="text-gray-700">{venue.neighborhood}</span></p>
           <div>
-            <span className="font-semibold text-gray-900">Hours:</span>
+            <span className="font-semibold text-gray-900">Hours: </span>
             <div className="text-gray-700 mt-1">
               {formatVenueHours(venue.hours).split('; ').map((part, idx) => (
                 <div key={idx}>{part}</div>
