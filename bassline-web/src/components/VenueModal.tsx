@@ -32,7 +32,12 @@ export default function VenueModal({ venue, onClose }: Props) {
           
           {venue.shortDescription && (
             <p className="text-base mb-4 font-body text-gray-800 leading-relaxed">
-              {venue.shortDescription}
+              {(() => {
+                const text = venue.shortDescription || '';
+                // Ensure sentence case: capitalize first letter if not already
+                if (!text) return '';
+                return text.charAt(0).toUpperCase() + text.slice(1);
+              })()}
             </p>
           )}
           
@@ -58,10 +63,6 @@ export default function VenueModal({ venue, onClose }: Props) {
               <div className="flex justify-between">
                 <span className="font-semibold text-gray-700">Hours:</span>
                 <span className="text-gray-900">{venue.hours}</span>
-              </div>
-              <div className="flex justify-between">
-                <span className="font-semibold text-gray-700">Dress Code:</span>
-                <span className="text-gray-900">{venue.dressCode}</span>
               </div>
             </div>
             

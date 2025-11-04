@@ -41,7 +41,16 @@ export default function VenuePage({ params }: { params: { id: string } }) {
 
       <div className="max-w-3xl w-full px-6 py-4">
         <h1 className="text-4xl font-bold mb-2" style={{ fontFamily: 'var(--font-brand)', color: '#E53935' }}>{venue.name}</h1>
-        {venue.shortDescription && <p className="text-lg mb-4 text-gray-800">{venue.shortDescription}</p>}
+        {venue.shortDescription && (
+          <p className="text-lg mb-4 text-gray-800">
+            {(() => {
+              const text = venue.shortDescription || '';
+              // Ensure sentence case: capitalize first letter if not already
+              if (!text) return '';
+              return text.charAt(0).toUpperCase() + text.slice(1);
+            })()}
+          </p>
+        )}
         {venue.accolades && <p className="text-sm text-yellow-700 mb-4 font-semibold">🏆 {venue.accolades}</p>}
 
         <div className="space-y-2 text-base text-gray-800">
@@ -55,7 +64,6 @@ export default function VenuePage({ params }: { params: { id: string } }) {
           {venue.musicGenre && (
             <p><span className="font-semibold text-gray-900">Music:</span> <span className="text-gray-700">{venue.musicGenre.join(', ')}</span></p>
           )}
-          <p><span className="font-semibold text-gray-900">Dress Code:</span> <span className="text-gray-700">{venue.dressCode}</span></p>
         </div>
 
         {/* Social */}

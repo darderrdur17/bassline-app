@@ -152,20 +152,25 @@ export default function Home() {
           </span>
         </div>
       </div>
-      <div className="p-4">
-        <h3 className="text-lg font-brand font-bold mb-2 text-[#E53935] group-hover:text-[#C62D2D] transition-colors">
+      <div className="p-5">
+        <h3 className="text-lg font-brand font-bold mb-3 text-[#E53935] group-hover:text-[#C62D2D] transition-colors">
           {venue.name}
         </h3>
-        <p className="text-gray-600 mb-3 text-sm font-body line-clamp-2">
-          {venue.shortDescription}
+        <p className="text-gray-600 mb-4 text-sm font-body line-clamp-2 leading-relaxed">
+          {(() => {
+            const text = venue.shortDescription || '';
+            // Ensure sentence case: capitalize first letter if not already
+            if (!text) return '';
+            return text.charAt(0).toUpperCase() + text.slice(1);
+          })()}
         </p>
-        <div className="flex justify-between items-center text-sm text-gray-500 font-body mb-3">
+        <div className="flex justify-between items-center text-sm text-gray-500 font-body mb-4">
           <span className="flex items-center gap-1">📍 {venue.neighborhood}</span>
           <span className="flex items-center gap-1">
             <span aria-label="Rating">⭐</span> {venue.rating}
           </span>
         </div>
-        <div className="flex items-center justify-between mb-3">
+        <div className="flex items-center justify-between mb-4">
           <span className="text-sm font-semibold text-gray-700 font-body">{venue.pricing}</span>
           <span className="text-xs text-gray-500 font-body">{venue.hours}</span>
         </div>
@@ -297,12 +302,12 @@ export default function Home() {
       </div>
 
       {/* All Venues Section - Always visible */}
-      <div id="all-venues" className="max-w-6xl mx-auto px-4 sm:px-6 py-12 sm:py-16 bg-white">
-        <h2 className="text-3xl sm:text-4xl font-title font-bold text-center mb-8 sm:mb-12 text-[#E53935]">
-          ALL VENUES ({venues.length})
+      <div id="all-venues" className="max-w-6xl mx-auto px-4 sm:px-6 py-16 sm:py-20 bg-white">
+        <h2 className="text-3xl sm:text-4xl font-title font-bold text-center mb-12 sm:mb-16 text-[#E53935]">
+          ALL VENUES ({filteredVenues.length})
         </h2>
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-          {venues.map((venue, index) => (
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 mb-8">
+          {filteredVenues.map((venue, index) => (
             <VenueCard key={venue.id} venue={venue} index={index} />
           ))}
         </div>
