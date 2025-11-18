@@ -41,7 +41,7 @@ export default function VenuePage({ params }: { params: { id: string } }) {
       )}
 
       <div className="max-w-3xl w-full px-6 py-4">
-        <h1 className="text-4xl font-bold mb-2" style={{ fontFamily: 'var(--font-brand)', color: '#E53935' }}>{venue.name}</h1>
+        <h1 className="text-4xl font-brand mb-2" style={{ color: '#E53935' }}>{venue.name}</h1>
         {venue.shortDescription && (
           <p className="text-lg mb-4 text-gray-800">
             {(() => {

@@ -27,7 +27,7 @@ export default function FilterDrawer({ open, filters, onFiltersChange, onClose }
       <div className="absolute inset-0 bg-black/40" onClick={onClose} />
       {/* Drawer */}
       <div className="relative bg-white w-72 h-full shadow-lg p-4 overflow-y-auto" style={{ fontFamily: 'var(--font-body)' }}>
-        <h3 className="text-xl font-bold mb-4" style={{ fontFamily: 'var(--font-brand)', color: '#E53935' }}>Filters</h3>
+        <h3 className="text-xl font-brand mb-4" style={{ color: '#E53935' }}>FILTERS</h3>
 
         {/* Neighborhood */}
         <section className="mb-4">

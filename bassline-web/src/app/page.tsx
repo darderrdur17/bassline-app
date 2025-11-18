@@ -154,7 +154,7 @@ export default function Home() {
         </div>
       </div>
       <div className="p-5">
-        <h3 className="text-lg font-brand font-bold mb-3 text-[#E53935] group-hover:text-[#C62D2D] transition-colors">
+        <h3 className="text-lg font-brand mb-3 text-[#E53935] group-hover:text-[#C62D2D] transition-colors">
           {venue.name}
         </h3>
         <p className="text-gray-600 mb-4 text-sm font-body line-clamp-2 leading-relaxed">
@@ -193,10 +193,10 @@ export default function Home() {
         <div className="absolute inset-0 bg-black/10"></div>
         <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 py-12 sm:py-16">
           <div className="text-center animate-fade-in-up">
-            <h1 className="text-4xl sm:text-6xl md:text-8xl font-brand font-bold tracking-wider mb-4">
+            <h1 className="text-4xl sm:text-6xl md:text-8xl font-brand mb-4">
               BASSLINE
             </h1>
-            <p className="text-lg sm:text-xl md:text-2xl mb-2 opacity-90 tracking-wide font-bold font-body">
+            <p className="text-lg sm:text-xl md:text-2xl mb-2 opacity-90 font-tagline">
               THE CITY NEVER SLEEPS, NEITHER SHOULD YOU.
             </p>
             <p className="text-base sm:text-lg mb-8 sm:mb-12 opacity-80 max-w-2xl mx-auto font-body">
@@ -204,7 +204,7 @@ export default function Home() {
             </p>
             
             <div className="mb-8">
-              <h2 className="text-lg sm:text-xl md:text-2xl font-semibold mb-6 font-body whitespace-nowrap">
+              <h2 className="text-lg sm:text-xl md:text-2xl mb-6 font-label whitespace-nowrap">
                 WHAT ARE YOU FEELING TONIGHT?
               </h2>
               
@@ -269,7 +269,7 @@ export default function Home() {
       <div id="venue-map" className="bg-white shadow-lg animate-fade-in-up">
         <div className="max-w-6xl mx-auto">
           <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-6 p-4 sm:px-6">
-            <h2 className="text-2xl sm:text-3xl font-title font-bold text-[#E53935]">
+            <h2 className="text-2xl sm:text-3xl font-title text-[#E53935]">
               VENUE MAP
             </h2>
             <div className="flex gap-2">
@@ -304,7 +304,7 @@ export default function Home() {
 
       {/* All Venues Section - Always visible */}
       <div id="all-venues" className="max-w-6xl mx-auto px-4 sm:px-6 py-16 sm:py-20 bg-white">
-        <h2 className="text-3xl sm:text-4xl font-title font-bold text-center mb-12 sm:mb-16 text-[#E53935]">
+        <h2 className="text-3xl sm:text-4xl font-title text-center mb-12 sm:mb-16 text-[#E53935]">
           ALL VENUES ({filteredVenues.length})
         </h2>
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 mb-8">
@@ -316,7 +316,7 @@ export default function Home() {
 
       {/* Featured Venues Section - Always visible */}
       <div className="max-w-6xl mx-auto px-4 sm:px-6 py-12 sm:py-16">
-        <h2 className="text-3xl sm:text-4xl font-title font-bold text-center mb-8 sm:mb-12 text-[#E53935] animate-fade-in-up">
+        <h2 className="text-3xl sm:text-4xl font-title text-center mb-8 sm:mb-12 text-[#E53935] animate-fade-in-up">
           FEATURED VENUES
         </h2>
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
@@ -354,7 +354,7 @@ export default function Home() {
       {/* Footer CTA */}
       <div className="bg-[#E53935] text-white py-12 sm:py-16">
         <div className="max-w-4xl mx-auto text-center px-4 sm:px-6">
-          <h2 className="text-2xl sm:text-3xl font-title font-bold mb-4">
+          <h2 className="text-2xl sm:text-3xl font-title mb-4">
             READY TO EXPLORE?
           </h2>
           <p className="text-base sm:text-lg mb-6 sm:mb-8 font-body">

@@ -30,44 +30,74 @@ export const fonts = {
   bungee: 'Bungee_400Regular',
   oswaldRegular: 'Oswald_400Regular',
   oswaldSemiBold: 'Oswald_600SemiBold',
-  komsomol: 'Bungee_400Regular', // using Bungee as stand-in for Komsomol
-  helveticaWorld: 'Roboto_400Regular', // using Roboto as stand-in for Helvetica World
+  // Using Anton for bold sans-serif brand/title font (matches image style)
+  brand: 'Anton_400Regular',
+  // Using Roboto for clean body text
+  body: 'Roboto_400Regular',
+  // Using Oswald for buttons (bold, uppercase style)
+  button: 'Oswald_400Regular',
 };
 
 export const typography = {
+  // Large bold uppercase brand name (BASSLINE)
   brand: {
     fontSize: 32,
-    fontWeight: 'bold',
-    letterSpacing: 1.5,
+    fontWeight: '400', // Anton is already bold
+    letterSpacing: 2,
     textTransform: 'uppercase',
-    fontFamily: fonts.komsomol,
+    fontFamily: fonts.anton,
   },
+  // Bold uppercase titles and headings
   title: {
     fontSize: 24,
-    fontWeight: 'bold',
-    letterSpacing: 0.5,
-    fontFamily: fonts.komsomol,
+    fontWeight: '400', // Anton is already bold
+    letterSpacing: 1.5,
+    textTransform: 'uppercase',
+    fontFamily: fonts.anton,
   },
+  // Large venue names
   venue: {
     fontSize: 52,
-    fontWeight: 'bold',
-    fontFamily: fonts.komsomol,
+    fontWeight: '400', // Anton is already bold
+    letterSpacing: 1,
+    textTransform: 'uppercase',
+    fontFamily: fonts.anton,
   },
+  // Body text - clean sans-serif
   body: {
     fontSize: 16,
     fontWeight: '400',
-    fontFamily: fonts.helveticaWorld,
+    fontFamily: fonts.body,
   },
+  // Small text
   small: {
     fontSize: 14,
     fontWeight: '400',
-    fontFamily: fonts.helveticaWorld,
+    fontFamily: fonts.body,
   },
+  // Buttons - bold uppercase
   button: {
     fontSize: 16,
-    fontWeight: 'bold',
+    fontWeight: '600',
     textTransform: 'uppercase',
-    fontFamily: fonts.oswaldRegular,
+    letterSpacing: 1,
+    fontFamily: fonts.button,
+  },
+  // Slogan/tagline style - bold uppercase red text
+  tagline: {
+    fontSize: 18,
+    fontWeight: '700',
+    letterSpacing: 1.5,
+    textTransform: 'uppercase',
+    fontFamily: fonts.body,
+  },
+  // Label style for "WHAT ARE YOU FEELING TONIGHT?" etc.
+  label: {
+    fontSize: 16,
+    fontWeight: '700',
+    letterSpacing: 1,
+    textTransform: 'uppercase',
+    fontFamily: fonts.body,
   },
 };
 

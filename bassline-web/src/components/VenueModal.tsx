@@ -27,7 +27,7 @@ export default function VenueModal({ venue, onClose }: Props) {
 
         {/* Content */}
         <div className="p-6 font-body">
-          <h2 className="text-2xl font-brand font-bold mb-2 text-[#E53935]">
+          <h2 className="text-2xl font-brand mb-2 text-[#E53935]">
             {venue.name}
           </h2>
           

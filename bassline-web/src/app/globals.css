@@ -10,7 +10,7 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
-  --font-brand: 'Bungee', 'Impact', Arial Black, sans-serif;
+  --font-brand: 'Anton', 'Impact', Arial Black, sans-serif;
   --font-body: 'Roboto', 'Helvetica Neue', Arial, sans-serif;
   --font-title: 'Anton', 'Impact', Arial Black, sans-serif;
   --font-button: 'Oswald', 'Arial', sans-serif;
@@ -50,10 +50,12 @@ html {
   scroll-behavior: smooth;
 }
 
-/* Ensure text is always readable */
+/* Typography classes matching the design image */
 .font-brand {
   font-family: var(--font-brand) !important;
   font-weight: 400 !important;
+  letter-spacing: 2px !important;
+  text-transform: uppercase !important;
 }
 
 .font-body {
@@ -62,10 +64,30 @@ html {
 
 .font-title {
   font-family: var(--font-title) !important;
+  font-weight: 400 !important;
+  letter-spacing: 1.5px !important;
+  text-transform: uppercase !important;
 }
 
 .font-button {
   font-family: var(--font-button) !important;
+  font-weight: 600 !important;
+  letter-spacing: 1px !important;
+  text-transform: uppercase !important;
+}
+
+.font-tagline {
+  font-family: var(--font-body) !important;
+  font-weight: 700 !important;
+  letter-spacing: 1.5px !important;
+  text-transform: uppercase !important;
+}
+
+.font-label {
+  font-family: var(--font-body) !important;
+  font-weight: 700 !important;
+  letter-spacing: 1px !important;
+  text-transform: uppercase !important;
 }
 
 /* Custom map styles */
