@@ -10,8 +10,9 @@ import {
   LayoutAnimation,
   Platform,
   UIManager,
+  Linking,
 } from 'react-native';
-import MapView, { Marker } from 'react-native-maps';
+import MapView, { Marker, Callout } from 'react-native-maps';
 import { Ionicons } from '@expo/vector-icons';
 import { colors, typography, spacing, borderRadius, shadows, fonts } from '../styles/theme';
 import { venues, filterOptions, moodMapping } from '../data/venues';
@@ -50,6 +51,7 @@ export default function MapScreen({ navigation, route }) {
   const mapRef = useRef(null);
   const [selectedVenueIndex, setSelectedVenueIndex] = useState(null);
   const [filteredVenues, setFilteredVenues] = useState(venues);
+  const [mapType, setMapType] = useState('standard');
   const selectedVenue =
     selectedVenueIndex !== null && filteredVenues[selectedVenueIndex]
       ? filteredVenues[selectedVenueIndex]
@@ -229,6 +231,33 @@ export default function MapScreen({ navigation, route }) {
     navigation.navigate('VenueDetail', { venue });
   };
 
+  const recenterOnUser = () => {
+    if (mapRef.current) {
+      if (userLocation) {
+        mapRef.current.animateToRegion(
+          {
+            latitude: userLocation.latitude,
+            longitude: userLocation.longitude,
+            latitudeDelta: 0.01,
+            longitudeDelta: 0.01,
+          },
+          500
+        );
+      } else {
+        mapRef.current.animateToRegion(defaultRegion, 500);
+      }
+    }
+  };
+
+  const openDirections = (venue) => {
+    const { latitude, longitude } = venue.coordinates;
+    const label = encodeURIComponent(venue.name);
+    const appleUrl = `http://maps.apple.com/?ll=${latitude},${longitude}&q=${label}`;
+    const googleUrl = `https://www.google.com/maps/dir/?api=1&destination=${latitude},${longitude}&destination_place_id=&travelmode=walking`;
+    const url = Platform.OS === 'ios' ? appleUrl : googleUrl;
+    Linking.openURL(url).catch(() => Linking.openURL(googleUrl));
+  };
+
   const clearFilters = () => {
     setFilters({
       neighborhood: [],
@@ -362,6 +391,11 @@ export default function MapScreen({ navigation, route }) {
           customMapStyle={darkMapStyle}
           scrollEnabled={true}
           zoomEnabled={true}
+          mapType={mapType}
+          showsUserLocation={true}
+          showsMyLocationButton={true}
+          showsCompass={true}
+          showsScale={true}
         >
           {filteredVenues.map((venue) => (
             <Marker
@@ -369,9 +403,38 @@ export default function MapScreen({ navigation, route }) {
               coordinate={venue.coordinates}
               onPress={() => handleMarkerPress(venue)}
               pinColor={getMarkerColor(venue)}
-            />
+            >
+              <Callout onPress={() => handleVenueCardPress(venue)}>
+                <View style={{ maxWidth: 240 }}>
+                  <Text style={{ fontWeight: 'bold', marginBottom: 4 }}>{venue.name}</Text>
+                  <Text style={{ marginBottom: 6 }}>{venue.neighborhood} · {venue.type}</Text>
+                  <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
+                    <TouchableOpacity onPress={() => handleVenueCardPress(venue)}>
+                      <Text style={{ color: colors.primary }}>Details</Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity onPress={() => openDirections(venue)}>
+                      <Text style={{ color: colors.primary }}>Route</Text>
+                    </TouchableOpacity>
+                  </View>
+                </View>
+              </Callout>
+            </Marker>
           ))}
         </MapView>
+        <View style={styles.mapControls} pointerEvents="box-none">
+          <View style={styles.mapControlRow}>
+            <TouchableOpacity style={styles.controlButton} onPress={() => setMapType(prev => prev === 'standard' ? 'satellite' : 'standard')}>
+              <Ionicons name="layers" size={18} color={colors.primary} />
+              <Text style={styles.controlText}>{mapType === 'standard' ? 'Satellite' : 'Standard'}</Text>
+            </TouchableOpacity>
+          </View>
+          <View style={styles.mapControlBottom}>
+            <TouchableOpacity style={styles.controlButton} onPress={recenterOnUser}>
+              <Ionicons name="locate" size={18} color={colors.primary} />
+              <Text style={styles.controlText}>Recenter</Text>
+            </TouchableOpacity>
+          </View>
+        </View>
       </View>
 
       {/* Venue Card (Bottom Sheet) */}
@@ -601,6 +664,42 @@ const styles = StyleSheet.create({
   },
   mapPreview: {
     flex: 1,
+  },
+  mapControls: {
+    position: 'absolute',
+    top: spacing.sm,
+    left: 0,
+    right: 0,
+    bottom: 0,
+  },
+  mapControlRow: {
+    position: 'absolute',
+    top: spacing.sm,
+    right: spacing.sm,
+    flexDirection: 'row',
+  },
+  mapControlBottom: {
+    position: 'absolute',
+    bottom: spacing.sm,
+    right: spacing.sm,
+    flexDirection: 'column',
+  },
+  controlButton: {
+    backgroundColor: colors.white,
+    borderWidth: 1.5,
+    borderColor: colors.primary,
+    borderRadius: borderRadius.medium,
+    paddingHorizontal: spacing.sm,
+    paddingVertical: spacing.xs,
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 6,
+    marginLeft: spacing.xs,
+    marginBottom: spacing.xs,
+  },
+  controlText: {
+    color: colors.primary,
+    fontWeight: 'bold',
   },
   customMarker: {
     width: 30,

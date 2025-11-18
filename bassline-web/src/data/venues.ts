@@ -41,6 +41,7 @@ export const venues: Venue[] = [
     "goodToKnow": "$10 cover on weekends",
     "whereToGoIf": "you want to dance",
     "gallery": [
+      "/images/venues/bar-part-time-1.jpg",
       "/images/venues/bar-part-time-2.jpg"
     ]
   },
@@ -53,7 +54,7 @@ export const venues: Venue[] = [
     "pricing": "$$",
     "averageDrinkPrice": "$16–18 wine, $8 beer pint",
     "hours": "Tue–Wed 4–11; Thu–Fri 4–12; Sat 2–12; Sun–Mon Closed",
-    "heroImage": "https://images.unsplash.com/photo-1514933651103-005eec06c04b?w=800",
+    "heroImage": "/images/venues/key-klub-hero.jpg",
     "description": "Glowing lights, New American bites, and natural wine pours in a photogenic space.",
     "tags": [
       "wine bar",
@@ -91,7 +92,7 @@ export const venues: Venue[] = [
     "pricing": "$$$",
     "averageDrinkPrice": "$16–18 per glass",
     "hours": "Tue–Wed 4–10; Thu 11:30–10; Fri–Sat 11:30–11; Sun–Mon Closed",
-    "heroImage": "https://images.unsplash.com/photo-1514933651103-005eec06c04b?w=800",
+    "heroImage": "/images/venues/verjus-hero.jpg",
     "description": "Parisian cave à manger with open kitchen and vintage hi‑fi; feels like a dinner party.",
     "tags": [
       "wine bar",
@@ -133,7 +134,7 @@ export const venues: Venue[] = [
     "pricing": "$$",
     "averageDrinkPrice": "$12–18 per drink",
     "hours": "Mon 2–12; Tue–Fri 2–1:30; Sat 4–1:30; Sun 4–12",
-    "heroImage": "https://images.unsplash.com/photo-1514933651103-005eec06c04b?w=800",
+    "heroImage": "/images/venues/harlan-records-hero.jpg",
     "description": "Alley‑hidden Japanese‑leaning listening bar with eclectic vinyl sets.",
     "tags": [
       "listening bar",
@@ -171,7 +172,7 @@ export const venues: Venue[] = [
     "pricing": "$$",
     "averageDrinkPrice": "$12–18 per glass",
     "hours": "Tue–Fri 4–11; Sat 9–11; Sun 1–8; Mon Closed",
-    "heroImage": "https://images.unsplash.com/photo-1514933651103-005eec06c04b?w=800",
+    "heroImage": "/images/venues/bodega-north-beach-hero.jpg",
     "description": "Neon‑pink corner shop pouring natural wine with playful New American bites.",
     "tags": [
       "natural wine",
@@ -210,7 +211,7 @@ export const venues: Venue[] = [
     "pricing": "$$$",
     "averageDrinkPrice": "$9–13 beer, $15–22 wine",
     "hours": "Mon–Fri 5:30–9; Sat–Sun 5–9",
-    "heroImage": "https://images.unsplash.com/photo-1514933651103-005eec06c04b?w=800",
+    "heroImage": "/images/venues/anchovy-bar-hero.jpeg",
     "description": "Leafy, coastal‑vibe seafood and wine bar by the State Bird team.",
     "tags": [
       "seafood",
@@ -251,7 +252,7 @@ export const venues: Venue[] = [
     "pricing": "$$",
     "averageDrinkPrice": "$12–16 per glass",
     "hours": "Mon/Wed/Thu 5–10; Fri 5–12; Sat 3–12; Sun 3–8; Tue Closed",
-    "heroImage": "https://images.unsplash.com/photo-1514933651103-005eec06c04b?w=800",
+    "heroImage": "/images/venues/millay-hero.jpg",
     "description": "Stylish sake‑and‑wine bar with pink neon, wood seating, and a tiny disco ball.",
     "tags": [
       "natural wine",
@@ -292,7 +293,7 @@ export const venues: Venue[] = [
     "pricing": "$$",
     "averageDrinkPrice": "$14–18 per glass",
     "hours": "Tue–Thu 4–11:30; Fri 2–12:30; Sat 2–12; Sun 11–7; Mon Closed",
-    "heroImage": "https://images.unsplash.com/photo-1514933651103-005eec06c04b?w=800",
+    "heroImage": "/images/venues/celeste-hero.jpg",
     "description": "Trendy, red‑lit wine bar with upbeat tunes and Mediterranean‑leaning bites.",
     "tags": [
       "date night",
@@ -331,7 +332,7 @@ export const venues: Venue[] = [
     "pricing": "$$",
     "averageDrinkPrice": "$13–17 cocktails",
     "hours": "Tue–Thu 4–12; Fri 4–2; Sat 2–2; Sun 2–10; Mon Closed",
-    "heroImage": "/images/venues/the-midway-hero.jpg",
+    "heroImage": "/images/venues/mothership-hero.jpg",
     "description": "Verdant, space‑themed Mission hideaway with inventive drinks and a lush patio.",
     "tags": [
       "space bar",
@@ -361,8 +362,8 @@ export const venues: Venue[] = [
     "goodToKnow": "Back patio closes earlier than bar",
     "whereToGoIf": "you want a great back patio",
     "gallery": [
-      "/images/venues/the-midway-1.jpg",
-      "/images/venues/the-midway-2.jpg"
+      "/images/venues/mothership-1.jpg",
+      "/images/venues/mothership-2.jpg"
     ]
   },
   {
@@ -374,7 +375,7 @@ export const venues: Venue[] = [
     "pricing": "$$",
     "averageDrinkPrice": "$14–18 per glass",
     "hours": "Mon–Tue 5–10; Wed 5–10; Thu 5–11; Fri–Sat 4–12; Sun Closed",
-    "heroImage": "https://images.unsplash.com/photo-1514933651103-005eec06c04b?w=800",
+    "heroImage": "/images/venues/bar-gemini-hero.jpg",
     "description": "Minimal, sleek natural‑wine bar with low‑intervention gems.",
     "tags": [
       "natural wine",
@@ -414,7 +415,7 @@ export const venues: Venue[] = [
     "pricing": "$",
     "averageDrinkPrice": "$6–9 beer, $10–12 cocktails",
     "hours": "Tue–Sat 4–9; Sun–Mon Closed",
-    "heroImage": "https://images.unsplash.com/photo-1514933651103-005eec06c04b?w=800",
+    "heroImage": "/images/venues/gigi-s-hero.jpg",
     "description": "Casual Vietnamese hang with late‑night energy and playful drinks.",
     "tags": [
       "casual",
@@ -453,7 +454,7 @@ export const venues: Venue[] = [
     "pricing": "$$$",
     "averageDrinkPrice": "$17–22 cocktails",
     "hours": "Mon–Thu 5–11; Fri–Sat 4–12; Sun 4–11",
-    "heroImage": "https://images.unsplash.com/photo-1514933651103-005eec06c04b?w=800",
+    "heroImage": "/images/venues/charmaine-s-hero.jpg",
     "description": "Euro‑inspired rooftop lounge with fire pits and postcard skyline views.",
     "tags": [
       "scenic views",
@@ -491,7 +492,7 @@ export const venues: Venue[] = [
     "pricing": "$$$",
     "averageDrinkPrice": "$14–18 wine, $12–16 vermouth",
     "hours": "Mon–Thu 4–10; Fri–Sat 4–11; Sun 3–9",
-    "heroImage": "https://images.unsplash.com/photo-1514933651103-005eec06c04b?w=800",
+    "heroImage": "/images/venues/el-chato-hero.jpg",
     "description": "Spanish taberna pouring curated wines, vermouth, and pintxos/tapas.",
     "tags": [
       "porróns",
@@ -640,8 +641,8 @@ export const venues: Venue[] = [
     "goodToKnow": "Reservations recommended",
     "whereToGoIf": "you want top‑tier cocktails",
     "gallery": [
-      "/images/venues/peacekeeper-1.jpg",
-      "/images/venues/peacekeeper-2.jpg"
+      "/images/venues/pch-pacific-cocktail-haven-1.jpg",
+      "/images/venues/pch-pacific-cocktail-haven-2.jpg"
     ]
   },
   {
@@ -722,7 +723,7 @@ export const venues: Venue[] = [
     "goodToKnow": "Menu changes periodically—collect the zines",
     "whereToGoIf": "you want a menu that’s a concept",
     "gallery": [
-      "/images/venues/trick-dog-1.jpg",
+      "/images/venues/trick-dog-1.jpeg",
       "/images/venues/trick-dog-2.jpg"
     ]
   },
@@ -804,8 +805,8 @@ export const venues: Venue[] = [
     "goodToKnow": "Often crowded—go early",
     "whereToGoIf": "you want flawless classics",
     "gallery": [
-      "/images/venues/chambers-1.jpg",
-      "/images/venues/chambers-2.jpg"
+      "/images/venues/abv-1.jpg",
+      "/images/venues/abv-2.jpg"
     ]
   },
   {
@@ -817,7 +818,7 @@ export const venues: Venue[] = [
     "pricing": "$$",
     "averageDrinkPrice": "$12–16 cocktails",
     "hours": "Daily 5–1:15",
-    "heroImage": "https://images.unsplash.com/photo-1514933651103-005eec06c04b?w=800",
+    "heroImage": "/images/venues/smuggler-s-cove-hero.jpg",
     "description": "Iconic multi‑level tiki temple with hundreds of rums.",
     "tags": [
       "tiki",
@@ -899,7 +900,7 @@ export const venues: Venue[] = [
     "pricing": "$$",
     "averageDrinkPrice": "$12–15 tequila/margs",
     "hours": "Wed–Fri 5–8:30; Sat–Sun 1–8:30; Mon–Tue Closed",
-    "heroImage": "https://images.unsplash.com/photo-1514933651103-005eec06c04b?w=800",
+    "heroImage": "/images/venues/tommy-s-mexican-restaurant-hero.jpg",
     "description": "Legendary tequila shrine famed for its classic margarita.",
     "tags": [
       "tequila",
@@ -979,7 +980,7 @@ export const venues: Venue[] = [
     "pricing": "$$$$",
     "averageDrinkPrice": "$22–30+ cocktails / pairings",
     "hours": "Tue–Thu 4:30–11; Fri–Sat 4:30–12; Sun–Mon Closed",
-    "heroImage": "/images/venues/bar-crenn-hero.jpg",
+    "heroImage": "/images/venues/bar-crenn-hero.jpeg",
     "description": "Elegant salon by Atelier Crenn—French omakase counter + lounge for canapés & cocktails.",
     "tags": [
       "luxury",
@@ -1089,8 +1090,8 @@ export const venues: Venue[] = [
     "goodToKnow": "Retail bottle shop pricing to‑go",
     "whereToGoIf": "you want low‑key natty wine",
     "gallery": [
-      "/images/venues/press-club-1.jpg",
-      "/images/venues/press-club-2.jpg"
+      "/images/venues/high-treason-1.jpg",
+      "/images/venues/high-treason-2.jpg"
     ]
   },
   {
@@ -1102,7 +1103,7 @@ export const venues: Venue[] = [
     "pricing": "$$",
     "averageDrinkPrice": "$12–15 wine/beer",
     "hours": "Wed–Sun 12–9 (beer & wine till 9); Mon–Tue 4–10 (kitchen till 9)",
-    "heroImage": "/images/venues/palm-city-hero.jpg",
+    "heroImage": "/images/venues/palm-city-hero.jpeg",
     "description": "South‑side hang known for hoagies, natural wine, and an easy vibe.",
     "tags": [
       "hoagies",
@@ -1208,8 +1209,8 @@ export const venues: Venue[] = [
     "goodToKnow": "Cash preferred; strong pours",
     "whereToGoIf": "you want a classic SF dive",
     "gallery": [
-      "/images/venues/ungrafted-1.jpg",
-      "/images/venues/ungrafted-2.jpg"
+      "/images/venues/li-po-cocktail-lounge-1.jpg",
+      "/images/venues/li-po-cocktail-lounge-2.jpg"
     ]
   },
   {
@@ -1263,7 +1264,7 @@ export const venues: Venue[] = [
     "pricing": "$",
     "averageDrinkPrice": "$8–12 beer/cocktails",
     "hours": "Mon–Wed 12–12; Thu–Fri 12–2; Sat 10–2; Sun 10–12",
-    "heroImage": "https://images.unsplash.com/photo-1514933651103-005eec06c04b?w=800",
+    "heroImage": "/images/venues/hi-tops-hero.jpg",
     "description": "Lively sports‑centric Castro bar with a big, friendly crowd.",
     "tags": [
       "queer",
@@ -1468,7 +1469,7 @@ export const venues: Venue[] = [
     "rating": 4.3,
     "pricing": "$$",
     "hours": "10pm–2am",
-    "heroImage": "/images/venues/monroes-hero.jpg",
+    "heroImage": "/images/venues/monroe-s-hero.jpg",
     "tags": [
       "nightlife",
       "dancing"
@@ -1484,8 +1485,8 @@ export const venues: Venue[] = [
       "longitude": -122.4194
     },
     "gallery": [
-      "/images/venues/monroes-1.jpg",
-      "/images/venues/monroes-2.jpg"
+      "/images/venues/monroe-s-1.jpg",
+      "/images/venues/monroe-s-2.jpg"
     ]
   },
   {
@@ -1648,7 +1649,7 @@ export const venues: Venue[] = [
     "rating": 4.3,
     "pricing": "$",
     "hours": "Mon–Wed 7am–11pm; Thu 7am–12am; Fri–Sat 24h; Sun 12am–11pm",
-    "heroImage": "/images/venues/pinecrest-hero.jpg",
+    "heroImage": "/images/venues/pinecrest-hero.png",
     "description": "Late night Western spot in Union Square",
     "shortDescription": "Late night Western spot in Union Square",
     "tags": [
@@ -1669,8 +1670,8 @@ export const venues: Venue[] = [
     }
   ,
     "gallery": [
-      "/images/venues/the-midway-1.jpg",
-      "/images/venues/the-midway-2.jpg"
+      "/images/venues/pinecrest-1.jpg",
+      "/images/venues/pinecrest-2.jpg"
     ]},
   {
     "id": 45,
@@ -1756,8 +1757,8 @@ export const venues: Venue[] = [
       "longitude": -122.4194
     },
     "gallery": [
-      "/images/venues/taishan-1.jpg",
-      "/images/venues/taishan-2.jpg"
+      "/images/venues/cocobang-1.jpg",
+      "/images/venues/cocobang-2.jpg"
     ]
   },
   {
@@ -1904,8 +1905,8 @@ export const venues: Venue[] = [
       "longitude": -122.4194
     },
     "gallery": [
-      "/images/venues/toyose-1.jpg",
-      "/images/venues/toyose-2.jpg"
+      "/images/venues/joyful-garden-1.jpg",
+      "/images/venues/joyful-garden-2.jpg"
     ]
   },
   {
@@ -1916,7 +1917,7 @@ export const venues: Venue[] = [
     "rating": 4.3,
     "pricing": "$",
     "hours": "Daily 24h",
-    "heroImage": "https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=800",
+    "heroImage": "/images/venues/orphan-andy-s-hero.jpg",
     "description": "Late night Western spot in Castro",
     "shortDescription": "Late night Western spot in Castro",
     "tags": [
@@ -1933,7 +1934,11 @@ export const venues: Venue[] = [
     "whereToGoIf": "you need late night food",
     "coordinates": {
       "latitude": 37.7749,
-      "longitude": -122.4194
+      "longitude": -122.4194,
+    "gallery": [
+      "/images/venues/orphan-andy-s-1.jpg",
+      "/images/venues/orphan-andy-s-2.jpg"
+    ]
     }
   },
   {
@@ -1944,7 +1949,7 @@ export const venues: Venue[] = [
     "rating": 4.3,
     "pricing": "$",
     "hours": "Daily 24h",
-    "heroImage": "https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=800",
+    "heroImage": "/images/venues/bob-s-donut-hero.jpg",
     "description": "Late night Western spot in Nob Hill",
     "shortDescription": "Late night Western spot in Nob Hill",
     "tags": [
@@ -1961,7 +1966,10 @@ export const venues: Venue[] = [
     "whereToGoIf": "you need late night food",
     "coordinates": {
       "latitude": 37.7749,
-      "longitude": -122.4194
+      "longitude": -122.4194,
+    "gallery": [
+      "/images/venues/bob-s-donut-1.jpg"
+    ]
     }
   },
   {
@@ -1972,7 +1980,7 @@ export const venues: Venue[] = [
     "rating": 4.3,
     "pricing": "$$",
     "hours": "Daily 11am–3am",
-    "heroImage": "https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=800",
+    "heroImage": "/images/venues/naan-n-curry-hero.jpg",
     "description": "Late night Indian spot in Civic Center",
     "shortDescription": "Late night Indian spot in Civic Center",
     "tags": [
@@ -1989,7 +1997,10 @@ export const venues: Venue[] = [
     "whereToGoIf": "you need late night food",
     "coordinates": {
       "latitude": 37.7749,
-      "longitude": -122.4194
+      "longitude": -122.4194,
+    "gallery": [
+      "/images/venues/naan-n-curry-1.jpg"
+    ]
     }
   },
   {
@@ -2000,7 +2011,7 @@ export const venues: Venue[] = [
     "rating": 4.3,
     "pricing": "$",
     "hours": "Mon–Sat 11am–9:30pm; Sun 12pm–9pm",
-    "heroImage": "https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=800",
+    "heroImage": "/images/venues/wok-station-hero.jpg",
     "description": "Late night Chinese spot in Outer Sunset",
     "shortDescription": "Late night Chinese spot in Outer Sunset",
     "tags": [
@@ -2017,7 +2028,10 @@ export const venues: Venue[] = [
     "whereToGoIf": "you need late night food",
     "coordinates": {
       "latitude": 37.7749,
-      "longitude": -122.4194
+      "longitude": -122.4194,
+    "gallery": [
+      "/images/venues/wok-station-1.jpg"
+    ]
     }
   },
   {
@@ -2028,7 +2042,7 @@ export const venues: Venue[] = [
     "rating": 4.3,
     "pricing": "$",
     "hours": "Mon–Sat 11am–10pm; Sun Closed",
-    "heroImage": "https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=800",
+    "heroImage": "/images/venues/gyro-xpress-hero.jpg",
     "description": "Late night Mediterranean spot in Castro",
     "shortDescription": "Late night Mediterranean spot in Castro",
     "tags": [
@@ -2045,7 +2059,10 @@ export const venues: Venue[] = [
     "whereToGoIf": "you need late night food",
     "coordinates": {
       "latitude": 37.7749,
-      "longitude": -122.4194
+      "longitude": -122.4194,
+    "gallery": [
+      "/images/venues/gyro-xpress-1.jpg"
+    ]
     }
   },
   {
@@ -2056,7 +2073,7 @@ export const venues: Venue[] = [
     "rating": 4.3,
     "pricing": "$$",
     "hours": "Daily 10am–9pm",
-    "heroImage": "https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=800",
+    "heroImage": "/images/venues/turtle-tower-hero.jpg",
     "description": "Late night Vietnamese spot in Financial District",
     "shortDescription": "Late night Vietnamese spot in Financial District",
     "tags": [
@@ -2072,7 +2089,10 @@ export const venues: Venue[] = [
     "whereToGoIf": "you need late night food",
     "coordinates": {
       "latitude": 37.7749,
-      "longitude": -122.4194
+      "longitude": -122.4194,
+    "gallery": [
+      "/images/venues/turtle-tower-1.jpg"
+    ]
     }
   },
   {
@@ -2083,7 +2103,7 @@ export const venues: Venue[] = [
     "rating": 4.3,
     "pricing": "$$",
     "hours": "Mon–Thu 5pm–11pm; Fri–Sat 5pm–12am; Sun 5pm–10pm",
-    "heroImage": "https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=800",
+    "heroImage": "/images/venues/bay-pocha-hero.jpeg",
     "description": "Late night Korean spot in Ocean Ave",
     "shortDescription": "Late night Korean spot in Ocean Ave",
     "tags": [
@@ -2100,7 +2120,10 @@ export const venues: Venue[] = [
     "whereToGoIf": "you need late night food",
     "coordinates": {
       "latitude": 37.7749,
-      "longitude": -122.4194
+      "longitude": -122.4194,
+    "gallery": [
+      "/images/venues/bay-pocha-1.jpg"
+    ]
     }
   },
   {
@@ -2111,7 +2134,7 @@ export const venues: Venue[] = [
     "rating": 4.3,
     "pricing": "$",
     "hours": "Daily 11am–12am",
-    "heroImage": "https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=800",
+    "heroImage": "/images/venues/beep-s-burgers-hero.jpg",
     "description": "Late night Western spot in Ocean Ave",
     "shortDescription": "Late night Western spot in Ocean Ave",
     "tags": [
@@ -2128,7 +2151,10 @@ export const venues: Venue[] = [
     "whereToGoIf": "you need late night food",
     "coordinates": {
       "latitude": 37.7749,
-      "longitude": -122.4194
+      "longitude": -122.4194,
+    "gallery": [
+      "/images/venues/beep-s-burgers-1.jpg"
+    ]
     }
   },
   {
@@ -2139,7 +2165,7 @@ export const venues: Venue[] = [
     "rating": 4.3,
     "pricing": "$",
     "hours": "Mon–Thu & Sun 10am–11pm; Fri–Sat 10am–2:30am",
-    "heroImage": "https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=800",
+    "heroImage": "/images/venues/panchita-s-pupuseria-restaurant-hero.jpg",
     "description": "Late night Salvadoran spot in Mission",
     "shortDescription": "Late night Salvadoran spot in Mission",
     "tags": [
@@ -2155,7 +2181,10 @@ export const venues: Venue[] = [
     "whereToGoIf": "you need late night food",
     "coordinates": {
       "latitude": 37.7749,
-      "longitude": -122.4194
+      "longitude": -122.4194,
+    "gallery": [
+      "/images/venues/panchita-s-pupuseria-restaurant-1.jpg"
+    ]
     }
   },
   {
@@ -2166,7 +2195,7 @@ export const venues: Venue[] = [
     "rating": 4.3,
     "pricing": "$",
     "hours": "Mon–Thu 11am–10pm; Fri–Sat 11am–11pm; Sun 12pm–10pm",
-    "heroImage": "https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=800",
+    "heroImage": "/images/venues/primo-pizza-hero.jpeg",
     "description": "Late night Italian spot in Inner Richmond",
     "shortDescription": "Late night Italian spot in Inner Richmond",
     "tags": [
@@ -2182,7 +2211,10 @@ export const venues: Venue[] = [
     "whereToGoIf": "you need late night food",
     "coordinates": {
       "latitude": 37.7749,
-      "longitude": -122.4194
+      "longitude": -122.4194,
+    "gallery": [
+      "/images/venues/primo-pizza-1.jpeg"
+    ]
     }
   },
   {
@@ -2193,7 +2225,7 @@ export const venues: Venue[] = [
     "rating": 4.3,
     "pricing": "$",
     "hours": "Daily 5pm–12am",
-    "heroImage": "https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=800",
+    "heroImage": "/images/venues/uncle-boy-s-hero.jpg",
     "description": "Late night Western spot in Inner Richmond",
     "shortDescription": "Late night Western spot in Inner Richmond",
     "tags": [
@@ -2209,7 +2241,10 @@ export const venues: Venue[] = [
     "whereToGoIf": "you need late night food",
     "coordinates": {
       "latitude": 37.7749,
-      "longitude": -122.4194
+      "longitude": -122.4194,
+    "gallery": [
+      "/images/venues/uncle-boy-s-1.jpeg"
+    ]
     }
   },
   {
@@ -2220,7 +2255,7 @@ export const venues: Venue[] = [
     "rating": 4.3,
     "pricing": "$",
     "hours": "Daily 11am–3am",
-    "heroImage": "https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=800",
+    "heroImage": "/images/venues/sam-s-hero.jpg",
     "description": "Late night Western spot in North Beach",
     "shortDescription": "Late night Western spot in North Beach",
     "tags": [
@@ -2236,7 +2271,40 @@ export const venues: Venue[] = [
     "whereToGoIf": "you need late night food",
     "coordinates": {
       "latitude": 37.7749,
-      "longitude": -122.4194
+      "longitude": -122.4194,
+    "gallery": [
+      "/images/venues/sam-s-1.jpg",
+      "/images/venues/sam-s-2.png",
+      "/images/venues/sam-s-3.jpg",
+      "/images/venues/sam-s-4.jpg",
+      "/images/venues/sam-s-5.jpg",
+      "/images/venues/sam-s-6.jpg",
+      "/images/venues/sam-s-7.jpg",
+      "/images/venues/sam-s-8.png",
+      "/images/venues/sam-s-9.jpg",
+      "/images/venues/sam-s-10.jpg",
+      "/images/venues/sam-s-11.jpg",
+      "/images/venues/sam-s-12.jpg",
+      "/images/venues/sam-s-13.jpg",
+      "/images/venues/sam-s-14.jpg",
+      "/images/venues/sam-s-15.jpg",
+      "/images/venues/sam-s-16.jpg",
+      "/images/venues/sam-s-17.jpg",
+      "/images/venues/sam-s-18.jpg",
+      "/images/venues/sam-s-19.jpg",
+      "/images/venues/sam-s-20.jpg",
+      "/images/venues/sam-s-21.jpg",
+      "/images/venues/sam-s-22.jpg",
+      "/images/venues/sam-s-23.jpg",
+      "/images/venues/sam-s-24.jpg",
+      "/images/venues/sam-s-25.jpg",
+      "/images/venues/sam-s-26.jpg",
+      "/images/venues/sam-s-27.jpg",
+      "/images/venues/sam-s-28.jpg",
+      "/images/venues/sam-s-29.jpg",
+      "/images/venues/sam-s-30.jpeg",
+      "/images/venues/sam-s-31.jpg"
+    ]
     }
   },
   {
@@ -2247,7 +2315,7 @@ export const venues: Venue[] = [
     "rating": 4.3,
     "pricing": "$",
     "hours": "Daily 1pm–12am",
-    "heroImage": "https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=800",
+    "heroImage": "/images/venues/kowloon-tong-dessert-cafe-hero.jpg",
     "description": "Late night Chinese spot in Outer Sunset",
     "shortDescription": "Late night Chinese spot in Outer Sunset",
     "tags": [
@@ -2263,7 +2331,10 @@ export const venues: Venue[] = [
     "whereToGoIf": "you need late night food",
     "coordinates": {
       "latitude": 37.7749,
-      "longitude": -122.4194
+      "longitude": -122.4194,
+    "gallery": [
+      "/images/venues/kowloon-tong-dessert-cafe-1.jpg"
+    ]
     }
   },
   {
@@ -2274,7 +2345,7 @@ export const venues: Venue[] = [
     "rating": 4.3,
     "pricing": "$$",
     "hours": "Daily 4pm–1am",
-    "heroImage": "https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=800",
+    "heroImage": "/images/venues/zzan-hero.jpg",
     "description": "Late night Korean Fusion spot in Tenderloin",
     "shortDescription": "Late night Korean Fusion spot in Tenderloin",
     "tags": [
