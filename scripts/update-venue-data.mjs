@@ -168,9 +168,10 @@ function updateWebVenues(mappings) {
           `$1"gallery": [\n      ${galleryList}\n    ]`
         );
       } else {
-        // Add gallery if it doesn't exist
+        // Add gallery if it doesn't exist - place it AFTER coordinates object, before closing venue object
+        // Look for coordinates object closing, then add gallery before venue closes
         const addGalleryPattern = new RegExp(
-          `(\\{[\\s\\S]*?"id":\\s*${venueId}[\\s\\S]*?"name":\\s*"${mapping.venueName.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}"[\\s\\S]*?)(\\s*\\}[\\s,])`,
+          `(\\{[\\s\\S]*?"id":\\s*${venueId}[\\s\\S]*?"name":\\s*"${mapping.venueName.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}"[\\s\\S]*?"coordinates":\\s*\\{[^}]*"longitude":\\s*[^}]+\\}\\s*)(\\s*\\}[\\s,])`,
           'm'
         );
         
@@ -179,6 +180,19 @@ function updateWebVenues(mappings) {
             addGalleryPattern,
             `$1,\n    "gallery": [\n      ${galleryList}\n    ]$2`
           );
+        } else {
+          // Fallback: try to add before the closing brace of the venue object
+          const fallbackPattern = new RegExp(
+            `(\\{[\\s\\S]*?"id":\\s*${venueId}[\\s\\S]*?"name":\\s*"${mapping.venueName.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}"[\\s\\S]*?)(\\s*\\}[\\s,])`,
+            'm'
+          );
+          
+          if (fallbackPattern.test(content)) {
+            content = content.replace(
+              fallbackPattern,
+              `$1,\n    "gallery": [\n      ${galleryList}\n    ]$2`
+            );
+          }
         }
       }
     }

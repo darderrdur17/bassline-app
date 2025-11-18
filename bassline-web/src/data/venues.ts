@@ -1934,12 +1934,12 @@ export const venues: Venue[] = [
     "whereToGoIf": "you need late night food",
     "coordinates": {
       "latitude": 37.7749,
-      "longitude": -122.4194,
+      "longitude": -122.4194
+    },
     "gallery": [
       "/images/venues/orphan-andy-s-1.jpg",
       "/images/venues/orphan-andy-s-2.jpg"
     ]
-    }
   },
   {
     "id": 54,
@@ -1966,11 +1966,11 @@ export const venues: Venue[] = [
     "whereToGoIf": "you need late night food",
     "coordinates": {
       "latitude": 37.7749,
-      "longitude": -122.4194,
+      "longitude": -122.4194
+    },
     "gallery": [
       "/images/venues/bob-s-donut-1.jpg"
     ]
-    }
   },
   {
     "id": 55,
@@ -1997,11 +1997,11 @@ export const venues: Venue[] = [
     "whereToGoIf": "you need late night food",
     "coordinates": {
       "latitude": 37.7749,
-      "longitude": -122.4194,
+      "longitude": -122.4194
+    },
     "gallery": [
       "/images/venues/naan-n-curry-1.jpg"
     ]
-    }
   },
   {
     "id": 56,
@@ -2028,11 +2028,11 @@ export const venues: Venue[] = [
     "whereToGoIf": "you need late night food",
     "coordinates": {
       "latitude": 37.7749,
-      "longitude": -122.4194,
+      "longitude": -122.4194
+    },
     "gallery": [
       "/images/venues/wok-station-1.jpg"
     ]
-    }
   },
   {
     "id": 57,
@@ -2059,11 +2059,11 @@ export const venues: Venue[] = [
     "whereToGoIf": "you need late night food",
     "coordinates": {
       "latitude": 37.7749,
-      "longitude": -122.4194,
+      "longitude": -122.4194
+    },
     "gallery": [
       "/images/venues/gyro-xpress-1.jpg"
     ]
-    }
   },
   {
     "id": 58,
@@ -2089,11 +2089,11 @@ export const venues: Venue[] = [
     "whereToGoIf": "you need late night food",
     "coordinates": {
       "latitude": 37.7749,
-      "longitude": -122.4194,
+      "longitude": -122.4194
+    },
     "gallery": [
       "/images/venues/turtle-tower-1.jpg"
     ]
-    }
   },
   {
     "id": 59,
@@ -2120,11 +2120,11 @@ export const venues: Venue[] = [
     "whereToGoIf": "you need late night food",
     "coordinates": {
       "latitude": 37.7749,
-      "longitude": -122.4194,
+      "longitude": -122.4194
+    },
     "gallery": [
       "/images/venues/bay-pocha-1.jpg"
     ]
-    }
   },
   {
     "id": 60,
@@ -2151,11 +2151,11 @@ export const venues: Venue[] = [
     "whereToGoIf": "you need late night food",
     "coordinates": {
       "latitude": 37.7749,
-      "longitude": -122.4194,
+      "longitude": -122.4194
+    },
     "gallery": [
       "/images/venues/beep-s-burgers-1.jpg"
     ]
-    }
   },
   {
     "id": 61,
@@ -2181,11 +2181,11 @@ export const venues: Venue[] = [
     "whereToGoIf": "you need late night food",
     "coordinates": {
       "latitude": 37.7749,
-      "longitude": -122.4194,
+      "longitude": -122.4194
+    },
     "gallery": [
       "/images/venues/panchita-s-pupuseria-restaurant-1.jpg"
     ]
-    }
   },
   {
     "id": 62,
@@ -2211,11 +2211,11 @@ export const venues: Venue[] = [
     "whereToGoIf": "you need late night food",
     "coordinates": {
       "latitude": 37.7749,
-      "longitude": -122.4194,
+      "longitude": -122.4194
+    },
     "gallery": [
       "/images/venues/primo-pizza-1.jpeg"
     ]
-    }
   },
   {
     "id": 63,
@@ -2241,11 +2241,11 @@ export const venues: Venue[] = [
     "whereToGoIf": "you need late night food",
     "coordinates": {
       "latitude": 37.7749,
-      "longitude": -122.4194,
+      "longitude": -122.4194
+    },
     "gallery": [
       "/images/venues/uncle-boy-s-1.jpeg"
     ]
-    }
   },
   {
     "id": 64,
@@ -2271,7 +2271,8 @@ export const venues: Venue[] = [
     "whereToGoIf": "you need late night food",
     "coordinates": {
       "latitude": 37.7749,
-      "longitude": -122.4194,
+      "longitude": -122.4194
+    },
     "gallery": [
       "/images/venues/sam-s-1.jpg",
       "/images/venues/sam-s-2.png",
@@ -2305,7 +2306,6 @@ export const venues: Venue[] = [
       "/images/venues/sam-s-30.jpeg",
       "/images/venues/sam-s-31.jpg"
     ]
-    }
   },
   {
     "id": 65,
@@ -2331,11 +2331,11 @@ export const venues: Venue[] = [
     "whereToGoIf": "you need late night food",
     "coordinates": {
       "latitude": 37.7749,
-      "longitude": -122.4194,
+      "longitude": -122.4194
+    },
     "gallery": [
       "/images/venues/kowloon-tong-dessert-cafe-1.jpg"
     ]
-    }
   },
   {
     "id": 66,
@@ -2365,7 +2365,7 @@ export const venues: Venue[] = [
       "latitude": 37.7749,
       "longitude": -122.4194
     }
-  }
+  },
 ];
 
 export const filterOptions: FilterOptions = {
