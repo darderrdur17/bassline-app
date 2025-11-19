@@ -14,7 +14,7 @@ import { colors, typography, spacing, borderRadius, shadows, fonts } from '../st
 
 const { width } = Dimensions.get('window');
 
-export default function VenueCard({ venue, onPress, onClose, preview = false, onNext, onPrev }) {
+export default function VenueCard({ venue, onPress, onClose, preview = false, onNext, onPrev, onNextRestaurant }) {
   // Fade-in & slide-up animation for hover notification / preview card
   const translateY = useRef(new Animated.Value(40)).current;
   const opacity = useRef(new Animated.Value(0)).current;
@@ -46,6 +46,11 @@ export default function VenueCard({ venue, onPress, onClose, preview = false, on
 
   const formatCrowdLevel = (level) => {
     return level.charAt(0).toUpperCase() + level.slice(1);
+  };
+
+  const isRestaurantType = () => {
+    const restaurantTypes = ['Cocktail Bar', 'Wine Bar', 'Mexican Restaurant Bar', 'Wine Bar / Restaurant', 'Restaurant'];
+    return restaurantTypes.some(type => venue.type.includes(type) || type.includes(venue.type));
   };
 
   const previewStyles = preview ? {
@@ -112,6 +117,14 @@ export default function VenueCard({ venue, onPress, onClose, preview = false, on
             <View style={{ flexDirection: 'row', alignItems: 'center', marginTop: spacing.sm }}>
               <Ionicons name="time-outline" size={16} color={colors.white} />
               <Text style={{ color: colors.white, marginLeft: spacing.xs }}>{venue.hours}</Text>
+              {isRestaurantType() && onNextRestaurant && (
+                <TouchableOpacity
+                  style={{ marginLeft: spacing.md, backgroundColor: 'rgba(255,255,255,0.2)', paddingHorizontal: spacing.sm, paddingVertical: spacing.xs, borderRadius: borderRadius.small }}
+                  onPress={onNextRestaurant}
+                >
+                  <Text style={{ color: colors.white, fontSize: 12, fontWeight: 'bold' }}>Next Restaurant</Text>
+                </TouchableOpacity>
+              )}
             </View>
           )}
 
@@ -200,18 +213,36 @@ export default function VenueCard({ venue, onPress, onClose, preview = false, on
           {preview && (
             <View style={{ marginTop: spacing.sm }}>
               {[
-                { label: 'VENUE', value: venue.type },
-                // Cuisine descriptor if available
-                ...(venue.food ? [{ label: 'CUISINE', value: venue.food }] : []),
-                { label: 'AMBIANCE', value: (() => {
+                { label: 'BAR TYPE', value: venue.type },
+                // Pricing if available
+                ...(venue.pricing ? [{ label: 'PRICING', value: venue.pricing }] : []),
+                // Average drink price if available
+                ...(venue.averageDrinkPrice ? [{ label: 'AVG DRINK PRICE', value: venue.averageDrinkPrice }] : []),
+                // Where you go if
+                ...(venue.whereYouGoIf ? [{ label: 'WHERE YOU GO IF', value: venue.whereYouGoIf }] : []),
+                // Hours if available
+                ...(venue.hours ? [{ label: 'HOURS', value: venue.hours }] : []),
+                // Ambiance/You can expect
+                ...(venue.ambiance && venue.ambiance.length > 0 ? [{ label: 'YOU CAN EXPECT', value: (() => {
                     const ambienceText = Array.isArray(venue.ambiance) ? venue.ambiance.join(', ') : venue.ambiance;
                     return ambienceText ? ambienceText.toUpperCase() : '';
-                  })() },
-                { label: 'GENRE', value: venue.musicGenre.join(', ') },
-                { label: 'CROWD', value: Array.isArray(venue.crowd) ? venue.crowd.join(', ') : venue.crowd },
-                { label: 'ESTIMATED UBER', value: venue.estimatedUber },
+                  })() }] : []),
+                // Cuisine if available
+                ...(venue.cuisine ? [{ label: 'CUISINE', value: venue.cuisine }] : []),
+                // Drinks if available
+                ...(venue.recommendedDrinks && venue.recommendedDrinks.length > 0 ? [{ label: 'DRINKS', value: venue.recommendedDrinks.join(', ') }] : []),
+                // Recommendations if available
+                ...(venue.recommendations && venue.recommendations.length > 0 ? [{ label: 'RECS', value: venue.recommendations.join(', ') }] : []),
+                // Music genre if available
+                ...(venue.musicGenre && venue.musicGenre.length > 0 ? [{ label: 'MUSIC GENRE', value: venue.musicGenre.join(', ') }] : []),
+                // Accolades if available
+                ...(venue.accolades && venue.accolades !== '—' ? [{ label: 'ACCOLADES', value: venue.accolades }] : []),
+                // Good to know if available
+                ...(venue.goodToKnow ? [{ label: 'GOOD TO KNOW', value: venue.goodToKnow }] : []),
+                // Social media if available
+                ...(venue.instagram ? [{ label: 'SOCIAL MEDIA', value: 'Instagram available' }] : []),
               ].map((item) => (
-                <Text key={item.label} style={{ color: colors.white, fontSize: 12, marginBottom: 1, lineHeight: 16 }}>
+                <Text key={item.label} style={{ color: colors.white, fontSize: 10, marginBottom: 1, lineHeight: 14 }}>
                   <Text style={{ fontWeight: 'bold' }}>{item.label}: </Text>{item.value}
                 </Text>
               ))}

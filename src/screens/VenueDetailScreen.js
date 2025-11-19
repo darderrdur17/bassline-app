@@ -186,10 +186,10 @@ export default function VenueDetailScreen({ navigation, route }) {
 
           {/* Description - Already shown above */}
           
-          {venue.whereToGoIf && (
+          {venue.whereYouGoIf && (
             <View style={styles.detailCard}>
               <Text style={styles.detailTitle}>WHERE YOU GO IF</Text>
-              <Text style={styles.detailValue}>{venue.whereToGoIf}</Text>
+              <Text style={styles.detailValue}>{venue.whereYouGoIf}</Text>
             </View>
           )}
 
@@ -224,8 +224,15 @@ export default function VenueDetailScreen({ navigation, route }) {
 
           {venue.recommendations && venue.recommendations.length > 0 && (
             <View style={styles.detailCard}>
-              <Text style={styles.detailTitle}>RECS</Text>
+              <Text style={styles.detailTitle}>RECOMMENDATIONS</Text>
               <Text style={styles.detailValue}>{venue.recommendations.join(', ')}</Text>
+            </View>
+          )}
+
+          {venue.recs && venue.recs.length > 0 && (
+            <View style={styles.detailCard}>
+              <Text style={styles.detailTitle}>RECS</Text>
+              <Text style={styles.detailValue}>{venue.recs.join(', ')}</Text>
             </View>
           )}
 
@@ -279,28 +286,41 @@ export default function VenueDetailScreen({ navigation, route }) {
             <Text style={styles.secondaryButtonText}>CALL VENUE</Text>
           </TouchableOpacity>
 
-          {/* External links row */}
-          <View style={styles.linksRow}>
-            {venue.yelpUrl && (
-              <TouchableOpacity onPress={() => openUrl(venue.yelpUrl)} style={styles.linkIconBtn}>
-                <Ionicons name="globe-outline" size={24} color={colors.primary} />
-              </TouchableOpacity>
-            )}
-            {(venue.resyUrl || venue.openTableUrl) && (
-              <TouchableOpacity onPress={() => openUrl(venue.resyUrl || venue.openTableUrl)} style={styles.linkIconBtn}>
-                <Ionicons name="restaurant" size={24} color={colors.primary} />
-              </TouchableOpacity>
-            )}
-            {venue.instagram && (
-              <TouchableOpacity onPress={() => openUrl(venue.instagram)} style={styles.linkIconBtn}>
-                <Ionicons name="logo-instagram" size={24} color={colors.primary} />
-              </TouchableOpacity>
-            )}
-            {venue.tiktok && (
-              <TouchableOpacity onPress={() => openUrl(venue.tiktok)} style={styles.linkIconBtn}>
-                <Ionicons name="logo-tiktok" size={24} color={colors.primary} />
-              </TouchableOpacity>
-            )}
+          {/* Social Media & External Links */}
+          <View style={styles.socialSection}>
+            <Text style={styles.socialTitle}>SOCIAL MEDIA & LINKS</Text>
+            <View style={styles.linksRow}>
+              {venue.instagram && (
+                <TouchableOpacity onPress={() => openUrl(venue.instagram)} style={styles.linkIconBtn}>
+                  <Ionicons name="logo-instagram" size={24} color={colors.primary} />
+                  <Text style={styles.linkText}>Instagram</Text>
+                </TouchableOpacity>
+              )}
+              {venue.tiktok && (
+                <TouchableOpacity onPress={() => openUrl(venue.tiktok)} style={styles.linkIconBtn}>
+                  <Ionicons name="logo-tiktok" size={24} color={colors.primary} />
+                  <Text style={styles.linkText}>TikTok</Text>
+                </TouchableOpacity>
+              )}
+              {venue.yelpUrl && (
+                <TouchableOpacity onPress={() => openUrl(venue.yelpUrl)} style={styles.linkIconBtn}>
+                  <Ionicons name="globe-outline" size={24} color={colors.primary} />
+                  <Text style={styles.linkText}>Yelp</Text>
+                </TouchableOpacity>
+              )}
+              {(venue.resyUrl || venue.openTableUrl) && (
+                <TouchableOpacity onPress={() => openUrl(venue.resyUrl || venue.openTableUrl)} style={styles.linkIconBtn}>
+                  <Ionicons name="restaurant" size={24} color={colors.primary} />
+                  <Text style={styles.linkText}>Reservations</Text>
+                </TouchableOpacity>
+              )}
+              {venue.website && (
+                <TouchableOpacity onPress={() => openUrl(venue.website)} style={styles.linkIconBtn}>
+                  <Ionicons name="globe-outline" size={24} color={colors.primary} />
+                  <Text style={styles.linkText}>Website</Text>
+                </TouchableOpacity>
+              )}
+            </View>
           </View>
         </View>
 
@@ -573,12 +593,40 @@ const styles = StyleSheet.create({
   bottomSpacing: {
     height: spacing.xxl,
   },
+  socialSection: {
+    padding: spacing.md,
+    backgroundColor: colors.white,
+    marginTop: spacing.sm,
+  },
+  socialTitle: {
+    ...typography.small,
+    color: colors.primary,
+    fontWeight: 'bold',
+    letterSpacing: 0.5,
+    marginBottom: spacing.sm,
+    textAlign: 'center',
+  },
   linksRow: {
     flexDirection: 'row',
     justifyContent: 'center',
+    flexWrap: 'wrap',
     marginTop: spacing.md,
   },
   linkIconBtn: {
+    alignItems: 'center',
     marginHorizontal: spacing.sm,
+    marginVertical: spacing.xs,
+    padding: spacing.sm,
+    backgroundColor: colors.background,
+    borderRadius: borderRadius.medium,
+    minWidth: 80,
+  },
+  linkText: {
+    ...typography.small,
+    color: colors.primary,
+    fontSize: 10,
+    marginTop: spacing.xs,
+    textAlign: 'center',
+    fontWeight: 'bold',
   },
 }); 

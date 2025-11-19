@@ -30,6 +30,11 @@ export const fonts = {
   bungee: 'Bungee_400Regular',
   oswaldRegular: 'Oswald_400Regular',
   oswaldSemiBold: 'Oswald_600SemiBold',
+  // Custom fonts as per design requirements
+  // Komsomol alternative: Anton for bold title font
+  komsomol: 'Anton_400Regular',
+  // Lucidity Condensed alternative: Oswald for condensed text
+  lucidityCondensed: 'Oswald_400Regular',
   // Using Anton for bold sans-serif brand/title font (matches image style)
   brand: 'Anton_400Regular',
   // Using Roboto for clean body text
@@ -83,21 +88,21 @@ export const typography = {
     letterSpacing: 1,
     fontFamily: fonts.button,
   },
-  // Slogan/tagline style - bold uppercase red text
+  // Slogan/tagline style - condensed font as per design
   tagline: {
     fontSize: 18,
-    fontWeight: '700',
+    fontWeight: '400',
     letterSpacing: 1.5,
     textTransform: 'uppercase',
-    fontFamily: fonts.body,
+    fontFamily: fonts.lucidityCondensed,
   },
   // Label style for "WHAT ARE YOU FEELING TONIGHT?" etc.
   label: {
     fontSize: 16,
-    fontWeight: '700',
+    fontWeight: '400',
     letterSpacing: 1,
     textTransform: 'uppercase',
-    fontFamily: fonts.body,
+    fontFamily: fonts.lucidityCondensed,
   },
 };
 

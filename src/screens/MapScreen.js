@@ -39,12 +39,26 @@ const distanceMiles = (coord1, coord2) => {
   return (R * c) / 1609.34; // miles
 };
 
-// 1. Add new pin colors to the color palette import (if not present)
+// Enhanced pin colors for all venue types
 const pinColors = {
-  Bar: '#2196F3',        // Blue
-  Restaurant: '#E53935', // Red (brand)
-  Lounge: '#FFEB3B',     // Yellow
-  Club: '#4CAF50',       // Green
+  Bar: '#2196F3',                    // Blue
+  'Cocktail Bar': '#E53935',         // Red (brand)
+  'Wine Bar': '#9C27B0',             // Purple
+  Club: '#4CAF50',                   // Green
+  'Cocktail Salon': '#FF5722',       // Deep Orange
+  'Hotel Bar': '#795548',            // Brown
+  'Rooftop Bar': '#00BCD4',          // Cyan
+  'Neighborhood Bar': '#607D8B',     // Blue Grey
+  'Tiki Bar': '#8BC34A',             // Light Green
+  'Speakeasy / Listening Bar': '#3F51B5', // Indigo
+  'Sake Bar / Wine Bar': '#673AB7', // Deep Purple
+  'Wine Lounge': '#F44336',          // Red
+  'Mexican Restaurant Bar': '#FF9800', // Orange
+  'Neighborhood / Cocktail Bar': '#FFC107', // Amber
+  'Wine Bar / Deli': '#CDDC39',      // Lime
+  'Wine Bar / Restaurant': '#009688', // Teal
+  Restaurant: '#E53935',             // Red (fallback)
+  Lounge: '#FFEB3B',                 // Yellow (fallback)
 };
 
 export default function MapScreen({ navigation, route }) {
@@ -218,6 +232,27 @@ export default function MapScreen({ navigation, route }) {
     });
   };
 
+  const handleNextRestaurant = () => {
+    if (filteredVenues.length === 0) return;
+
+    // Find all restaurant-type venues
+    const restaurantTypes = ['Cocktail Bar', 'Wine Bar', 'Mexican Restaurant Bar', 'Wine Bar / Restaurant', 'Restaurant'];
+    const restaurantVenues = filteredVenues.filter(venue =>
+      restaurantTypes.some(type => venue.type.includes(type) || type.includes(venue.type))
+    );
+
+    if (restaurantVenues.length === 0) return;
+
+    // Find current restaurant index
+    const currentRestaurantIndex = restaurantVenues.findIndex(v => v.id === selectedVenue?.id);
+    const nextRestaurantIndex = currentRestaurantIndex === null ? 0 : (currentRestaurantIndex + 1) % restaurantVenues.length;
+    const nextRestaurant = restaurantVenues[nextRestaurantIndex];
+
+    // Find the index in the full filtered venues array
+    const venueIndex = filteredVenues.findIndex(v => v.id === nextRestaurant.id);
+    setSelectedVenueIndex(venueIndex);
+  };
+
   const handlePrevVenue = () => {
     if (filteredVenues.length === 0) return;
     setSelectedVenueIndex((prev) => {
@@ -354,16 +389,24 @@ export default function MapScreen({ navigation, route }) {
             <Text style={styles.legendLabel}>Bar</Text>
           </View>
           <View style={styles.legendItem}>
-            <View style={[styles.legendDot, { backgroundColor: pinColors.Restaurant }]} />
-            <Text style={styles.legendLabel}>Restaurant</Text>
+            <View style={[styles.legendDot, { backgroundColor: pinColors['Cocktail Bar'] }]} />
+            <Text style={styles.legendLabel}>Cocktail</Text>
           </View>
           <View style={styles.legendItem}>
-            <View style={[styles.legendDot, { backgroundColor: pinColors.Lounge, borderWidth: 1, borderColor: colors.black }]} />
-            <Text style={styles.legendLabel}>Lounge</Text>
+            <View style={[styles.legendDot, { backgroundColor: pinColors['Wine Bar'] }]} />
+            <Text style={styles.legendLabel}>Wine</Text>
           </View>
           <View style={styles.legendItem}>
             <View style={[styles.legendDot, { backgroundColor: pinColors.Club }]} />
             <Text style={styles.legendLabel}>Club</Text>
+          </View>
+          <View style={styles.legendItem}>
+            <View style={[styles.legendDot, { backgroundColor: pinColors['Rooftop Bar'] }]} />
+            <Text style={styles.legendLabel}>Rooftop</Text>
+          </View>
+          <View style={styles.legendItem}>
+            <View style={[styles.legendDot, { backgroundColor: pinColors['Hotel Bar'] }]} />
+            <Text style={styles.legendLabel}>Hotel</Text>
           </View>
         </View>
       </View>
@@ -446,6 +489,7 @@ export default function MapScreen({ navigation, route }) {
           onClose={() => setSelectedVenueIndex(null)}
           onNext={handleNextVenue}
           onPrev={handlePrevVenue}
+          onNextRestaurant={handleNextRestaurant}
         />
       )}
     </SafeAreaView>
@@ -616,13 +660,12 @@ const styles = StyleSheet.create({
     backgroundColor: colors.background,
   },
   searchLabel: {
-    ...typography.small,
+    ...typography.label,
     color: colors.primary,
-    fontWeight: 'bold',
     textAlign: 'center',
     marginBottom: spacing.sm,
-    letterSpacing: 0.5,
     fontSize: 16, // make it bigger and more readable
+    fontFamily: fonts.lucidityCondensed, // Apply Lucidity Condensed font as per design
   },
   searchContainer: {
     flexDirection: 'row',
@@ -749,15 +792,15 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     letterSpacing: 6, // increased spacing for wider appearance
     marginBottom: spacing.xs,
+    fontFamily: fonts.komsomol, // Apply Komsomol font as per design
   },
   tagline: {
-    ...typography.small,
+    ...typography.tagline,
     color: colors.white,
     opacity: 0.9,
     textAlign: 'center',
-    letterSpacing: 0.5,
     fontSize: 20, // make tagline bigger
-    fontFamily: fonts.helveticaWorld,
+    fontFamily: fonts.lucidityCondensed, // Apply Lucidity Condensed font as per design
   },
   legendContainer: {
     flexDirection: 'row',
