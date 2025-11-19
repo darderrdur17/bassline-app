@@ -31,6 +31,8 @@ export interface Venue {
   whereToGoIf?: string;
   averageDrinkPrice?: string;
   openPast2AM?: boolean;
+  crowd?: string | string[];
+  estimatedUber?: string;
 }
 
 export interface FilterOptions {
