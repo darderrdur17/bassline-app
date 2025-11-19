@@ -193,6 +193,18 @@ export default function Home() {
         <div className="absolute inset-0 bg-black/10"></div>
         <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 py-12 sm:py-16">
           <div className="text-center animate-fade-in-up">
+            {/* Milkshake Logo */}
+            <div className="flex justify-center mb-4">
+              <img 
+                src="/images/milkshake-logo.png" 
+                alt="Bassline Logo" 
+                className="h-32 sm:h-40 md:h-48 w-auto object-contain"
+                onError={(e) => {
+                  // Fallback if image doesn't exist yet
+                  e.currentTarget.style.display = 'none';
+                }}
+              />
+            </div>
             <h1 className="text-4xl sm:text-6xl md:text-8xl font-brand mb-4">
               BASSLINE
             </h1>
@@ -299,6 +311,18 @@ export default function Home() {
               No venues found matching your criteria. Try adjusting your search or filters.
             </p>
           )}
+          {/* Avocado Logo under the map */}
+          <div className="flex justify-center mt-6 mb-4">
+            <img 
+              src="/images/avocado-logo.png" 
+              alt="Bassline Mascot" 
+              className="h-24 w-auto object-contain"
+              onError={(e) => {
+                // Fallback if image doesn't exist yet
+                e.currentTarget.style.display = 'none';
+              }}
+            />
+          </div>
         </div>
       </div>
 

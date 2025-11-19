@@ -70,6 +70,7 @@ interface MapProps {
 
 export default function Map({ venues, selectedVenue, onVenueSelect }: MapProps) {
   const [mapError, setMapError] = useState<string | null>(null);
+  const [currentVenueIndex, setCurrentVenueIndex] = useState<number | null>(null);
   
   // Set up Leaflet icons properly
   useEffect(() => {
@@ -86,6 +87,25 @@ export default function Map({ venues, selectedVenue, onVenueSelect }: MapProps) 
   
   // Filter venues based on props
   const filteredVenues = venues || [];
+
+  // Update current venue index when selectedVenue changes
+  useEffect(() => {
+    if (selectedVenue) {
+      const index = filteredVenues.findIndex(v => v.id === selectedVenue.id);
+      setCurrentVenueIndex(index >= 0 ? index : null);
+    } else {
+      setCurrentVenueIndex(null);
+    }
+  }, [selectedVenue, filteredVenues]);
+
+  // Handle next button click
+  const handleNext = () => {
+    if (currentVenueIndex !== null && filteredVenues.length > 0) {
+      const nextIndex = (currentVenueIndex + 1) % filteredVenues.length;
+      setCurrentVenueIndex(nextIndex);
+      onVenueSelect(filteredVenues[nextIndex]);
+    }
+  };
 
   console.log('Map component rendered with venues:', venues?.length || 0, 'filtered:', filteredVenues.length);
 
@@ -147,13 +167,24 @@ export default function Map({ venues, selectedVenue, onVenueSelect }: MapProps) 
                     <p className="text-xs text-gray-500 mb-2 leading-relaxed">{venue.shortDescription}</p>
                   )}
                   {venue.musicGenre && (
-                    <div className="flex gap-1 flex-wrap">
+                    <div className="flex gap-1 flex-wrap mb-3">
                       {venue.musicGenre.slice(0, 2).map((genre) => (
                         <span key={genre} className="px-2 py-1 bg-[#E53935]/10 text-[#E53935] rounded text-xs font-medium">
                           {genre}
                         </span>
                       ))}
                     </div>
+                  )}
+                  {filteredVenues.length > 1 && (
+                    <button
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        handleNext();
+                      }}
+                      className="w-full mt-2 px-4 py-2 bg-[#E53935] text-white rounded-lg font-semibold text-sm hover:bg-[#C62D2D] transition-colors"
+                    >
+                      Next →
+                    </button>
                   )}
                 </div>
               </Popup>

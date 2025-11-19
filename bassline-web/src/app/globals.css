@@ -1,5 +1,7 @@
 /* Google Fonts import for reliable web fonts - matching mobile app */
-@import url('https://fonts.googleapis.com/css2?family=Anton:wght@400&family=Bungee:wght@400&family=Oswald:wght@400;600&family=Roboto:wght@400;500;600;700&display=swap');
+/* Komsomol alternative: Black Ops One (bold, condensed style) */
+/* Lucidity Condensed alternative: Oswald (will use with condensed styling) */
+@import url('https://fonts.googleapis.com/css2?family=Anton:wght@400&family=Bungee:wght@400&family=Oswald:wght@400;600&family=Roboto:wght@400;500;600;700&family=Black+Ops+One&display=swap');
 
 /* Tailwind import */
 @import "tailwindcss";
@@ -10,10 +12,12 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
-  --font-brand: 'Anton', 'Impact', Arial Black, sans-serif;
+  --font-brand: 'Black Ops One', 'Anton', 'Impact', Arial Black, sans-serif; /* Komsomol alternative */
   --font-body: 'Roboto', 'Helvetica Neue', Arial, sans-serif;
   --font-title: 'Anton', 'Impact', Arial Black, sans-serif;
   --font-button: 'Oswald', 'Arial', sans-serif;
+  --font-tagline-condensed: 'Oswald', 'Arial Narrow', 'Arial', sans-serif; /* Lucidity Condensed alternative */
+  --font-label-condensed: 'Oswald', 'Arial Narrow', 'Arial', sans-serif; /* Lucidity Condensed alternative */
 }
 
 @media (prefers-color-scheme: dark) {
@@ -77,17 +81,19 @@ html {
 }
 
 .font-tagline {
-  font-family: var(--font-body) !important;
-  font-weight: 700 !important;
+  font-family: var(--font-tagline-condensed) !important;
+  font-weight: 400 !important;
   letter-spacing: 1.5px !important;
   text-transform: uppercase !important;
+  font-stretch: condensed;
 }
 
 .font-label {
-  font-family: var(--font-body) !important;
-  font-weight: 700 !important;
+  font-family: var(--font-label-condensed) !important;
+  font-weight: 400 !important;
   letter-spacing: 1px !important;
   text-transform: uppercase !important;
+  font-stretch: condensed;
 }
 
 /* Custom map styles */
