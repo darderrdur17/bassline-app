@@ -2,6 +2,8 @@ import { notFound } from 'next/navigation';
 import { venues } from '@/data/venues';
 import { Metadata } from 'next';
 import { formatVenueHours } from '@/utils/formatHours';
+import { useRouter } from 'next/navigation';
+import { useEffect, useState } from 'react';
 
 export async function generateMetadata({ params }: { params: { id: string } }): Promise<Metadata> {
   const venue = venues.find(v => v.id === Number(params.id));
@@ -11,9 +13,36 @@ export async function generateMetadata({ params }: { params: { id: string } }): 
   };
 }
 
+'use client';
+
 export default function VenuePage({ params }: { params: { id: string } }) {
+  const router = useRouter();
+  const [currentIndex, setCurrentIndex] = useState<number>(-1);
+
   const venue = venues.find(v => v.id === Number(params.id));
   if (!venue) return notFound();
+
+  // Find current venue index for navigation
+  useEffect(() => {
+    const index = venues.findIndex(v => v.id === venue.id);
+    setCurrentIndex(index);
+  }, [venue.id]);
+
+  const handleNext = () => {
+    if (currentIndex >= 0) {
+      const nextIndex = (currentIndex + 1) % venues.length;
+      const nextVenue = venues[nextIndex];
+      router.push(`/venue/${nextVenue.id}`);
+    }
+  };
+
+  const handlePrevious = () => {
+    if (currentIndex >= 0) {
+      const prevIndex = (currentIndex - 1 + venues.length) % venues.length;
+      const prevVenue = venues[prevIndex];
+      router.push(`/venue/${prevVenue.id}`);
+    }
+  };
 
   return (
     <main className="min-h-screen bg-gradient-to-br from-[#F5F5DC] via-white to-[#F5F5DC] flex flex-col items-center" style={{ fontFamily: 'var(--font-body)' }}>
@@ -42,9 +71,38 @@ export default function VenuePage({ params }: { params: { id: string } }) {
               <h1 className="text-3xl sm:text-4xl font-brand mb-2 text-white">
                 {venue.name}
               </h1>
-              <p className="text-lg text-white/90 font-body">
+              <p className="text-lg text-white/90 font-body mb-4">
                 📍 {venue.neighborhood}
               </p>
+
+              {/* Navigation Buttons */}
+              <div className="flex items-center justify-between">
+                <button
+                  onClick={handlePrevious}
+                  className="flex items-center gap-2 px-4 py-2 bg-white/20 backdrop-blur-sm rounded-full hover:bg-white/30 transition-all duration-200 text-white font-medium"
+                  aria-label="Previous venue"
+                >
+                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                  </svg>
+                  Previous
+                </button>
+
+                <span className="text-white/80 text-sm font-body">
+                  {currentIndex + 1} of {venues.length}
+                </span>
+
+                <button
+                  onClick={handleNext}
+                  className="flex items-center gap-2 px-4 py-2 bg-white/20 backdrop-blur-sm rounded-full hover:bg-white/30 transition-all duration-200 text-white font-medium"
+                  aria-label="Next venue"
+                >
+                  Next
+                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                  </svg>
+                </button>
+              </div>
             </div>
           </>
         )}

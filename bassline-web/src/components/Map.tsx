@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import { MapContainer, TileLayer, Marker, Popup, useMap } from 'react-leaflet';
 import { DivIcon } from 'leaflet';
 import { Venue } from '@/types/venue';
+import { formatVenueHours } from '@/utils/formatHours';
 
 // Fix for default markers in react-leaflet
 import L from 'leaflet';
@@ -25,16 +26,23 @@ const fadedTypeColors = {
 // Cache icons by color to avoid recreating
 const iconCache: Record<string, DivIcon> = {};
 
-const getColoredIcon = (color: string): DivIcon => {
-  if (iconCache[color]) return iconCache[color];
+const getColoredIcon = (color: string, venue: Venue): DivIcon => {
+  const cacheKey = `${color}-${venue.id}`;
+  if (iconCache[cacheKey]) return iconCache[cacheKey];
+
   const icon = new DivIcon({
-    html: `<div style="width:20px;height:20px;background:${color};border-radius:50%;border:2px solid #fff;box-shadow:0 2px 4px rgba(0,0,0,0.3);transform:translate(-50%,-50%);"></div>`,
+    html: `
+      <div style="position:relative; width:24px; height:24px;">
+        <div style="width:20px; height:20px; background:${color}; border-radius:50%; border:2px solid #fff; box-shadow:0 2px 6px rgba(0,0,0,0.4); transform:translate(-50%,-50%); position:absolute; top:50%; left:50%;"></div>
+        <div style="position:absolute; top:-2px; left:50%; transform:translateX(-50%); width:8px; height:8px; background:#fff; border-radius:50%; box-shadow:0 1px 3px rgba(0,0,0,0.3);"></div>
+      </div>
+    `,
     className: 'custom-marker',
-    iconSize: [20, 20],
-    iconAnchor: [10, 10],
-    popupAnchor: [0, -10],
+    iconSize: [24, 24],
+    iconAnchor: [12, 12],
+    popupAnchor: [0, -12],
   });
-  iconCache[color] = icon;
+  iconCache[cacheKey] = icon;
   return icon;
 };
 
@@ -176,39 +184,99 @@ export default function Map({ venues, allVenues = [], selectedVenue, onVenueSele
               <Marker
                 key={venue.id}
                 position={[venue.coordinates.latitude, venue.coordinates.longitude]}
-                icon={getColoredIcon(getMarkerColor(venue, isFiltered))}
+                icon={getColoredIcon(getMarkerColor(venue, isFiltered), venue)}
                 eventHandlers={{
                   click: () => onVenueSelect(venue),
                 }}
               >
                 <Popup>
-                  <div className="p-3 max-w-xs">
-                    <h3 className="font-bold text-[#E53935] mb-2 text-base">{venue.name}</h3>
-                    <p className="text-sm text-gray-600 mb-2">{venue.type} • {venue.neighborhood}</p>
-                    <p className="text-sm text-gray-600 mb-2">⭐ {venue.rating} • {venue.pricing}</p>
-                    {venue.shortDescription && (
-                      <p className="text-xs text-gray-500 mb-2 leading-relaxed">{venue.shortDescription}</p>
-                    )}
-                    {venue.musicGenre && (
-                      <div className="flex gap-1 flex-wrap mb-3">
-                        {venue.musicGenre.slice(0, 2).map((genre) => (
-                          <span key={genre} className="px-2 py-1 bg-[#E53935]/10 text-[#E53935] rounded text-xs font-medium">
-                            {genre}
-                          </span>
-                        ))}
+                  <div className="p-4 max-w-sm">
+                    {/* Venue Image */}
+                    {venue.heroImage && (
+                      <div className="mb-3 -mx-4 -mt-4">
+                        <img
+                          src={venue.heroImage}
+                          alt={venue.name}
+                          className="w-full h-32 object-cover rounded-t-lg"
+                        />
                       </div>
                     )}
-                    {isFiltered && filteredVenues.length > 1 && (
+
+                    {/* Venue Header */}
+                    <div className="mb-3">
+                      <h3 className="font-bold text-[#E53935] mb-1 text-lg">{venue.name}</h3>
+                      <div className="flex items-center gap-2 mb-2">
+                        <span className="px-2 py-1 bg-[#E53935]/10 text-[#E53935] rounded text-xs font-medium">
+                          {venue.type}
+                        </span>
+                        <span className="text-xs text-gray-500">📍 {venue.neighborhood}</span>
+                      </div>
+                      <div className="flex items-center gap-3 text-sm text-gray-600">
+                        <span className="flex items-center gap-1">
+                          <span className="text-yellow-500">⭐</span> {venue.rating}
+                        </span>
+                        <span>•</span>
+                        <span className="font-medium">{venue.pricing}</span>
+                      </div>
+                    </div>
+
+                    {/* Description */}
+                    {venue.shortDescription && (
+                      <p className="text-sm text-gray-600 mb-3 leading-relaxed line-clamp-2">
+                        {venue.shortDescription}
+                      </p>
+                    )}
+
+                    {/* Key Info */}
+                    <div className="space-y-2 mb-4">
+                      {venue.averageDrinkPrice && (
+                        <div className="flex justify-between items-center text-sm">
+                          <span className="text-gray-500">Avg. Price:</span>
+                          <span className="font-medium text-gray-900">{venue.averageDrinkPrice}</span>
+                        </div>
+                      )}
+
+                      {venue.musicGenre && venue.musicGenre.length > 0 && (
+                        <div className="flex flex-wrap gap-1">
+                          {venue.musicGenre.slice(0, 2).map((genre) => (
+                            <span key={genre} className="px-2 py-1 bg-purple-100 text-purple-700 rounded text-xs font-medium">
+                              {genre}
+                            </span>
+                          ))}
+                        </div>
+                      )}
+
+                      {venue.hours && (
+                        <div className="text-xs text-gray-500">
+                          {formatVenueHours ? formatVenueHours(venue.hours).split(';')[0] : 'Hours available'}
+                        </div>
+                      )}
+                    </div>
+
+                    {/* Action Buttons */}
+                    <div className="space-y-2">
                       <button
                         onClick={(e) => {
                           e.stopPropagation();
-                          handleNext();
+                          onVenueSelect(venue);
                         }}
-                        className="w-full mt-2 px-4 py-2 bg-[#E53935] text-white rounded-lg font-semibold text-sm hover:bg-[#C62D2D] transition-colors"
+                        className="w-full px-4 py-2 bg-[#E53935] text-white rounded-lg font-semibold text-sm hover:bg-[#C62D2D] transition-colors"
                       >
-                        Next →
+                        View Details
                       </button>
-                    )}
+
+                      {isFiltered && filteredVenues.length > 1 && (
+                        <button
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            handleNext();
+                          }}
+                          className="w-full px-4 py-2 bg-gray-100 text-gray-700 rounded-lg font-semibold text-sm hover:bg-gray-200 transition-colors"
+                        >
+                          Next Venue →
+                        </button>
+                      )}
+                    </div>
                   </div>
                 </Popup>
               </Marker>
