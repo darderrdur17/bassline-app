@@ -1,184 +1,147 @@
-import React from 'react';
-import { Venue } from '@/types/venue';
-import { formatVenueHours } from '@/utils/formatHours';
+'use client';
 
-interface Props {
+import React from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { Venue } from '@/types/venue';
+import { X, Star, Clock, MapPin, Phone, Globe, Instagram, Heart, ExternalLink } from 'lucide-react';
+import { useVenueStore } from '@/stores/useVenueStore';
+
+interface VenueModalProps {
   venue: Venue;
   onClose: () => void;
 }
 
-export default function VenueModal({ venue, onClose }: Props) {
+const VenueModal: React.FC<VenueModalProps> = ({ venue, onClose }) => {
+  const { toggleFavorite } = useVenueStore();
+
+  // Get crowd level info
+  const getCrowdInfo = () => {
+    if (!venue.currentCrowdLevel) return null;
+
+    const crowdLabels = {
+      empty: { label: 'Very Quiet', color: 'text-green-600', bg: 'bg-green-50', border: 'border-green-200' },
+      moderate: { label: 'Moderate', color: 'text-yellow-600', bg: 'bg-yellow-50', border: 'border-yellow-200' },
+      busy: { label: 'Busy', color: 'text-orange-600', bg: 'bg-orange-50', border: 'border-orange-200' },
+      packed: { label: 'Very Busy', color: 'text-red-600', bg: 'bg-red-50', border: 'border-red-200' },
+    };
+
+    return crowdLabels[venue.currentCrowdLevel];
+  };
+
+  const crowdInfo = getCrowdInfo();
+
   return (
-    <div className="fixed inset-0 z-50 flex items-end md:items-center justify-center bg-black/50 p-4">
-      <div className="bg-white rounded-t-2xl md:rounded-2xl shadow-xl w-full md:max-w-lg max-h-[90vh] overflow-y-auto">
-        {/* Header */}
-        <div className="relative">
-          {venue.heroImage && (
-            // eslint-disable-next-line @next/next/no-img-element
-            <img src={typeof venue.heroImage === 'string' ? venue.heroImage : undefined} alt={venue.name} className="w-full h-48 object-cover rounded-t-2xl" />
-          )}
-          <button 
-            onClick={onClose} 
-            className="absolute top-3 right-3 bg-white/90 backdrop-blur-sm rounded-full w-8 h-8 flex items-center justify-center shadow-lg hover:bg-white transition-colors text-gray-700 hover:text-gray-900"
-          >
-            ✕
-          </button>
-        </div>
+    <AnimatePresence>
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
+        className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4"
+        onClick={onClose}
+      >
+        <motion.div
+          initial={{ scale: 0.9, opacity: 0 }}
+          animate={{ scale: 1, opacity: 1 }}
+          exit={{ scale: 0.9, opacity: 0 }}
+          className="bg-ui-surface rounded-2xl shadow-2xl max-w-2xl w-full max-h-[90vh] overflow-hidden"
+          onClick={(e) => e.stopPropagation()}
+        >
+          {/* Header Image */}
+          <div className="relative h-64 overflow-hidden">
+            <img
+              src={venue.heroImage}
+              alt={venue.name}
+              className="w-full h-full object-cover"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
 
-        {/* Content */}
-        <div className="p-6 font-body">
-          <h2 className="text-2xl font-brand mb-2 text-[#E53935]">
-            {venue.name}
-          </h2>
-          
-          {venue.shortDescription && (
-            <p className="text-base mb-4 font-body text-gray-800 leading-relaxed">
-              {(() => {
-                const text = venue.shortDescription || '';
-                // Ensure sentence case: capitalize first letter if not already
-                if (!text) return '';
-                return text.charAt(0).toUpperCase() + text.slice(1);
-              })()}
-            </p>
-          )}
-          
-          {venue.accolades && (
-            <div className="mb-4 p-3 bg-yellow-50 border border-yellow-200 rounded-lg">
-              <p className="text-sm text-yellow-800 font-semibold font-body">
-                🏆 {venue.accolades}
-              </p>
+            {/* Close Button */}
+            <button
+              onClick={onClose}
+              className="absolute top-4 right-4 bg-black/50 hover:bg-black/70 text-white rounded-full p-2 transition-colors"
+            >
+              <X size={20} />
+            </button>
+
+            {/* Venue Type Badge */}
+            <div className="absolute top-4 left-4">
+              <span className="px-3 py-1.5 bg-black/70 text-white text-sm rounded-full font-medium backdrop-blur-sm">
+                {venue.type}
+              </span>
             </div>
-          )}
 
-          {/* Venue Details - Organized by Database Fields */}
-          <div className="space-y-4 mb-6">
-            {/* Name - Already shown in header */}
-            
-            {/* Pricing */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm font-body">
-              <div className="flex justify-between">
-                <span className="font-semibold text-gray-700">Pricing:</span>
-                <span className="text-gray-900 font-medium">{venue.pricing}</span>
-              </div>
-              {venue.averageDrinkPrice && (
-                <div className="flex justify-between">
-                  <span className="font-semibold text-gray-700">Average Drink Price:</span>
-                  <span className="text-gray-900">{venue.averageDrinkPrice}</span>
+            {/* Real-time Status */}
+            {crowdInfo && (
+              <div className="absolute bottom-4 left-4 right-4">
+                <div className={`inline-flex items-center gap-2 px-3 py-2 rounded-lg ${crowdInfo.bg} ${crowdInfo.border} border`}>
+                  <div className={`w-2 h-2 rounded-full ${crowdInfo.color.replace('text-', 'bg-')}`} />
+                  <span className={`text-sm font-medium ${crowdInfo.color}`}>
+                    {crowdInfo.label}
+                  </span>
+                  {venue.currentWaitTime && (
+                    <span className="text-xs text-ui-text-secondary ml-2">
+                      {venue.currentWaitTime} min wait
+                    </span>
+                  )}
                 </div>
-              )}
-            </div>
-
-            {/* Description - Already shown above */}
-            
-            {/* Where you go if */}
-            {venue.whereToGoIf && (
-              <div>
-                <h4 className="font-semibold text-gray-700 mb-2 font-body">Where you go if:</h4>
-                <p className="text-gray-900 text-sm font-body">{venue.whereToGoIf}</p>
               </div>
             )}
+          </div>
 
-            {/* Bar Type */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm font-body">
-              <div className="flex justify-between">
-                <span className="font-semibold text-gray-700">Bar Type:</span>
-                <span className="text-gray-900">{venue.type}</span>
+          {/* Content */}
+          <div className="p-6 overflow-y-auto max-h-96">
+            {/* Title and Rating */}
+            <div className="mb-4">
+              <h2 className="text-2xl font-bold font-brand text-ui-text mb-2">
+                {venue.name}
+              </h2>
+              <div className="flex items-center gap-4 text-sm">
+                <div className="flex items-center gap-1">
+                  <Star size={16} className="text-yellow-500 fill-current" />
+                  <span className="font-medium">{venue.rating}</span>
+                </div>
+                <span className="text-ui-text-secondary">•</span>
+                <span className="font-medium">{venue.pricing}</span>
               </div>
-              <div className="flex justify-between">
-                <span className="font-semibold text-gray-700">Neighborhood:</span>
-                <span className="text-gray-900">{venue.neighborhood}</span>
+            </div>
+
+            {/* Location */}
+            <div className="flex items-start gap-3 mb-4">
+              <MapPin size={18} className="text-ui-text-secondary mt-0.5 flex-shrink-0" />
+              <div>
+                <p className="font-medium text-ui-text">{venue.neighborhood}</p>
+                {venue.address && (
+                  <p className="text-sm text-ui-text-secondary">{venue.address}</p>
+                )}
               </div>
             </div>
 
             {/* Hours */}
-            <div>
-              <h4 className="font-semibold text-gray-700 mb-2 font-body">Hours:</h4>
-              <div className="text-gray-900 text-sm font-body">
-                {formatVenueHours(venue.hours).split('; ').map((part, idx, arr) => (
-                  <React.Fragment key={idx}>
-                    {part}
-                    {idx < arr.length - 1 && <br />}
-                  </React.Fragment>
-                ))}
-              </div>
-            </div>
-
-            {/* You can expect (Ambiance) */}
-            {venue.ambiance && venue.ambiance.length > 0 && (
-              <div>
-                <h4 className="font-semibold text-gray-700 mb-2 font-body">You can expect:</h4>
-                <div className="flex flex-wrap gap-2">
-                  {venue.ambiance.map((item) => {
-                    const upperItem = item ? String(item).toUpperCase() : '';
-                    return (
-                      <span key={item} className="px-3 py-1 bg-gray-100 text-gray-800 rounded-full text-xs font-medium font-body" style={{ textTransform: 'uppercase' }}>
-                        {upperItem}
-                      </span>
-                    );
-                  })}
+            {venue.hours && (
+              <div className="flex items-start gap-3 mb-4">
+                <Clock size={18} className="text-ui-text-secondary mt-0.5 flex-shrink-0" />
+                <div className="text-sm text-ui-text-secondary">
+                  {typeof venue.hours === 'string' ? venue.hours : 'Hours vary'}
                 </div>
               </div>
             )}
 
-            {/* Cuisine */}
-            {venue.cuisine && (
-              <div>
-                <h4 className="font-semibold text-gray-700 mb-2 font-body">Cuisine:</h4>
-                <p className="text-gray-900 text-sm font-body">{venue.cuisine}</p>
+            {/* Description */}
+            {venue.description && (
+              <div className="mb-4">
+                <p className="text-ui-text-secondary leading-relaxed">
+                  {venue.description}
+                </p>
               </div>
             )}
 
-            {/* Drinks */}
-            {venue.recommendedDrinks && venue.recommendedDrinks.length > 0 && (
-              <div>
-                <h4 className="font-semibold text-gray-700 mb-2 font-body">Drinks:</h4>
-                <div className="flex flex-wrap gap-2">
-                  {venue.recommendedDrinks.map((drink) => (
-                    <span key={drink} className="px-3 py-1 bg-[#E53935]/10 text-[#E53935] rounded-full text-xs font-medium font-body">
-                      {drink}
-                    </span>
-                  ))}
-                </div>
-              </div>
-            )}
-
-            {/* Recs (Recommendations) */}
-            {venue.recommendations && venue.recommendations.length > 0 && (
-              <div>
-                <h4 className="font-semibold text-gray-700 mb-2 font-body">Recs:</h4>
-                <p className="text-gray-900 text-sm font-body">{venue.recommendations.join(', ')}</p>
-              </div>
-            )}
-
-            {/* Accolades */}
-            {venue.accolades && venue.accolades !== '—' && (
-              <div>
-                <h4 className="font-semibold text-gray-700 mb-2 font-body">Accolades:</h4>
-                <p className="text-gray-900 text-sm font-body">{venue.accolades}</p>
-              </div>
-            )}
-
-            {/* Tags */}
-            {venue.tags && venue.tags.length > 0 && (
-              <div>
-                <h4 className="font-semibold text-gray-700 mb-2 font-body">Tags:</h4>
-                <div className="flex flex-wrap gap-2">
-                  {venue.tags.map((tag) => (
-                    <span key={tag} className="px-3 py-1 bg-gray-100 text-gray-800 rounded-full text-xs font-medium font-body">
-                      {tag}
-                    </span>
-                  ))}
-                </div>
-              </div>
-            )}
-
-            {/* Music Genre */}
+            {/* Music Genres */}
             {venue.musicGenre && venue.musicGenre.length > 0 && (
-              <div>
-                <h4 className="font-semibold text-gray-700 mb-2 font-body">Music:</h4>
+              <div className="mb-4">
+                <h4 className="font-semibold text-ui-text mb-2">Music</h4>
                 <div className="flex flex-wrap gap-2">
                   {venue.musicGenre.map((genre) => (
-                    <span key={genre} className="px-3 py-1 bg-[#E53935]/10 text-[#E53935] rounded-full text-xs font-medium font-body">
+                    <span key={genre} className="px-3 py-1 bg-purple-100 text-purple-700 rounded-full text-sm font-medium">
                       {genre}
                     </span>
                   ))}
@@ -186,65 +149,98 @@ export default function VenueModal({ venue, onClose }: Props) {
               </div>
             )}
 
-            {/* Good to know */}
+            {/* Features */}
+            <div className="mb-6">
+              <h4 className="font-semibold text-ui-text mb-3">Features</h4>
+              <div className="grid grid-cols-2 gap-2">
+                {venue.hasOutdoorSeating && (
+                  <div className="flex items-center gap-2 text-sm">
+                    <span className="text-green-500">✓</span>
+                    <span>Outdoor Seating</span>
+                  </div>
+                )}
+                {venue.hasLiveMusic && (
+                  <div className="flex items-center gap-2 text-sm">
+                    <span className="text-green-500">✓</span>
+                    <span>Live Music</span>
+                  </div>
+                )}
+                {venue.hasDancing && (
+                  <div className="flex items-center gap-2 text-sm">
+                    <span className="text-green-500">✓</span>
+                    <span>Dance Floor</span>
+                  </div>
+                )}
+                {venue.hasHappyHour && (
+                  <div className="flex items-center gap-2 text-sm">
+                    <span className="text-green-500">✓</span>
+                    <span>Happy Hour</span>
+                  </div>
+                )}
+                {venue.hasReservations && (
+                  <div className="flex items-center gap-2 text-sm">
+                    <span className="text-green-500">✓</span>
+                    <span>Reservations</span>
+                  </div>
+                )}
+                {venue.ageRestriction && (
+                  <div className="flex items-center gap-2 text-sm">
+                    <span className="text-blue-500">ℹ</span>
+                    <span>{venue.ageRestriction}</span>
+                  </div>
+                )}
+              </div>
+            </div>
+
+            {/* Pricing Info */}
+            {venue.averageDrinkPrice && (
+              <div className="mb-6 p-4 bg-ui-background rounded-xl">
+                <h4 className="font-semibold text-ui-text mb-2">Average Drink Price</h4>
+                <p className="text-brand-red font-medium">{venue.averageDrinkPrice}</p>
+              </div>
+            )}
+
+            {/* Action Buttons */}
+            <div className="flex flex-col sm:flex-row gap-3">
+              <button className="flex-1 btn-primary">
+                Get Directions
+              </button>
+              {venue.website && (
+                <a
+                  href={venue.website}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn-secondary flex items-center justify-center gap-2"
+                >
+                  <Globe size={16} />
+                  Website
+                </a>
+              )}
+              {venue.instagram && (
+                <a
+                  href={`https://instagram.com/${venue.instagram.replace('@', '')}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn-secondary flex items-center justify-center gap-2"
+                >
+                  <Instagram size={16} />
+                  Instagram
+                </a>
+              )}
+            </div>
+
+            {/* Good to Know */}
             {venue.goodToKnow && (
-              <div>
-                <h4 className="font-semibold text-gray-700 mb-2 font-body">Good to know:</h4>
-                <p className="text-gray-900 text-sm font-body">{venue.goodToKnow}</p>
+              <div className="mt-6 p-4 bg-yellow-50 border border-yellow-200 rounded-xl">
+                <h4 className="font-semibold text-yellow-800 mb-2">Good to Know</h4>
+                <p className="text-yellow-700 text-sm">{venue.goodToKnow}</p>
               </div>
             )}
           </div>
-
-          {/* Social Links */}
-          <div className="flex justify-center gap-6 mb-6">
-            {venue.instagram && (
-              <a 
-                href={venue.instagram} 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className="flex items-center gap-2 px-4 py-2 bg-pink-50 text-pink-700 rounded-lg hover:bg-pink-100 transition-colors font-body text-sm font-medium"
-              >
-                📷 Instagram
-              </a>
-            )}
-            {venue.yelpUrl && (
-              <a 
-                href={venue.yelpUrl} 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className="flex items-center gap-2 px-4 py-2 bg-green-50 text-green-700 rounded-lg hover:bg-green-100 transition-colors font-body text-sm font-medium"
-              >
-                🌐 Yelp
-              </a>
-            )}
-            {venue.resyUrl && (
-              <a 
-                href={venue.resyUrl} 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className="flex items-center gap-2 px-4 py-2 bg-red-50 text-red-700 rounded-lg hover:bg-red-100 transition-colors font-body text-sm font-medium"
-              >
-                🍽️ Reserve
-              </a>
-            )}
-          </div>
-          
-          <div className="flex gap-3">
-            <a 
-              href={`/venue/${venue.id}`} 
-              className="flex-1 text-center px-4 py-3 bg-[#E53935] text-white rounded-lg font-semibold font-body hover:bg-[#C62D2D] transition-colors"
-            >
-              View Full Details →
-            </a>
-            <button
-              onClick={onClose}
-              className="px-4 py-3 bg-gray-100 text-gray-700 rounded-lg font-semibold font-body hover:bg-gray-200 transition-colors"
-            >
-              Close
-            </button>
-          </div>
-        </div>
-      </div>
-    </div>
+        </motion.div>
+      </motion.div>
+    </AnimatePresence>
   );
-} 
+};
+
+export default VenueModal;

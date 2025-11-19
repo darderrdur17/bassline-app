@@ -1,43 +1,169 @@
-/* Google Fonts import for reliable web fonts - matching mobile app */
-/* Komsomol alternative: Black Ops One (bold, condensed style) */
-/* Lucidity Condensed alternative: Oswald (will use with condensed styling) */
-@import url('https://fonts.googleapis.com/css2?family=Anton:wght@400&family=Bungee:wght@400&family=Oswald:wght@400;600&family=Roboto:wght@400;500;600;700&family=Black+Ops+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Anton&family=Oswald:wght@400;600;700&family=Roboto:wght@300;400;500;700&display=swap');
 
-/* Tailwind import */
-@import "tailwindcss";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-/* Leaflet map styles */
-@import 'leaflet/dist/leaflet.css';
-
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-  --font-brand: 'Black Ops One', 'Anton', 'Impact', Arial Black, sans-serif; /* Komsomol alternative */
-  --font-body: 'Roboto', 'Helvetica Neue', Arial, sans-serif;
-  --font-title: 'Anton', 'Impact', Arial Black, sans-serif;
-  --font-button: 'Oswald', 'Arial', sans-serif;
-  --font-tagline-condensed: 'Oswald', 'Arial Narrow', 'Arial', sans-serif; /* Lucidity Condensed alternative */
-  --font-label-condensed: 'Oswald', 'Arial Narrow', 'Arial', sans-serif; /* Lucidity Condensed alternative */
-}
-
-@media (prefers-color-scheme: dark) {
+@layer base {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --font-anton: 'Anton', sans-serif;
+    --font-oswald: 'Oswald', sans-serif;
+    --font-roboto: 'Roboto', sans-serif;
+  }
+
+  * {
+    @apply border-gray-200;
+  }
+
+  body {
+    @apply bg-ui-background text-ui-text font-body antialiased;
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+
+  html {
+    scroll-behavior: smooth;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: var(--font-body);
+@layer components {
+  /* Venue Cards */
+  .venue-card {
+    @apply bg-white rounded-xl shadow-lg border border-gray-200 hover:shadow-xl transition-all duration-300 hover:-translate-y-1 cursor-pointer overflow-hidden;
+  }
+
+  .venue-card-image {
+    @apply w-full h-48 object-cover transition-transform duration-500 hover:scale-105;
+  }
+
+  .venue-card-overlay {
+    @apply absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300;
+  }
+
+  /* Buttons */
+  .btn-primary {
+    @apply bg-brand-red text-white font-button font-semibold px-6 py-3 rounded-xl hover:bg-brand-red-dark transition-all duration-300 hover:shadow-glow-red hover:scale-105 focus:outline-none focus:ring-2 focus:ring-brand-red/50;
+  }
+
+  .btn-secondary {
+    @apply bg-ui-surface text-brand-red border-2 border-brand-red font-button font-semibold px-6 py-3 rounded-xl hover:bg-brand-red hover:text-white transition-all duration-300 hover:shadow-glow-red hover:scale-105 focus:outline-none focus:ring-2 focus:ring-brand-red/50;
+  }
+
+  .btn-ghost {
+    @apply bg-transparent text-ui-text hover:bg-ui-surface-hover font-button font-semibold px-6 py-3 rounded-xl transition-all duration-300 hover:scale-105 focus:outline-none focus:ring-2 focus:ring-ui-border;
+  }
+
+  /* Form Elements */
+  .input-primary {
+    @apply w-full px-4 py-3 bg-ui-surface border border-ui-border rounded-xl text-ui-text placeholder-ui-text-muted focus:outline-none focus:ring-2 focus:ring-brand-red/50 focus:border-brand-red transition-all duration-300;
+  }
+
+  /* Map Styles */
+  .mapboxgl-popup-content {
+    @apply bg-ui-surface border border-ui-border rounded-xl shadow-large p-0;
+  }
+
+  .mapboxgl-popup-tip {
+    @apply border-ui-border;
+  }
+
+  /* Animations */
+  .animate-fade-in {
+    animation: fadeIn 0.5s ease-in-out;
+  }
+
+  .animate-fade-in-up {
+    animation: fadeInUp 0.6s ease-out;
+  }
+
+  .animate-fade-in-scale {
+    animation: fadeInScale 0.5s ease-out;
+  }
+
+  .animate-slide-in-left {
+    animation: slideInLeft 0.5s ease-out;
+  }
+
+  .animate-slide-in-right {
+    animation: slideInRight 0.5s ease-out;
+  }
+
+  .animate-bounce-subtle {
+    animation: bounceSubtle 2s infinite;
+  }
+
+  .animate-pulse-glow {
+    animation: pulseGlow 2s ease-in-out infinite;
+  }
+
+  /* Utility Classes */
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .line-clamp-2 {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .line-clamp-3 {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  /* Scrollbar Styling */
+  .scrollbar-thin {
+    scrollbar-width: thin;
+    scrollbar-color: rgb(203 213 225) transparent;
+  }
+
+  .scrollbar-thin::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  .scrollbar-thin::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  .scrollbar-thin::-webkit-scrollbar-thumb {
+    background-color: rgb(203 213 225);
+    border-radius: 3px;
+  }
+
+  .scrollbar-thin::-webkit-scrollbar-thumb:hover {
+    background-color: rgb(148 163 184);
+  }
 }
 
-/* Custom animations for enhanced UX */
+@layer utilities {
+  .text-shadow {
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+  }
+
+  .text-shadow-lg {
+    text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.4);
+  }
+
+  .backdrop-blur-glass {
+    backdrop-filter: blur(16px) saturate(180%);
+    background-color: rgba(255, 255, 255, 0.75);
+    border: 1px solid rgba(255, 255, 255, 0.125);
+  }
+}
+
+/* Keyframes */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
 @keyframes fadeInUp {
   from {
     opacity: 0;
-    transform: translateY(30px);
+    transform: translateY(20px);
   }
   to {
     opacity: 1;
@@ -48,7 +174,7 @@ body {
 @keyframes fadeInScale {
   from {
     opacity: 0;
-    transform: scale(0.9);
+    transform: scale(0.95);
   }
   to {
     opacity: 1;
@@ -59,7 +185,7 @@ body {
 @keyframes slideInLeft {
   from {
     opacity: 0;
-    transform: translateX(-30px);
+    transform: translateX(-20px);
   }
   to {
     opacity: 1;
@@ -70,7 +196,7 @@ body {
 @keyframes slideInRight {
   from {
     opacity: 0;
-    transform: translateX(30px);
+    transform: translateX(20px);
   }
   to {
     opacity: 1;
@@ -78,334 +204,35 @@ body {
   }
 }
 
-@keyframes float {
-  0%, 100% {
-    transform: translateY(0px);
-  }
-  50% {
-    transform: translateY(-10px);
-  }
+@keyframes bounceSubtle {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-5px); }
 }
 
-@keyframes glow {
-  0%, 100% {
-    box-shadow: 0 0 20px rgba(229, 57, 53, 0.3);
-  }
-  50% {
-    box-shadow: 0 0 30px rgba(229, 57, 53, 0.6);
-  }
+@keyframes pulseGlow {
+  0%, 100% { box-shadow: 0 0 20px rgba(229, 57, 53, 0.3); }
+  50% { box-shadow: 0 0 30px rgba(229, 57, 53, 0.5); }
 }
 
-.animate-fade-in-up {
-  animation: fadeInUp 0.8s ease-out;
+/* Mapbox GL overrides */
+.mapboxgl-ctrl {
+  font-family: var(--font-roboto), sans-serif !important;
 }
 
-.animate-fade-in-scale {
-  animation: fadeInScale 0.6s ease-out;
+.mapboxgl-ctrl-attrib {
+  background-color: rgba(255, 255, 255, 0.8) !important;
+  backdrop-filter: blur(8px) !important;
 }
 
-.animate-slide-in-left {
-  animation: slideInLeft 0.8s ease-out;
-}
-
-.animate-slide-in-right {
-  animation: slideInRight 0.8s ease-out;
-}
-
-.animate-float {
-  animation: float 3s ease-in-out infinite;
-}
-
-.animate-glow {
-  animation: glow 2s ease-in-out infinite;
-}
-
-/* Stagger animations for venue cards */
-.venue-card:nth-child(1) { animation-delay: 0.1s; }
-.venue-card:nth-child(2) { animation-delay: 0.2s; }
-.venue-card:nth-child(3) { animation-delay: 0.3s; }
-.venue-card:nth-child(4) { animation-delay: 0.4s; }
-.venue-card:nth-child(5) { animation-delay: 0.5s; }
-.venue-card:nth-child(6) { animation-delay: 0.6s; }
-.venue-card:nth-child(7) { animation-delay: 0.7s; }
-.venue-card:nth-child(8) { animation-delay: 0.8s; }
-
-/* Scroll-triggered animations */
-@keyframes fadeInOnScroll {
-  from {
-    opacity: 0;
-    transform: translateY(50px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@keyframes scaleInOnScroll {
-  from {
-    opacity: 0;
-    transform: scale(0.8);
-  }
-  to {
-    opacity: 1;
-    transform: scale(1);
-  }
-}
-
-@keyframes slideUpOnScroll {
-  from {
-    opacity: 0;
-    transform: translateY(100px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-.animate-on-scroll {
-  opacity: 0;
-  transform: translateY(50px);
-  transition: all 0.8s ease-out;
-}
-
-.animate-on-scroll.in-view {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-.animate-scale-on-scroll {
-  opacity: 0;
-  transform: scale(0.8);
-  transition: all 0.6s ease-out;
-}
-
-.animate-scale-on-scroll.in-view {
-  opacity: 1;
-  transform: scale(1);
-}
-
-.animate-slide-up-on-scroll {
-  opacity: 0;
-  transform: translateY(100px);
-  transition: all 1s ease-out;
-}
-
-.animate-slide-up-on-scroll.in-view {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-/* Enhanced hover effects */
-.hover-lift {
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.hover-lift:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
-}
-
-.hover-glow:hover {
-  box-shadow: 0 0 30px rgba(229, 57, 53, 0.3);
-}
-
-/* Loading animations */
-@keyframes shimmer {
-  0% {
-    background-position: -200px 0;
-  }
-  100% {
-    background-position: calc(200px + 100%) 0;
-  }
-}
-
-.shimmer {
-  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
-  background-size: 200px 100%;
-  animation: shimmer 1.5s infinite;
-}
-
-/* Smooth scroll behavior */
-html {
-  scroll-behavior: smooth;
-}
-
-/* Typography classes matching the design image */
-.font-brand {
-  font-family: var(--font-brand) !important;
-  font-weight: 400 !important;
-  letter-spacing: 2px !important;
-  text-transform: uppercase !important;
-}
-
-.font-body {
-  font-family: var(--font-body) !important;
-}
-
-.font-title {
-  font-family: var(--font-title) !important;
-  font-weight: 400 !important;
-  letter-spacing: 1.5px !important;
-  text-transform: uppercase !important;
-}
-
-.font-button {
-  font-family: var(--font-button) !important;
-  font-weight: 600 !important;
-  letter-spacing: 1px !important;
-  text-transform: uppercase !important;
-}
-
-.font-tagline {
-  font-family: var(--font-tagline-condensed) !important;
-  font-weight: 400 !important;
-  letter-spacing: 1.5px !important;
-  text-transform: uppercase !important;
-  font-stretch: condensed;
-}
-
-.font-label {
-  font-family: var(--font-label-condensed) !important;
-  font-weight: 400 !important;
-  letter-spacing: 1px !important;
-  text-transform: uppercase !important;
-  font-stretch: condensed;
-}
-
-/* Custom map styles */
-.leaflet-container {
-  width: 100%;
-  height: 100%;
-  z-index: 1;
-}
-
-/* Custom marker styles */
-.custom-marker {
-  background: transparent !important;
-  border: none !important;
-}
-
-.custom-marker div {
-  position: absolute !important;
-  cursor: pointer;
-  transition: transform 0.2s ease, filter 0.2s ease;
-}
-
-.custom-marker div:hover {
-  transform: translate(-50%, -50%) scale(1.15) !important;
-  filter: brightness(1.1);
-}
-
-/* Popup styles */
-.leaflet-popup-content-wrapper {
-  border-radius: 16px !important;
-  overflow: hidden;
-  padding: 0 !important;
-  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.15), 0 4px 6px -1px rgba(0, 0, 0, 0.1) !important;
-  border: 1px solid rgba(0, 0, 0, 0.05) !important;
-}
-
-.leaflet-popup-content {
-  margin: 0 !important;
-  width: auto !important;
-  min-width: 280px;
-  max-width: 320px;
-}
-
-.leaflet-popup-tip-container {
-  display: none !important;
-}
-
-.leaflet-popup-close-button {
-  color: #666 !important;
-  font-size: 18px !important;
-  padding: 8px 8px 0 0 !important;
-  font-family: var(--font-body) !important;
-}
-
-.leaflet-popup-close-button:hover {
-  color: #000 !important;
-  background: none !important;
-}
-
-/* Map controls */
-.leaflet-control-zoom {
-  border: none !important;
-  margin: 15px !important;
-}
-
-.leaflet-control-zoom a {
-  width: 36px !important;
-  height: 36px !important;
-  line-height: 36px !important;
-  border-radius: 8px !important;
-  background-color: white !important;
-  color: #666 !important;
-  font-size: 18px !important;
-  font-weight: bold !important;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1) !important;
-}
-
-.leaflet-control-zoom a:hover {
-  background-color: #f8f8f8 !important;
-  color: #E53935 !important;
-}
-
-/* Touch interaction improvements */
-@media (hover: none) {
-  .leaflet-container {
-    cursor: default !important;
-  }
-
-  .custom-marker div {
-    transform: translate(-50%, -50%) scale(1.2) !important;
-  }
-}
-
-/* Mobile-specific map improvements */
+/* Mobile optimizations */
 @media (max-width: 768px) {
-  .leaflet-control-zoom {
-    margin: 10px !important;
+  .venue-card-image {
+    @apply h-40;
   }
 
-  .leaflet-control-zoom a {
-    width: 40px !important;
-    height: 40px !important;
-    line-height: 40px !important;
-    font-size: 20px !important;
+  .btn-primary,
+  .btn-secondary,
+  .btn-ghost {
+    @apply px-4 py-2 text-sm;
   }
-
-  /* Larger touch targets for mobile */
-  .custom-marker div {
-    transform: translate(-50%, -50%) scale(1.4) !important;
-  }
-
-  /* Improve popup sizing on mobile */
-  .leaflet-popup-content {
-    max-width: 260px !important;
-    min-width: 250px !important;
-  }
-
-  .leaflet-popup-content-wrapper {
-    border-radius: 14px !important;
-  }
-}
-
-/* Better map controls positioning */
-@media (max-width: 640px) {
-  .leaflet-control-container .leaflet-routing-container-hide {
-    display: none !important;
-  }
-
-  .leaflet-control-attribution {
-    font-size: 10px !important;
-    background: rgba(255, 255, 255, 0.8) !important;
-  }
-}
-
-/* Safe area handling for mobile */
-.safe-area-bottom {
-  padding-bottom: env(safe-area-inset-bottom, 0.5rem);
 }

@@ -43,7 +43,13 @@ export const venues: Venue[] = [
     "gallery": [
       "/images/venues/bar-part-time-1.jpg",
       "/images/venues/bar-part-time-2.jpg"
-    ]
+    ],
+    "hasOutdoorSeating": false,
+    "hasLiveMusic": false,
+    "hasDancing": true,
+    "hasHappyHour": true,
+    "hasReservations": false,
+    "ageRestriction": "21+"
   },
   {
     "id": 2,
@@ -81,7 +87,13 @@ export const venues: Venue[] = [
       "longitude": -122.4194
     },
     "goodToKnow": "Sister spot to Bodega & Celeste",
-    "whereToGoIf": "you want good pictures"
+    "whereToGoIf": "you want good pictures",
+    "hasOutdoorSeating": true,
+    "hasLiveMusic": false,
+    "hasDancing": false,
+    "hasHappyHour": true,
+    "hasReservations": true,
+    "ageRestriction": "21+"
   },
   {
     "id": 3,
@@ -1512,7 +1524,13 @@ export const venues: Venue[] = [
     "coordinates": {
       "latitude": 37.7749,
       "longitude": -122.4194
-    }
+    },
+    "hasOutdoorSeating": false,
+    "hasLiveMusic": true,
+    "hasDancing": true,
+    "hasHappyHour": false,
+    "hasReservations": false,
+    "ageRestriction": "21+"
   },
   {
     "id": 39,

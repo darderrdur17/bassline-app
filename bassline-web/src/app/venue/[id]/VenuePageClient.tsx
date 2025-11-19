@@ -182,7 +182,7 @@ export default function VenuePageClient({ venue }: VenuePageClientProps) {
                 <div>
                   <h3 className="text-xl font-bold mb-4 text-[#E53935] font-title">Hours</h3>
                   <div className="space-y-2 text-gray-700">
-                    {formatVenueHours(venue.hours).split('; ').map((part, idx) => (
+                    {formatVenueHours(typeof venue.hours === 'string' ? venue.hours : 'Hours vary').split('; ').map((part, idx) => (
                       <div key={idx} className="flex items-center gap-2">
                         <span className="w-2 h-2 bg-[#E53935] rounded-full"></span>
                         <span className="font-body">{part}</span>
