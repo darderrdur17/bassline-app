@@ -1,5 +1,6 @@
 // Mapbox configuration
-export const MAPBOX_ACCESS_TOKEN = process.env.NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN || 'pk.eyJ1IjoiZXhhbXBsZSIsImEiOiJjbGV4YW1wbGVrZXkifQ.example';
+// Using free MapLibre GL JS instead of Mapbox - no API key needed!
+export const MAPLIBRE_STYLE_URL = 'https://demotiles.maplibre.org/style.json';
 
 // API endpoints (for future backend integration)
 export const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL || 'http://localhost:3001';

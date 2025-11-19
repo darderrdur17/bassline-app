@@ -2,7 +2,8 @@
 
 import React, { useEffect, useRef, useState, useCallback } from 'react';
 import Map, { Marker, Popup, NavigationControl, GeolocateControl, FullscreenControl, ScaleControl } from 'react-map-gl';
-import 'mapbox-gl/dist/mapbox-gl.css';
+import maplibreGl from 'maplibre-gl';
+import 'maplibre-gl/dist/maplibre-gl.css';
 import { Venue, Coordinates, MapViewport } from '@/types/venue';
 import { useVenueStore, useVenueSelectors } from '@/stores/useVenueStore';
 import VenueMarker from './VenueMarker';
@@ -10,7 +11,7 @@ import VenuePopup from './VenuePopup';
 import MapControls from './MapControls';
 import HeatmapLayer from './HeatmapLayer';
 import ClusterLayer from './ClusterLayer';
-import { MAPBOX_ACCESS_TOKEN } from '@/lib/config';
+import { MAPLIBRE_STYLE_URL } from '@/lib/config';
 
 interface MapboxMapProps {
   className?: string;
@@ -113,12 +114,9 @@ const MapboxMap: React.FC<MapboxMapProps> = ({
     setHoveredVenue(venue);
   }, []);
 
-  // Map style based on features
+  // Using MapLibre - single style URL
   const getMapStyle = () => {
-    if (enable3DBuildings) {
-      return 'mapbox://styles/mapbox/streets-v12';
-    }
-    return 'mapbox://styles/mapbox/light-v11';
+    return MAPLIBRE_STYLE_URL;
   };
 
   return (
@@ -127,9 +125,8 @@ const MapboxMap: React.FC<MapboxMapProps> = ({
         ref={mapRef}
         {...viewport}
         onMove={handleViewportChange}
-        mapboxAccessToken={MAPBOX_ACCESS_TOKEN}
         style={{ width: '100%', height: '100%' }}
-        mapStyle={getMapStyle()}
+        mapStyle={MAPLIBRE_STYLE_URL}
         onLoad={() => setIsLoading(false)}
         interactiveLayerIds={['venue-markers']}
         pitch={enable3DBuildings ? 45 : 0}
