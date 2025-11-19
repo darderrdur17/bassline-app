@@ -1,3 +1,5 @@
+'use client';
+
 import { notFound } from 'next/navigation';
 import { venues } from '@/data/venues';
 import { Metadata } from 'next';
@@ -12,8 +14,6 @@ export async function generateMetadata({ params }: { params: { id: string } }): 
     description: venue?.shortDescription || 'Venue details on Bassline',
   };
 }
-
-'use client';
 
 export default function VenuePage({ params }: { params: { id: string } }) {
   const router = useRouter();
