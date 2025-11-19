@@ -145,15 +145,16 @@ export default function VenueCard({ venue, onPress, onClose, preview = false, on
             </View>
           </View>
 
-          {/* Crowd Level & Wait */}
-          <View style={styles.statusRow}>
-            <View style={styles.crowdIndicator}>
-              <View style={[styles.crowdDot, { backgroundColor: getCrowdColor(venue.crowdLevel) }]} />
-              <Text style={styles.crowdText}>{formatCrowdLevel(venue.crowdLevel)}</Text>
+          {/* Crowd Level & Uber */}
+          {venue.crowdLevel && (
+            <View style={styles.statusRow}>
+              <View style={styles.crowdIndicator}>
+                <View style={[styles.crowdDot, { backgroundColor: getCrowdColor(venue.crowdLevel) }]} />
+                <Text style={styles.crowdText}>{formatCrowdLevel(venue.crowdLevel)}</Text>
+              </View>
+              {venue.estimatedUber && <Text style={styles.uberCost}>{venue.estimatedUber} Uber</Text>}
             </View>
-            <Text style={styles.waitTime}>{venue.waitTime} min wait</Text>
-            <Text style={styles.uberCost}>{venue.estimatedUber} Uber</Text>
-          </View>
+          )}
 
           {/* Social Media Buttons */}
           <View style={{ flexDirection: 'row', marginBottom: spacing.sm }}>

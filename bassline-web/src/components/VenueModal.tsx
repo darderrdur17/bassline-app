@@ -50,85 +50,147 @@ export default function VenueModal({ venue, onClose }: Props) {
             </div>
           )}
 
-          {/* Venue Details Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
-            <div className="space-y-3 text-sm font-body">
+          {/* Venue Details - Organized by Database Fields */}
+          <div className="space-y-4 mb-6">
+            {/* Name - Already shown in header */}
+            
+            {/* Pricing */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm font-body">
               <div className="flex justify-between">
-                <span className="font-semibold text-gray-700">Type:</span>
+                <span className="font-semibold text-gray-700">Pricing:</span>
+                <span className="text-gray-900 font-medium">{venue.pricing}</span>
+              </div>
+              {venue.averageDrinkPrice && (
+                <div className="flex justify-between">
+                  <span className="font-semibold text-gray-700">Average Drink Price:</span>
+                  <span className="text-gray-900">{venue.averageDrinkPrice}</span>
+                </div>
+              )}
+            </div>
+
+            {/* Description - Already shown above */}
+            
+            {/* Where you go if */}
+            {venue.whereToGoIf && (
+              <div>
+                <h4 className="font-semibold text-gray-700 mb-2 font-body">Where you go if:</h4>
+                <p className="text-gray-900 text-sm font-body">{venue.whereToGoIf}</p>
+              </div>
+            )}
+
+            {/* Bar Type */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm font-body">
+              <div className="flex justify-between">
+                <span className="font-semibold text-gray-700">Bar Type:</span>
                 <span className="text-gray-900">{venue.type}</span>
               </div>
               <div className="flex justify-between">
                 <span className="font-semibold text-gray-700">Neighborhood:</span>
                 <span className="text-gray-900">{venue.neighborhood}</span>
               </div>
-              <div className="flex justify-between items-start">
-                <span className="font-semibold text-gray-700">Hours: </span>
-                <span className="text-gray-900 text-right">
-                  {formatVenueHours(venue.hours).split('; ').map((part, idx, arr) => (
-                    <React.Fragment key={idx}>
-                      {part}
-                      {idx < arr.length - 1 && <br />}
-                    </React.Fragment>
-                  ))}
-                </span>
-              </div>
             </div>
-            
-            <div className="space-y-3 text-sm font-body">
-              <div className="flex justify-between">
-                <span className="font-semibold text-gray-700">Pricing:</span>
-                <span className="text-gray-900 font-medium">{venue.pricing}</span>
-              </div>
-              <div className="flex justify-between">
-                <span className="font-semibold text-gray-700">Rating:</span>
-                <span className="text-gray-900 flex items-center gap-1">
-                  ⭐ {venue.rating}
-                </span>
-              </div>
-              <div className="flex justify-between">
-                <span className="font-semibold text-gray-700">Wait Time:</span>
-                <span className="text-gray-900">{venue.waitTime}</span>
-              </div>
-            </div>
-          </div>
 
-          {/* Additional Details */}
-          <div className="space-y-4 mb-6">
-              {venue.ambiance && (
-                <div>
-                  <h4 className="font-semibold text-gray-700 mb-2 font-body">Ambiance:</h4>
-                  <div className="flex flex-wrap gap-2">
-                    {venue.ambiance.map((item) => {
-                      const upperItem = item ? String(item).toUpperCase() : '';
-                      return (
-                        <span key={item} className="px-3 py-1 bg-gray-100 text-gray-800 rounded-full text-xs font-medium font-body" style={{ textTransform: 'uppercase' }}>
-                          {upperItem}
-                        </span>
-                      );
-                    })}
-                  </div>
-                </div>
-              )}
-            
+            {/* Hours */}
             <div>
-              {venue.musicGenre && (
-                <>
-                  <h4 className="font-semibold text-gray-700 mb-2 font-body">Music:</h4>
-                  <div className="flex flex-wrap gap-2">
-                    {venue.musicGenre.map((genre) => (
-                      <span key={genre} className="px-3 py-1 bg-[#E53935]/10 text-[#E53935] rounded-full text-xs font-medium font-body">
-                        {genre}
-                      </span>
-                    ))}
-                  </div>
-                </>
-              )}
+              <h4 className="font-semibold text-gray-700 mb-2 font-body">Hours:</h4>
+              <div className="text-gray-900 text-sm font-body">
+                {formatVenueHours(venue.hours).split('; ').map((part, idx, arr) => (
+                  <React.Fragment key={idx}>
+                    {part}
+                    {idx < arr.length - 1 && <br />}
+                  </React.Fragment>
+                ))}
+              </div>
             </div>
 
+            {/* You can expect (Ambiance) */}
+            {venue.ambiance && venue.ambiance.length > 0 && (
+              <div>
+                <h4 className="font-semibold text-gray-700 mb-2 font-body">You can expect:</h4>
+                <div className="flex flex-wrap gap-2">
+                  {venue.ambiance.map((item) => {
+                    const upperItem = item ? String(item).toUpperCase() : '';
+                    return (
+                      <span key={item} className="px-3 py-1 bg-gray-100 text-gray-800 rounded-full text-xs font-medium font-body" style={{ textTransform: 'uppercase' }}>
+                        {upperItem}
+                      </span>
+                    );
+                  })}
+                </div>
+              </div>
+            )}
+
+            {/* Cuisine */}
             {venue.cuisine && (
               <div>
                 <h4 className="font-semibold text-gray-700 mb-2 font-body">Cuisine:</h4>
                 <p className="text-gray-900 text-sm font-body">{venue.cuisine}</p>
+              </div>
+            )}
+
+            {/* Drinks */}
+            {venue.recommendedDrinks && venue.recommendedDrinks.length > 0 && (
+              <div>
+                <h4 className="font-semibold text-gray-700 mb-2 font-body">Drinks:</h4>
+                <div className="flex flex-wrap gap-2">
+                  {venue.recommendedDrinks.map((drink) => (
+                    <span key={drink} className="px-3 py-1 bg-[#E53935]/10 text-[#E53935] rounded-full text-xs font-medium font-body">
+                      {drink}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            )}
+
+            {/* Recs (Recommendations) */}
+            {venue.recommendations && venue.recommendations.length > 0 && (
+              <div>
+                <h4 className="font-semibold text-gray-700 mb-2 font-body">Recs:</h4>
+                <p className="text-gray-900 text-sm font-body">{venue.recommendations.join(', ')}</p>
+              </div>
+            )}
+
+            {/* Accolades */}
+            {venue.accolades && venue.accolades !== '—' && (
+              <div>
+                <h4 className="font-semibold text-gray-700 mb-2 font-body">Accolades:</h4>
+                <p className="text-gray-900 text-sm font-body">{venue.accolades}</p>
+              </div>
+            )}
+
+            {/* Tags */}
+            {venue.tags && venue.tags.length > 0 && (
+              <div>
+                <h4 className="font-semibold text-gray-700 mb-2 font-body">Tags:</h4>
+                <div className="flex flex-wrap gap-2">
+                  {venue.tags.map((tag) => (
+                    <span key={tag} className="px-3 py-1 bg-gray-100 text-gray-800 rounded-full text-xs font-medium font-body">
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            )}
+
+            {/* Music Genre */}
+            {venue.musicGenre && venue.musicGenre.length > 0 && (
+              <div>
+                <h4 className="font-semibold text-gray-700 mb-2 font-body">Music:</h4>
+                <div className="flex flex-wrap gap-2">
+                  {venue.musicGenre.map((genre) => (
+                    <span key={genre} className="px-3 py-1 bg-[#E53935]/10 text-[#E53935] rounded-full text-xs font-medium font-body">
+                      {genre}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            )}
+
+            {/* Good to know */}
+            {venue.goodToKnow && (
+              <div>
+                <h4 className="font-semibold text-gray-700 mb-2 font-body">Good to know:</h4>
+                <p className="text-gray-900 text-sm font-body">{venue.goodToKnow}</p>
               </div>
             )}
           </div>

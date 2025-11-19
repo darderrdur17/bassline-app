@@ -41,7 +41,7 @@ export default function VenuePage({ params }: { params: { id: string } }) {
       )}
 
       <div className="max-w-3xl w-full px-6 py-4">
-        <h1 className="text-4xl font-brand mb-2" style={{ color: '#E53935' }}>{venue.name}</h1>
+        <h1 className="text-4xl font-brand mb-2" style={{ color: '#E53935' }}>{venue.name} {venue.pricing}</h1>
         {venue.shortDescription && (
           <p className="text-lg mb-4 text-gray-800">
             {(() => {
@@ -53,10 +53,62 @@ export default function VenuePage({ params }: { params: { id: string } }) {
           </p>
         )}
         {venue.accolades && <p className="text-sm text-yellow-700 mb-4 font-semibold">🏆 {venue.accolades}</p>}
+      </div>
 
-        <div className="space-y-2 text-base text-gray-800">
-          <p><span className="font-semibold text-gray-900">Type:</span> <span className="text-gray-700">{venue.type}</span></p>
-          {venue.cuisine && <p><span className="font-semibold text-gray-900">Cuisine:</span> <span className="text-gray-700">{venue.cuisine}</span></p>}
+      {/* Red Section with Venue Details - Following Design Template */}
+      <div className="w-full bg-[#E53935] text-white py-12 px-6">
+        <div className="max-w-3xl mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div>
+              {venue.heroImage && (
+                // eslint-disable-next-line @next/next/no-img-element
+                <img 
+                  src={typeof venue.heroImage === 'string' ? venue.heroImage : undefined} 
+                  alt={venue.name} 
+                  className="w-full h-64 object-cover rounded-lg mb-6"
+                />
+              )}
+            </div>
+            <div className="space-y-3 text-white font-bold">
+              <p><span className="uppercase">VENUE:</span> {venue.type}</p>
+              {venue.hours && (
+                <p><span className="uppercase">TIME:</span> {formatVenueHours(venue.hours).split('; ')[0]}</p>
+              )}
+              {venue.ambiance && venue.ambiance.length > 0 && (
+                <p><span className="uppercase">AMBIANCE:</span> {(() => {
+                  const ambienceText = Array.isArray(venue.ambiance) ? venue.ambiance.join(', ') : venue.ambiance || '';
+                  return ambienceText.toUpperCase();
+                })()}</p>
+              )}
+              {venue.musicGenre && venue.musicGenre.length > 0 && (
+                <p><span className="uppercase">GENRE:</span> {venue.musicGenre.join(', ').toUpperCase()}</p>
+              )}
+              {venue.dressCode && (
+                <p><span className="uppercase">DRESSCODE:</span> {venue.dressCode.toUpperCase()}</p>
+              )}
+              {venue.crowd && (
+                <p><span className="uppercase">CROWD:</span> {Array.isArray(venue.crowd) ? venue.crowd.join(', ').toUpperCase() : venue.crowd.toUpperCase()}</p>
+              )}
+              {venue.estimatedUber && (
+                <p><span className="uppercase">ESTIMATED UBER:</span> {venue.estimatedUber}</p>
+              )}
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Additional Details Section */}
+      <div className="max-w-3xl w-full px-6 py-4">
+        <div className="space-y-4 text-base text-gray-800">
+          {venue.averageDrinkPrice && (
+            <p><span className="font-semibold text-gray-900">Average Drink Price:</span> <span className="text-gray-700">{venue.averageDrinkPrice}</span></p>
+          )}
+          {venue.whereToGoIf && (
+            <p><span className="font-semibold text-gray-900">Where you go if:</span> <span className="text-gray-700">{venue.whereToGoIf}</span></p>
+          )}
+          {venue.cuisine && (
+            <p><span className="font-semibold text-gray-900">Cuisine:</span> <span className="text-gray-700">{venue.cuisine}</span></p>
+          )}
           <p><span className="font-semibold text-gray-900">Neighborhood:</span> <span className="text-gray-700">{venue.neighborhood}</span></p>
           <div>
             <span className="font-semibold text-gray-900">Hours: </span>
@@ -66,16 +118,14 @@ export default function VenuePage({ params }: { params: { id: string } }) {
               ))}
             </div>
           </div>
-          {venue.ambiance && (
-            <p><span className="font-semibold text-gray-900">Ambiance:</span> <span className="text-gray-700" style={{ textTransform: 'uppercase' }}>
-              {(() => {
-                const ambienceText = Array.isArray(venue.ambiance) ? venue.ambiance.join(', ') : venue.ambiance || '';
-                return ambienceText ? ambienceText.toUpperCase() : '';
-              })()}
-            </span></p>
+          {venue.recommendedDrinks && venue.recommendedDrinks.length > 0 && (
+            <p><span className="font-semibold text-gray-900">Drinks:</span> <span className="text-gray-700">{venue.recommendedDrinks.join(', ')}</span></p>
           )}
-          {venue.musicGenre && (
-            <p><span className="font-semibold text-gray-900">Music:</span> <span className="text-gray-700">{venue.musicGenre.join(', ')}</span></p>
+          {venue.recommendations && venue.recommendations.length > 0 && (
+            <p><span className="font-semibold text-gray-900">Recs:</span> <span className="text-gray-700">{venue.recommendations.join(', ')}</span></p>
+          )}
+          {venue.goodToKnow && (
+            <p><span className="font-semibold text-gray-900">Good to know:</span> <span className="text-gray-700">{venue.goodToKnow}</span></p>
           )}
         </div>
 

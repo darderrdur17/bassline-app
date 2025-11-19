@@ -172,52 +172,83 @@ export default function VenueDetailScreen({ navigation, route }) {
           </View>
         </View>
 
-        {/* Details Cards */}
+        {/* Details Cards - Organized by Database Fields */}
         <View style={styles.detailsGrid}>
-          <View style={styles.detailCard}>
-            <Text style={styles.detailTitle}>MUSIC & VIBES</Text>
-            <View style={styles.detailContent}>
-              <Text style={styles.detailLabel}>Genre:</Text>
-              <Text style={styles.detailValue}>{Array.isArray(venue.musicGenre) ? venue.musicGenre.join(', ') : 'N/A'}</Text>
+          {/* Name - Already shown in header */}
+          {/* Pricing - Already shown in header */}
+          
+          {venue.averageDrinkPrice && (
+            <View style={styles.detailCard}>
+              <Text style={styles.detailTitle}>AVERAGE DRINK PRICE</Text>
+              <Text style={styles.detailValue}>{venue.averageDrinkPrice}</Text>
             </View>
-            <View style={styles.detailContent}>
-              <Text style={styles.detailLabel}>Ambiance:</Text>
+          )}
+
+          {/* Description - Already shown above */}
+          
+          {venue.whereToGoIf && (
+            <View style={styles.detailCard}>
+              <Text style={styles.detailTitle}>WHERE YOU GO IF</Text>
+              <Text style={styles.detailValue}>{venue.whereToGoIf}</Text>
+            </View>
+          )}
+
+          {/* Bar Type - Already shown in hero overlay */}
+          {/* Hours - Already shown in quick stats */}
+          
+          {venue.ambiance && venue.ambiance.length > 0 && (
+            <View style={styles.detailCard}>
+              <Text style={styles.detailTitle}>YOU CAN EXPECT</Text>
               <Text style={styles.detailValue}>
                 {(() => {
                   const ambienceText = Array.isArray(venue.ambiance) ? venue.ambiance.join(', ') : venue.ambiance;
-                  return ambienceText ? ambienceText.toUpperCase() : 'N/A';
+                  return ambienceText ? ambienceText.toUpperCase() : '';
                 })()}
               </Text>
             </View>
-            <View style={styles.detailContent}>
-              <Text style={styles.detailLabel}>Best Time:</Text>
-              <Text style={styles.detailValue}>{venue.optimalTime || 'N/A'}</Text>
-            </View>
-          </View>
+          )}
 
-          <View style={styles.detailCard}>
-            <Text style={styles.detailTitle}>CROWD & INFO</Text>
-            <View style={styles.detailContent}>
-              <Text style={styles.detailLabel}>Crowd:</Text>
-              <Text style={styles.detailValue}>{Array.isArray(venue.crowd) ? venue.crowd.join(', ') : venue.crowd}</Text>
-            </View>
-            <View style={styles.detailContent}>
-              <Text style={styles.detailLabel}>Wait Time:</Text>
-              <Text style={styles.detailValue}>{venue.waitTime ? `${venue.waitTime} minutes` : 'N/A'}</Text>
-            </View>
-          </View>
-
-          {venue.food && (
+          {venue.cuisine && (
             <View style={styles.detailCard}>
-              <Text style={styles.detailTitle}>FOOD & DRINKS</Text>
-              <View style={styles.detailContent}>
-                <Text style={styles.detailLabel}>Food:</Text>
-                <Text style={styles.detailValue}>{venue.food}</Text>
-              </View>
-              <View style={styles.detailContent}>
-                <Text style={styles.detailLabel}>Recommended:</Text>
-                <Text style={styles.detailValue}>{Array.isArray(venue.recommendedDrinks) ? venue.recommendedDrinks.join(', ') : 'N/A'}</Text>
-              </View>
+              <Text style={styles.detailTitle}>CUISINE</Text>
+              <Text style={styles.detailValue}>{venue.cuisine}</Text>
+            </View>
+          )}
+
+          {venue.recommendedDrinks && venue.recommendedDrinks.length > 0 && (
+            <View style={styles.detailCard}>
+              <Text style={styles.detailTitle}>DRINKS</Text>
+              <Text style={styles.detailValue}>{Array.isArray(venue.recommendedDrinks) ? venue.recommendedDrinks.join(', ') : 'N/A'}</Text>
+            </View>
+          )}
+
+          {venue.recommendations && venue.recommendations.length > 0 && (
+            <View style={styles.detailCard}>
+              <Text style={styles.detailTitle}>RECS</Text>
+              <Text style={styles.detailValue}>{venue.recommendations.join(', ')}</Text>
+            </View>
+          )}
+
+          {venue.accolades && venue.accolades !== '—' && (
+            <View style={styles.detailCard}>
+              <Text style={styles.detailTitle}>ACCOLADES</Text>
+              <Text style={styles.detailValue}>{venue.accolades}</Text>
+            </View>
+          )}
+
+          {/* Tags - Already shown below */}
+          
+          {venue.musicGenre && venue.musicGenre.length > 0 && (
+            <View style={styles.detailCard}>
+              <Text style={styles.detailTitle}>MUSIC GENRE</Text>
+              <Text style={styles.detailValue}>{Array.isArray(venue.musicGenre) ? venue.musicGenre.join(', ') : 'N/A'}</Text>
+            </View>
+          )}
+
+          {venue.goodToKnow && (
+            <View style={styles.detailCard}>
+              <Text style={styles.detailTitle}>GOOD TO KNOW</Text>
+              <Text style={styles.detailValue}>{venue.goodToKnow}</Text>
             </View>
           )}
         </View>
