@@ -1,4 +1,4 @@
-import React, { useRef, useEffect } from 'react';
+import React, { useRef, useEffect, useState } from 'react';
 import {
   View,
   Text,
@@ -11,6 +11,8 @@ import {
 } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { colors, typography, spacing, borderRadius, shadows, fonts, responsiveTypography } from '../styles/theme';
+import GalleryModal from './GalleryModal';
+import { venueImages, nameToImageKey } from '../data/venueImages';
 
 const { width } = Dimensions.get('window');
 
@@ -18,6 +20,9 @@ export default function VenueCard({ venue, onPress, onClose, preview = false, on
   // Fade-in & slide-up animation for hover notification / preview card
   const translateY = useRef(new Animated.Value(40)).current;
   const opacity = useRef(new Animated.Value(0)).current;
+
+  // Gallery modal state
+  const [galleryVisible, setGalleryVisible] = useState(false);
 
   useEffect(() => {
     Animated.parallel([
@@ -51,6 +56,29 @@ export default function VenueCard({ venue, onPress, onClose, preview = false, on
   const isRestaurantType = () => {
     const restaurantTypes = ['Cocktail Bar', 'Wine Bar', 'Mexican Restaurant Bar', 'Wine Bar / Restaurant', 'Restaurant'];
     return restaurantTypes.some(type => venue.type.includes(type) || type.includes(venue.type));
+  };
+
+  const getGalleryImages = () => {
+    const venueImageData = venueImages[nameToImageKey(venue.name)];
+    if (venueImageData && venueImageData.gallery) {
+      return venueImageData.gallery;
+    }
+    // Fallback to venue.gallery if available
+    return Array.isArray(venue.gallery) ? venue.gallery.map(img =>
+      typeof img === 'string' ? { uri: img } : img
+    ) : [];
+  };
+
+  const hasGalleryImages = () => {
+    return getGalleryImages().length > 0;
+  };
+
+  const openGallery = () => {
+    setGalleryVisible(true);
+  };
+
+  const closeGallery = () => {
+    setGalleryVisible(false);
   };
 
   const previewStyles = preview ? {
@@ -194,11 +222,18 @@ export default function VenueCard({ venue, onPress, onClose, preview = false, on
               <Ionicons name="navigate-outline" size={16} color={colors.white} />
               <Text style={styles.primaryButtonText}>DIRECTIONS</Text>
             </TouchableOpacity>
-            
+
             <TouchableOpacity style={styles.secondaryButton}>
               <Ionicons name="call-outline" size={16} color={colors.primary} />
               <Text style={styles.secondaryButtonText}>CALL</Text>
             </TouchableOpacity>
+
+            {hasGalleryImages() && (
+              <TouchableOpacity style={styles.galleryButton} onPress={openGallery}>
+                <Ionicons name="images-outline" size={16} color={colors.white} />
+                <Text style={styles.galleryButtonText}>GALLERY</Text>
+              </TouchableOpacity>
+            )}
           </View>
 
           {/* Nearby Suggestions */}
@@ -250,6 +285,14 @@ export default function VenueCard({ venue, onPress, onClose, preview = false, on
           )}
         </View>
       </TouchableOpacity>
+
+      {/* Gallery Modal */}
+      <GalleryModal
+        visible={galleryVisible}
+        images={getGalleryImages()}
+        onClose={closeGallery}
+        venueName={venue.name}
+      />
     </Animated.View>
   );
 }
@@ -439,6 +482,25 @@ const styles = StyleSheet.create({
     borderRadius: borderRadius.medium,
   },
   secondaryButtonText: {
+    color: colors.white,
+    fontWeight: 'bold',
+    fontSize: 14,
+    marginLeft: spacing.xs,
+    letterSpacing: 0.5,
+  },
+  galleryButton: {
+    flex: 1,
+    backgroundColor: 'rgba(255, 255, 255, 0.2)',
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    paddingVertical: spacing.sm,
+    borderRadius: borderRadius.medium,
+    marginTop: spacing.sm,
+    marginLeft: spacing.sm,
+    marginRight: spacing.sm,
+  },
+  galleryButtonText: {
     color: colors.white,
     fontWeight: 'bold',
     fontSize: 14,

@@ -7,15 +7,7 @@ import dynamic from 'next/dynamic';
 
 // Dynamic imports for better performance
 const MapboxMap = dynamic(() => import('@/components/Map/MapboxMap'), {
-  ssr: false, 
-  loading: () => (
-    <div className="h-96 sm:h-[600px] bg-ui-background rounded-xl animate-pulse flex items-center justify-center">
-      <div className="text-center">
-        <div className="animate-spin rounded-full h-12 w-12 border-4 border-brand-red border-t-transparent mx-auto mb-4"></div>
-        <p className="text-ui-text-secondary font-body">Loading interactive map...</p>
-      </div>
-    </div>
-  )
+  ssr: false
 });
 
 const VenueModal = dynamic(() => import('@/components/VenueModal'), { ssr: false });

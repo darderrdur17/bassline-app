@@ -30,11 +30,11 @@ const MapboxMap: React.FC<MapboxMapProps> = ({
   const [viewport, setViewport] = useState<MapViewport>({
     latitude: 37.7749,
     longitude: -122.4194,
-    zoom: 13,
+    zoom: 12, // Slightly zoomed out to show more of SF initially
   });
   const [selectedVenue, setSelectedVenue] = useState<Venue | null>(null);
   const [hoveredVenue, setHoveredVenue] = useState<Venue | null>(null);
-  const [isLoading, setIsLoading] = useState(true);
+  const [isMapLoaded, setIsMapLoaded] = useState(false);
   const [mapBounds, setMapBounds] = useState<any>(null);
 
   const { filteredVenues, mapCenter, mapZoom, setMapCenter, setMapZoom } = useVenueStore();
@@ -45,8 +45,8 @@ const MapboxMap: React.FC<MapboxMapProps> = ({
 
   // Filter venues by viewport for performance (only show venues in current map bounds)
   const venues = React.useMemo(() => {
-    if (!mapBounds || allVenues.length <= 50) {
-      // Show all venues if bounds not set yet or small dataset
+    // Show all venues immediately when map is not loaded yet
+    if (!isMapLoaded || !mapBounds || allVenues.length <= 50) {
       return allVenues;
     }
 
@@ -55,7 +55,7 @@ const MapboxMap: React.FC<MapboxMapProps> = ({
       const { latitude, longitude } = venue.coordinates;
       return mapBounds.contains([longitude, latitude]);
     });
-  }, [allVenues, mapBounds]);
+  }, [allVenues, mapBounds, isMapLoaded]);
 
   // Update viewport when store changes
   useEffect(() => {
@@ -114,13 +114,13 @@ const MapboxMap: React.FC<MapboxMapProps> = ({
     );
   }, [venues]);
 
-  // Auto-fit bounds when venues change
+  // Auto-fit bounds when venues change and map is loaded
   useEffect(() => {
-    if (venues.length > 0 && isLoading) {
-      setTimeout(fitBoundsToVenues, 500);
-      setIsLoading(false);
+    if (venues.length > 0 && isMapLoaded) {
+      // Immediate fit bounds instead of delayed
+      fitBoundsToVenues();
     }
-  }, [venues, isLoading, fitBoundsToVenues]);
+  }, [venues, isMapLoaded, fitBoundsToVenues]);
 
   // Handle venue selection
   const handleVenueSelect = useCallback((venue: Venue) => {
@@ -159,7 +159,7 @@ const MapboxMap: React.FC<MapboxMapProps> = ({
         style={{ width: '100%', height: '100%' }}
         mapStyle={MAPLIBRE_STYLE_URL}
         onLoad={() => {
-          setIsLoading(false);
+          setIsMapLoaded(true);
           // Initialize map bounds
           if (mapRef.current) {
             const bounds = mapRef.current.getBounds();
@@ -230,27 +230,23 @@ const MapboxMap: React.FC<MapboxMapProps> = ({
         venueCount={venues.length}
       />
 
-      {/* Loading Overlay */}
-      {isLoading && (
-        <div className="absolute inset-0 bg-ui-background/80 backdrop-blur-sm flex items-center justify-center z-50">
-          <div className="flex flex-col items-center gap-4">
-            <div className="animate-spin rounded-full h-12 w-12 border-4 border-brand-red border-t-transparent"></div>
-            <p className="text-ui-text font-body">Loading venues...</p>
-          </div>
-        </div>
-      )}
 
       {/* Venue Count Badge */}
-      {venues.length > 0 && (
-        <div className="absolute top-4 left-4 bg-ui-surface/95 backdrop-blur-sm rounded-xl px-4 py-2 shadow-lg border border-ui-border">
-          <div className="flex items-center gap-2">
-            <span className="text-2xl">📍</span>
+      <div className="absolute top-4 left-4 bg-ui-surface/95 backdrop-blur-sm rounded-xl px-4 py-2 shadow-lg border border-ui-border">
+        <div className="flex items-center gap-2">
+          <span className="text-2xl">📍</span>
+          {venues.length > 0 ? (
             <span className="text-ui-text font-semibold font-body">
               {venues.length} venue{venues.length !== 1 ? 's' : ''}
             </span>
-          </div>
+          ) : (
+            <div className="flex items-center gap-2">
+              <div className="animate-spin rounded-full h-4 w-4 border-2 border-brand-red border-t-transparent"></div>
+              <span className="text-ui-text-secondary font-body text-sm">Loading venues...</span>
+            </div>
+          )}
         </div>
-      )}
+      </div>
     </div>
   );
 };
