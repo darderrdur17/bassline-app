@@ -75,21 +75,6 @@ const VenueCard: React.FC<VenueCardProps> = ({
   };
 
 
-  const handleGalleryNavigation = (direction: 'next' | 'prev') => {
-    if (!galleryVenue) return;
-
-    const currentIndex = venues.findIndex(v => v.id === galleryVenue.id);
-    if (currentIndex === -1) return;
-
-    let newIndex;
-    if (direction === 'next') {
-      newIndex = (currentIndex + 1) % venues.length;
-    } else {
-      newIndex = (currentIndex - 1 + venues.length) % venues.length;
-    }
-
-    setGalleryVenue(venues[newIndex]);
-  };
 
   const cardVariants = {
     default: 'venue-card',
@@ -327,30 +312,8 @@ const VenueCard: React.FC<VenueCardProps> = ({
               </div>
             </div>
 
-            {/* Gallery Navigation */}
+            {/* Gallery Content */}
             <div className="p-6">
-              <div className="flex items-center justify-between mb-4">
-                <button
-                  onClick={() => handleGalleryNavigation('prev')}
-                  className="flex items-center gap-2 px-4 py-2 bg-gray-100 hover:bg-gray-200 rounded-lg transition-colors"
-                >
-                  <ChevronLeft size={16} />
-                  Previous Venue
-                </button>
-
-                <span className="text-sm text-gray-600">
-                  {venues.findIndex(v => v.id === galleryVenue.id) + 1} of {venues.length}
-                </span>
-
-                <button
-                  onClick={() => handleGalleryNavigation('next')}
-                  className="flex items-center gap-2 px-4 py-2 bg-gray-100 hover:bg-gray-200 rounded-lg transition-colors"
-                >
-                  Next Venue
-                  <ChevronRight size={16} />
-                </button>
-              </div>
-
               {/* Images */}
               <div className="space-y-4">
                 {/* Hero Image */}
