@@ -222,7 +222,7 @@ export default function VenueCard({ venue, onPress, onClose, preview = false, on
               <Ionicons name="navigate-outline" size={16} color={colors.white} />
               <Text style={styles.primaryButtonText}>DIRECTIONS</Text>
             </TouchableOpacity>
-
+            
             <TouchableOpacity style={styles.secondaryButton}>
               <Ionicons name="call-outline" size={16} color={colors.primary} />
               <Text style={styles.secondaryButtonText}>CALL</Text>
