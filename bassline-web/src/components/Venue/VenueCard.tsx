@@ -150,7 +150,7 @@ const VenueCard: React.FC<VenueCardProps> = ({
                 <Star size={14} className="text-yellow-400 fill-current" />
                 <span className="font-semibold">{venue.rating}</span>
               </div>
-              <span className="font-medium">{venue.pricing}</span>
+              <span className="font-roboto-medium">{venue.pricing}</span>
             </div>
           </div>
         </div>
@@ -160,13 +160,13 @@ const VenueCard: React.FC<VenueCardProps> = ({
       <div className="p-4">
         {/* Title and Rating */}
         <div className="mb-3">
-          <h3 className="text-lg font-bold text-gray-900 hover:text-brand-red transition-colors line-clamp-1 mb-1">
+          <h3 className="text-venue-base font-anton text-gray-900 hover:text-brand-red transition-colors line-clamp-1 mb-1 uppercase tracking-heading">
             {venue.name}
           </h3>
-          <div className="flex items-center gap-2 text-sm text-gray-600">
+          <div className="flex items-center gap-2 text-small text-gray-600">
             <div className="flex items-center gap-1">
               <Star size={12} className="text-yellow-500 fill-current" />
-              <span className="font-medium">{venue.rating}</span>
+              <span className="font-roboto-medium">{venue.rating}</span>
             </div>
             <span>•</span>
             <span className="font-medium">{venue.pricing}</span>

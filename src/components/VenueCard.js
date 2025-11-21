@@ -10,7 +10,7 @@ import {
   Linking,
 } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
-import { colors, typography, spacing, borderRadius, shadows, fonts } from '../styles/theme';
+import { colors, typography, spacing, borderRadius, shadows, fonts, responsiveTypography } from '../styles/theme';
 
 const { width } = Dimensions.get('window');
 
@@ -319,9 +319,8 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   venueName: {
-    ...typography.brand,
+    ...typography.venue,
     color: colors.white,
-    fontSize: 24,
     marginBottom: spacing.xs,
   },
   venueNeighborhood: {
@@ -350,11 +349,10 @@ const styles = StyleSheet.create({
     marginBottom: spacing.xs,
   },
   infoText: {
+    ...typography.small,
     color: colors.white,
-    fontSize: 14,
     marginLeft: spacing.xs,
     opacity: 0.9,
-    fontFamily: fonts.helveticaWorld,
   },
   detailsRow: {
     marginBottom: spacing.sm,
@@ -371,11 +369,10 @@ const styles = StyleSheet.create({
     marginRight: spacing.xs,
   },
   detailValue: {
+    ...typography.xsmall,
     color: colors.white,
-    fontSize: 12,
     opacity: 0.9,
     flex: 1,
-    fontFamily: fonts.helveticaWorld,
   },
   statusRow: {
     flexDirection: 'row',
@@ -505,11 +502,10 @@ const styles = StyleSheet.create({
     resizeMode: 'cover',
   },
   shortDescription: {
+    ...typography.subheading,
     color: colors.white,
-    fontSize: 18,
     opacity: 0.95,
     marginBottom: spacing.xs,
-    fontFamily: fonts.helveticaWorld,
   },
   accolades: {
     color: colors.warning,

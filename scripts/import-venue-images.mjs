@@ -5,9 +5,9 @@ import { spawnSync } from 'child_process';
 
 const root = '/Users/derr/Documents/Random/Bassline-main';
 const inputDirs = [
-  path.join(root, 'venue-images', 'Bars'),
-  path.join(root, 'venue-images', 'Clubs'),
-  path.join(root, 'venue-images', 'Munchies'),
+  path.join(root, 'venue-images', 'Bars 2'),
+  path.join(root, 'venue-images', 'Clubs 2'),
+  path.join(root, 'venue-images', 'Munchies 2'),
 ];
 const processedDir = path.join(root, 'venue-images', '_processed');
 const assetsDir = path.join(root, 'bassline-app', 'assets', 'images', 'venues');

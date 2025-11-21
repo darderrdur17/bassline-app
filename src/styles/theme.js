@@ -1,5 +1,6 @@
 export * from '../../shared/theme';
 
-// Ensure named export `fonts` is available directly (some bundlers miss it on export *)
+// Ensure named exports are available directly (some bundlers miss them on export *)
 import shared from '../../shared/theme';
-export const fonts = shared.fonts; 
+export const fonts = shared.fonts;
+export const getResponsiveTypography = shared.getResponsiveTypography; 

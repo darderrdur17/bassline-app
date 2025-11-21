@@ -26,6 +26,59 @@
 }
 
 @layer components {
+  /* Typography Components */
+  .text-brand {
+    @apply font-brand uppercase tracking-brand font-anton leading-tight;
+  }
+
+  .text-hero {
+    @apply font-hero uppercase tracking-hero font-anton leading-tight;
+  }
+
+  .text-venue {
+    @apply font-venue uppercase tracking-heading font-anton leading-tight;
+  }
+
+  .text-heading {
+    @apply font-heading uppercase tracking-heading font-anton leading-tight;
+  }
+
+  .text-subheading {
+    @apply font-subheading uppercase tracking-subheading font-oswald leading-snug;
+  }
+
+  .text-body {
+    @apply font-body tracking-normal font-roboto leading-relaxed;
+  }
+
+  .text-body-secondary {
+    @apply font-body-secondary tracking-normal font-roboto leading-relaxed text-ui-text-secondary;
+  }
+
+  .text-small {
+    @apply font-small tracking-normal font-roboto leading-normal text-sm;
+  }
+
+  .text-xsmall {
+    @apply font-xsmall tracking-normal font-roboto leading-normal text-xs;
+  }
+
+  .text-button {
+    @apply font-button uppercase tracking-button font-oswald-semibold leading-tight;
+  }
+
+  .text-button-small {
+    @apply font-button-small uppercase tracking-button font-oswald-semibold leading-tight text-sm;
+  }
+
+  .text-label {
+    @apply font-label uppercase tracking-label font-oswald leading-tight text-xs;
+  }
+
+  .text-tagline {
+    @apply font-tagline uppercase tracking-tagline font-oswald-semibold leading-tight;
+  }
+
   /* Venue Cards */
   .venue-card {
     @apply bg-white rounded-xl shadow-lg border border-gray-200 hover:shadow-xl transition-all duration-300 hover:-translate-y-1 cursor-pointer overflow-hidden;
@@ -41,20 +94,20 @@
 
   /* Buttons */
   .btn-primary {
-    @apply bg-brand-red text-white font-button font-semibold px-6 py-3 rounded-xl hover:bg-brand-red-dark transition-all duration-300 hover:shadow-glow-red hover:scale-105 focus:outline-none focus:ring-2 focus:ring-brand-red/50;
+    @apply bg-brand-red text-white text-button px-6 py-3 rounded-xl hover:bg-brand-red-dark transition-all duration-300 hover:shadow-glow-red hover:scale-105 focus:outline-none focus:ring-2 focus:ring-brand-red/50;
   }
 
   .btn-secondary {
-    @apply bg-ui-surface text-brand-red border-2 border-brand-red font-button font-semibold px-6 py-3 rounded-xl hover:bg-brand-red hover:text-white transition-all duration-300 hover:shadow-glow-red hover:scale-105 focus:outline-none focus:ring-2 focus:ring-brand-red/50;
+    @apply bg-ui-surface text-brand-red border-2 border-brand-red text-button px-6 py-3 rounded-xl hover:bg-brand-red hover:text-white transition-all duration-300 hover:shadow-glow-red hover:scale-105 focus:outline-none focus:ring-2 focus:ring-brand-red/50;
   }
 
   .btn-ghost {
-    @apply bg-transparent text-ui-text hover:bg-ui-surface-hover font-button font-semibold px-6 py-3 rounded-xl transition-all duration-300 hover:scale-105 focus:outline-none focus:ring-2 focus:ring-ui-border;
+    @apply bg-transparent text-ui-text hover:bg-ui-surface-hover text-button px-6 py-3 rounded-xl transition-all duration-300 hover:scale-105 focus:outline-none focus:ring-2 focus:ring-ui-border;
   }
 
   /* Form Elements */
   .input-primary {
-    @apply w-full px-4 py-3 bg-ui-surface border border-ui-border rounded-xl text-ui-text placeholder-ui-text-muted focus:outline-none focus:ring-2 focus:ring-brand-red/50 focus:border-brand-red transition-all duration-300;
+    @apply w-full px-4 py-3 bg-ui-surface border border-ui-border rounded-xl text-ui-text text-body placeholder-ui-text-muted focus:outline-none focus:ring-2 focus:ring-brand-red/50 focus:border-brand-red transition-all duration-300;
   }
 
   /* Map Styles */
@@ -224,15 +277,27 @@
   backdrop-filter: blur(8px) !important;
 }
 
-/* Mobile optimizations */
-@media (max-width: 768px) {
-  .venue-card-image {
-    @apply h-40;
+  /* Responsive Typography - Basic scaling for now */
+  @media (max-width: 768px) {
+    .text-brand { font-size: 1.75rem; }
+    .text-hero { font-size: 2.5rem; }
+    .text-venue { font-size: 1.5rem; }
+    .text-heading { font-size: 1.25rem; }
+    .text-subheading { font-size: 1.125rem; }
+    .text-body { font-size: 0.95rem; }
+    .text-button { font-size: 0.9rem; }
+    .text-tagline { font-size: 1.25rem; }
   }
 
-  .btn-primary,
-  .btn-secondary,
-  .btn-ghost {
-    @apply px-4 py-2 text-sm;
+  /* Mobile optimizations */
+  @media (max-width: 768px) {
+    .venue-card-image {
+      @apply h-40;
+    }
+
+    .btn-primary,
+    .btn-secondary,
+    .btn-ghost {
+      @apply px-4 py-2 text-sm;
+    }
   }
-}

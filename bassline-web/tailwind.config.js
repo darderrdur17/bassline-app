@@ -9,6 +9,23 @@ module.exports = {
     preflight: false,
   },
   theme: {
+    screens: {
+      'xs': '475px',
+      'sm': '640px',
+      'md': '768px',
+      'lg': '1024px',
+      'xl': '1280px',
+      '2xl': '1536px',
+    },
+  theme: {
+    screens: {
+      'xs': '475px',
+      'sm': '640px',
+      'md': '768px',
+      'lg': '1024px',
+      'xl': '1280px',
+      '2xl': '1536px',
+    },
     extend: {
       colors: {
         // Brand colors
@@ -38,19 +55,83 @@ module.exports = {
         }
       },
       fontFamily: {
+        // Primary typography system
         'brand': ['var(--font-anton)', 'Impact', 'sans-serif'],
-        'title': ['var(--font-anton)', 'Impact', 'sans-serif'],
+        'hero': ['var(--font-anton)', 'Impact', 'sans-serif'],
+        'venue': ['var(--font-anton)', 'Impact', 'sans-serif'],
+        'heading': ['var(--font-anton)', 'Impact', 'sans-serif'],
+        'subheading': ['var(--font-oswald)', 'Arial', 'sans-serif'],
         'body': ['var(--font-roboto)', 'system-ui', 'sans-serif'],
+        'body-secondary': ['var(--font-roboto)', 'system-ui', 'sans-serif'],
+        'small': ['var(--font-roboto)', 'system-ui', 'sans-serif'],
+        'xsmall': ['var(--font-roboto)', 'system-ui', 'sans-serif'],
         'button': ['var(--font-oswald)', 'Arial', 'sans-serif'],
+        'button-small': ['var(--font-oswald)', 'Arial', 'sans-serif'],
+        'label': ['var(--font-oswald)', 'Arial', 'sans-serif'],
         'tagline': ['var(--font-oswald)', 'Arial', 'sans-serif'],
+
+        // Legacy mappings (for backward compatibility)
+        'title': ['var(--font-anton)', 'Impact', 'sans-serif'],
         'mono': ['var(--font-mono)', 'monospace'],
       },
       fontSize: {
-        'xs': ['0.75rem', { lineHeight: '1rem' }],
-        'sm': ['0.875rem', { lineHeight: '1.25rem' }],
-        'base': ['1rem', { lineHeight: '1.5rem' }],
-        'lg': ['1.125rem', { lineHeight: '1.75rem' }],
-        'xl': ['1.25rem', { lineHeight: '1.75rem' }],
+        // Base sizes (mobile-first)
+        'xs': ['0.75rem', { lineHeight: '1rem', letterSpacing: '0.01em' }],
+        'sm': ['0.875rem', { lineHeight: '1.25rem', letterSpacing: '0.01em' }],
+        'base': ['1rem', { lineHeight: '1.5rem', letterSpacing: '0.01em' }],
+        'lg': ['1.125rem', { lineHeight: '1.75rem', letterSpacing: '0.01em' }],
+        'xl': ['1.25rem', { lineHeight: '1.75rem', letterSpacing: '0.01em' }],
+
+        // Brand typography scale
+        'brand-sm': ['1.5rem', { lineHeight: '1.1', letterSpacing: '0.1em' }],
+        'brand-base': ['2rem', { lineHeight: '1.1', letterSpacing: '0.12em' }],
+        'brand-lg': ['2.25rem', { lineHeight: '1.05', letterSpacing: '0.14em' }],
+        'brand-xl': ['2.5rem', { lineHeight: '1.05', letterSpacing: '0.16em' }],
+
+        // Hero text
+        'hero-sm': ['2.5rem', { lineHeight: '1.05', letterSpacing: '0.08em' }],
+        'hero-base': ['3rem', { lineHeight: '1.05', letterSpacing: '0.1em' }],
+        'hero-lg': ['3.25rem', { lineHeight: '1.02', letterSpacing: '0.12em' }],
+        'hero-xl': ['3.75rem', { lineHeight: '1.02', letterSpacing: '0.14em' }],
+
+        // Venue names
+        'venue-sm': ['1.5rem', { lineHeight: '1.2', letterSpacing: '0.05em' }],
+        'venue-base': ['1.75rem', { lineHeight: '1.2', letterSpacing: '0.06em' }],
+        'venue-lg': ['2rem', { lineHeight: '1.15', letterSpacing: '0.07em' }],
+        'venue-xl': ['2.25rem', { lineHeight: '1.15', letterSpacing: '0.08em' }],
+
+        // Headings
+        'heading-sm': ['1.25rem', { lineHeight: '1.3', letterSpacing: '0.06em' }],
+        'heading-base': ['1.5rem', { lineHeight: '1.3', letterSpacing: '0.07em' }],
+        'heading-lg': ['1.75rem', { lineHeight: '1.25', letterSpacing: '0.08em' }],
+        'heading-xl': ['2rem', { lineHeight: '1.25', letterSpacing: '0.09em' }],
+
+        // Subheadings
+        'subheading-sm': ['1rem', { lineHeight: '1.4', letterSpacing: '0.05em' }],
+        'subheading-base': ['1.125rem', { lineHeight: '1.4', letterSpacing: '0.06em' }],
+        'subheading-lg': ['1.25rem', { lineHeight: '1.35', letterSpacing: '0.07em' }],
+
+        // Body text
+        'body-sm': ['0.875rem', { lineHeight: '1.5', letterSpacing: '0.01em' }],
+        'body-base': ['1rem', { lineHeight: '1.6', letterSpacing: '0.01em' }],
+        'body-lg': ['1.0625rem', { lineHeight: '1.65', letterSpacing: '0.01em' }],
+
+        // Buttons
+        'button-sm': ['0.875rem', { lineHeight: '1.2', letterSpacing: '0.04em' }],
+        'button-base': ['1rem', { lineHeight: '1.2', letterSpacing: '0.05em' }],
+        'button-lg': ['1.0625rem', { lineHeight: '1.2', letterSpacing: '0.06em' }],
+
+        // Labels/Tags
+        'label-sm': ['0.75rem', { lineHeight: '1.3', letterSpacing: '0.04em' }],
+        'label-base': ['0.875rem', { lineHeight: '1.3', letterSpacing: '0.05em' }],
+        'label-lg': ['1rem', { lineHeight: '1.3', letterSpacing: '0.06em' }],
+
+        // Taglines
+        'tagline-sm': ['1.125rem', { lineHeight: '1.2', letterSpacing: '0.08em' }],
+        'tagline-base': ['1.25rem', { lineHeight: '1.2', letterSpacing: '0.09em' }],
+        'tagline-lg': ['1.5rem', { lineHeight: '1.15', letterSpacing: '0.1em' }],
+
+        // Legacy sizes (for backward compatibility)
         '2xl': ['1.5rem', { lineHeight: '2rem' }],
         '3xl': ['1.875rem', { lineHeight: '2.25rem' }],
         '4xl': ['2.25rem', { lineHeight: '2.5rem' }],
@@ -59,6 +140,30 @@ module.exports = {
         '7xl': ['4.5rem', { lineHeight: '1' }],
         '8xl': ['6rem', { lineHeight: '1' }],
         '9xl': ['8rem', { lineHeight: '1' }],
+      },
+      fontWeight: {
+        'anton': '400', // Anton is naturally bold
+        'oswald-regular': '400',
+        'oswald-semibold': '600',
+        'roboto-regular': '400',
+        'roboto-medium': '500',
+      },
+      letterSpacing: {
+        'tighter': '-0.02em',
+        'tight': '-0.01em',
+        'normal': '0.01em',
+        'wide': '0.02em',
+        'wider': '0.04em',
+        'widest': '0.08em',
+        // Brand-specific spacing
+        'brand': '0.12em',
+        'brand-lg': '0.16em',
+        'hero': '0.1em',
+        'heading': '0.07em',
+        'subheading': '0.06em',
+        'button': '0.05em',
+        'label': '0.05em',
+        'tagline': '0.09em',
       },
       spacing: {
         '18': '4.5rem',

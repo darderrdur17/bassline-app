@@ -223,7 +223,7 @@ export const venues: Venue[] = [
     "pricing": "$$$",
     "averageDrinkPrice": "$9–13 beer, $15–22 wine",
     "hours": "Mon–Fri 5:30–9; Sat–Sun 5–9",
-    "heroImage": "/images/venues/anchovy-bar-hero.jpeg",
+    "heroImage": "/images/venues/anchovy-bar-hero.jpg",
     "description": "Leafy, coastal‑vibe seafood and wine bar by the State Bird team.",
     "tags": [
       "seafood",
@@ -374,8 +374,8 @@ export const venues: Venue[] = [
     "goodToKnow": "Back patio closes earlier than bar",
     "whereToGoIf": "you want a great back patio",
     "gallery": [
-      "/images/venues/mothership-1.jpg",
-      "/images/venues/mothership-2.jpg"
+      "/images/venues/verjus-1.jpg",
+      "/images/venues/verjus-2.jpg"
     ]
   },
   {
@@ -653,8 +653,8 @@ export const venues: Venue[] = [
     "goodToKnow": "Reservations recommended",
     "whereToGoIf": "you want top‑tier cocktails",
     "gallery": [
-      "/images/venues/pch-pacific-cocktail-haven-1.jpg",
-      "/images/venues/pch-pacific-cocktail-haven-2.jpg"
+      "/images/venues/peacekeeper-1.jpg",
+      "/images/venues/peacekeeper-2.jpg"
     ]
   },
   {
@@ -735,7 +735,7 @@ export const venues: Venue[] = [
     "goodToKnow": "Menu changes periodically—collect the zines",
     "whereToGoIf": "you want a menu that’s a concept",
     "gallery": [
-      "/images/venues/trick-dog-1.jpeg",
+      "/images/venues/trick-dog-1.jpg",
       "/images/venues/trick-dog-2.jpg"
     ]
   },
@@ -817,8 +817,8 @@ export const venues: Venue[] = [
     "goodToKnow": "Often crowded—go early",
     "whereToGoIf": "you want flawless classics",
     "gallery": [
-      "/images/venues/abv-1.jpg",
-      "/images/venues/abv-2.jpg"
+      "/images/venues/chambers-1.jpg",
+      "/images/venues/chambers-2.jpg"
     ]
   },
   {
@@ -992,7 +992,7 @@ export const venues: Venue[] = [
     "pricing": "$$$$",
     "averageDrinkPrice": "$22–30+ cocktails / pairings",
     "hours": "Tue–Thu 4:30–11; Fri–Sat 4:30–12; Sun–Mon Closed",
-    "heroImage": "/images/venues/bar-crenn-hero.jpeg",
+    "heroImage": "/images/venues/bar-crenn-hero.jpg",
     "description": "Elegant salon by Atelier Crenn—French omakase counter + lounge for canapés & cocktails.",
     "tags": [
       "luxury",
@@ -1102,8 +1102,8 @@ export const venues: Venue[] = [
     "goodToKnow": "Retail bottle shop pricing to‑go",
     "whereToGoIf": "you want low‑key natty wine",
     "gallery": [
-      "/images/venues/high-treason-1.jpg",
-      "/images/venues/high-treason-2.jpg"
+      "/images/venues/press-club-1.jpg",
+      "/images/venues/press-club-2.jpg"
     ]
   },
   {
@@ -1115,7 +1115,7 @@ export const venues: Venue[] = [
     "pricing": "$$",
     "averageDrinkPrice": "$12–15 wine/beer",
     "hours": "Wed–Sun 12–9 (beer & wine till 9); Mon–Tue 4–10 (kitchen till 9)",
-    "heroImage": "/images/venues/palm-city-hero.jpeg",
+    "heroImage": "/images/venues/palm-city-hero.jpg",
     "description": "South‑side hang known for hoagies, natural wine, and an easy vibe.",
     "tags": [
       "hoagies",
@@ -1221,8 +1221,8 @@ export const venues: Venue[] = [
     "goodToKnow": "Cash preferred; strong pours",
     "whereToGoIf": "you want a classic SF dive",
     "gallery": [
-      "/images/venues/li-po-cocktail-lounge-1.jpg",
-      "/images/venues/li-po-cocktail-lounge-2.jpg"
+      "/images/venues/ungrafted-1.jpg",
+      "/images/venues/ungrafted-2.jpg"
     ]
   },
   {
@@ -1382,8 +1382,8 @@ export const venues: Venue[] = [
     "goodToKnow": "Great for sunny afternoons",
     "whereToGoIf": "you want group‑friendly day drinks",
     "gallery": [
-      "/images/venues/anina-1.jpg",
-      "/images/venues/anina-2.jpg"
+      "/images/venues/beaux-1.jpg",
+      "/images/venues/beaux-2.jpg"
     ]
   },
   {
@@ -1606,8 +1606,8 @@ export const venues: Venue[] = [
       "longitude": -122.4194
     },
     "gallery": [
-      "/images/venues/1015-folsom-1.jpg",
-      "/images/venues/1015-folsom-2.jpg"
+      "/images/venues/public-works-1.jpg",
+      "/images/venues/public-works-2.jpg"
     ]
   },
   {
@@ -1667,7 +1667,7 @@ export const venues: Venue[] = [
     "rating": 4.3,
     "pricing": "$",
     "hours": "Mon–Wed 7am–11pm; Thu 7am–12am; Fri–Sat 24h; Sun 12am–11pm",
-    "heroImage": "/images/venues/pinecrest-hero.png",
+    "heroImage": "/images/venues/pinecrest-hero.jpg",
     "description": "Late night Western spot in Union Square",
     "shortDescription": "Late night Western spot in Union Square",
     "tags": [
@@ -1688,8 +1688,8 @@ export const venues: Venue[] = [
     }
   ,
     "gallery": [
-      "/images/venues/pinecrest-1.jpg",
-      "/images/venues/pinecrest-2.jpg"
+      "/images/venues/the-midway-1.jpg",
+      "/images/venues/the-midway-2.jpg"
     ]},
   {
     "id": 45,
@@ -1775,8 +1775,8 @@ export const venues: Venue[] = [
       "longitude": -122.4194
     },
     "gallery": [
-      "/images/venues/cocobang-1.jpg",
-      "/images/venues/cocobang-2.jpg"
+      "/images/venues/taishan-1.jpg",
+      "/images/venues/taishan-2.jpg"
     ]
   },
   {
@@ -1923,8 +1923,8 @@ export const venues: Venue[] = [
       "longitude": -122.4194
     },
     "gallery": [
-      "/images/venues/joyful-garden-1.jpg",
-      "/images/venues/joyful-garden-2.jpg"
+      "/images/venues/toyose-1.jpg",
+      "/images/venues/toyose-2.jpg"
     ]
   },
   {
@@ -2018,7 +2018,8 @@ export const venues: Venue[] = [
       "longitude": -122.4194
     },
     "gallery": [
-      "/images/venues/naan-n-curry-1.jpg"
+      "/images/venues/naan-n-curry-1.jpg",
+      "/images/venues/naan-n-curry-2.jpg"
     ]
   },
   {
@@ -2049,7 +2050,8 @@ export const venues: Venue[] = [
       "longitude": -122.4194
     },
     "gallery": [
-      "/images/venues/wok-station-1.jpg"
+      "/images/venues/wok-station-1.jpg",
+      "/images/venues/wok-station-2.jpg"
     ]
   },
   {
@@ -2080,7 +2082,8 @@ export const venues: Venue[] = [
       "longitude": -122.4194
     },
     "gallery": [
-      "/images/venues/gyro-xpress-1.jpg"
+      "/images/venues/gyro-xpress-1.jpg",
+      "/images/venues/gyro-xpress-2.jpg"
     ]
   },
   {
@@ -2110,7 +2113,8 @@ export const venues: Venue[] = [
       "longitude": -122.4194
     },
     "gallery": [
-      "/images/venues/turtle-tower-1.jpg"
+      "/images/venues/turtle-tower-1.jpg",
+      "/images/venues/turtle-tower-2.jpg"
     ]
   },
   {
@@ -2141,7 +2145,8 @@ export const venues: Venue[] = [
       "longitude": -122.4194
     },
     "gallery": [
-      "/images/venues/bay-pocha-1.jpg"
+      "/images/venues/bay-pocha-1.jpg",
+      "/images/venues/bay-pocha-2.jpg"
     ]
   },
   {
@@ -2232,7 +2237,8 @@ export const venues: Venue[] = [
       "longitude": -122.4194
     },
     "gallery": [
-      "/images/venues/primo-pizza-1.jpeg"
+      "/images/venues/primo-pizza-1.jpg",
+      "/images/venues/primo-pizza-2.jpg"
     ]
   },
   {
@@ -2352,7 +2358,8 @@ export const venues: Venue[] = [
       "longitude": -122.4194
     },
     "gallery": [
-      "/images/venues/kowloon-tong-dessert-cafe-1.jpg"
+      "/images/venues/kowloon-tong-dessert-cafe-1.jpg",
+      "/images/venues/kowloon-tong-dessert-cafe-2.jpg"
     ]
   },
   {
@@ -2382,7 +2389,10 @@ export const venues: Venue[] = [
     "coordinates": {
       "latitude": 37.7749,
       "longitude": -122.4194
-    }
+    },
+    "gallery": [
+      "/images/venues/zzan-2.jpg"
+    ]
   },
 ];
 

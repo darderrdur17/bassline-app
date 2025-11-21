@@ -26,83 +26,194 @@ export const colors = {
 };
 
 export const fonts = {
+  // Primary brand fonts (consistent across platforms)
   anton: 'Anton_400Regular',
-  bungee: 'Bungee_400Regular',
   oswaldRegular: 'Oswald_400Regular',
   oswaldSemiBold: 'Oswald_600SemiBold',
-  // Custom fonts as per design requirements
-  // Komsomol alternative: Anton for bold title font
+  robotoRegular: 'Roboto_400Regular',
+  robotoMedium: 'Roboto_500Medium',
+
+  // Web font fallbacks (for Tailwind CSS)
+  'anton-web': 'Anton, Impact, sans-serif',
+  'oswald-web': 'Oswald, Arial, sans-serif',
+  'roboto-web': 'Roboto, system-ui, sans-serif',
+
+  // Legacy font mappings (deprecated - use primary fonts above)
+  bungee: 'Bungee_400Regular',
   komsomol: 'Anton_400Regular',
-  // Lucidity Condensed alternative: Oswald for condensed text
   lucidityCondensed: 'Oswald_400Regular',
-  // Using Anton for bold sans-serif brand/title font (matches image style)
   brand: 'Anton_400Regular',
-  // Using Roboto for clean body text
   body: 'Roboto_400Regular',
-  // Using Oswald for buttons (bold, uppercase style)
   button: 'Oswald_400Regular',
 };
 
 export const typography = {
-  // Large bold uppercase brand name (BASSLINE)
+  // Brand Identity (Anton - Bold, uppercase, consistent across platforms)
   brand: {
     fontSize: 32,
     fontWeight: '400', // Anton is already bold
     letterSpacing: 2,
     textTransform: 'uppercase',
     fontFamily: fonts.anton,
+    lineHeight: 1.1,
   },
-  // Bold uppercase titles and headings
-  title: {
-    fontSize: 24,
-    fontWeight: '400', // Anton is already bold
+
+  // Hero/Banner Text (Anton - Large, impactful)
+  hero: {
+    fontSize: 48,
+    fontWeight: '400',
     letterSpacing: 1.5,
     textTransform: 'uppercase',
     fontFamily: fonts.anton,
+    lineHeight: 1.05,
   },
-  // Large venue names
+
+  // Large venue names on cards/details
   venue: {
-    fontSize: 52,
-    fontWeight: '400', // Anton is already bold
+    fontSize: 28,
+    fontWeight: '400',
     letterSpacing: 1,
     textTransform: 'uppercase',
     fontFamily: fonts.anton,
+    lineHeight: 1.2,
   },
-  // Body text - clean sans-serif
+
+  // Section headings (Anton - Medium)
+  heading: {
+    fontSize: 24,
+    fontWeight: '400',
+    letterSpacing: 1.2,
+    textTransform: 'uppercase',
+    fontFamily: fonts.anton,
+    lineHeight: 1.3,
+  },
+
+  // Subheadings (Oswald - Condensed, uppercase)
+  subheading: {
+    fontSize: 18,
+    fontWeight: '400',
+    letterSpacing: 1,
+    textTransform: 'uppercase',
+    fontFamily: fonts.oswaldRegular,
+    lineHeight: 1.4,
+  },
+
+  // Body text (Roboto - Clean, readable)
   body: {
     fontSize: 16,
     fontWeight: '400',
-    fontFamily: fonts.body,
+    fontFamily: fonts.robotoRegular,
+    lineHeight: 1.6,
   },
-  // Small text
+
+  // Secondary body text
+  bodySecondary: {
+    fontSize: 15,
+    fontWeight: '400',
+    fontFamily: fonts.robotoRegular,
+    lineHeight: 1.5,
+  },
+
+  // Small text/captions
   small: {
     fontSize: 14,
     fontWeight: '400',
-    fontFamily: fonts.body,
+    fontFamily: fonts.robotoRegular,
+    lineHeight: 1.4,
   },
-  // Buttons - bold uppercase
+
+  // Extra small text
+  xsmall: {
+    fontSize: 12,
+    fontWeight: '400',
+    fontFamily: fonts.robotoRegular,
+    lineHeight: 1.3,
+  },
+
+  // Buttons (Oswald - Bold, uppercase)
   button: {
     fontSize: 16,
     fontWeight: '600',
     textTransform: 'uppercase',
     letterSpacing: 1,
-    fontFamily: fonts.button,
+    fontFamily: fonts.oswaldSemiBold,
+    lineHeight: 1.2,
   },
-  // Slogan/tagline style - condensed font as per design
+
+  // Button small
+  buttonSmall: {
+    fontSize: 14,
+    fontWeight: '600',
+    textTransform: 'uppercase',
+    letterSpacing: 0.8,
+    fontFamily: fonts.oswaldSemiBold,
+    lineHeight: 1.2,
+  },
+
+  // Labels and tags (Oswald - Condensed)
+  label: {
+    fontSize: 14,
+    fontWeight: '400',
+    letterSpacing: 0.8,
+    textTransform: 'uppercase',
+    fontFamily: fonts.oswaldRegular,
+    lineHeight: 1.3,
+  },
+
+  // Tagline/Slogan (Oswald - Bold condensed)
   tagline: {
-    fontSize: 18,
+    fontSize: 20,
+    fontWeight: '600',
+    letterSpacing: 1.5,
+    textTransform: 'uppercase',
+    fontFamily: fonts.oswaldSemiBold,
+    lineHeight: 1.2,
+  },
+
+  // Legacy mappings (deprecated - use new typography above)
+  title: {
+    fontSize: 24,
     fontWeight: '400',
     letterSpacing: 1.5,
     textTransform: 'uppercase',
-    fontFamily: fonts.lucidityCondensed,
+    fontFamily: fonts.anton,
+    lineHeight: 1.3,
   },
-  // Label style for "WHAT ARE YOU FEELING TONIGHT?" etc.
-  label: {
-    fontSize: 16,
-    fontWeight: '400',
-    letterSpacing: 1,
-    textTransform: 'uppercase',
-    fontFamily: fonts.lucidityCondensed,
+};
+
+// Responsive typography scale for different screen sizes
+export const responsiveTypography = {
+  // Mobile (320px - 767px)
+  mobile: {
+    brand: { fontSize: 28, letterSpacing: 1.8 },
+    hero: { fontSize: 36, letterSpacing: 1.2 },
+    venue: { fontSize: 24, letterSpacing: 0.8 },
+    heading: { fontSize: 20, letterSpacing: 1 },
+    subheading: { fontSize: 16, letterSpacing: 0.8 },
+    body: { fontSize: 15, lineHeight: 1.5 },
+    button: { fontSize: 15, letterSpacing: 0.8 },
+  },
+
+  // Tablet (768px - 1023px)
+  tablet: {
+    brand: { fontSize: 32, letterSpacing: 2 },
+    hero: { fontSize: 44, letterSpacing: 1.4 },
+    venue: { fontSize: 26, letterSpacing: 0.9 },
+    heading: { fontSize: 22, letterSpacing: 1.1 },
+    subheading: { fontSize: 17, letterSpacing: 0.9 },
+    body: { fontSize: 16, lineHeight: 1.6 },
+    button: { fontSize: 16, letterSpacing: 1 },
+  },
+
+  // Desktop (1024px+)
+  desktop: {
+    brand: { fontSize: 36, letterSpacing: 2.2 },
+    hero: { fontSize: 52, letterSpacing: 1.6 },
+    venue: { fontSize: 30, letterSpacing: 1.1 },
+    heading: { fontSize: 26, letterSpacing: 1.3 },
+    subheading: { fontSize: 19, letterSpacing: 1.1 },
+    body: { fontSize: 17, lineHeight: 1.7 },
+    button: { fontSize: 17, letterSpacing: 1.1 },
   },
 };
 
@@ -164,12 +275,30 @@ export const layout = {
   },
 };
 
+// Utility function for responsive typography
+export const getResponsiveTypography = (baseStyle, screenWidth) => {
+  // Determine screen size category
+  let sizeCategory = 'mobile';
+  if (screenWidth >= 1024) sizeCategory = 'desktop';
+  else if (screenWidth >= 768) sizeCategory = 'tablet';
+
+  // Get responsive overrides
+  const responsiveOverrides = responsiveTypography[sizeCategory][baseStyle.fontSize] || {};
+
+  return {
+    ...baseStyle,
+    ...responsiveOverrides,
+  };
+};
+
 export default {
   colors,
   fonts,
   typography,
+  responsiveTypography,
   spacing,
   borderRadius,
   shadows,
   layout,
+  getResponsiveTypography,
 }; 
