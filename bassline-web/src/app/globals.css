@@ -48,19 +48,19 @@
   }
 
   .text-body {
-    @apply font-body tracking-normal font-roboto leading-relaxed;
+    @apply font-body tracking-normal leading-relaxed;
   }
 
   .text-body-secondary {
-    @apply font-body-secondary tracking-normal font-roboto leading-relaxed text-ui-text-secondary;
+    @apply font-body-secondary tracking-normal leading-relaxed text-ui-text-secondary;
   }
 
   .text-small {
-    @apply font-small tracking-normal font-roboto leading-normal text-sm;
+    @apply font-small tracking-normal leading-normal text-sm;
   }
 
   .text-xsmall {
-    @apply font-xsmall tracking-normal font-roboto leading-normal text-xs;
+    @apply font-xsmall tracking-normal leading-normal text-xs;
   }
 
   .text-button {
