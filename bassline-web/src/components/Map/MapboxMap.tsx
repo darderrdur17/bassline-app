@@ -2,7 +2,13 @@
 
 import React, { useEffect, useRef, useState, useCallback } from 'react';
 import Map, { Marker, Popup, NavigationControl, FullscreenControl, ScaleControl } from 'react-map-gl';
+import mapboxgl from 'mapbox-gl';
 import 'mapbox-gl/dist/mapbox-gl.css';
+
+// Set Mapbox access token globally
+if (typeof window !== 'undefined') {
+  mapboxgl.accessToken = process.env.NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN || 'pk.eyJ1IjoiZGFyZGVycmR1ciIsImEiOiJjbWk4dWI1amIwMDh0MmxzaHBic3dmajhsIn0.A7mfAxOnRLgt0ESfgh0beA';
+}
 import { Venue, Coordinates, MapViewport } from '@/types/venue';
 import { useVenueStore, useVenueSelectors } from '@/stores/useVenueStore';
 import VenueMarker from './VenueMarker';
@@ -157,7 +163,6 @@ const MapboxMap: React.FC<MapboxMapProps> = ({
         }}
         style={{ width: '100%', height: '100%' }}
         mapStyle={MAPBOX_STYLE_URL}
-        mapboxAccessToken={process.env.NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN}
         onLoad={() => {
           setIsMapLoaded(true);
           // Initialize map bounds
