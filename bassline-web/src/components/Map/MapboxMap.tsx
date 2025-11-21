@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useEffect, useRef, useState, useCallback } from 'react';
-import Map, { Marker, Popup, NavigationControl, GeolocateControl, FullscreenControl, ScaleControl } from 'react-map-gl';
+import Map, { Marker, Popup, NavigationControl, FullscreenControl, ScaleControl } from 'react-map-gl';
 import maplibreGl from 'maplibre-gl';
 import 'maplibre-gl/dist/maplibre-gl.css';
 import { Venue, Coordinates, MapViewport } from '@/types/venue';
@@ -141,11 +141,6 @@ const MapboxMap: React.FC<MapboxMapProps> = ({
       >
         {/* Controls */}
         <NavigationControl position="top-right" />
-        <GeolocateControl
-          position="top-right"
-          trackUserLocation
-          showUserHeading
-        />
         <FullscreenControl position="top-right" />
         <ScaleControl position="bottom-left" />
 
