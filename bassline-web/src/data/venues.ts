@@ -88,6 +88,10 @@ export const venues: Venue[] = [
     },
     "goodToKnow": "Sister spot to Bodega & Celeste",
     "whereToGoIf": "you want good pictures",
+    "gallery": [
+      "/images/venues/key-klub-1.jpg",
+      "/images/venues/key-klub-2.jpg"
+    ],
     "hasOutdoorSeating": true,
     "hasLiveMusic": false,
     "hasDancing": false,
@@ -135,7 +139,11 @@ export const venues: Venue[] = [
       "longitude": -122.4194
     },
     "goodToKnow": "Same group as Quince & Cotogna; vinyl à Verjus on weekends",
-    "whereToGoIf": "you miss euro summer"
+    "whereToGoIf": "you miss euro summer",
+    "gallery": [
+      "/images/venues/verjus-1.jpg",
+      "/images/venues/verjus-2.jpg"
+    ]
   },
   {
     "id": 4,
@@ -174,6 +182,11 @@ export const venues: Venue[] = [
     },
     "goodToKnow": "Small space; arrive early",
     "whereToGoIf": "you love vinyl"
+  ,
+    "gallery": [
+      "/images/venues/gallery-placeholder-1.jpg",
+      "/images/venues/gallery-placeholder-2.jpg"
+    ]
   },
   {
     "id": 5,
@@ -213,6 +226,11 @@ export const venues: Venue[] = [
     },
     "goodToKnow": "Sister to Key Klub & Celeste",
     "whereToGoIf": "you want a burrito with your mimosa"
+  ,
+    "gallery": [
+      "/images/venues/gallery-placeholder-1.jpg",
+      "/images/venues/gallery-placeholder-2.jpg"
+    ]
   },
   {
     "id": 6,
@@ -254,6 +272,11 @@ export const venues: Venue[] = [
     },
     "goodToKnow": "Walk‑ins close ~9pm; same group as State Bird Provisions and The Progress",
     "whereToGoIf": "you want fresh seafood"
+  ,
+    "gallery": [
+      "/images/venues/gallery-placeholder-1.jpg",
+      "/images/venues/gallery-placeholder-2.jpg"
+    ]
   },
   {
     "id": 7,
@@ -295,6 +318,11 @@ export const venues: Venue[] = [
     },
     "goodToKnow": "Bar‑only seating; limited tables",
     "whereToGoIf": "you want to try sake and natural wine"
+  ,
+    "gallery": [
+      "/images/venues/gallery-placeholder-1.jpg",
+      "/images/venues/gallery-placeholder-2.jpg"
+    ]
   },
   {
     "id": 8,
@@ -334,6 +362,11 @@ export const venues: Venue[] = [
     },
     "goodToKnow": "Sister to Key Klub & Bodega",
     "whereToGoIf": "you want mediterranean food with your wine"
+  ,
+    "gallery": [
+      "/images/venues/gallery-placeholder-1.jpg",
+      "/images/venues/gallery-placeholder-2.jpg"
+    ]
   },
   {
     "id": 9,
@@ -417,6 +450,11 @@ export const venues: Venue[] = [
     },
     "goodToKnow": "Reservations recommended weekends",
     "whereToGoIf": "you like rare bottles and clean design"
+  ,
+    "gallery": [
+      "/images/venues/gallery-placeholder-1.jpg",
+      "/images/venues/gallery-placeholder-2.jpg"
+    ]
   },
   {
     "id": 11,
@@ -456,6 +494,11 @@ export const venues: Venue[] = [
     },
     "goodToKnow": "Great for groups; limited seating",
     "whereToGoIf": "you want Vietnamese snacks with cheap drinks"
+  ,
+    "gallery": [
+      "/images/venues/gallery-placeholder-1.jpg",
+      "/images/venues/gallery-placeholder-2.jpg"
+    ]
   },
   {
     "id": 12,
@@ -494,6 +537,11 @@ export const venues: Venue[] = [
     },
     "goodToKnow": "Heaters on; windy evenings",
     "whereToGoIf": "you want to feel glamorous with a view"
+  ,
+    "gallery": [
+      "/images/venues/gallery-placeholder-1.jpg",
+      "/images/venues/gallery-placeholder-2.jpg"
+    ]
   },
   {
     "id": 13,
@@ -535,6 +583,11 @@ export const venues: Venue[] = [
     },
     "goodToKnow": "Small space; porrón etiquette encouraged",
     "whereToGoIf": "you’re craving Spain"
+  ,
+    "gallery": [
+      "/images/venues/gallery-placeholder-1.jpg",
+      "/images/venues/gallery-placeholder-2.jpg"
+    ]
   },
   {
     "id": 14,
@@ -575,6 +628,11 @@ export const venues: Venue[] = [
     },
     "goodToKnow": "Walk‑in friendly",
     "whereToGoIf": "you want low‑key drinks & good snacks"
+  ,
+    "gallery": [
+      "/images/venues/gallery-placeholder-1.jpg",
+      "/images/venues/gallery-placeholder-2.jpg"
+    ]
   },
   {
     "id": 15,
@@ -614,6 +672,11 @@ export const venues: Venue[] = [
     },
     "goodToKnow": "Lines form on weekends",
     "whereToGoIf": "you want open‑air drinks and games"
+  ,
+    "gallery": [
+      "/images/venues/gallery-placeholder-1.jpg",
+      "/images/venues/gallery-placeholder-2.jpg"
+    ]
   },
   {
     "id": 16,
@@ -697,6 +760,11 @@ export const venues: Venue[] = [
     },
     "goodToKnow": "Dress‑ier crowd",
     "whereToGoIf": "you want aperitivo hour done right"
+  ,
+    "gallery": [
+      "/images/venues/gallery-placeholder-1.jpg",
+      "/images/venues/gallery-placeholder-2.jpg"
+    ]
   },
   {
     "id": 18,
@@ -777,6 +845,11 @@ export const venues: Venue[] = [
     },
     "goodToKnow": "Great before/after shows",
     "whereToGoIf": "you want a stylish retro night"
+  ,
+    "gallery": [
+      "/images/venues/gallery-placeholder-1.jpg",
+      "/images/venues/gallery-placeholder-2.jpg"
+    ]
   },
   {
     "id": 20,
@@ -859,6 +932,11 @@ export const venues: Venue[] = [
     },
     "goodToKnow": "Membership grog club exists",
     "whereToGoIf": "you want tiki escapism"
+  ,
+    "gallery": [
+      "/images/venues/gallery-placeholder-1.jpg",
+      "/images/venues/gallery-placeholder-2.jpg"
+    ]
   },
   {
     "id": 22,
@@ -940,6 +1018,11 @@ export const venues: Venue[] = [
     },
     "goodToKnow": "Ask about the tequila club",
     "whereToGoIf": "you love agave spirits"
+  ,
+    "gallery": [
+      "/images/venues/gallery-placeholder-1.jpg",
+      "/images/venues/gallery-placeholder-2.jpg"
+    ]
   },
   {
     "id": 24,
@@ -1063,6 +1146,11 @@ export const venues: Venue[] = [
     },
     "goodToKnow": "Great for groups/events",
     "whereToGoIf": "you want a polished tasting lounge"
+  ,
+    "gallery": [
+      "/images/venues/gallery-placeholder-1.jpg",
+      "/images/venues/gallery-placeholder-2.jpg"
+    ]
   },
   {
     "id": 27,
@@ -1184,6 +1272,11 @@ export const venues: Venue[] = [
     },
     "goodToKnow": "Reservations suggested",
     "whereToGoIf": "you want som‑level guidance"
+  ,
+    "gallery": [
+      "/images/venues/gallery-placeholder-1.jpg",
+      "/images/venues/gallery-placeholder-2.jpg"
+    ]
   },
   {
     "id": 30,
@@ -1305,6 +1398,11 @@ export const venues: Venue[] = [
     },
     "goodToKnow": "Gets packed during big games",
     "whereToGoIf": "you want a queer sports bar vibe"
+  ,
+    "gallery": [
+      "/images/venues/gallery-placeholder-1.jpg",
+      "/images/venues/gallery-placeholder-2.jpg"
+    ]
   },
   {
     "id": 33,
@@ -1343,6 +1441,11 @@ export const venues: Venue[] = [
     },
     "goodToKnow": "Arrive early on weekends",
     "whereToGoIf": "you want a big night out"
+  ,
+    "gallery": [
+      "/images/venues/gallery-placeholder-1.jpg",
+      "/images/venues/gallery-placeholder-2.jpg"
+    ]
   },
   {
     "id": 34,
