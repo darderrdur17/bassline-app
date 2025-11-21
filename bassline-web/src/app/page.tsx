@@ -49,6 +49,8 @@ export default function Home() {
   const [currentView, setCurrentView] = useState<'map' | 'list'>('map');
   const [showFilters, setShowFilters] = useState(false);
   const [showMobileSearch, setShowMobileSearch] = useState(false);
+  const [currentPage, setCurrentPage] = useState(1);
+  const venuesPerPage = 12;
 
   // Initialize venues and real-time data on mount
   useEffect(() => {
@@ -64,9 +66,16 @@ export default function Home() {
   const featuredVenues = venues.slice(0, 6);
   const moodOptions = ['chill', 'party', 'date', 'classy', 'music', 'drinks'];
 
+  // Pagination logic for list view
+  const totalPages = Math.ceil(filteredVenues.length / venuesPerPage);
+  const startIndex = (currentPage - 1) * venuesPerPage;
+  const endIndex = startIndex + venuesPerPage;
+  const paginatedVenues = filteredVenues.slice(startIndex, endIndex);
+
   // Handle search
   const handleSearch = (text: string) => {
     setSearchText(text);
+    setCurrentPage(1); // Reset to first page when searching
   };
 
   // Handle mood selection
@@ -265,7 +274,7 @@ export default function Home() {
           {currentView === 'list' && (
             <div className="max-w-6xl mx-auto px-6 sm:px-8 mb-8">
               <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-                {filteredVenues.map((venue, index) => (
+                {paginatedVenues.map((venue, index) => (
                   <VenueCard
                     key={venue.id}
                     venue={venue}
@@ -280,6 +289,48 @@ export default function Home() {
                   <div className="text-6xl mb-4">🔍</div>
                   <h3 className="text-xl font-bold text-gray-900 mb-2">No venues found</h3>
                   <p className="text-gray-600">Try adjusting your search or filters</p>
+                </div>
+              )}
+
+              {/* Pagination Controls */}
+              {filteredVenues.length > venuesPerPage && (
+                <div className="flex justify-center items-center gap-4 mt-12 mb-8">
+                  <button
+                    onClick={() => setCurrentPage(Math.max(1, currentPage - 1))}
+                    disabled={currentPage === 1}
+                    className="px-4 py-2 bg-gray-200 hover:bg-gray-300 disabled:bg-gray-100 disabled:cursor-not-allowed rounded-lg transition-colors"
+                  >
+                    Previous
+                  </button>
+
+                  <div className="flex gap-2">
+                    {Array.from({ length: Math.min(5, totalPages) }, (_, i) => {
+                      const pageNumber = Math.max(1, Math.min(totalPages - 4, currentPage - 2)) + i;
+                      if (pageNumber > totalPages) return null;
+
+                      return (
+                        <button
+                          key={pageNumber}
+                          onClick={() => setCurrentPage(pageNumber)}
+                          className={`px-3 py-2 rounded-lg transition-colors ${
+                            currentPage === pageNumber
+                              ? 'bg-brand-red text-white'
+                              : 'bg-gray-200 hover:bg-gray-300'
+                          }`}
+                        >
+                          {pageNumber}
+                        </button>
+                      );
+                    })}
+                  </div>
+
+                  <button
+                    onClick={() => setCurrentPage(Math.min(totalPages, currentPage + 1))}
+                    disabled={currentPage === totalPages}
+                    className="px-4 py-2 bg-gray-200 hover:bg-gray-300 disabled:bg-gray-100 disabled:cursor-not-allowed rounded-lg transition-colors"
+                  >
+                    Next
+                  </button>
                 </div>
               )}
             </div>
@@ -305,7 +356,7 @@ export default function Home() {
               >
                 <span className="text-2xl">📍</span>
                 <span className="text-ui-text font-semibold font-body">
-                  Showing {filteredVenues.length} venue{filteredVenues.length !== 1 ? 's' : ''}
+                  Showing {startIndex + 1}-{Math.min(endIndex, filteredVenues.length)} of {filteredVenues.length} venue{filteredVenues.length !== 1 ? 's' : ''}
                 </span>
               </motion.div>
             )}

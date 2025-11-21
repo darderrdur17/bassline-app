@@ -98,6 +98,7 @@ const VenueCard: React.FC<VenueCardProps> = ({
             <img
               src={venue.heroImage}
               alt={`${venue.name} interior`}
+              loading="lazy"
               className={`w-full h-full object-cover transition-transform duration-500 hover:scale-110 ${
                 imageLoaded ? 'opacity-100' : 'opacity-0'
               }`}
@@ -154,6 +155,14 @@ const VenueCard: React.FC<VenueCardProps> = ({
             </div>
           </div>
         </div>
+
+        {/* Gallery Indicator */}
+        {venue.gallery && venue.gallery.length > 0 && (
+          <div className="absolute top-3 right-3 bg-black/70 backdrop-blur-sm rounded-full px-3 py-1 flex items-center gap-1">
+            <span className="text-white text-xs font-medium">📸</span>
+            <span className="text-white text-xs font-medium">{venue.gallery.length + 1}</span>
+          </div>
+        )}
       </div>
 
       {/* Content Section */}
