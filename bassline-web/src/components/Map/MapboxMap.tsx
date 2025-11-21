@@ -52,9 +52,8 @@ const MapboxMap: React.FC<MapboxMapProps> = ({
     }));
   }, [mapCenter, mapZoom]);
 
-  // Handle viewport changes
+  // Handle viewport changes - only update store, let useEffect handle viewport updates
   const handleViewportChange = useCallback((newViewport: any) => {
-    setViewport(newViewport);
     setMapCenter([newViewport.latitude, newViewport.longitude]);
     setMapZoom(newViewport.zoom);
   }, [setMapCenter, setMapZoom]);
