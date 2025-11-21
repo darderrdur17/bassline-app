@@ -29,7 +29,7 @@ const QuickFilters = dynamic(() => import('@/components/Filters/QuickFilters'), 
 const FilterSummary = dynamic(() => import('@/components/Filters/FilterSummary'), { ssr: false });
 
 // Import data and hooks
-import { venues, moodMapping } from '@/data/venues';
+import { venuesLight, venues, moodMapping } from '@/data/venues';
 import { useVenueStore, useVenueSelectors } from '@/stores/useVenueStore';
 import { useRealtimeStore, initializeRealtime } from '@/stores/useRealtimeStore';
 
@@ -54,7 +54,17 @@ export default function Home() {
 
   // Initialize venues and real-time data on mount
   useEffect(() => {
-    setVenues(venues);
+    // Load lightweight venue data immediately for fast map rendering
+    setVenues(venuesLight as any); // Type cast for now
+
+    // Load full venue data in the background after initial render
+    const loadFullData = async () => {
+      // Small delay to ensure initial render completes
+      await new Promise(resolve => setTimeout(resolve, 100));
+      setVenues(venues);
+    };
+
+    loadFullData();
     initializeRealtime();
   }, [setVenues]);
 

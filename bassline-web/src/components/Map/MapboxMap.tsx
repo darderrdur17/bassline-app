@@ -9,7 +9,7 @@ import 'mapbox-gl/dist/mapbox-gl.css';
 if (typeof window !== 'undefined') {
   mapboxgl.accessToken = process.env.NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN || 'pk.eyJ1IjoiZGFyZGVycmR1ciIsImEiOiJjbWk4dWI1amIwMDh0MmxzaHBic3dmajhsIn0.A7mfAxOnRLgt0ESfgh0beA';
 }
-import { Venue, Coordinates, MapViewport } from '@/types/venue';
+import { Venue, VenueLight, Coordinates, MapViewport } from '@/types/venue';
 import { useVenueStore, useVenueSelectors } from '@/stores/useVenueStore';
 import VenueMarker from './VenueMarker';
 import VenuePopup from './VenuePopup';
@@ -34,7 +34,7 @@ const MapboxMap: React.FC<MapboxMapProps> = ({
     zoom: 12, // Slightly zoomed out to show more of SF initially
   });
   const [selectedVenue, setSelectedVenue] = useState<Venue | null>(null);
-  const [hoveredVenue, setHoveredVenue] = useState<Venue | null>(null);
+  const [hoveredVenue, setHoveredVenue] = useState<Venue | VenueLight | null>(null);
   const [isMapLoaded, setIsMapLoaded] = useState(false);
   const [mapBounds, setMapBounds] = useState<any>(null);
   const [showHeatmap, setShowHeatmap] = useState(false);
@@ -185,7 +185,7 @@ const MapboxMap: React.FC<MapboxMapProps> = ({
   }, []);
 
   // Handle venue hover
-  const handleVenueHover = useCallback((venue: Venue | null) => {
+  const handleVenueHover = useCallback((venue: Venue | VenueLight | null) => {
     setHoveredVenue(venue);
   }, []);
 

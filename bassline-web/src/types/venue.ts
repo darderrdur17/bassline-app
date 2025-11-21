@@ -3,6 +3,18 @@ export interface Coordinates {
   longitude: number;
 }
 
+// Lightweight venue data for fast initial map loading
+export interface VenueLight {
+  id: number;
+  name: string;
+  type: string;
+  neighborhood: string;
+  rating: number;
+  pricing: string;
+  coordinates: Coordinates;
+  currentCrowdLevel?: 'empty' | 'moderate' | 'busy' | 'packed';
+}
+
 export interface VenueHours {
   monday?: string;
   tuesday?: string;

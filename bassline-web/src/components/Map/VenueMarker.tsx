@@ -2,16 +2,16 @@
 
 import React, { useMemo } from 'react';
 import { Marker } from 'react-map-gl';
-import { Venue } from '@/types/venue';
+import { Venue, VenueLight } from '@/types/venue';
 import { motion } from 'framer-motion';
 import { useRealtimeStore } from '@/stores/useRealtimeStore';
 
 interface VenueMarkerProps {
-  venue: Venue;
+  venue: Venue | VenueLight;
   isSelected: boolean;
   isHovered: boolean;
-  onClick: (venue: Venue) => void;
-  onHover: (venue: Venue | null) => void;
+  onClick: (venue: Venue | VenueLight) => void;
+  onHover: (venue: Venue | VenueLight | null) => void;
 }
 
 // Color mapping for different venue types
@@ -47,14 +47,14 @@ const getCrowdColor = (crowdLevel?: string) => {
 
 // Custom marker component
 const VenueMarkerComponent: React.FC<{
-  venue: Venue;
+  venue: Venue | VenueLight;
   realtimeData?: any;
   isSelected: boolean;
   isHovered: boolean;
   onClick: () => void;
 }> = ({ venue, realtimeData, isSelected, isHovered, onClick }) => {
   const baseColor = typeColors[venue.type as keyof typeof typeColors] || typeColors.Bar;
-  const crowdColor = getCrowdColor(realtimeData?.crowdLevel || venue.currentCrowdLevel);
+  const crowdColor = getCrowdColor(realtimeData?.crowdLevel || (venue as Venue).currentCrowdLevel);
   const isFaded = !isSelected && !isHovered;
 
   // Determine marker color - prioritize real-time data
@@ -150,7 +150,9 @@ const VenueMarkerComponent: React.FC<{
           style={{ minWidth: '120px' }}
         >
           <div className="text-sm font-semibold font-body">{venue.name}</div>
-          <div className="text-xs text-ui-text-secondary">{venue.neighborhood}</div>
+          {(venue as Venue).neighborhood && (
+            <div className="text-xs text-ui-text-secondary">{(venue as Venue).neighborhood}</div>
+          )}
           <div className="flex items-center gap-1 mt-1">
             <span className="text-yellow-500 text-xs">⭐</span>
             <span className="text-xs font-medium">{venue.rating}</span>
