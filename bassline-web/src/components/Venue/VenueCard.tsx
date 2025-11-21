@@ -376,4 +376,5 @@ const VenueCard: React.FC<VenueCardProps> = ({
   );
 };
 
+// Venue card component with gallery functionality
 export default VenueCard;
