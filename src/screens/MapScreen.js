@@ -487,8 +487,6 @@ export default function MapScreen({ navigation, route }) {
           preview={true}
           onPress={() => handleVenueCardPress(selectedVenue)}
           onClose={() => setSelectedVenueIndex(null)}
-          onNext={handleNextVenue}
-          onPrev={handlePrevVenue}
           onNextRestaurant={handleNextRestaurant}
         />
       )}

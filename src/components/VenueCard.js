@@ -16,7 +16,7 @@ import { venueImages, nameToImageKey } from '../data/venueImages';
 
 const { width } = Dimensions.get('window');
 
-export default function VenueCard({ venue, onPress, onClose, preview = false, onNext, onPrev, onNextRestaurant }) {
+export default function VenueCard({ venue, onPress, onClose, preview = false, onNextRestaurant }) {
   // Fade-in & slide-up animation for hover notification / preview card
   const translateY = useRef(new Animated.Value(40)).current;
   const opacity = useRef(new Animated.Value(0)).current;
@@ -108,14 +108,8 @@ export default function VenueCard({ venue, onPress, onClose, preview = false, on
 
         {/* Hero Image */}
         {preview && (
-        <View style={[styles.heroWrapper, { height: heroHeight }]}> 
+        <View style={[styles.heroWrapper, { height: heroHeight }]}>
           <Image source={{ uri: venue.heroImage }} style={styles.heroImageFull} />
-          <TouchableOpacity style={styles.previewArrowLeft} onPress={onPrev || onClose}>
-            <Ionicons name="chevron-back" size={32} color={colors.white} />
-          </TouchableOpacity>
-          <TouchableOpacity style={styles.previewArrowRight} onPress={onNext}>
-            <Ionicons name="chevron-forward" size={32} color={colors.white} />
-          </TouchableOpacity>
         </View>
         )}
 
@@ -518,30 +512,6 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     letterSpacing: 0.5,
     marginBottom: spacing.xs,
-  },
-  previewArrowLeft: {
-    position: 'absolute',
-    top: '50%',
-    left: 5,
-    marginTop: -15,
-    backgroundColor: 'rgba(0, 0, 0, 0.5)',
-    borderRadius: borderRadius.round,
-    width: 30,
-    height: 30,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  previewArrowRight: {
-    position: 'absolute',
-    top: '50%',
-    right: 5,
-    marginTop: -15,
-    backgroundColor: 'rgba(0, 0, 0, 0.5)',
-    borderRadius: borderRadius.round,
-    width: 30,
-    height: 30,
-    justifyContent: 'center',
-    alignItems: 'center',
   },
   previewClose: {
     position: 'absolute',

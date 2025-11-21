@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { MapPin, Star, Clock, Music, Users, Heart, ExternalLink, ChevronLeft, ChevronRight } from 'lucide-react';
+import { MapPin, Star, Clock, Music, Users, Heart, ExternalLink } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 import { Venue } from '@/types/venue';
 import { useVenueStore, useVenueSelectors } from '@/stores/useVenueStore';
@@ -74,27 +74,6 @@ const VenueCard: React.FC<VenueCardProps> = ({
     toggleFavorite(venue.id.toString());
   };
 
-  const handleNextVenue = (e: React.MouseEvent) => {
-    e.stopPropagation();
-    if (currentVenueIndex >= 0) {
-      const nextIndex = (currentVenueIndex + 1) % venues.length;
-      const nextVenue = venues[nextIndex];
-      // Open image gallery for the next venue
-      setGalleryVenue(nextVenue);
-      setShowImageGallery(true);
-    }
-  };
-
-  const handlePreviousVenue = (e: React.MouseEvent) => {
-    e.stopPropagation();
-    if (currentVenueIndex >= 0) {
-      const prevIndex = (currentVenueIndex - 1 + venues.length) % venues.length;
-      const prevVenue = venues[prevIndex];
-      // Open image gallery for the previous venue
-      setGalleryVenue(prevVenue);
-      setShowImageGallery(true);
-    }
-  };
 
   const handleGalleryNavigation = (direction: 'next' | 'prev') => {
     if (!galleryVenue) return;
@@ -180,26 +159,6 @@ const VenueCard: React.FC<VenueCardProps> = ({
           )}
         </div>
 
-        {/* Navigation Buttons */}
-        {showActions && (
-          <>
-            <button
-              onClick={handlePreviousVenue}
-              className="absolute left-3 top-1/2 -translate-y-1/2 p-2 bg-white/90 hover:bg-white rounded-full shadow-lg transition-all duration-200 hover:scale-110 opacity-0 group-hover:opacity-100"
-              aria-label="Previous venue"
-            >
-              <ChevronLeft size={16} className="text-gray-700" />
-            </button>
-
-            <button
-              onClick={handleNextVenue}
-              className="absolute right-16 top-1/2 -translate-y-1/2 p-2 bg-white/90 hover:bg-white rounded-full shadow-lg transition-all duration-200 hover:scale-110 opacity-0 group-hover:opacity-100"
-              aria-label="Next venue"
-            >
-              <ChevronRight size={16} className="text-gray-700" />
-            </button>
-          </>
-        )}
 
         {/* Favorite Button */}
         {showActions && (
