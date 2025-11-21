@@ -26,6 +26,8 @@ const VenueCard: React.FC<VenueCardProps> = ({
   const [imageLoaded, setImageLoaded] = useState(false);
   const [imageError, setImageError] = useState(false);
   const [currentVenueIndex, setCurrentVenueIndex] = useState(-1);
+  const [showImageGallery, setShowImageGallery] = useState(false);
+  const [galleryVenue, setGalleryVenue] = useState<Venue | null>(null);
 
   const router = useRouter();
   const { setSelectedVenue, toggleFavorite } = useVenueStore();
@@ -77,8 +79,9 @@ const VenueCard: React.FC<VenueCardProps> = ({
     if (currentVenueIndex >= 0) {
       const nextIndex = (currentVenueIndex + 1) % venues.length;
       const nextVenue = venues[nextIndex];
-      // Navigate to the next venue's detail page
-      router.push(`/venue/${nextVenue.id}`);
+      // Open image gallery for the next venue
+      setGalleryVenue(nextVenue);
+      setShowImageGallery(true);
     }
   };
 
@@ -87,9 +90,26 @@ const VenueCard: React.FC<VenueCardProps> = ({
     if (currentVenueIndex >= 0) {
       const prevIndex = (currentVenueIndex - 1 + venues.length) % venues.length;
       const prevVenue = venues[prevIndex];
-      // Navigate to the previous venue's detail page
-      router.push(`/venue/${prevVenue.id}`);
+      // Open image gallery for the previous venue
+      setGalleryVenue(prevVenue);
+      setShowImageGallery(true);
     }
+  };
+
+  const handleGalleryNavigation = (direction: 'next' | 'prev') => {
+    if (!galleryVenue) return;
+
+    const currentIndex = venues.findIndex(v => v.id === galleryVenue.id);
+    if (currentIndex === -1) return;
+
+    let newIndex;
+    if (direction === 'next') {
+      newIndex = (currentIndex + 1) % venues.length;
+    } else {
+      newIndex = (currentIndex - 1 + venues.length) % venues.length;
+    }
+
+    setGalleryVenue(venues[newIndex]);
   };
 
   const cardVariants = {
@@ -325,6 +345,111 @@ const VenueCard: React.FC<VenueCardProps> = ({
           </div>
         )}
       </div>
+
+      {/* Image Gallery Modal */}
+      {showImageGallery && galleryVenue && (
+        <div className="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-4">
+          <div className="relative max-w-4xl w-full max-h-[90vh] bg-white rounded-2xl overflow-hidden">
+            {/* Header */}
+            <div className="p-6 border-b border-gray-200">
+              <div className="flex items-center justify-between">
+                <div>
+                  <h3 className="text-xl font-bold text-gray-900">{galleryVenue.name}</h3>
+                  <p className="text-gray-600">{galleryVenue.neighborhood}</p>
+                </div>
+                <button
+                  onClick={() => setShowImageGallery(false)}
+                  className="p-2 hover:bg-gray-100 rounded-full transition-colors"
+                >
+                  <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                  </svg>
+                </button>
+              </div>
+            </div>
+
+            {/* Gallery Navigation */}
+            <div className="p-6">
+              <div className="flex items-center justify-between mb-4">
+                <button
+                  onClick={() => handleGalleryNavigation('prev')}
+                  className="flex items-center gap-2 px-4 py-2 bg-gray-100 hover:bg-gray-200 rounded-lg transition-colors"
+                >
+                  <ChevronLeft size={16} />
+                  Previous Venue
+                </button>
+
+                <span className="text-sm text-gray-600">
+                  {venues.findIndex(v => v.id === galleryVenue.id) + 1} of {venues.length}
+                </span>
+
+                <button
+                  onClick={() => handleGalleryNavigation('next')}
+                  className="flex items-center gap-2 px-4 py-2 bg-gray-100 hover:bg-gray-200 rounded-lg transition-colors"
+                >
+                  Next Venue
+                  <ChevronRight size={16} />
+                </button>
+              </div>
+
+              {/* Images */}
+              <div className="space-y-4">
+                {/* Hero Image */}
+                {galleryVenue.heroImage && (
+                  <div>
+                    <h4 className="text-lg font-semibold mb-2 text-gray-800">Main Image</h4>
+                    <img
+                      src={galleryVenue.heroImage}
+                      alt={`${galleryVenue.name} main`}
+                      className="w-full h-64 object-cover rounded-lg"
+                    />
+                  </div>
+                )}
+
+                {/* Gallery Images */}
+                {galleryVenue.gallery && galleryVenue.gallery.length > 0 && (
+                  <div>
+                    <h4 className="text-lg font-semibold mb-2 text-gray-800">
+                      Gallery ({galleryVenue.gallery.length} images)
+                    </h4>
+                    <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+                      {galleryVenue.gallery.map((image, index) => (
+                        <img
+                          key={index}
+                          src={image}
+                          alt={`${galleryVenue.name} gallery ${index + 1}`}
+                          className="w-full h-32 object-cover rounded-lg hover:scale-105 transition-transform cursor-pointer"
+                        />
+                      ))}
+                    </div>
+                  </div>
+                )}
+
+                {/* Venue Info */}
+                <div className="bg-gray-50 rounded-lg p-4">
+                  <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-sm">
+                    <div>
+                      <span className="font-semibold">Type:</span> {galleryVenue.type}
+                    </div>
+                    <div>
+                      <span className="font-semibold">Rating:</span> ⭐ {galleryVenue.rating}
+                    </div>
+                    <div>
+                      <span className="font-semibold">Price:</span> {galleryVenue.pricing}
+                    </div>
+                    <div>
+                      <span className="font-semibold">Neighborhood:</span> {galleryVenue.neighborhood}
+                    </div>
+                  </div>
+                  {galleryVenue.description && (
+                    <p className="mt-3 text-gray-700 text-sm">{galleryVenue.description}</p>
+                  )}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
     </motion.div>
   );
 };
