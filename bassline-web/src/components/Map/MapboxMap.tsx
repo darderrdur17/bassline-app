@@ -2,14 +2,7 @@
 
 import React, { useEffect, useRef, useState, useCallback } from 'react';
 import Map, { Marker, Popup, NavigationControl, FullscreenControl, ScaleControl } from 'react-map-gl';
-import maplibreGl from 'maplibre-gl';
-import 'maplibre-gl/dist/maplibre-gl.css';
-
-// Configure react-map-gl to use MapLibre
-if (typeof window !== 'undefined') {
-  // @ts-ignore
-  window.maplibregl = maplibreGl;
-}
+import 'mapbox-gl/dist/mapbox-gl.css';
 import { Venue, Coordinates, MapViewport } from '@/types/venue';
 import { useVenueStore, useVenueSelectors } from '@/stores/useVenueStore';
 import VenueMarker from './VenueMarker';
@@ -17,7 +10,7 @@ import VenuePopup from './VenuePopup';
 import MapControls from './MapControls';
 import HeatmapLayer from './HeatmapLayer';
 import ClusterLayer from './ClusterLayer';
-import { MAPLIBRE_STYLE_URL } from '@/lib/config';
+import { MAPBOX_STYLE_URL } from '@/lib/config';
 
 interface MapboxMapProps {
   className?: string;
@@ -144,9 +137,9 @@ const MapboxMap: React.FC<MapboxMapProps> = ({
     setHoveredVenue(venue);
   }, []);
 
-  // Using MapLibre - single style URL
+  // Using Mapbox - single style URL
   const getMapStyle = () => {
-    return MAPLIBRE_STYLE_URL;
+    return MAPBOX_STYLE_URL;
   };
 
   return (
@@ -163,7 +156,8 @@ const MapboxMap: React.FC<MapboxMapProps> = ({
           }
         }}
         style={{ width: '100%', height: '100%' }}
-        mapStyle={MAPLIBRE_STYLE_URL}
+        mapStyle={MAPBOX_STYLE_URL}
+        mapboxAccessToken={process.env.NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN}
         onLoad={() => {
           setIsMapLoaded(true);
           // Initialize map bounds

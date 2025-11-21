@@ -1,7 +1,6 @@
-// MapLibre configuration
-// Using free OpenStreetMap-based style - no API key needed!
-// This is completely free and doesn't require any authentication
-export const MAPLIBRE_STYLE_URL = 'https://tiles.openfreemap.org/styles/liberty';
+// Mapbox configuration
+// Using Mapbox Streets style with access token
+export const MAPBOX_STYLE_URL = 'mapbox://styles/mapbox/streets-v12';
 
 // API endpoints (for future backend integration)
 export const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL || 'http://localhost:3001';

@@ -1,19 +1,19 @@
-# MapLibre GL JS Setup Guide
+# Mapbox GL JS Setup Guide
 
-## ✅ Current Status: Already Configured!
+## ✅ Current Status: Configured with Access Token!
 
-MapLibre GL JS is **already set up and working** in your Bassline web application. No additional setup is required!
+Mapbox GL JS is **already set up and working** in your Bassline web application with a valid access token. No additional setup is required!
 
 ## 📦 What's Installed
 
 ```json
 {
   "dependencies": {
-    "maplibre-gl": "^4.7.1",
+    "mapbox-gl": "^3.16.0",
     "react-map-gl": "^7.1.7"
   },
   "devDependencies": {
-    "@types/maplibre-gl": "^1.13.2"
+    "@types/mapbox-gl": "^3.4.1"
   }
 }
 ```
@@ -23,11 +23,12 @@ MapLibre GL JS is **already set up and working** in your Bassline web applicatio
 **Location**: `src/lib/config.ts`
 
 ```typescript
-// Current (free OpenStreetMap-based style)
-export const MAPLIBRE_STYLE_URL = 'https://tiles.openfreemap.org/styles/liberty';
+export const MAPBOX_STYLE_URL = 'mapbox://styles/mapbox/streets-v12';
 ```
 
-This uses the **free OpenStreetMap Liberty style** - no API key needed!
+**Environment Variable**: `NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN` (set in `vercel.json`)
+
+This uses the **Mapbox Streets v12 style** with your valid access token!
 
 ## 🎨 Customizing Map Styles
 

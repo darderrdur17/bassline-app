@@ -3,6 +3,7 @@
   "buildCommand": "npm run build",
   "installCommand": "npm install",
   "env": {
-    "NODE_ENV": "production"
+    "NODE_ENV": "production",
+    "NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN": "pk.eyJ1IjoiZGFyZGVycmR1ciIsImEiOiJjbWk4dTA0Mm0wZnZ4MnNwbzYwNWp2Mjg5In0.bG_gG2vKSCKUHd2kXEtBLQ"
   }
 }
