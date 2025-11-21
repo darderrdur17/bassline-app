@@ -163,7 +163,7 @@ const VenueMarkerComponent: React.FC<{
   );
 };
 
-const VenueMarker: React.FC<VenueMarkerProps> = ({
+const VenueMarker: React.FC<VenueMarkerProps> = React.memo(({
   venue,
   isSelected,
   isHovered,
@@ -193,6 +193,8 @@ const VenueMarker: React.FC<VenueMarkerProps> = ({
       />
     </Marker>
   );
-};
+});
+
+VenueMarker.displayName = 'VenueMarker';
 
 export default VenueMarker;

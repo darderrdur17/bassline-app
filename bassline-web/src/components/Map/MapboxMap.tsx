@@ -35,12 +35,27 @@ const MapboxMap: React.FC<MapboxMapProps> = ({
   const [selectedVenue, setSelectedVenue] = useState<Venue | null>(null);
   const [hoveredVenue, setHoveredVenue] = useState<Venue | null>(null);
   const [isLoading, setIsLoading] = useState(true);
+  const [mapBounds, setMapBounds] = useState<any>(null);
 
   const { filteredVenues, mapCenter, mapZoom, setMapCenter, setMapZoom } = useVenueStore();
   const { getFilteredVenues } = useVenueSelectors();
 
   // Get filtered venues from store
-  const venues = getFilteredVenues();
+  const allVenues = getFilteredVenues();
+
+  // Filter venues by viewport for performance (only show venues in current map bounds)
+  const venues = React.useMemo(() => {
+    if (!mapBounds || allVenues.length <= 50) {
+      // Show all venues if bounds not set yet or small dataset
+      return allVenues;
+    }
+
+    // For larger datasets, only show venues within current viewport + small buffer
+    return allVenues.filter(venue => {
+      const { latitude, longitude } = venue.coordinates;
+      return mapBounds.contains([longitude, latitude]);
+    });
+  }, [allVenues, mapBounds]);
 
   // Update viewport when store changes
   useEffect(() => {
@@ -60,6 +75,12 @@ const MapboxMap: React.FC<MapboxMapProps> = ({
   const handleViewportChange = useCallback((newViewport: any) => {
     setMapCenter([newViewport.latitude, newViewport.longitude]);
     setMapZoom(newViewport.zoom);
+
+    // Update map bounds for viewport culling
+    if (mapRef.current) {
+      const bounds = mapRef.current.getBounds();
+      setMapBounds(bounds);
+    }
   }, [setMapCenter, setMapZoom]);
 
   // Fit bounds to show all venues
@@ -128,9 +149,23 @@ const MapboxMap: React.FC<MapboxMapProps> = ({
         ref={mapRef}
         {...viewport}
         onMove={handleViewportChange}
+        onMoveEnd={() => {
+          // Update bounds after movement stops for more accurate culling
+          if (mapRef.current) {
+            const bounds = mapRef.current.getBounds();
+            setMapBounds(bounds);
+          }
+        }}
         style={{ width: '100%', height: '100%' }}
         mapStyle={MAPLIBRE_STYLE_URL}
-        onLoad={() => setIsLoading(false)}
+        onLoad={() => {
+          setIsLoading(false);
+          // Initialize map bounds
+          if (mapRef.current) {
+            const bounds = mapRef.current.getBounds();
+            setMapBounds(bounds);
+          }
+        }}
         onError={(error) => {
           console.error('Map error:', error);
           setIsLoading(false);
@@ -139,6 +174,11 @@ const MapboxMap: React.FC<MapboxMapProps> = ({
         pitch={enable3DBuildings ? 45 : 0}
         bearing={0}
         antialias={enable3DBuildings}
+        maxZoom={20}
+        minZoom={10}
+        // Performance optimizations
+        maxTileCacheSize={50}
+        preserveDrawingBuffer={false}
         fog={enable3DBuildings ? {
           color: 'rgb(186, 210, 235)',
           'high-color': 'rgb(36, 92, 223)',

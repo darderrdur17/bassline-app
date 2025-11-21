@@ -1,10 +1,12 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { MapPin, Star, Clock, Music, Users, Heart, ExternalLink } from 'lucide-react';
+import { MapPin, Star, Clock, Music, Users, Heart, ExternalLink, ChevronLeft, ChevronRight } from 'lucide-react';
 import { Venue } from '@/types/venue';
 import { useVenueStore, useVenueSelectors } from '@/stores/useVenueStore';
+import { venues } from '@/data/venues';
+import { useRouter } from 'next/navigation';
 
 interface VenueCardProps {
   venue: Venue;
@@ -23,11 +25,18 @@ const VenueCard: React.FC<VenueCardProps> = ({
 }) => {
   const [imageLoaded, setImageLoaded] = useState(false);
   const [imageError, setImageError] = useState(false);
+  const [currentVenueIndex, setCurrentVenueIndex] = useState(-1);
 
   const { setSelectedVenue, toggleFavorite } = useVenueStore();
   const { isFavorite } = useVenueSelectors();
 
   const isVenueFavorite = isFavorite(venue.id.toString());
+
+  // Find current venue index for navigation
+  useEffect(() => {
+    const index = venues.findIndex(v => v.id === venue.id);
+    setCurrentVenueIndex(index >= 0 ? index : -1);
+  }, [venue.id]);
 
   // Get crowd level info
   const getCrowdInfo = () => {
@@ -62,6 +71,24 @@ const VenueCard: React.FC<VenueCardProps> = ({
     toggleFavorite(venue.id.toString());
   };
 
+  const handleNextVenue = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    if (currentVenueIndex >= 0) {
+      const nextIndex = (currentVenueIndex + 1) % venues.length;
+      const nextVenue = venues[nextIndex];
+      setSelectedVenue(nextVenue);
+    }
+  };
+
+  const handlePreviousVenue = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    if (currentVenueIndex >= 0) {
+      const prevIndex = (currentVenueIndex - 1 + venues.length) % venues.length;
+      const prevVenue = venues[prevIndex];
+      setSelectedVenue(prevVenue);
+    }
+  };
+
   const cardVariants = {
     default: 'venue-card',
     compact: 'bg-white rounded-lg shadow-md border border-gray-200 hover:shadow-lg transition-all duration-300 hover:-translate-y-1 cursor-pointer',
@@ -79,7 +106,7 @@ const VenueCard: React.FC<VenueCardProps> = ({
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ delay: index * 0.1 }}
-      className={`${cardVariants[variant]} ${className}`}
+      className={`group ${cardVariants[variant]} ${className}`}
       onClick={handleCardClick}
       role="button"
       tabIndex={0}
@@ -129,6 +156,27 @@ const VenueCard: React.FC<VenueCardProps> = ({
             </span>
           )}
         </div>
+
+        {/* Navigation Buttons */}
+        {showActions && (
+          <>
+            <button
+              onClick={handlePreviousVenue}
+              className="absolute left-3 top-1/2 -translate-y-1/2 p-2 bg-white/90 hover:bg-white rounded-full shadow-lg transition-all duration-200 hover:scale-110 opacity-0 group-hover:opacity-100"
+              aria-label="Previous venue"
+            >
+              <ChevronLeft size={16} className="text-gray-700" />
+            </button>
+
+            <button
+              onClick={handleNextVenue}
+              className="absolute right-16 top-1/2 -translate-y-1/2 p-2 bg-white/90 hover:bg-white rounded-full shadow-lg transition-all duration-200 hover:scale-110 opacity-0 group-hover:opacity-100"
+              aria-label="Next venue"
+            >
+              <ChevronRight size={16} className="text-gray-700" />
+            </button>
+          </>
+        )}
 
         {/* Favorite Button */}
         {showActions && (
