@@ -1,6 +1,7 @@
 // Mapbox configuration
-// Using free MapLibre GL JS instead of Mapbox - no API key needed!
-export const MAPLIBRE_STYLE_URL = 'https://demotiles.maplibre.org/style.json';
+// Using free MapLibre GL JS with CartoDB Voyager style - no API key needed!
+// CartoDB Voyager is a production-ready free tile provider
+export const MAPLIBRE_STYLE_URL = 'https://basemaps.cartocdn.com/gl/voyager-gl-style/style.json';
 
 // API endpoints (for future backend integration)
 export const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL || 'http://localhost:3001';

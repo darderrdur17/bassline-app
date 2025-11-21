@@ -44,6 +44,10 @@ const MapboxMap: React.FC<MapboxMapProps> = ({
 
   // Update viewport when store changes
   useEffect(() => {
+    // Ensure valid coordinates (not NaN)
+    if (isNaN(mapCenter[0]) || isNaN(mapCenter[1]) || isNaN(mapZoom)) {
+      return; // Don't update if invalid
+    }
     setViewport(prev => ({
       ...prev,
       latitude: mapCenter[0],
@@ -127,6 +131,10 @@ const MapboxMap: React.FC<MapboxMapProps> = ({
         style={{ width: '100%', height: '100%' }}
         mapStyle={MAPLIBRE_STYLE_URL}
         onLoad={() => setIsLoading(false)}
+        onError={(error) => {
+          console.error('Map error:', error);
+          setIsLoading(false);
+        }}
         interactiveLayerIds={['venue-markers']}
         pitch={enable3DBuildings ? 45 : 0}
         bearing={0}
