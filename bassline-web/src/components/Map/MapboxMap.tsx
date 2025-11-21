@@ -173,6 +173,11 @@ const MapboxMap: React.FC<MapboxMapProps> = ({
         }}
         onError={(error) => {
           console.error('Map error:', error);
+          console.error('Error details:', {
+            message: error?.error?.message,
+            type: error?.type,
+            target: error?.target
+          });
         }}
         interactiveLayerIds={['venue-markers']}
         pitch={enable3DBuildings ? 45 : 0}

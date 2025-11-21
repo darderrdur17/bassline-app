@@ -1,6 +1,6 @@
 // Mapbox configuration
-// Using Mapbox Streets style with access token
-export const MAPBOX_STYLE_URL = 'mapbox://styles/mapbox/streets-v12';
+// Using standard Mapbox Streets style - most reliable option
+export const MAPBOX_STYLE_URL = 'mapbox://styles/mapbox/streets-v11';
 
 // API endpoints (for future backend integration)
 export const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL || 'http://localhost:3001';
