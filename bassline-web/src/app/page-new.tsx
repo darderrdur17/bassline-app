@@ -254,8 +254,6 @@ export default function Home() {
 
           <div className="h-96 sm:h-[650px] rounded-2xl overflow-hidden shadow-2xl mx-6 sm:mx-8 mb-8 relative">
             <MapboxMap
-              showHeatmap={false}
-              showClusters={true}
               enable3DBuildings={true}
             />
           </div>

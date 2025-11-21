@@ -20,15 +20,11 @@ import { MAPBOX_STYLE_URL } from '@/lib/config';
 
 interface MapboxMapProps {
   className?: string;
-  showHeatmap?: boolean;
-  showClusters?: boolean;
   enable3DBuildings?: boolean;
 }
 
 const MapboxMap: React.FC<MapboxMapProps> = ({
   className = '',
-  showHeatmap = false,
-  showClusters = true,
   enable3DBuildings = true,
 }) => {
   const mapRef = useRef<any>();
@@ -41,6 +37,8 @@ const MapboxMap: React.FC<MapboxMapProps> = ({
   const [hoveredVenue, setHoveredVenue] = useState<Venue | null>(null);
   const [isMapLoaded, setIsMapLoaded] = useState(false);
   const [mapBounds, setMapBounds] = useState<any>(null);
+  const [showHeatmap, setShowHeatmap] = useState(false);
+  const [showClusters, setShowClusters] = useState(false);
 
   const { filteredVenues, mapCenter, mapZoom, setMapCenter, setMapZoom } = useVenueStore();
   const { getFilteredVenues } = useVenueSelectors();
@@ -232,8 +230,8 @@ const MapboxMap: React.FC<MapboxMapProps> = ({
       {/* Custom Controls Overlay */}
       <MapControls
         onFitBounds={fitBoundsToVenues}
-        onToggleHeatmap={() => {}}
-        onToggleClusters={() => {}}
+        onToggleHeatmap={() => setShowHeatmap(!showHeatmap)}
+        onToggleClusters={() => setShowClusters(!showClusters)}
         showHeatmap={showHeatmap}
         showClusters={showClusters}
         venueCount={venues.length}
@@ -245,9 +243,14 @@ const MapboxMap: React.FC<MapboxMapProps> = ({
           <div className="flex items-center gap-2">
             <span className="text-2xl">📍</span>
           {venues.length > 0 ? (
-            <span className="text-ui-text font-semibold font-body">
-              {venues.length} venue{venues.length !== 1 ? 's' : ''}
-            </span>
+            <div className="flex flex-col">
+              <span className="text-ui-text font-semibold font-body">
+                {venues.length} venue{venues.length !== 1 ? 's' : ''}
+              </span>
+              <span className="text-xs text-ui-text-secondary">
+                Click markers for details
+              </span>
+            </div>
           ) : (
             <div className="flex items-center gap-2">
               <div className="animate-spin rounded-full h-4 w-4 border-2 border-brand-red border-t-transparent"></div>

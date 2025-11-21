@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Maximize2, Layers, MapPin, Activity } from 'lucide-react';
+import { Maximize2, Layers, MapPin, Activity, Target } from 'lucide-react';
 
 interface MapControlsProps {
   onFitBounds: () => void;
@@ -34,7 +34,22 @@ const MapControls: React.FC<MapControlsProps> = ({
         <Maximize2 size={20} />
       </motion.button>
 
-      {/* Layer Controls */}
+      {/* Cluster Toggle */}
+      <motion.button
+        whileHover={{ scale: 1.05 }}
+        whileTap={{ scale: 0.95 }}
+        onClick={onToggleClusters}
+        className={`p-3 rounded-xl shadow-lg border transition-all duration-200 group ${
+          showClusters
+            ? 'bg-brand-red text-white border-brand-red shadow-glow-red'
+            : 'bg-ui-surface hover:bg-ui-surface-hover text-ui-text border-ui-border'
+        }`}
+        title={showClusters ? "Show individual markers" : "Show clusters"}
+      >
+        <Target size={20} />
+      </motion.button>
+
+      {/* Heatmap Toggle */}
       <motion.button
         whileHover={{ scale: 1.05 }}
         whileTap={{ scale: 0.95 }}
