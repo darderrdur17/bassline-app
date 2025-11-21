@@ -23,10 +23,11 @@ MapLibre GL JS is **already set up and working** in your Bassline web applicatio
 **Location**: `src/lib/config.ts`
 
 ```typescript
-export const MAPLIBRE_STYLE_URL = 'https://demotiles.maplibre.org/style.json';
+// Current (free OpenStreetMap-based style)
+export const MAPLIBRE_STYLE_URL = 'https://tiles.openfreemap.org/styles/liberty';
 ```
 
-This uses the **free MapLibre demo style** - no API key needed!
+This uses the **free OpenStreetMap Liberty style** - no API key needed!
 
 ## 🎨 Customizing Map Styles
 
@@ -35,12 +36,12 @@ This uses the **free MapLibre demo style** - no API key needed!
 You can switch to different free styles by changing the `MAPLIBRE_STYLE_URL`:
 
 ```typescript
-// Current (default demo style)
-export const MAPLIBRE_STYLE_URL = 'https://demotiles.maplibre.org/style.json';
+// Current (free OpenStreetMap Liberty style)
+export const MAPLIBRE_STYLE_URL = 'https://tiles.openfreemap.org/styles/liberty';
 
 // Alternative free styles:
-// OpenStreetMap style
-export const MAPLIBRE_STYLE_URL = 'https://tiles.openfreemap.org/styles/liberty';
+// MapLibre demo style
+export const MAPLIBRE_STYLE_URL = 'https://demotiles.maplibre.org/style.json';
 
 // Positron style (light)
 export const MAPLIBRE_STYLE_URL = 'https://basemaps.cartocdn.com/gl/positron-gl-style/style.json';
@@ -48,7 +49,7 @@ export const MAPLIBRE_STYLE_URL = 'https://basemaps.cartocdn.com/gl/positron-gl-
 // Dark Matter style (dark)
 export const MAPLIBRE_STYLE_URL = 'https://basemaps.cartocdn.com/gl/dark-matter-gl-style/style.json';
 
-// Voyager style
+// Voyager style (may require Mapbox token - avoid!)
 export const MAPLIBRE_STYLE_URL = 'https://basemaps.cartocdn.com/gl/voyager-gl-style/style.json';
 ```
 
@@ -171,13 +172,21 @@ export const MAPLIBRE_STYLE_URL = 'https://basemaps.cartocdn.com/gl/voyager-gl-s
 
 ## 🎯 Recommended for Nightlife App
 
-For a Bassline nightlife app, I recommend the **Dark Matter** style:
+For a Bassline nightlife app, I recommend the **Liberty** style (currently active):
+
+```typescript
+export const MAPLIBRE_STYLE_URL = 'https://tiles.openfreemap.org/styles/liberty';
+```
+
+This gives a clean, modern look that's perfect for nightlife apps and is completely free!
+
+Alternatively, for a darker theme, you could use **Dark Matter**:
 
 ```typescript
 export const MAPLIBRE_STYLE_URL = 'https://basemaps.cartocdn.com/gl/dark-matter-gl-style/style.json';
 ```
 
-This gives a sleek, dark theme that matches the nightlife vibe perfectly!
+⚠️ **Note**: Avoid CartoDB Voyager style as it may require Mapbox authentication.
 
 ## 🔧 Troubleshooting
 

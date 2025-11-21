@@ -1,7 +1,7 @@
-// Mapbox configuration
-// Using free MapLibre GL JS with CartoDB Voyager style - no API key needed!
-// CartoDB Voyager is a production-ready free tile provider
-export const MAPLIBRE_STYLE_URL = 'https://basemaps.cartocdn.com/gl/voyager-gl-style/style.json';
+// MapLibre configuration
+// Using free OpenStreetMap-based style - no API key needed!
+// This is completely free and doesn't require any authentication
+export const MAPLIBRE_STYLE_URL = 'https://tiles.openfreemap.org/styles/liberty';
 
 // API endpoints (for future backend integration)
 export const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL || 'http://localhost:3001';
@@ -11,7 +11,6 @@ export const VENUE_UPDATE_INTERVAL = 30000; // 30 seconds
 export const CROWD_SIMULATION_ENABLED = true;
 
 // Map settings
-export const DEFAULT_MAP_STYLE = 'mapbox://styles/mapbox/streets-v12';
 export const DEFAULT_CENTER: [number, number] = [37.7749, -122.4194]; // San Francisco
 export const DEFAULT_ZOOM = 13;
 export const MAX_ZOOM = 20;
