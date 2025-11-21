@@ -168,7 +168,7 @@ const MapboxMap: React.FC<MapboxMapProps> = ({
         }}
         onError={(error) => {
           console.error('Map error:', error);
-          setIsLoading(false);
+          setIsMapLoaded(true); // Mark as loaded even on error to prevent blocking
         }}
         interactiveLayerIds={['venue-markers']}
         pitch={enable3DBuildings ? 45 : 0}
