@@ -4,6 +4,12 @@ import React, { useEffect, useRef, useState, useCallback } from 'react';
 import Map, { Marker, Popup, NavigationControl, FullscreenControl, ScaleControl } from 'react-map-gl';
 import maplibreGl from 'maplibre-gl';
 import 'maplibre-gl/dist/maplibre-gl.css';
+
+// Configure react-map-gl to use MapLibre
+if (typeof window !== 'undefined') {
+  // @ts-ignore
+  window.maplibregl = maplibreGl;
+}
 import { Venue, Coordinates, MapViewport } from '@/types/venue';
 import { useVenueStore, useVenueSelectors } from '@/stores/useVenueStore';
 import VenueMarker from './VenueMarker';
