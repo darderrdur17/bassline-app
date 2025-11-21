@@ -5,9 +5,17 @@ import { motion } from 'framer-motion';
 import { Filter, List, Map } from 'lucide-react';
 import dynamic from 'next/dynamic';
 
-// Dynamic imports for better performance
+// Dynamic imports for better performance with preloading
 const MapboxMap = dynamic(() => import('@/components/Map/MapboxMap'), {
-  ssr: false
+  ssr: false,
+  loading: () => (
+    <div className="h-96 sm:h-[650px] rounded-2xl bg-gray-100 animate-pulse flex items-center justify-center">
+      <div className="text-center">
+        <div className="w-12 h-12 border-4 border-brand-red border-t-transparent rounded-full animate-spin mx-auto mb-2"></div>
+        <p className="text-gray-600 font-body text-sm">Loading map...</p>
+      </div>
+    </div>
+  )
 });
 
 const VenueModal = dynamic(() => import('@/components/VenueModal'), { ssr: false });

@@ -39,6 +39,7 @@ const MapboxMap: React.FC<MapboxMapProps> = ({
   const [mapBounds, setMapBounds] = useState<any>(null);
   const [showHeatmap, setShowHeatmap] = useState(false);
   const [showClusters, setShowClusters] = useState(false);
+  const [isMoving, setIsMoving] = useState(false);
 
   const { filteredVenues, mapCenter, mapZoom, setMapCenter, setMapZoom } = useVenueStore();
   const { getFilteredVenues } = useVenueSelectors();
@@ -46,19 +47,50 @@ const MapboxMap: React.FC<MapboxMapProps> = ({
   // Get filtered venues from store
   const allVenues = getFilteredVenues();
 
-  // Filter venues by viewport for performance (only show venues in current map bounds)
+  // Optimized venue filtering with progressive loading
   const venues = React.useMemo(() => {
-    // Show all venues immediately when map is not loaded yet
-    if (!isMapLoaded || !mapBounds || allVenues.length <= 50) {
-      return allVenues;
+    // Show limited venues initially for faster loading
+    if (!isMapLoaded) {
+      return allVenues.slice(0, 20); // Show first 20 venues while loading
     }
 
-    // For larger datasets, only show venues within current viewport + small buffer
-    return allVenues.filter(venue => {
-      const { latitude, longitude } = venue.coordinates;
-      return mapBounds.contains([longitude, latitude]);
-    });
-  }, [allVenues, mapBounds, isMapLoaded]);
+    // During map movement, show cached results to prevent flickering
+    if (isMoving && mapBounds) {
+      return allVenues.filter(venue => {
+        const { latitude, longitude } = venue.coordinates;
+        return mapBounds.contains([longitude, latitude]);
+      });
+    }
+
+    // Normal viewport culling for performance
+    if (mapBounds && allVenues.length > 50) {
+      // Add a small buffer around viewport for smoother experience
+      const bufferedBounds = {
+        ...mapBounds,
+        _sw: {
+          lng: mapBounds._sw.lng - 0.01,
+          lat: mapBounds._sw.lat - 0.01
+        },
+        _ne: {
+          lng: mapBounds._ne.lng + 0.01,
+          lat: mapBounds._ne.lat + 0.01
+        },
+        contains: (point: [number, number]) => {
+          return point[0] >= bufferedBounds._sw.lng &&
+                 point[0] <= bufferedBounds._ne.lng &&
+                 point[1] >= bufferedBounds._sw.lat &&
+                 point[1] <= bufferedBounds._ne.lat;
+        }
+      };
+
+      return allVenues.filter(venue => {
+        const { latitude, longitude } = venue.coordinates;
+        return bufferedBounds.contains([longitude, latitude]);
+      });
+    }
+
+    return allVenues;
+  }, [allVenues, mapBounds, isMapLoaded, isMoving]);
 
   // Update viewport when store changes
   useEffect(() => {
@@ -74,17 +106,33 @@ const MapboxMap: React.FC<MapboxMapProps> = ({
     }));
   }, [mapCenter, mapZoom]);
 
+  // Debounced bounds update to prevent excessive filtering during map movement
+  const debouncedSetBounds = useCallback(
+    (() => {
+      let timeoutId: NodeJS.Timeout;
+      return (bounds: any) => {
+        clearTimeout(timeoutId);
+        timeoutId = setTimeout(() => {
+          setMapBounds(bounds);
+          setIsMoving(false);
+        }, 150); // 150ms debounce
+      };
+    })(),
+    []
+  );
+
   // Handle viewport changes - only update store, let useEffect handle viewport updates
   const handleViewportChange = useCallback((newViewport: any) => {
     setMapCenter([newViewport.latitude, newViewport.longitude]);
     setMapZoom(newViewport.zoom);
+    setIsMoving(true);
 
-    // Update map bounds for viewport culling
+    // Update map bounds with debouncing for performance
     if (mapRef.current) {
       const bounds = mapRef.current.getBounds();
-      setMapBounds(bounds);
+      debouncedSetBounds(bounds);
     }
-  }, [setMapCenter, setMapZoom]);
+  }, [setMapCenter, setMapZoom, debouncedSetBounds]);
 
   // Fit bounds to show all venues
   const fitBoundsToVenues = useCallback(() => {
@@ -148,27 +196,49 @@ const MapboxMap: React.FC<MapboxMapProps> = ({
 
   return (
     <div className={`relative w-full h-full ${className}`}>
+      {/* Loading skeleton */}
+      {!isMapLoaded && (
+        <div className="absolute inset-0 bg-gray-100 animate-pulse rounded-2xl flex items-center justify-center">
+          <div className="text-center">
+            <div className="w-16 h-16 border-4 border-brand-red border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
+            <p className="text-gray-600 font-body">Loading map...</p>
+          </div>
+        </div>
+      )}
+
       <Map
         ref={mapRef}
         {...viewport}
         onMove={handleViewportChange}
-        onMoveEnd={() => {
-          // Update bounds after movement stops for more accurate culling
-          if (mapRef.current) {
-            const bounds = mapRef.current.getBounds();
-            setMapBounds(bounds);
-          }
-        }}
         style={{ width: '100%', height: '100%' }}
         mapStyle={MAPBOX_STYLE_URL}
         onLoad={() => {
           setIsMapLoaded(true);
+          setIsMoving(false);
           // Initialize map bounds
           if (mapRef.current) {
             const bounds = mapRef.current.getBounds();
             setMapBounds(bounds);
           }
         }}
+        onMoveStart={() => {
+          setIsMoving(true);
+        }}
+        onMoveEnd={() => {
+          setIsMoving(false);
+          // Update bounds after movement stops for more accurate culling
+          if (mapRef.current) {
+            const bounds = mapRef.current.getBounds();
+            setMapBounds(bounds);
+          }
+        }}
+        // Performance optimizations
+        maxTileCacheSize={50}
+        preserveDrawingBuffer={false}
+        trackResize={true}
+        doubleClickZoom={true}
+        dragRotate={true}
+        pitchWithRotate={true}
         onError={(error) => {
           console.error('Map error:', error);
           console.error('Error details:', {
@@ -183,9 +253,6 @@ const MapboxMap: React.FC<MapboxMapProps> = ({
         antialias={enable3DBuildings}
         maxZoom={20}
         minZoom={10}
-        // Performance optimizations
-        maxTileCacheSize={50}
-        preserveDrawingBuffer={false}
         fog={enable3DBuildings ? {
           color: 'rgb(186, 210, 235)',
           'high-color': 'rgb(36, 92, 223)',
@@ -246,15 +313,18 @@ const MapboxMap: React.FC<MapboxMapProps> = ({
             <div className="flex flex-col">
               <span className="text-ui-text font-semibold font-body">
                 {venues.length} venue{venues.length !== 1 ? 's' : ''}
+                {isMoving && <span className="text-xs text-brand-red ml-1">•</span>}
               </span>
               <span className="text-xs text-ui-text-secondary">
-                Click markers for details
+                {isMoving ? 'Updating...' : 'Click markers for details'}
               </span>
             </div>
           ) : (
             <div className="flex items-center gap-2">
               <div className="animate-spin rounded-full h-4 w-4 border-2 border-brand-red border-t-transparent"></div>
-              <span className="text-ui-text-secondary font-body text-sm">Loading venues...</span>
+              <span className="text-ui-text-secondary font-body text-sm">
+                {isMoving ? 'Filtering venues...' : 'Loading venues...'}
+              </span>
           </div>
           )}
         </div>

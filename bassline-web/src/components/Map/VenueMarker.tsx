@@ -174,6 +174,17 @@ const VenueMarker: React.FC<VenueMarkerProps> = React.memo(({
   const { latitude, longitude } = venue.coordinates;
   const realtimeData = allRealtimeData.get(venue.id);
 
+  // Memoize the marker component to prevent unnecessary re-renders
+  const markerComponent = React.useMemo(() => (
+    <VenueMarkerComponent
+      venue={venue}
+      realtimeData={realtimeData}
+      isSelected={isSelected}
+      isHovered={isHovered}
+      onClick={() => onClick(venue)}
+    />
+  ), [venue.id, realtimeData, isSelected, isHovered]);
+
   return (
     <Marker
       latitude={latitude}
@@ -184,14 +195,15 @@ const VenueMarker: React.FC<VenueMarkerProps> = React.memo(({
         onClick(venue);
       }}
     >
-      <VenueMarkerComponent
-        venue={venue}
-        realtimeData={realtimeData}
-        isSelected={isSelected}
-        isHovered={isHovered}
-        onClick={() => onClick(venue)}
-      />
+      {markerComponent}
     </Marker>
+  );
+}, (prevProps, nextProps) => {
+  // Custom comparison to prevent unnecessary re-renders
+  return (
+    prevProps.isSelected === nextProps.isSelected &&
+    prevProps.isHovered === nextProps.isHovered &&
+    prevProps.venue.id === nextProps.venue.id
   );
 });
 
