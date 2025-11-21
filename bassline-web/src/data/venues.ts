@@ -1624,6 +1624,10 @@ export const venues: Venue[] = [
     ],
     "openPast2AM": true,
     "whereToGoIf": "you want the best sound system",
+    "gallery": [
+      "/images/venues/audio-1.jpg",
+      "/images/venues/audio-2.jpg"
+    ],
     "coordinates": {
       "latitude": 37.7749,
       "longitude": -122.4194
@@ -1654,6 +1658,10 @@ export const venues: Venue[] = [
     ],
     "openPast2AM": true,
     "whereToGoIf": "you're not ready to go home",
+    "gallery": [
+      "/images/venues/halcyon-1.jpg",
+      "/images/venues/halcyon-2.jpg"
+    ],
     "coordinates": {
       "latitude": 37.7749,
       "longitude": -122.4194
@@ -1679,6 +1687,10 @@ export const venues: Venue[] = [
     ],
     "openPast2AM": true,
     "whereToGoIf": "you want a warehouse-style party",
+    "gallery": [
+      "/images/venues/public-works-1.jpg",
+      "/images/venues/public-works-2.jpg"
+    ],
     "coordinates": {
       "latitude": 37.7749,
       "longitude": -122.4194
@@ -1732,6 +1744,10 @@ export const venues: Venue[] = [
     ],
     "openPast2AM": true,
     "whereToGoIf": "you want a festival-like warehouse experience",
+    "gallery": [
+      "/images/venues/the-midway-1.jpg",
+      "/images/venues/the-midway-2.jpg"
+    ],
     "coordinates": {
       "latitude": 37.7749,
       "longitude": -122.4194
@@ -1757,6 +1773,10 @@ export const venues: Venue[] = [
     ],
     "openPast2AM": true,
     "whereToGoIf": "you want multi-level stages & Vegas-style energy",
+    "gallery": [
+      "/images/venues/temple-1.jpg",
+      "/images/venues/temple-2.jpg"
+    ],
     "coordinates": {
       "latitude": 37.7749,
       "longitude": -122.4194
@@ -1817,6 +1837,10 @@ export const venues: Venue[] = [
       "beef bone pot"
     ],
     "whereToGoIf": "you need late night food",
+    "gallery": [
+      "/images/venues/taishan-1.jpg",
+      "/images/venues/taishan-2.jpg"
+    ],
     "coordinates": {
       "latitude": 37.7749,
       "longitude": -122.4194
@@ -1845,6 +1869,10 @@ export const venues: Venue[] = [
       "pie"
     ],
     "whereToGoIf": "you need late night food",
+    "gallery": [
+      "/images/venues/grubstake-1.jpg",
+      "/images/venues/grubstake-2.jpg"
+    ],
     "coordinates": {
       "latitude": 37.7749,
       "longitude": -122.4194
@@ -1967,6 +1995,10 @@ export const venues: Venue[] = [
       "fried rice"
     ],
     "whereToGoIf": "you need late night food",
+    "gallery": [
+      "/images/venues/toyose-1.jpg",
+      "/images/venues/toyose-2.jpg"
+    ],
     "coordinates": {
       "latitude": 37.7749,
       "longitude": -122.4194
@@ -1994,6 +2026,10 @@ export const venues: Venue[] = [
       "lengua tacos"
     ],
     "whereToGoIf": "you need late night food",
+    "gallery": [
+      "/images/venues/taqueria-el-farolito-1.jpg",
+      "/images/venues/taqueria-el-farolito-2.jpg"
+    ],
     "coordinates": {
       "latitude": 37.7749,
       "longitude": -122.4194
