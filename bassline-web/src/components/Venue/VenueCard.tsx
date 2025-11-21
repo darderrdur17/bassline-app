@@ -3,10 +3,10 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { MapPin, Star, Clock, Music, Users, Heart, ExternalLink, ChevronLeft, ChevronRight } from 'lucide-react';
+import { useRouter } from 'next/navigation';
 import { Venue } from '@/types/venue';
 import { useVenueStore, useVenueSelectors } from '@/stores/useVenueStore';
 import { venues } from '@/data/venues';
-import { useRouter } from 'next/navigation';
 
 interface VenueCardProps {
   venue: Venue;
@@ -27,6 +27,7 @@ const VenueCard: React.FC<VenueCardProps> = ({
   const [imageError, setImageError] = useState(false);
   const [currentVenueIndex, setCurrentVenueIndex] = useState(-1);
 
+  const router = useRouter();
   const { setSelectedVenue, toggleFavorite } = useVenueStore();
   const { isFavorite } = useVenueSelectors();
 
@@ -76,7 +77,8 @@ const VenueCard: React.FC<VenueCardProps> = ({
     if (currentVenueIndex >= 0) {
       const nextIndex = (currentVenueIndex + 1) % venues.length;
       const nextVenue = venues[nextIndex];
-      setSelectedVenue(nextVenue);
+      // Navigate to the next venue's detail page
+      router.push(`/venue/${nextVenue.id}`);
     }
   };
 
@@ -85,7 +87,8 @@ const VenueCard: React.FC<VenueCardProps> = ({
     if (currentVenueIndex >= 0) {
       const prevIndex = (currentVenueIndex - 1 + venues.length) % venues.length;
       const prevVenue = venues[prevIndex];
-      setSelectedVenue(prevVenue);
+      // Navigate to the previous venue's detail page
+      router.push(`/venue/${prevVenue.id}`);
     }
   };
 
