@@ -168,7 +168,6 @@ const MapboxMap: React.FC<MapboxMapProps> = ({
         }}
         onError={(error) => {
           console.error('Map error:', error);
-          setIsMapLoaded(true); // Mark as loaded even on error to prevent blocking
         }}
         interactiveLayerIds={['venue-markers']}
         pitch={enable3DBuildings ? 45 : 0}
@@ -232,9 +231,9 @@ const MapboxMap: React.FC<MapboxMapProps> = ({
 
 
       {/* Venue Count Badge */}
-      <div className="absolute top-4 left-4 bg-ui-surface/95 backdrop-blur-sm rounded-xl px-4 py-2 shadow-lg border border-ui-border">
-        <div className="flex items-center gap-2">
-          <span className="text-2xl">📍</span>
+        <div className="absolute top-4 left-4 bg-ui-surface/95 backdrop-blur-sm rounded-xl px-4 py-2 shadow-lg border border-ui-border">
+          <div className="flex items-center gap-2">
+            <span className="text-2xl">📍</span>
           {venues.length > 0 ? (
             <span className="text-ui-text font-semibold font-body">
               {venues.length} venue{venues.length !== 1 ? 's' : ''}
@@ -243,7 +242,7 @@ const MapboxMap: React.FC<MapboxMapProps> = ({
             <div className="flex items-center gap-2">
               <div className="animate-spin rounded-full h-4 w-4 border-2 border-brand-red border-t-transparent"></div>
               <span className="text-ui-text-secondary font-body text-sm">Loading venues...</span>
-            </div>
+          </div>
           )}
         </div>
       </div>
