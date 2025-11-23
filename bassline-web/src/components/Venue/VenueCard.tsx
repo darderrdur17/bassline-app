@@ -206,7 +206,7 @@ const VenueCard: React.FC<VenueCardProps> = ({
             {venue.name}
           </h3>
           <div className="flex items-center gap-2 text-small text-gray-600">
-            <div className="flex items-center gap-1">
+            <div className="flex items-center gap-0.5">
               <Star size={12} className="text-yellow-500 fill-current" />
               <span className="font-roboto-medium">{venue.rating}</span>
             </div>
@@ -223,8 +223,8 @@ const VenueCard: React.FC<VenueCardProps> = ({
         )}
 
         {/* Location */}
-        <div className="flex items-start gap-2 text-sm text-gray-600 mb-3">
-          <MapPin size={14} className="text-gray-400 flex-shrink-0 mt-0.5" />
+        <div className="flex items-center gap-2 text-sm text-gray-600 mb-3">
+          <MapPin size={14} className="text-gray-400 flex-shrink-0" />
           <span className="truncate">{venue.neighborhood}</span>
         </div>
 

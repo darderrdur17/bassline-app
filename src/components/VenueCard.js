@@ -230,12 +230,6 @@ export default function VenueCard({ venue, onPress, onClose, preview = false, on
             )}
           </View>
 
-          {/* Nearby Suggestions */}
-          <View style={styles.nearbySection}>
-            <Text style={styles.nearbyTitle}>BARS NEARBY:</Text>
-            <Text style={styles.nearbyTitle}>CLUBS NEARBY:</Text>
-            <Text style={styles.nearbyTitle}>MUNCHIES NEARBY:</Text>
-          </View>
           </>
           )}
 
@@ -344,13 +338,13 @@ const styles = StyleSheet.create({
     letterSpacing: 1,
   },
   content: {
-    padding: spacing.md,
+    padding: spacing.sm,
   },
   header: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'flex-start',
-    marginBottom: spacing.sm,
+    marginBottom: spacing.xs,
   },
   titleContainer: {
     flex: 1,
@@ -358,7 +352,8 @@ const styles = StyleSheet.create({
   venueName: {
     ...typography.venue,
     color: colors.white,
-    marginBottom: spacing.xs,
+    fontWeight: 'bold',
+    marginBottom: 2,
   },
   venueNeighborhood: {
     color: colors.white,
@@ -378,7 +373,7 @@ const styles = StyleSheet.create({
     fontSize: 16,
   },
   quickInfo: {
-    marginBottom: spacing.md,
+    marginBottom: spacing.sm,
   },
   infoItem: {
     flexDirection: 'row',
@@ -392,7 +387,7 @@ const styles = StyleSheet.create({
     opacity: 0.9,
   },
   detailsRow: {
-    marginBottom: spacing.sm,
+    marginBottom: spacing.xs,
   },
   detailItem: {
     flexDirection: 'row',
@@ -414,7 +409,7 @@ const styles = StyleSheet.create({
   statusRow: {
     flexDirection: 'row',
     alignItems: 'center',
-    marginBottom: spacing.md,
+    marginBottom: spacing.sm,
   },
   crowdIndicator: {
     flexDirection: 'row',
@@ -445,7 +440,7 @@ const styles = StyleSheet.create({
   },
   actionButtons: {
     flexDirection: 'row',
-    marginBottom: spacing.md,
+    marginBottom: spacing.sm,
   },
   primaryButton: {
     flex: 1,
@@ -500,18 +495,6 @@ const styles = StyleSheet.create({
     fontSize: 14,
     marginLeft: spacing.xs,
     letterSpacing: 0.5,
-  },
-  nearbySection: {
-    borderTopWidth: 1,
-    borderTopColor: 'rgba(255, 255, 255, 0.3)',
-    paddingTop: spacing.sm,
-  },
-  nearbyTitle: {
-    color: colors.white,
-    fontSize: 12,
-    fontWeight: 'bold',
-    letterSpacing: 0.5,
-    marginBottom: spacing.xs,
   },
   previewClose: {
     position: 'absolute',
