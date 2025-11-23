@@ -74,8 +74,6 @@ const VenueCard: React.FC<VenueCardProps> = ({
     toggleFavorite(venue.id.toString());
   };
 
-
-
   const cardVariants = {
     default: 'venue-card',
     compact: 'bg-white rounded-lg shadow-md border border-gray-200 hover:shadow-lg transition-all duration-300 hover:-translate-y-1 cursor-pointer',
@@ -201,10 +199,10 @@ const VenueCard: React.FC<VenueCardProps> = ({
       </div>
 
       {/* Content Section */}
-      <div className="p-4">
+      <div className="pt-2 px-3 pb-3">
         {/* Title and Rating */}
         <div className="mb-3">
-          <h3 className="text-venue-base font-anton text-gray-900 hover:text-brand-red transition-colors line-clamp-1 mb-1 uppercase tracking-heading">
+          <h3 className="text-venue-base font-anton font-bold text-gray-900 hover:text-brand-red transition-colors line-clamp-1 mb-2 uppercase tracking-heading">
             {venue.name}
           </h3>
           <div className="flex items-center gap-2 text-small text-gray-600">
@@ -225,8 +223,8 @@ const VenueCard: React.FC<VenueCardProps> = ({
         )}
 
         {/* Location */}
-        <div className="flex items-center gap-2 text-sm text-gray-600 mb-3">
-          <MapPin size={14} className="text-gray-400 flex-shrink-0" />
+        <div className="flex items-start gap-2 text-sm text-gray-600 mb-3">
+          <MapPin size={14} className="text-gray-400 flex-shrink-0 mt-0.5" />
           <span className="truncate">{venue.neighborhood}</span>
         </div>
 

@@ -109,7 +109,6 @@ export default function Home() {
     setShowMobileSearch(!showMobileSearch);
   };
 
-
   return (
     <div className="min-h-screen bg-ui-background">
       {/* Hero Section */}
@@ -137,32 +136,6 @@ export default function Home() {
                 BASSLINE
               </h1>
               <div className="w-24 h-1 bg-white/80 mx-auto mb-6 rounded-full"></div>
-            </motion.div>
-
-            {/* Tagline */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.4 }}
-            >
-              <p className="text-xl sm:text-2xl md:text-3xl mb-4 opacity-95 font-tagline tracking-wide text-white drop-shadow-md">
-                THE CITY NEVER SLEEPS,
-              </p>
-              <p className="text-xl sm:text-2xl md:text-3xl mb-8 opacity-95 font-tagline tracking-wide text-white drop-shadow-md">
-                NEITHER SHOULD YOU.
-              </p>
-            </motion.div>
-
-            {/* Subtitle */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.6 }}
-              className="max-w-3xl mx-auto mb-12"
-            >
-              <p className="text-lg sm:text-xl mb-8 opacity-90 font-body text-white/95 leading-relaxed">
-                Discover San Francisco's best nightlife venues with mood-based discovery and real-time exploration
-              </p>
             </motion.div>
 
             {/* Interactive Section */}
@@ -228,11 +201,11 @@ export default function Home() {
         </div>
       </section>
 
-              {/* Quick Filters */}
-              <QuickFilters onOpenAdvancedFilters={() => setShowFilters(true)} />
+      {/* Quick Filters */}
+      <QuickFilters onOpenAdvancedFilters={() => setShowFilters(true)} />
 
-              {/* Map/List Section */}
-              <section id="venue-map" className="bg-gradient-to-b from-white to-gray-50 shadow-xl relative overflow-hidden">
+      {/* Map/List Section */}
+      <section id="venue-map" className="bg-gradient-to-b from-white to-gray-50 shadow-xl relative overflow-hidden">
         <div className="relative z-10 max-w-7xl mx-auto">
           {/* Section Header */}
           <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-6 mb-8 p-6 sm:px-8">
@@ -248,34 +221,34 @@ export default function Home() {
               </p>
             </div>
 
-                    {/* View Toggle */}
-                    <div className="flex items-center gap-3">
-                      <button
-                        onClick={toggleView}
-                        className="px-4 py-2 bg-brand-red text-white hover:bg-brand-red-dark rounded-lg transition-colors flex items-center gap-2 text-sm font-medium"
-                      >
-                        {currentView === 'map' ? (
-                          <>
-                            <List size={16} />
-                            List View
-                          </>
-                        ) : (
-                          <>
-                            <Map size={16} />
-                            Map View
-                          </>
-                        )}
-                      </button>
-                    </div>
+            {/* View Toggle */}
+            <div className="flex items-center gap-3">
+              <button
+                onClick={toggleView}
+                className="px-4 py-2 bg-brand-red text-white hover:bg-brand-red-dark rounded-lg transition-colors flex items-center gap-2 text-sm font-medium"
+              >
+                {currentView === 'map' ? (
+                  <>
+                    <List size={16} />
+                    List View
+                  </>
+                ) : (
+                  <>
+                    <Map size={16} />
+                    Map View
+                  </>
+                )}
+              </button>
+            </div>
           </div>
 
           {/* Map View */}
           {currentView === 'map' && (
-          <div className="h-96 sm:h-[650px] rounded-2xl overflow-hidden shadow-2xl mx-6 sm:mx-8 mb-8 relative">
+            <div className="h-96 sm:h-[650px] rounded-2xl overflow-hidden shadow-2xl mx-6 sm:mx-8 mb-8 relative">
               <MapboxMap
                 enable3DBuildings={true}
               />
-                </div>
+            </div>
           )}
 
           {/* List View */}
@@ -290,7 +263,7 @@ export default function Home() {
                     variant="default"
                   />
                 ))}
-                </div>
+              </div>
 
               {filteredVenues.length === 0 && (
                 <div className="text-center py-16">
@@ -342,20 +315,20 @@ export default function Home() {
                 </div>
               )}
             </div>
-                  )}
+          )}
 
-                  {/* Filter Summary */}
-                  {filteredVenues.length !== venues.length && (
-                    <div className="max-w-4xl mx-auto px-6 sm:px-8 mb-6">
-                      <FilterSummary
-                        totalVenues={venues.length}
-                        filteredVenues={filteredVenues.length}
-                      />
-                    </div>
-                  )}
+          {/* Filter Summary */}
+          {filteredVenues.length !== venues.length && (
+            <div className="max-w-4xl mx-auto px-6 sm:px-8 mb-6">
+              <FilterSummary
+                totalVenues={venues.length}
+                filteredVenues={filteredVenues.length}
+              />
+            </div>
+          )}
 
-                  {/* Results Summary */}
-                  <div className="text-center mb-8">
+          {/* Results Summary */}
+          <div className="text-center mb-8">
             {filteredVenues.length > 0 && (
               <motion.div
                 initial={{ opacity: 0, scale: 0.9 }}
@@ -374,18 +347,18 @@ export default function Home() {
 
       {/* Featured Venues Section */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 py-16 sm:py-20 bg-gradient-to-b from-ui-background to-white relative">
-          <div className="text-center mb-16">
+        <div className="text-center mb-16">
           <h2 className="text-4xl sm:text-5xl font-title text-brand-red mb-4 animate-fade-in-up">
-              FEATURED VENUES
-            </h2>
+            FEATURED VENUES
+          </h2>
           <div className="w-24 h-1 bg-brand-red mx-auto mb-6 rounded-full"></div>
           <p className="text-xl text-ui-text-secondary font-body max-w-2xl mx-auto">
-              Handpicked gems that define San Francisco's nightlife scene
-            </p>
-          </div>
+            Handpicked gems that define San Francisco's nightlife scene
+          </p>
+        </div>
 
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
-            {featuredVenues.map((venue, index) => (
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
+          {featuredVenues.map((venue, index) => (
             <VenueCard
               key={venue.id}
               venue={venue}
