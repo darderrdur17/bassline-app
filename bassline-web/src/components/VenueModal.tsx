@@ -194,7 +194,7 @@ const VenueModal: React.FC<VenueModalProps> = ({ venue, onClose }) => {
 
             {/* Pricing Info */}
             {venue.averageDrinkPrice && (
-              <div className="mb-6 p-4 bg-ui-background rounded-xl">
+              <div className="mb-4 p-4 bg-ui-background rounded-xl">
                 <h4 className="font-semibold text-ui-text mb-2">Average Drink Price</h4>
                 <p className="text-brand-red font-medium">{venue.averageDrinkPrice}</p>
               </div>
@@ -231,7 +231,7 @@ const VenueModal: React.FC<VenueModalProps> = ({ venue, onClose }) => {
 
             {/* Good to Know */}
             {venue.goodToKnow && (
-              <div className="mt-6 p-4 bg-yellow-50 border border-yellow-200 rounded-xl">
+              <div className="mt-4 p-4 bg-yellow-50 border border-yellow-200 rounded-xl">
                 <h4 className="font-semibold text-yellow-800 mb-2">Good to Know</h4>
                 <p className="text-yellow-700 text-sm">{venue.goodToKnow}</p>
               </div>

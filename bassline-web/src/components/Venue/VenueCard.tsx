@@ -279,7 +279,7 @@ const VenueCard: React.FC<VenueCardProps> = ({
 
         {/* Actions */}
         {showActions && (
-          <div className="flex items-center justify-between pt-3 border-t border-gray-100">
+          <div className="flex items-center justify-between pt-2 border-t border-gray-100">
             <div className="text-sm text-gray-600">
               {venue.averageDrinkPrice && (
                 <span className="font-medium text-gray-900">{venue.averageDrinkPrice}</span>
