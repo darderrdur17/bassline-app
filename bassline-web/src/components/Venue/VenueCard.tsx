@@ -223,8 +223,8 @@ const VenueCard: React.FC<VenueCardProps> = ({
         )}
 
         {/* Location */}
-        <div className="flex items-start gap-1.5 sm:gap-2 text-sm text-gray-600 mb-2 sm:mb-3">
-          <MapPin size={14} className="text-gray-400 flex-shrink-0 mt-1" />
+        <div className="flex items-center gap-1.5 sm:gap-2 text-sm text-gray-600 mb-2 sm:mb-3">
+          <MapPin size={14} className="text-gray-400 flex-shrink-0" />
           <span className="truncate">{venue.neighborhood}</span>
         </div>
 

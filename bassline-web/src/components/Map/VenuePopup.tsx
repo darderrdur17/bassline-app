@@ -111,7 +111,7 @@ const VenuePopup: React.FC<VenuePopupProps> = ({ venue, onClose, anchor = 'botto
 
           {/* Location */}
           <div className="flex items-start gap-2 mb-3">
-            <MapPin size={16} className="text-ui-text-secondary mt-1 flex-shrink-0" />
+            <MapPin size={16} className="text-ui-text-secondary flex-shrink-0" />
             <span className="text-sm text-ui-text-secondary">{venue.neighborhood}</span>
           </div>
 
