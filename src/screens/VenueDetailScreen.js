@@ -495,7 +495,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#FFFDF5', // subtle cream
     borderRadius: borderRadius.medium,
     padding: spacing.md,
-    marginBottom: spacing.md,
+    marginBottom: spacing.sm,
     borderWidth: 2,
     borderColor: colors.primary,
     ...shadows.small,

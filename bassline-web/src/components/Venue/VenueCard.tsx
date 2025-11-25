@@ -199,10 +199,10 @@ const VenueCard: React.FC<VenueCardProps> = ({
       </div>
 
       {/* Content Section */}
-      <div className="pt-2 px-3 pb-3">
+      <div className="pt-3 px-3 pb-3">
         {/* Title and Rating */}
         <div className="mb-3">
-          <h3 className="text-venue-base font-anton font-bold text-gray-900 hover:text-brand-red transition-colors line-clamp-1 mb-2 uppercase tracking-heading">
+          <h3 className="text-venue-base font-anton font-bold text-gray-900 hover:text-brand-red transition-colors line-clamp-1 mb-3 uppercase tracking-heading">
             {venue.name}
           </h3>
           <div className="flex items-center gap-2 text-small text-gray-600">

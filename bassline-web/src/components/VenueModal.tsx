@@ -92,7 +92,7 @@ const VenueModal: React.FC<VenueModalProps> = ({ venue, onClose }) => {
           <div className="p-6 overflow-y-auto max-h-96">
             {/* Title and Rating */}
             <div className="mb-4">
-              <h2 className="text-2xl font-bold font-brand text-ui-text mb-2">
+              <h2 className="text-2xl font-extrabold font-brand text-ui-text mb-2">
                 {venue.name}
               </h2>
               <div className="flex items-center gap-4 text-sm">
@@ -107,7 +107,7 @@ const VenueModal: React.FC<VenueModalProps> = ({ venue, onClose }) => {
 
             {/* Location */}
             <div className="flex items-start gap-3 mb-4">
-              <MapPin size={18} className="text-ui-text-secondary mt-0.5 flex-shrink-0" />
+              <MapPin size={18} className="text-ui-text-secondary flex-shrink-0" />
               <div>
                 <p className="font-medium text-ui-text">{venue.neighborhood}</p>
                 {venue.address && (
@@ -150,7 +150,7 @@ const VenueModal: React.FC<VenueModalProps> = ({ venue, onClose }) => {
             )}
 
             {/* Features */}
-            <div className="mb-6">
+            <div className="mb-4">
               <h4 className="font-semibold text-ui-text mb-3">Features</h4>
               <div className="grid grid-cols-2 gap-2">
                 {venue.hasOutdoorSeating && (
@@ -231,7 +231,7 @@ const VenueModal: React.FC<VenueModalProps> = ({ venue, onClose }) => {
 
             {/* Good to Know */}
             {venue.goodToKnow && (
-              <div className="mt-4 p-4 bg-yellow-50 border border-yellow-200 rounded-xl">
+              <div className="mt-3 p-4 bg-yellow-50 border border-yellow-200 rounded-xl">
                 <h4 className="font-semibold text-yellow-800 mb-2">Good to Know</h4>
                 <p className="text-yellow-700 text-sm">{venue.goodToKnow}</p>
               </div>
