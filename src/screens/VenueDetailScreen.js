@@ -489,13 +489,13 @@ const styles = StyleSheet.create({
     borderRadius: 10,
   },
   detailsGrid: {
-    padding: spacing.md,
+    padding: spacing.sm,
   },
   detailCard: {
     backgroundColor: '#FFFDF5', // subtle cream
     borderRadius: borderRadius.medium,
-    padding: spacing.sm,
-    marginBottom: spacing.sm,
+    padding: spacing.xs,
+    marginBottom: spacing.xs,
     borderWidth: 2,
     borderColor: colors.primary,
     ...shadows.small,

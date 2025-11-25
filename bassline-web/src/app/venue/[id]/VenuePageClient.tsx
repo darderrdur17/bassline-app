@@ -193,7 +193,7 @@ export default function VenuePageClient({ venue }: VenuePageClientProps) {
 
                 {venue.averageDrinkPrice && (
                   <div>
-                    <h3 className="text-xl font-bold mb-3 text-[#E53935] font-title">Drinks</h3>
+                    <h3 className="text-xl font-bold mb-2 sm:mb-3 text-[#E53935] font-title">Drinks</h3>
                     <p className="text-gray-700 font-body">
                       <span className="font-semibold">Average Price:</span> {venue.averageDrinkPrice}
                     </p>
@@ -254,8 +254,8 @@ export default function VenuePageClient({ venue }: VenuePageClientProps) {
 
                 {venue.goodToKnow && (
                   <div>
-                    <h3 className="text-xl font-bold mb-3 text-[#E53935] font-title">Good to Know</h3>
-                    <div className="bg-yellow-50 border-l-4 border-yellow-400 p-3 rounded">
+                    <h3 className="text-xl font-bold mb-2 sm:mb-3 text-[#E53935] font-title">Good to Know</h3>
+                    <div className="bg-yellow-50 border-l-4 border-yellow-400 p-2 sm:p-3 rounded">
                       <p className="text-gray-700 font-body">{venue.goodToKnow}</p>
                     </div>
                   </div>

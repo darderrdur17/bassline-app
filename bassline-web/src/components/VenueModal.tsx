@@ -89,9 +89,9 @@ const VenueModal: React.FC<VenueModalProps> = ({ venue, onClose }) => {
           </div>
 
           {/* Content */}
-          <div className="p-6 overflow-y-auto max-h-96">
+          <div className="p-4 sm:p-6 overflow-y-auto max-h-96">
             {/* Title and Rating */}
-            <div className="mb-4">
+            <div className="mb-3 sm:mb-4">
               <h2 className="text-2xl font-extrabold font-brand text-ui-text mb-2">
                 {venue.name}
               </h2>
@@ -106,7 +106,7 @@ const VenueModal: React.FC<VenueModalProps> = ({ venue, onClose }) => {
             </div>
 
             {/* Location */}
-            <div className="flex items-start gap-3 mb-4">
+            <div className="flex items-start gap-2 sm:gap-3 mb-3 sm:mb-4">
               <MapPin size={18} className="text-ui-text-secondary flex-shrink-0 mt-1" />
               <div>
                 <p className="font-medium text-ui-text">{venue.neighborhood}</p>
@@ -194,8 +194,8 @@ const VenueModal: React.FC<VenueModalProps> = ({ venue, onClose }) => {
 
             {/* Pricing Info */}
             {venue.averageDrinkPrice && (
-              <div className="mb-4 p-3 bg-ui-background rounded-xl">
-                <h4 className="font-semibold text-ui-text mb-1">Average Drink Price</h4>
+              <div className="mb-3 p-2 sm:p-3 bg-ui-background rounded-xl">
+                <h4 className="font-semibold text-ui-text mb-0.5 sm:mb-1">Average Drink Price</h4>
                 <p className="text-brand-red font-medium">{venue.averageDrinkPrice}</p>
               </div>
             )}
@@ -231,8 +231,8 @@ const VenueModal: React.FC<VenueModalProps> = ({ venue, onClose }) => {
 
             {/* Good to Know */}
             {venue.goodToKnow && (
-              <div className="mt-3 p-3 bg-yellow-50 border border-yellow-200 rounded-xl">
-                <h4 className="font-semibold text-yellow-800 mb-1">Good to Know</h4>
+              <div className="mt-3 p-2 sm:p-3 bg-yellow-50 border border-yellow-200 rounded-xl">
+                <h4 className="font-semibold text-yellow-800 mb-0.5 sm:mb-1">Good to Know</h4>
                 <p className="text-yellow-700 text-sm">{venue.goodToKnow}</p>
               </div>
             )}
