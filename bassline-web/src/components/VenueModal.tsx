@@ -106,7 +106,7 @@ const VenueModal: React.FC<VenueModalProps> = ({ venue, onClose }) => {
             </div>
 
             {/* Location */}
-            <div className="flex items-start gap-2 sm:gap-3 mb-3 sm:mb-4">
+            <div className="flex items-center gap-2 sm:gap-3 mb-3 sm:mb-4">
               <MapPin size={18} className="text-ui-text-secondary flex-shrink-0" />
               <div>
                 <p className="font-medium text-ui-text">{venue.neighborhood}</p>
@@ -194,14 +194,14 @@ const VenueModal: React.FC<VenueModalProps> = ({ venue, onClose }) => {
 
             {/* Pricing Info */}
             {venue.averageDrinkPrice && (
-              <div className="mb-1 p-2 sm:p-3 bg-ui-background rounded-xl">
-                <h4 className="font-semibold text-ui-text mb-0.5 sm:mb-1">Average Drink Price</h4>
+              <div className="mb-1 px-2 py-1.5 sm:px-2.5 sm:py-2 bg-ui-background rounded-xl">
+                <h4 className="font-semibold text-ui-text mb-0.5">Average Drink Price</h4>
                 <p className="text-brand-red font-medium">{venue.averageDrinkPrice}</p>
               </div>
             )}
 
             {/* Action Buttons */}
-            <div className="flex flex-col sm:flex-row gap-3">
+            <div className="flex flex-col sm:flex-row gap-3 mb-1">
               <button className="flex-1 btn-primary">
                 Get Directions
               </button>
@@ -231,8 +231,8 @@ const VenueModal: React.FC<VenueModalProps> = ({ venue, onClose }) => {
 
             {/* Good to Know */}
             {venue.goodToKnow && (
-              <div className="mt-1 p-2 sm:p-3 bg-yellow-50 border border-yellow-200 rounded-xl">
-                <h4 className="font-semibold text-yellow-800 mb-0.5 sm:mb-1">Good to Know</h4>
+              <div className="mt-1 px-2 py-1.5 sm:px-2.5 sm:py-2 bg-yellow-50 border border-yellow-200 rounded-xl">
+                <h4 className="font-semibold text-yellow-800 mb-0.5">Good to Know</h4>
                 <p className="text-yellow-700 text-sm">{venue.goodToKnow}</p>
               </div>
             )}

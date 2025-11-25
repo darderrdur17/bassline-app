@@ -255,7 +255,7 @@ export default function VenuePageClient({ venue }: VenuePageClientProps) {
                 {venue.goodToKnow && (
                   <div>
                     <h3 className="text-xl font-bold mb-2 sm:mb-3 text-[#E53935] font-title">Good to Know</h3>
-                    <div className="bg-yellow-50 border-l-4 border-yellow-400 p-2 sm:p-3 rounded">
+                    <div className="bg-yellow-50 border-l-4 border-yellow-400 px-2 py-1.5 sm:px-2.5 sm:py-2 rounded">
                       <p className="text-gray-700 font-body">{venue.goodToKnow}</p>
                     </div>
                   </div>
