@@ -107,7 +107,7 @@ const VenueModal: React.FC<VenueModalProps> = ({ venue, onClose }) => {
 
             {/* Location */}
             <div className="flex items-start gap-3 mb-4">
-              <MapPin size={18} className="text-ui-text-secondary flex-shrink-0" />
+              <MapPin size={18} className="text-ui-text-secondary flex-shrink-0 mt-0.5" />
               <div>
                 <p className="font-medium text-ui-text">{venue.neighborhood}</p>
                 {venue.address && (

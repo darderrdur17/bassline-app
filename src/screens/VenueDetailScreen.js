@@ -494,7 +494,7 @@ const styles = StyleSheet.create({
   detailCard: {
     backgroundColor: '#FFFDF5', // subtle cream
     borderRadius: borderRadius.medium,
-    padding: spacing.md,
+    padding: spacing.sm,
     marginBottom: spacing.sm,
     borderWidth: 2,
     borderColor: colors.primary,
@@ -506,7 +506,7 @@ const styles = StyleSheet.create({
     color: colors.primary,
     fontWeight: 'bold',
     letterSpacing: 0.5,
-    marginBottom: spacing.sm,
+    marginBottom: spacing.xs,
   },
   detailContent: {
     flexDirection: 'row',
