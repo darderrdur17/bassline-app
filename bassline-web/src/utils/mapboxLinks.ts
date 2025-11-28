@@ -8,9 +8,11 @@ export const getMapboxShareUrl = (
   zoom: number = 16,
   stylePath: string = DEFAULT_STYLE_PATH
 ) => {
-  const token = process.env.NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN || '';
+  const token = process.env.NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN || 'pk.eyJ1IjoiZGFyZGVycmR1ciIsImEiOiJjbWk4dTA0Mm0wZnZ4MnNwbzYwNWp2Mjg5In0.bG_gG2vKSCKUHd2kXEtBLQ';
 
   const clampedZoom = Math.max(1, Math.min(zoom, 20));
-  return `https://api.mapbox.com/styles/v1/${stylePath}.html?title=false&access_token=${token}#${clampedZoom}/${latitude}/${longitude}`;
+  // Mapbox share URL format: https://api.mapbox.com/styles/v1/{username}/{style_id}.html?access_token={token}#{zoom}/{lon}/{lat}
+  // Note: longitude comes first, then latitude
+  return `https://api.mapbox.com/styles/v1/${stylePath}.html?access_token=${token}#${clampedZoom}/${longitude}/${latitude}`;
 };
 

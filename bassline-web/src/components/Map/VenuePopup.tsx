@@ -4,7 +4,7 @@ import React from 'react';
 import { Popup } from 'react-map-gl';
 import { Venue } from '@/types/venue';
 import { motion } from 'framer-motion';
-import { X, Star, Clock, MapPin, Phone, Globe, Instagram, Heart, Users, TrendingUp } from 'lucide-react';
+import { X, Star, Clock, MapPin, Phone, Globe, Instagram, Heart, Users, TrendingUp, ChevronLeft, ChevronRight } from 'lucide-react';
 import { useVenueStore, useVenueSelectors } from '@/stores/useVenueStore';
 import { useRealtimeStore } from '@/stores/useRealtimeStore';
 
@@ -78,10 +78,40 @@ const VenuePopup: React.FC<VenuePopupProps> = ({
           {/* Close Button */}
           <button
             onClick={onClose}
-            className="absolute top-3 right-3 bg-black/50 hover:bg-black/70 text-white rounded-full p-1.5 transition-colors"
+            className="absolute top-3 right-3 bg-black/50 hover:bg-black/70 text-white rounded-full p-1.5 transition-colors z-10"
           >
             <X size={16} />
           </button>
+
+          {/* Navigation Buttons */}
+          {(onSelectPrev || onSelectNext) && (
+            <div className="absolute top-1/2 left-3 right-3 flex justify-between z-10 pointer-events-none">
+              {onSelectPrev && (
+                <button
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    onSelectPrev();
+                  }}
+                  className="bg-black/60 hover:bg-black/80 text-white rounded-full p-2 transition-colors pointer-events-auto shadow-lg"
+                  aria-label="Previous venue"
+                >
+                  <ChevronLeft size={20} />
+                </button>
+              )}
+              {onSelectNext && (
+                <button
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    onSelectNext();
+                  }}
+                  className="bg-black/60 hover:bg-black/80 text-white rounded-full p-2 transition-colors pointer-events-auto shadow-lg ml-auto"
+                  aria-label="Next venue"
+                >
+                  <ChevronRight size={20} />
+                </button>
+              )}
+            </div>
+          )}
 
           {/* Favorite Button */}
           <button

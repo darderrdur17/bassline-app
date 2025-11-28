@@ -97,13 +97,26 @@ const MapboxMap: React.FC<MapboxMapProps> = ({
   }, [allVenues, mapBounds, isMapLoaded, isMoving]);
 
   const focusOnVenue = useCallback((venue: Venue, zoomOverride?: number) => {
+    if (!mapRef.current) return;
+    
+    const targetZoom = zoomOverride ?? Math.max(viewport.zoom, 15);
+    
+    // Use flyTo for smooth animation
+    mapRef.current.flyTo({
+      center: [venue.coordinates.longitude, venue.coordinates.latitude],
+      zoom: targetZoom,
+      duration: 1000,
+      essential: true,
+    });
+    
+    // Also update viewport state for consistency
     setViewport(prev => ({
       ...prev,
       latitude: venue.coordinates.latitude,
       longitude: venue.coordinates.longitude,
-      zoom: zoomOverride ?? Math.max(prev.zoom, 15),
+      zoom: targetZoom,
     }));
-  }, []);
+  }, [viewport.zoom]);
 
   // Focus specific venue requests (e.g., from "Get Directions")
   useEffect(() => {
