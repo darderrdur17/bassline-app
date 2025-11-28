@@ -12,9 +12,19 @@ interface VenuePopupProps {
   venue: Venue;
   onClose: () => void;
   anchor?: 'top' | 'bottom' | 'left' | 'right' | 'top-left' | 'top-right' | 'bottom-left' | 'bottom-right';
+  onSelectNext?: () => void;
+  onSelectPrev?: () => void;
+  onOpenInMapbox?: (venue: Venue) => void;
 }
 
-const VenuePopup: React.FC<VenuePopupProps> = ({ venue, onClose, anchor = 'bottom' }) => {
+const VenuePopup: React.FC<VenuePopupProps> = ({
+  venue,
+  onClose,
+  anchor = 'bottom',
+  onSelectNext,
+  onSelectPrev,
+  onOpenInMapbox,
+}) => {
   const { toggleFavorite } = useVenueStore();
   const { isFavorite } = useVenueSelectors();
   const { realtimeData: allRealtimeData } = useRealtimeStore();
@@ -94,6 +104,23 @@ const VenuePopup: React.FC<VenuePopupProps> = ({ venue, onClose, anchor = 'botto
 
         {/* Content */}
         <div className="p-4">
+          <div className="flex justify-between items-center mb-3">
+            <button
+              onClick={onSelectPrev}
+              disabled={!onSelectPrev}
+              className="text-xs font-semibold px-3 py-1 rounded-full border border-ui-border hover:bg-ui-surface-hover disabled:opacity-40 disabled:cursor-not-allowed"
+            >
+              ← Prev
+            </button>
+            <button
+              onClick={onSelectNext}
+              disabled={!onSelectNext}
+              className="text-xs font-semibold px-3 py-1 rounded-full border border-ui-border hover:bg-ui-surface-hover disabled:opacity-40 disabled:cursor-not-allowed"
+            >
+              Next →
+            </button>
+          </div>
+
           {/* Title and Rating */}
           <div className="mb-3">
             <h3 className="text-lg font-bold font-title text-ui-text mb-1">
@@ -209,9 +236,16 @@ const VenuePopup: React.FC<VenuePopupProps> = ({ venue, onClose, anchor = 'botto
           </div>
 
           {/* Actions */}
-          <div className="flex gap-2">
+          <div className="flex gap-2 flex-wrap">
             <button className="flex-1 btn-primary text-sm py-2">
               View Details
+            </button>
+            <button
+              onClick={() => onOpenInMapbox?.(venue)}
+              className="btn-secondary text-sm py-2 px-3 flex items-center gap-2"
+            >
+              <MapPin size={14} />
+              Mapbox
             </button>
             {venue.website && (
               <a

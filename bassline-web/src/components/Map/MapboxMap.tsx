@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useEffect, useRef, useState, useCallback } from 'react';
-import Map, { Marker, Popup, NavigationControl, FullscreenControl, ScaleControl } from 'react-map-gl';
+import Map, { NavigationControl, FullscreenControl, ScaleControl } from 'react-map-gl';
 import mapboxgl from 'mapbox-gl';
 import 'mapbox-gl/dist/mapbox-gl.css';
 
@@ -11,7 +11,7 @@ const MAPBOX_TOKEN = process.env.NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN || 'pk.eyJ1Ijoi
 if (typeof window !== 'undefined') {
   mapboxgl.accessToken = MAPBOX_TOKEN;
 }
-import { Venue, VenueLight, Coordinates, MapViewport } from '@/types/venue';
+import { Venue, VenueLight, MapViewport } from '@/types/venue';
 import { useVenueStore, useVenueSelectors } from '@/stores/useVenueStore';
 import VenueMarker from './VenueMarker';
 import VenuePopup from './VenuePopup';
@@ -19,6 +19,7 @@ import MapControls from './MapControls';
 import HeatmapLayer from './HeatmapLayer';
 import ClusterLayer from './ClusterLayer';
 import { MAPBOX_STYLE_URL } from '@/lib/config';
+import { getMapboxShareUrl } from '@/utils/mapboxLinks';
 
 interface MapboxMapProps {
   className?: string;
@@ -42,6 +43,7 @@ const MapboxMap: React.FC<MapboxMapProps> = ({
   const [showHeatmap, setShowHeatmap] = useState(false);
   const [showClusters, setShowClusters] = useState(false);
   const [isMoving, setIsMoving] = useState(false);
+  const [mapError, setMapError] = useState<string | null>(null);
 
   const { mapCenter, mapZoom, setMapCenter, setMapZoom, mapFocusVenueId, setMapFocusVenueId } = useVenueStore();
   const { getFilteredVenues } = useVenueSelectors();
@@ -94,6 +96,15 @@ const MapboxMap: React.FC<MapboxMapProps> = ({
     return allVenues;
   }, [allVenues, mapBounds, isMapLoaded, isMoving]);
 
+  const focusOnVenue = useCallback((venue: Venue, zoomOverride?: number) => {
+    setViewport(prev => ({
+      ...prev,
+      latitude: venue.coordinates.latitude,
+      longitude: venue.coordinates.longitude,
+      zoom: zoomOverride ?? Math.max(prev.zoom, 15),
+    }));
+  }, []);
+
   // Focus specific venue requests (e.g., from "Get Directions")
   useEffect(() => {
     if (!mapFocusVenueId) return;
@@ -102,15 +113,10 @@ const MapboxMap: React.FC<MapboxMapProps> = ({
       return;
     }
 
-    setViewport(prev => ({
-      ...prev,
-      latitude: venueToFocus.coordinates.latitude,
-      longitude: venueToFocus.coordinates.longitude,
-      zoom: Math.max(prev.zoom, 16),
-    }));
+    focusOnVenue(venueToFocus, 16);
     setSelectedVenue(venueToFocus);
     setMapFocusVenueId(null);
-  }, [mapFocusVenueId, allVenues, setMapFocusVenueId]);
+  }, [mapFocusVenueId, allVenues, setMapFocusVenueId, focusOnVenue]);
 
   // Update viewport when store changes
   useEffect(() => {
@@ -193,21 +199,52 @@ const MapboxMap: React.FC<MapboxMapProps> = ({
     }
   }, [venues, isMapLoaded, fitBoundsToVenues]);
 
+  useEffect(() => {
+    if (isMapLoaded || mapError) return;
+    const timer = setTimeout(() => {
+      if (!isMapLoaded) {
+        setMapError('Still loading map… please check your connection or refresh.');
+      }
+    }, 6000);
+    return () => clearTimeout(timer);
+  }, [isMapLoaded, mapError]);
+
   // Handle venue selection
   const handleVenueSelect = useCallback((venue: Venue) => {
     setSelectedVenue(venue);
-    setViewport(prev => ({
-      ...prev,
-      latitude: venue.coordinates.latitude,
-      longitude: venue.coordinates.longitude,
-      zoom: Math.max(prev.zoom, 16),
-    }));
-  }, []);
+    focusOnVenue(venue, 16);
+  }, [focusOnVenue]);
 
   // Handle venue hover
   const handleVenueHover = useCallback((venue: Venue | VenueLight | null) => {
     setHoveredVenue(venue);
   }, []);
+
+  const selectedIndex = selectedVenue ? allVenues.findIndex(v => v.id === selectedVenue.id) : -1;
+
+  const selectRelativeVenue = useCallback((offset: number) => {
+    if (!allVenues.length) return;
+    let nextIndex = selectedIndex;
+    if (nextIndex === -1) {
+      nextIndex = 0;
+    }
+    nextIndex = (nextIndex + offset + allVenues.length) % allVenues.length;
+    const nextVenue = allVenues[nextIndex];
+    if (nextVenue) {
+      setSelectedVenue(nextVenue);
+      focusOnVenue(nextVenue, 16);
+    }
+  }, [selectedIndex, allVenues, focusOnVenue]);
+
+  const handleOpenInMapbox = useCallback((venue: Venue) => {
+    if (typeof window === 'undefined') return;
+    const shareUrl = getMapboxShareUrl(
+      venue.coordinates.latitude,
+      venue.coordinates.longitude,
+      Math.round(viewport.zoom ?? 15)
+    );
+    window.open(shareUrl, '_blank', 'noopener,noreferrer');
+  }, [viewport.zoom]);
 
   // Using Mapbox - single style URL
   const getMapStyle = () => {
@@ -225,12 +262,27 @@ const MapboxMap: React.FC<MapboxMapProps> = ({
           </div>
         </div>
       )}
+      {mapError && (
+        <div className="absolute inset-0 rounded-2xl border border-red-200 bg-white/90 backdrop-blur-sm z-10 flex flex-col items-center justify-center px-6 text-center">
+          <p className="text-brand-red font-semibold mb-2">{mapError}</p>
+          <button
+            onClick={() => {
+              setMapError(null);
+              setIsMapLoaded(false);
+              setTimeout(() => mapRef.current?.resize(), 0);
+            }}
+            className="btn-primary px-4 py-2 text-sm"
+          >
+            Retry
+          </button>
+        </div>
+      )}
 
       <Map
         ref={mapRef}
         {...viewport}
         onMove={handleViewportChange}
-        style={{ width: '100%', height: '100%', touchAction: 'none' }}
+        style={{ width: '100%', height: '100%' }}
         mapStyle={MAPBOX_STYLE_URL}
         mapLib={mapboxgl as any}
         mapboxAccessToken={MAPBOX_TOKEN}
@@ -244,6 +296,7 @@ const MapboxMap: React.FC<MapboxMapProps> = ({
         onLoad={() => {
           setIsMapLoaded(true);
           setIsMoving(false);
+          mapRef.current?.resize();
           // Initialize map bounds
           if (mapRef.current) {
             const bounds = mapRef.current.getBounds();
@@ -268,11 +321,7 @@ const MapboxMap: React.FC<MapboxMapProps> = ({
         pitchWithRotate={true}
         onError={(error) => {
           console.error('Map error:', error);
-          console.error('Error details:', {
-            message: error?.error?.message,
-            type: error?.type,
-            target: error?.target
-          });
+          setMapError(error?.error?.message || 'Unable to load map right now.');
         }}
         interactiveLayerIds={['venue-markers']}
         pitch={enable3DBuildings ? 45 : 0}
@@ -319,6 +368,9 @@ const MapboxMap: React.FC<MapboxMapProps> = ({
             venue={selectedVenue}
             onClose={() => setSelectedVenue(null)}
             anchor="bottom"
+            onSelectNext={() => selectRelativeVenue(1)}
+            onSelectPrev={() => selectRelativeVenue(-1)}
+            onOpenInMapbox={handleOpenInMapbox}
           />
         )}
       </Map>

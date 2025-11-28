@@ -34,6 +34,7 @@ import { moodMapping as initialMoodMapping } from '@/data/moodMapping';
 import { useVenueStore, useVenueSelectors } from '@/stores/useVenueStore';
 import { useRealtimeStore, initializeRealtime } from '@/stores/useRealtimeStore';
 import { Venue, MoodMapping } from '@/types/venue';
+import { getMapboxShareUrl } from '@/utils/mapboxLinks';
 
 export default function Home() {
   // State management with Zustand
@@ -128,6 +129,13 @@ export default function Home() {
     if (typeof window !== 'undefined') {
       const mapSection = document.getElementById('venue-map');
       mapSection?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+
+      const mapboxLink = getMapboxShareUrl(
+        venue.coordinates.latitude,
+        venue.coordinates.longitude,
+        16
+      );
+      window.open(mapboxLink, '_blank', 'noopener,noreferrer');
     }
   }, [setMapCenter, setMapZoom, setMapFocusVenueId, setSelectedVenue, setCurrentView]);
 
