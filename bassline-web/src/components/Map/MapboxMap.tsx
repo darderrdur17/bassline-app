@@ -230,10 +230,17 @@ const MapboxMap: React.FC<MapboxMapProps> = ({
         ref={mapRef}
         {...viewport}
         onMove={handleViewportChange}
-        style={{ width: '100%', height: '100%' }}
+        style={{ width: '100%', height: '100%', touchAction: 'none' }}
         mapStyle={MAPBOX_STYLE_URL}
         mapLib={mapboxgl as any}
         mapboxAccessToken={MAPBOX_TOKEN}
+        dragPan={true}
+        dragRotate={false}
+        scrollZoom={true}
+        touchZoomRotate={true}
+        touchPitch={false}
+        keyboard={false}
+        doubleClickZoom={true}
         onLoad={() => {
           setIsMapLoaded(true);
           setIsMoving(false);
@@ -258,8 +265,6 @@ const MapboxMap: React.FC<MapboxMapProps> = ({
         maxTileCacheSize={50}
         preserveDrawingBuffer={false}
         trackResize={true}
-        doubleClickZoom={true}
-        dragRotate={true}
         pitchWithRotate={true}
         onError={(error) => {
           console.error('Map error:', error);
@@ -282,6 +287,8 @@ const MapboxMap: React.FC<MapboxMapProps> = ({
           'space-color': 'rgb(11, 11, 25)',
           'star-intensity': 0.6
         } : undefined}
+        onMouseLeave={() => handleVenueHover(null)}
+        onTouchEnd={() => handleVenueHover(null)}
       >
         {/* Controls */}
         <NavigationControl position="top-right" />

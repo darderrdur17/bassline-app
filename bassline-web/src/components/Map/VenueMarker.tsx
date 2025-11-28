@@ -52,7 +52,8 @@ const VenueMarkerComponent: React.FC<{
   isSelected: boolean;
   isHovered: boolean;
   onClick: () => void;
-}> = ({ venue, realtimeData, isSelected, isHovered, onClick }) => {
+  onHover: (venue: Venue | VenueLight | null) => void;
+}> = ({ venue, realtimeData, isSelected, isHovered, onClick, onHover }) => {
   const baseColor = typeColors[venue.type as keyof typeof typeColors] || typeColors.Bar;
   const crowdColor = getCrowdColor(realtimeData?.crowdLevel || (venue as Venue).currentCrowdLevel);
   const isFaded = !isSelected && !isHovered;
@@ -85,8 +86,13 @@ const VenueMarkerComponent: React.FC<{
         e.stopPropagation();
         onClick();
       }}
-      onMouseEnter={() => {}}
-      onMouseLeave={() => {}}
+      onPointerEnter={() => onHover(venue)}
+      onPointerLeave={() => onHover(null)}
+      onFocus={() => onHover(venue)}
+      onBlur={() => onHover(null)}
+      onTouchStart={() => {
+        onHover(venue);
+      }}
     >
       {/* Main marker */}
       <div
@@ -184,8 +190,9 @@ const VenueMarker: React.FC<VenueMarkerProps> = React.memo(({
       isSelected={isSelected}
       isHovered={isHovered}
       onClick={() => onClick(venue)}
+      onHover={onHover}
     />
-  ), [venue.id, realtimeData, isSelected, isHovered]);
+  ), [venue.id, realtimeData, isSelected, isHovered, onHover, onClick]);
 
   return (
     <Marker
