@@ -149,10 +149,11 @@ export default function Home() {
               </h2>
 
               {/* Enhanced Search Bar */}
-              <div className="max-w-lg mx-auto mb-8">
+              <div className="mx-auto mb-8">
                 <SearchBar
                   onSearch={handleSearch}
                   placeholder="Search venues, neighborhoods, music..."
+                  className="mx-auto max-w-3xl"
                 />
               </div>
 
@@ -202,145 +203,158 @@ export default function Home() {
       </section>
 
       {/* Quick Filters */}
-      <QuickFilters onOpenAdvancedFilters={() => setShowFilters(true)} />
+      <QuickFilters onOpenAdvancedFilters={() => setShowFilters(true)} className="-mt-10" />
 
       {/* Map/List Section */}
-      <section id="venue-map" className="bg-gradient-to-b from-white to-gray-50 shadow-xl relative overflow-hidden">
-        <div className="relative z-10 max-w-7xl mx-auto">
-          {/* Section Header */}
-          <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-6 mb-8 p-6 sm:px-8">
-            <div>
-              <h2 className="text-3xl sm:text-4xl font-title text-brand-red mb-2">
-                {currentView === 'map' ? 'VENUE MAP' : 'VENUE LIST'}
-              </h2>
-              <p className="text-ui-text-secondary font-body">
-                {currentView === 'map'
-                  ? 'Explore San Francisco\'s nightlife scene'
-                  : `Discover ${filteredVenues.length} amazing venues`
-                }
-              </p>
-            </div>
+      <section id="venue-map" className="relative py-14 sm:py-20 overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-b from-white via-orange-50/40 to-white" aria-hidden="true"></div>
+        <div className="absolute -top-32 right-0 w-80 h-80 bg-brand-red/10 blur-3xl rounded-full opacity-60" aria-hidden="true"></div>
+        <div className="absolute -bottom-32 left-0 w-96 h-96 bg-yellow-300/20 blur-3xl rounded-full opacity-60" aria-hidden="true"></div>
 
-            {/* View Toggle */}
-            <div className="flex items-center gap-3">
-              <button
-                onClick={toggleView}
-                className="px-4 py-2 bg-brand-red text-white hover:bg-brand-red-dark rounded-lg transition-colors flex items-center gap-2 text-sm font-medium"
-              >
-                {currentView === 'map' ? (
-                  <>
-                    <List size={16} />
-                    List View
-                  </>
-                ) : (
-                  <>
-                    <Map size={16} />
-                    Map View
-                  </>
-                )}
-              </button>
-            </div>
-          </div>
-
-          {/* Map View */}
-          {currentView === 'map' && (
-            <div className="h-96 sm:h-[650px] rounded-2xl overflow-hidden shadow-2xl mx-6 sm:mx-8 mb-8 relative">
-              <MapboxMap
-                enable3DBuildings={true}
-              />
-            </div>
-          )}
-
-          {/* List View */}
-          {currentView === 'list' && (
-            <div className="max-w-6xl mx-auto px-6 sm:px-8 mb-8">
-              <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-                {paginatedVenues.map((venue, index) => (
-                  <VenueCard
-                    key={venue.id}
-                    venue={venue}
-                    index={index}
-                    variant="default"
-                  />
-                ))}
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6">
+          <div className="rounded-[32px] border border-white/70 bg-white/95 backdrop-blur-xl shadow-[0_35px_80px_rgba(15,23,42,0.12)] overflow-hidden">
+            {/* Section Header */}
+            <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-6 mb-8 p-6 sm:px-10 sm:py-8 border-b border-white/60 bg-white/60">
+              <div>
+                <p className="text-xs uppercase tracking-[0.4em] text-gray-400 mb-2">Live Explorer</p>
+                <h2 className="text-3xl sm:text-4xl font-title text-brand-red mb-2 drop-shadow-sm">
+                  {currentView === 'map' ? 'VENUE MAP' : 'VENUE LIST'}
+                </h2>
+                <p className="text-ui-text-secondary font-body">
+                  {currentView === 'map'
+                    ? 'Explore San Francisco\'s nightlife scene'
+                    : `Discover ${filteredVenues.length} amazing venues`
+                  }
+                </p>
               </div>
 
-              {filteredVenues.length === 0 && (
-                <div className="text-center py-16">
-                  <div className="text-6xl mb-4">🔍</div>
-                  <h3 className="text-xl font-bold text-gray-900 mb-2">No venues found</h3>
-                  <p className="text-gray-600">Try adjusting your search or filters</p>
-                </div>
-              )}
-
-              {/* Pagination Controls */}
-              {filteredVenues.length > venuesPerPage && (
-                <div className="flex justify-center items-center gap-4 mt-12 mb-8">
-                  <button
-                    onClick={() => setCurrentPage(Math.max(1, currentPage - 1))}
-                    disabled={currentPage === 1}
-                    className="px-4 py-2 bg-gray-200 hover:bg-gray-300 disabled:bg-gray-100 disabled:cursor-not-allowed rounded-lg transition-colors"
-                  >
-                    Previous
-                  </button>
-
-                  <div className="flex gap-2">
-                    {Array.from({ length: Math.min(5, totalPages) }, (_, i) => {
-                      const pageNumber = Math.max(1, Math.min(totalPages - 4, currentPage - 2)) + i;
-                      if (pageNumber > totalPages) return null;
-
-                      return (
-                        <button
-                          key={pageNumber}
-                          onClick={() => setCurrentPage(pageNumber)}
-                          className={`px-3 py-2 rounded-lg transition-colors ${
-                            currentPage === pageNumber
-                              ? 'bg-brand-red text-white'
-                              : 'bg-gray-200 hover:bg-gray-300'
-                          }`}
-                        >
-                          {pageNumber}
-                        </button>
-                      );
-                    })}
-                  </div>
-
-                  <button
-                    onClick={() => setCurrentPage(Math.min(totalPages, currentPage + 1))}
-                    disabled={currentPage === totalPages}
-                    className="px-4 py-2 bg-gray-200 hover:bg-gray-300 disabled:bg-gray-100 disabled:cursor-not-allowed rounded-lg transition-colors"
-                  >
-                    Next
-                  </button>
-                </div>
-              )}
+              {/* View Toggle */}
+              <div className="flex items-center gap-3 bg-gray-100/60 border border-white/60 rounded-full p-1">
+                <button
+                  onClick={() => currentView !== 'map' && setCurrentView('map')}
+                  className={`flex items-center gap-2 px-4 py-2 rounded-full text-sm font-semibold transition-all ${
+                    currentView === 'map'
+                      ? 'bg-white text-gray-900 shadow-[0_10px_25px_rgba(15,23,42,0.15)]'
+                      : 'text-gray-500 hover:text-gray-800'
+                  }`}
+                >
+                  <Map size={16} />
+                  Map
+                </button>
+                <button
+                  onClick={() => currentView !== 'list' && setCurrentView('list')}
+                  className={`flex items-center gap-2 px-4 py-2 rounded-full text-sm font-semibold transition-all ${
+                    currentView === 'list'
+                      ? 'bg-white text-gray-900 shadow-[0_10px_25px_rgba(15,23,42,0.15)]'
+                      : 'text-gray-500 hover:text-gray-800'
+                  }`}
+                >
+                  <List size={16} />
+                  List
+                </button>
+              </div>
             </div>
-          )}
 
-          {/* Filter Summary */}
-          {filteredVenues.length !== venues.length && (
-            <div className="max-w-4xl mx-auto px-6 sm:px-8 mb-6">
-              <FilterSummary
-                totalVenues={venues.length}
-                filteredVenues={filteredVenues.length}
-              />
-            </div>
-          )}
-
-          {/* Results Summary */}
-          <div className="text-center mb-8">
-            {filteredVenues.length > 0 && (
-              <motion.div
-                initial={{ opacity: 0, scale: 0.9 }}
-                animate={{ opacity: 1, scale: 1 }}
-                className="inline-flex items-center gap-3 bg-white/80 backdrop-blur-sm rounded-full px-6 py-3 shadow-lg border border-ui-border"
-              >
-                <span className="text-2xl">📍</span>
-                <span className="text-ui-text font-semibold font-body">
-                  Showing {startIndex + 1}-{Math.min(endIndex, filteredVenues.length)} of {filteredVenues.length} venue{filteredVenues.length !== 1 ? 's' : ''}
-                </span>
-              </motion.div>
+            {/* Map View */}
+            {currentView === 'map' && (
+              <div className="h-96 sm:h-[650px] rounded-2xl overflow-hidden shadow-[0_25px_60px_rgba(15,23,42,0.35)] border border-white/60 bg-gray-100/60 mx-6 sm:mx-10 mb-10 relative">
+                <MapboxMap
+                  enable3DBuildings={true}
+                />
+              </div>
             )}
+
+            {/* List View */}
+            {currentView === 'list' && (
+              <div className="px-6 sm:px-10 pb-10">
+                <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+                  {paginatedVenues.map((venue, index) => (
+                    <VenueCard
+                      key={venue.id}
+                      venue={venue}
+                      index={index}
+                      variant="default"
+                    />
+                  ))}
+                </div>
+
+                {filteredVenues.length === 0 && (
+                  <div className="text-center py-16">
+                    <div className="text-6xl mb-4">🔍</div>
+                    <h3 className="text-xl font-bold text-gray-900 mb-2">No venues found</h3>
+                    <p className="text-gray-600">Try adjusting your search or filters</p>
+                  </div>
+                )}
+
+                {/* Pagination Controls */}
+                {filteredVenues.length > venuesPerPage && (
+                  <div className="flex justify-center items-center gap-4 mt-12">
+                    <button
+                      onClick={() => setCurrentPage(Math.max(1, currentPage - 1))}
+                      disabled={currentPage === 1}
+                      className="px-4 py-2 bg-gray-200 hover:bg-gray-300 disabled:bg-gray-100 disabled:cursor-not-allowed rounded-full transition-colors"
+                    >
+                      Previous
+                    </button>
+
+                    <div className="flex gap-2">
+                      {Array.from({ length: Math.min(5, totalPages) }, (_, i) => {
+                        const pageNumber = Math.max(1, Math.min(totalPages - 4, currentPage - 2)) + i;
+                        if (pageNumber > totalPages) return null;
+
+                        return (
+                          <button
+                            key={pageNumber}
+                            onClick={() => setCurrentPage(pageNumber)}
+                            className={`px-3 py-2 rounded-full transition-colors ${
+                              currentPage === pageNumber
+                                ? 'bg-brand-red text-white'
+                                : 'bg-gray-200 hover:bg-gray-300'
+                            }`}
+                          >
+                            {pageNumber}
+                          </button>
+                        );
+                      })}
+                    </div>
+
+                    <button
+                      onClick={() => setCurrentPage(Math.min(totalPages, currentPage + 1))}
+                      disabled={currentPage === totalPages}
+                      className="px-4 py-2 bg-gray-200 hover:bg-gray-300 disabled:bg-gray-100 disabled:cursor-not-allowed rounded-full transition-colors"
+                    >
+                      Next
+                    </button>
+                  </div>
+                )}
+              </div>
+            )}
+
+            {/* Filter Summary */}
+            {filteredVenues.length !== venues.length && (
+              <div className="max-w-4xl mx-auto px-6 sm:px-10 pb-4">
+                <FilterSummary
+                  totalVenues={venues.length}
+                  filteredVenues={filteredVenues.length}
+                />
+              </div>
+            )}
+
+            {/* Results Summary */}
+            <div className="text-center pb-10">
+              {filteredVenues.length > 0 && (
+                <motion.div
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  className="inline-flex items-center gap-3 bg-white/90 backdrop-blur-sm rounded-full px-6 py-3 shadow-lg border border-white/80"
+                >
+                  <span className="text-2xl">📍</span>
+                  <span className="text-ui-text font-semibold font-body">
+                    Showing {startIndex + 1}-{Math.min(endIndex, filteredVenues.length)} of {filteredVenues.length} venue{filteredVenues.length !== 1 ? 's' : ''}
+                  </span>
+                </motion.div>
+              )}
+            </div>
           </div>
         </div>
       </section>

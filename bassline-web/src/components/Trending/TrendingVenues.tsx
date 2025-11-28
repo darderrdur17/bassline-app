@@ -64,12 +64,12 @@ const TrendingVenues: React.FC<TrendingVenuesProps> = ({
             animate={{ opacity: 1, y: 0 }}
             className="text-center mb-12"
           >
-            <div className="flex items-center justify-center gap-3 mb-4">
-              <div className="p-3 bg-orange-100 rounded-full">
+            <div className="flex flex-col items-center justify-center gap-4 mb-4">
+              <div className="p-3 bg-orange-100 rounded-full shadow-sm">
                 <Flame className="w-8 h-8 text-orange-600" />
               </div>
-              <div>
-                <h2 className="text-3xl sm:text-4xl font-title text-gray-900">
+              <div className="text-center">
+                <h2 className="text-3xl sm:text-4xl font-title text-gray-900 tracking-wide">
                   TRENDING NOW
                 </h2>
                 <div className="flex items-center justify-center gap-2 mt-2">

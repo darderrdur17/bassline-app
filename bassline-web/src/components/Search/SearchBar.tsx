@@ -14,7 +14,7 @@ interface SearchBarProps {
 const SearchBar: React.FC<SearchBarProps> = ({
   onSearch,
   placeholder = "Search venues, neighborhoods, music...",
-  className = ""
+  className = "max-w-lg"
 }) => {
   const [query, setQuery] = useState('');
   const [isFocused, setIsFocused] = useState(false);
@@ -90,7 +90,7 @@ const SearchBar: React.FC<SearchBarProps> = ({
   };
 
   return (
-    <div className={`relative w-full max-w-lg ${className}`}>
+    <div className={`relative w-full ${className}`}>
       {/* Search Input */}
       <div className="relative">
         <motion.div
@@ -112,7 +112,7 @@ const SearchBar: React.FC<SearchBarProps> = ({
             onBlur={() => setTimeout(() => setIsFocused(false), 150)}
             onKeyDown={handleKeyDown}
             placeholder={placeholder}
-            className="w-full px-4 py-3 pr-12 pl-12 bg-white border border-gray-200 rounded-xl text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-0 focus:border-brand-red transition-all duration-200 text-lg"
+            className="w-full px-4 py-2.5 sm:py-3 pr-12 pl-12 bg-white border border-gray-200 rounded-xl text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-0 focus:border-brand-red transition-all duration-200 text-lg"
           />
 
           {/* Search Icon */}

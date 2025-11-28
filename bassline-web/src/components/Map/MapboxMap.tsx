@@ -5,9 +5,11 @@ import Map, { Marker, Popup, NavigationControl, FullscreenControl, ScaleControl 
 import mapboxgl from 'mapbox-gl';
 import 'mapbox-gl/dist/mapbox-gl.css';
 
+const MAPBOX_TOKEN = process.env.NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN || 'pk.eyJ1IjoiZGFyZGVycmR1ciIsImEiOiJjbWk4dWI1amIwMDh0MmxzaHBic3dmajhsIn0.A7mfAxOnRLgt0ESfgh0beA';
+
 // Set Mapbox access token globally
 if (typeof window !== 'undefined') {
-  mapboxgl.accessToken = process.env.NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN || 'pk.eyJ1IjoiZGFyZGVycmR1ciIsImEiOiJjbWk4dWI1amIwMDh0MmxzaHBic3dmajhsIn0.A7mfAxOnRLgt0ESfgh0beA';
+  mapboxgl.accessToken = MAPBOX_TOKEN;
 }
 import { Venue, VenueLight, Coordinates, MapViewport } from '@/types/venue';
 import { useVenueStore, useVenueSelectors } from '@/stores/useVenueStore';
@@ -212,6 +214,8 @@ const MapboxMap: React.FC<MapboxMapProps> = ({
         onMove={handleViewportChange}
         style={{ width: '100%', height: '100%' }}
         mapStyle={MAPBOX_STYLE_URL}
+        mapLib={mapboxgl as any}
+        mapboxAccessToken={MAPBOX_TOKEN}
         onLoad={() => {
           setIsMapLoaded(true);
           setIsMoving(false);
