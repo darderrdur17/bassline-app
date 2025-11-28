@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { motion } from 'framer-motion';
 import { Filter, List, Map } from 'lucide-react';
 import dynamic from 'next/dynamic';
@@ -29,9 +29,11 @@ const QuickFilters = dynamic(() => import('@/components/Filters/QuickFilters'), 
 const FilterSummary = dynamic(() => import('@/components/Filters/FilterSummary'), { ssr: false });
 
 // Import data and hooks
-import { venuesLight, venues, moodMapping } from '@/data/venues';
+import { venuesLight } from '@/data/venuesLight';
+import { moodMapping as initialMoodMapping } from '@/data/moodMapping';
 import { useVenueStore, useVenueSelectors } from '@/stores/useVenueStore';
 import { useRealtimeStore, initializeRealtime } from '@/stores/useRealtimeStore';
+import { Venue, MoodMapping } from '@/types/venue';
 
 export default function Home() {
   // State management with Zustand
@@ -41,9 +43,14 @@ export default function Home() {
     setVenues,
     setSearchText,
     filters,
+    venues: storeVenues,
+    setMapCenter,
+    setMapZoom,
+    setMapFocusVenueId,
   } = useVenueStore();
 
   const { getFilteredVenues } = useVenueSelectors();
+  const [activeMoodMapping, setActiveMoodMapping] = useState<MoodMapping>(initialMoodMapping);
 
   // Local UI state
   const [currentView, setCurrentView] = useState<'map' | 'list'>('map');
@@ -54,18 +61,30 @@ export default function Home() {
 
   // Initialize venues and real-time data on mount
   useEffect(() => {
+    let isMounted = true;
+
     // Load lightweight venue data immediately for fast map rendering
     setVenues(venuesLight as any); // Type cast for now
 
     // Load full venue data in the background after initial render
     const loadFullData = async () => {
-      // Small delay to ensure initial render completes
-      await new Promise(resolve => setTimeout(resolve, 100));
-      setVenues(venues);
+      const module = await import('@/data/venues');
+      if (!isMounted) return;
+      setVenues(module.venues);
+      setActiveMoodMapping(module.moodMapping ?? initialMoodMapping);
     };
 
-    loadFullData();
+    if (typeof window !== 'undefined' && 'requestIdleCallback' in window) {
+      (window as any).requestIdleCallback(loadFullData);
+    } else {
+      loadFullData();
+    }
+
     initializeRealtime();
+
+    return () => {
+      isMounted = false;
+    };
   }, [setVenues]);
 
   // Get real-time data
@@ -73,7 +92,7 @@ export default function Home() {
 
   // Get filtered venues from store with real-time data
   const filteredVenues = getFilteredVenues(allRealtimeData);
-  const featuredVenues = venues.slice(0, 6);
+  const featuredVenues = storeVenues.slice(0, 6);
   const moodOptions = ['chill', 'party', 'date', 'classy', 'music', 'drinks'];
 
   // Pagination logic for list view
@@ -90,14 +109,27 @@ export default function Home() {
 
   // Handle mood selection
   const handleMoodSelection = (mood: string) => {
-    const moodVenues = moodMapping[mood];
+    const moodVenues = activeMoodMapping[mood];
     if (moodVenues) {
       // Filter to mood venues - simplified for now
-      const filtered = venues.filter(venue => moodVenues.includes(venue.name));
+      const filtered = storeVenues.filter(venue => moodVenues.includes(venue.name));
       // In a full implementation, you'd update the store filters
     }
     setCurrentView('map');
   };
+
+  const handleGetDirections = useCallback((venue: Venue) => {
+    setMapCenter([venue.coordinates.latitude, venue.coordinates.longitude]);
+    setMapZoom(16);
+    setMapFocusVenueId(venue.id);
+    setSelectedVenue(null);
+    setCurrentView('map');
+
+    if (typeof window !== 'undefined') {
+      const mapSection = document.getElementById('venue-map');
+      mapSection?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  }, [setMapCenter, setMapZoom, setMapFocusVenueId, setSelectedVenue, setCurrentView]);
 
   // Toggle view between map and list
   const toggleView = () => {
@@ -274,6 +306,7 @@ export default function Home() {
                       venue={venue}
                       index={index}
                       variant="default"
+                    onGetDirections={handleGetDirections}
                     />
                   ))}
                 </div>
@@ -331,10 +364,10 @@ export default function Home() {
             )}
 
             {/* Filter Summary */}
-            {filteredVenues.length !== venues.length && (
+            {filteredVenues.length !== storeVenues.length && (
               <div className="max-w-4xl mx-auto px-6 sm:px-10 pb-4">
                 <FilterSummary
-                  totalVenues={venues.length}
+                  totalVenues={storeVenues.length}
                   filteredVenues={filteredVenues.length}
                 />
               </div>
@@ -378,13 +411,14 @@ export default function Home() {
               venue={venue}
               index={index}
               variant="featured"
+              onGetDirections={handleGetDirections}
             />
           ))}
         </div>
       </section>
 
       {/* Trending Venues Section */}
-      <TrendingVenues />
+      <TrendingVenues onGetDirections={handleGetDirections} />
 
       {/* Live Status Indicator */}
       <div className="fixed top-4 right-4 z-30">
@@ -393,7 +427,11 @@ export default function Home() {
 
       {/* Venue Modal */}
       {selectedVenue && (
-        <VenueModal venue={selectedVenue} onClose={() => setSelectedVenue(null)} />
+        <VenueModal
+          venue={selectedVenue}
+          onClose={() => setSelectedVenue(null)}
+          onGetDirections={handleGetDirections}
+        />
       )}
 
       {/* Filter Panel */}

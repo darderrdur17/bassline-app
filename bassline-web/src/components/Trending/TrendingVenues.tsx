@@ -6,17 +6,20 @@ import { TrendingUp, Clock, Users, Flame } from 'lucide-react';
 import { useRealtimeStore, useRealtimeSelectors } from '@/stores/useRealtimeStore';
 import { useVenueStore } from '@/stores/useVenueStore';
 import VenueCard from '@/components/Venue/VenueCard';
+import { Venue } from '@/types/venue';
 
 interface TrendingVenuesProps {
   limit?: number;
   showHeader?: boolean;
   className?: string;
+  onGetDirections?: (venue: Venue) => void;
 }
 
 const TrendingVenues: React.FC<TrendingVenuesProps> = ({
   limit = 6,
   showHeader = true,
   className = '',
+  onGetDirections,
 }) => {
   const { trendingVenues, isRealtimeEnabled } = useRealtimeStore();
   const { getVenueWithRealtimeData } = useRealtimeSelectors();
@@ -149,6 +152,7 @@ const TrendingVenues: React.FC<TrendingVenuesProps> = ({
                 index={index}
                 variant="default"
                 showActions={true}
+                onGetDirections={onGetDirections}
               />
 
               {/* Real-time indicator */}

@@ -37,6 +37,7 @@ interface VenueState {
   // Map State
   mapCenter: [number, number];
   mapZoom: number;
+  mapFocusVenueId: number | null;
 
   // Actions
   setVenues: (venues: Venue[]) => void;
@@ -64,6 +65,7 @@ interface VenueState {
   // Map Actions
   setMapCenter: (center: [number, number]) => void;
   setMapZoom: (zoom: number) => void;
+  setMapFocusVenueId: (venueId: number | null) => void;
 
   // UI Actions
   setLoading: (loading: boolean) => void;
@@ -103,6 +105,7 @@ export const useVenueStore = create<VenueState>()(
 
       mapCenter: [37.7749, -122.4194], // San Francisco center
       mapZoom: 13,
+      mapFocusVenueId: null,
 
       // Actions
       setVenues: (venues) => set({ venues, filteredVenues: venues }),
@@ -199,6 +202,7 @@ export const useVenueStore = create<VenueState>()(
       // Map Actions
       setMapCenter: (mapCenter) => set({ mapCenter }),
       setMapZoom: (mapZoom) => set({ mapZoom }),
+      setMapFocusVenueId: (mapFocusVenueId) => set({ mapFocusVenueId }),
 
       // UI Actions
       setLoading: (isLoading) => set({ isLoading }),

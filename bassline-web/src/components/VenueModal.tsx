@@ -9,9 +9,10 @@ import { useVenueStore } from '@/stores/useVenueStore';
 interface VenueModalProps {
   venue: Venue;
   onClose: () => void;
+  onGetDirections?: (venue: Venue) => void;
 }
 
-const VenueModal: React.FC<VenueModalProps> = ({ venue, onClose }) => {
+const VenueModal: React.FC<VenueModalProps> = ({ venue, onClose, onGetDirections }) => {
   const { toggleFavorite } = useVenueStore();
 
   // Get crowd level info
@@ -202,7 +203,13 @@ const VenueModal: React.FC<VenueModalProps> = ({ venue, onClose }) => {
 
             {/* Action Buttons */}
             <div className="flex flex-col sm:flex-row gap-3 mb-1">
-              <button className="flex-1 btn-primary">
+              <button
+                className="flex-1 btn-primary"
+                onClick={() => {
+                  onGetDirections?.(venue);
+                  onClose();
+                }}
+              >
                 Get Directions
               </button>
               {venue.website && (

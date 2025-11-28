@@ -1,4 +1,4 @@
-import { Venue, FilterOptions, MoodMapping, VenueLight } from '@/types/venue';
+import { Venue, FilterOptions } from '@/types/venue';
 
 // Full venue data for detailed views (loaded on demand)
 export const venues: Venue[] = [
@@ -2548,22 +2548,5 @@ export const filterOptions: FilterOptions = {
   "distance": []
 };
 
-export const moodMapping: MoodMapping = {
-  "chill": ["Key Klub","Verjus","Bodega North Beach","Anchovy Bar","Millay","Celeste","Bar Gemini","PCH (Pacific Cocktail Haven)","High Treason","Ungrafted"],
-  "party": ["Monroe's","Audio","Halcyon","Public Works","1015 Folsom","The Midway","Temple"],
-  "date": ["Key Klub","Verjus","Millay","Bar Gemini","PCH (Pacific Cocktail Haven)"],
-  "lateNight": ["Monroe's","Audio","Halcyon","Public Works","1015 Folsom","The Midway","Temple","Pinecrest","Taishan","Grubstake"]
-};
-
-// Lightweight venue data for fast initial loading (only essential map data)
-// This is a subset with only the essential data needed for map markers
-export const venuesLight: VenueLight[] = venues.slice(0, 20).map(venue => ({
-  id: venue.id,
-  name: venue.name,
-  type: venue.type,
-  neighborhood: venue.neighborhood,
-  rating: venue.rating,
-  pricing: venue.pricing,
-  coordinates: venue.coordinates,
-  currentCrowdLevel: venue.currentCrowdLevel
-}));
+export { moodMapping } from './moodMapping';
+export { venuesLight } from './venuesLight';

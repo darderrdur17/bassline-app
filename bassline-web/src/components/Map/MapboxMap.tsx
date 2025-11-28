@@ -43,7 +43,7 @@ const MapboxMap: React.FC<MapboxMapProps> = ({
   const [showClusters, setShowClusters] = useState(false);
   const [isMoving, setIsMoving] = useState(false);
 
-  const { filteredVenues, mapCenter, mapZoom, setMapCenter, setMapZoom } = useVenueStore();
+  const { mapCenter, mapZoom, setMapCenter, setMapZoom, mapFocusVenueId, setMapFocusVenueId } = useVenueStore();
   const { getFilteredVenues } = useVenueSelectors();
 
   // Get filtered venues from store
@@ -93,6 +93,24 @@ const MapboxMap: React.FC<MapboxMapProps> = ({
 
     return allVenues;
   }, [allVenues, mapBounds, isMapLoaded, isMoving]);
+
+  // Focus specific venue requests (e.g., from "Get Directions")
+  useEffect(() => {
+    if (!mapFocusVenueId) return;
+    const venueToFocus = allVenues.find((venue) => venue.id === mapFocusVenueId);
+    if (!venueToFocus) {
+      return;
+    }
+
+    setViewport(prev => ({
+      ...prev,
+      latitude: venueToFocus.coordinates.latitude,
+      longitude: venueToFocus.coordinates.longitude,
+      zoom: Math.max(prev.zoom, 16),
+    }));
+    setSelectedVenue(venueToFocus);
+    setMapFocusVenueId(null);
+  }, [mapFocusVenueId, allVenues, setMapFocusVenueId]);
 
   // Update viewport when store changes
   useEffect(() => {

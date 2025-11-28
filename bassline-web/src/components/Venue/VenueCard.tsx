@@ -14,6 +14,7 @@ interface VenueCardProps {
   variant?: 'default' | 'compact' | 'featured';
   showActions?: boolean;
   className?: string;
+  onGetDirections?: (venue: Venue) => void;
 }
 
 const VenueCard: React.FC<VenueCardProps> = ({
@@ -22,6 +23,7 @@ const VenueCard: React.FC<VenueCardProps> = ({
   variant = 'default',
   showActions = true,
   className = '',
+  onGetDirections,
 }) => {
   const [imageLoaded, setImageLoaded] = useState(false);
   const [imageError, setImageError] = useState(false);
@@ -286,6 +288,18 @@ const VenueCard: React.FC<VenueCardProps> = ({
               )}
             </div>
             <div className="flex items-center gap-2">
+              {onGetDirections && (
+                <button
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    onGetDirections(venue);
+                  }}
+                  className="px-3 py-2 border border-brand-red text-brand-red rounded-lg text-sm font-medium hover:bg-brand-red/10 transition-colors flex items-center gap-1"
+                >
+                  <MapPin size={14} />
+                  Directions
+                </button>
+              )}
               {venue.website && (
                 <a
                   href={venue.website}
