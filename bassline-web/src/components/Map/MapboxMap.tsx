@@ -5,7 +5,7 @@ import Map, { NavigationControl, FullscreenControl, ScaleControl } from 'react-m
 import mapboxgl from 'mapbox-gl';
 import 'mapbox-gl/dist/mapbox-gl.css';
 
-const MAPBOX_TOKEN = process.env.NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN || 'pk.eyJ1IjoiZGFyZGVycmR1ciIsImEiOiJjbWk4dWI1amIwMDh0MmxzaHBic3dmajhsIn0.A7mfAxOnRLgt0ESfgh0beA';
+const MAPBOX_TOKEN = process.env.NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN || 'pk.eyJ1IjoiZGFyZGVycmR1ciIsImEiOiJjbWk4dTA0Mm0wZnZ4MnNwbzYwNWp2Mjg5In0.bG_gG2vKSCKUHd2kXEtBLQ';
 
 // Set Mapbox access token globally
 if (typeof window !== 'undefined') {
@@ -282,7 +282,7 @@ const MapboxMap: React.FC<MapboxMapProps> = ({
         ref={mapRef}
         {...viewport}
         onMove={handleViewportChange}
-        style={{ width: '100%', height: '100%' }}
+        style={{ width: '100%', height: '100%', cursor: isMoving ? 'grabbing' : 'grab' }}
         mapStyle={MAPBOX_STYLE_URL}
         mapLib={mapboxgl as any}
         mapboxAccessToken={MAPBOX_TOKEN}
@@ -387,7 +387,7 @@ const MapboxMap: React.FC<MapboxMapProps> = ({
 
 
       {/* Venue Count Badge */}
-        <div className="absolute top-4 left-4 bg-ui-surface/95 backdrop-blur-sm rounded-xl px-4 py-2 shadow-lg border border-ui-border">
+        <div className="absolute top-4 left-4 bg-ui-surface/95 backdrop-blur-sm rounded-xl px-4 py-2 shadow-lg border border-ui-border pointer-events-none select-none">
           <div className="flex items-center gap-2">
             <span className="text-2xl">📍</span>
           {venues.length > 0 ? (
