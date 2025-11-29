@@ -1,19 +1,19 @@
-# Mapbox GL JS Setup Guide
+# MapLibre GL JS Setup Guide
 
-## ✅ Current Status: Configured with Access Token!
+## ✅ Current Status: Token-Free and Ready!
 
-Mapbox GL JS is **already set up and working** in your Bassline web application with a valid access token. No additional setup is required!
+MapLibre GL JS is **already set up and working** in your Bassline web application using free OpenStreetMap tiles. No vendor-specific access token is required.
 
 ## 📦 What's Installed
 
 ```json
 {
   "dependencies": {
-    "mapbox-gl": "^3.16.0",
+    "maplibre-gl": "^4.7.1",
     "react-map-gl": "^7.1.7"
   },
   "devDependencies": {
-    "@types/mapbox-gl": "^3.4.1"
+    "@types/react": "^18.3.12"
   }
 }
 ```
@@ -23,35 +23,33 @@ Mapbox GL JS is **already set up and working** in your Bassline web application 
 **Location**: `src/lib/config.ts`
 
 ```typescript
-export const MAPBOX_STYLE_URL = 'mapbox://styles/mapbox/streets-v12';
+export const MAP_STYLE_URL = 'https://tiles.openfreemap.org/styles/liberty';
 ```
 
-**Environment Variable**: `NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN` (set in `vercel.json`)
-
-This uses the **Mapbox Streets v12 style** with your valid access token!
+This uses the free **OpenStreetMap Liberty** style, which works out of the box with MapLibre GL JS.
 
 ## 🎨 Customizing Map Styles
 
 ### Option 1: Use Free MapLibre Styles
 
-You can switch to different free styles by changing the `MAPLIBRE_STYLE_URL`:
+You can switch to different free styles by changing the `MAP_STYLE_URL`:
 
 ```typescript
 // Current (free OpenStreetMap Liberty style)
-export const MAPLIBRE_STYLE_URL = 'https://tiles.openfreemap.org/styles/liberty';
+export const MAP_STYLE_URL = 'https://tiles.openfreemap.org/styles/liberty';
 
 // Alternative free styles:
 // MapLibre demo style
-export const MAPLIBRE_STYLE_URL = 'https://demotiles.maplibre.org/style.json';
+export const MAP_STYLE_URL = 'https://demotiles.maplibre.org/style.json';
 
 // Positron style (light)
-export const MAPLIBRE_STYLE_URL = 'https://basemaps.cartocdn.com/gl/positron-gl-style/style.json';
+export const MAP_STYLE_URL = 'https://basemaps.cartocdn.com/gl/positron-gl-style/style.json';
 
 // Dark Matter style (dark)
-export const MAPLIBRE_STYLE_URL = 'https://basemaps.cartocdn.com/gl/dark-matter-gl-style/style.json';
+export const MAP_STYLE_URL = 'https://basemaps.cartocdn.com/gl/dark-matter-gl-style/style.json';
 
-// Voyager style (may require Mapbox token - avoid!)
-export const MAPLIBRE_STYLE_URL = 'https://basemaps.cartocdn.com/gl/voyager-gl-style/style.json';
+// Voyager style (may require third-party token - avoid!)
+export const MAP_STYLE_URL = 'https://basemaps.cartocdn.com/gl/voyager-gl-style/style.json';
 ```
 
 ### Option 2: Use OpenStreetMap (OSM) Tiles
@@ -59,7 +57,7 @@ export const MAPLIBRE_STYLE_URL = 'https://basemaps.cartocdn.com/gl/voyager-gl-s
 For a completely free, community-maintained option:
 
 ```typescript
-export const MAPLIBRE_STYLE_URL = {
+export const MAP_STYLE_URL = {
   version: 8,
   sources: {
     'osm-tiles': {
@@ -88,7 +86,7 @@ export const MAPLIBRE_STYLE_URL = {
 3. Use their style URL:
 
 ```typescript
-export const MAPLIBRE_STYLE_URL = `https://api.maptiler.com/maps/streets-v2/style.json?key=YOUR_KEY_HERE`;
+export const MAP_STYLE_URL = `https://api.maptiler.com/maps/streets-v2/style.json?key=YOUR_KEY_HERE`;
 ```
 
 ### Option 4: Self-Hosted Style Server
@@ -96,7 +94,7 @@ export const MAPLIBRE_STYLE_URL = `https://api.maptiler.com/maps/streets-v2/styl
 For production, you can host your own style server:
 
 ```typescript
-export const MAPLIBRE_STYLE_URL = 'https://your-domain.com/styles/your-style.json';
+export const MAP_STYLE_URL = 'https://your-domain.com/styles/your-style.json';
 ```
 
 ## ⚙️ Advanced Configuration
@@ -144,13 +142,13 @@ To quickly change the map style, edit `src/lib/config.ts`:
 
 ```typescript
 // For a dark theme (great for nightlife app!)
-export const MAPLIBRE_STYLE_URL = 'https://basemaps.cartocdn.com/gl/dark-matter-gl-style/style.json';
+export const MAP_STYLE_URL = 'https://basemaps.cartocdn.com/gl/dark-matter-gl-style/style.json';
 
 // For a light, clean look
-export const MAPLIBRE_STYLE_URL = 'https://basemaps.cartocdn.com/gl/positron-gl-style/style.json';
+export const MAP_STYLE_URL = 'https://basemaps.cartocdn.com/gl/positron-gl-style/style.json';
 
 // For colorful, detailed maps
-export const MAPLIBRE_STYLE_URL = 'https://basemaps.cartocdn.com/gl/voyager-gl-style/style.json';
+export const MAP_STYLE_URL = 'https://basemaps.cartocdn.com/gl/voyager-gl-style/style.json';
 ```
 
 ## 📱 Testing Your Changes
@@ -176,7 +174,7 @@ export const MAPLIBRE_STYLE_URL = 'https://basemaps.cartocdn.com/gl/voyager-gl-s
 For a Bassline nightlife app, I recommend the **Liberty** style (currently active):
 
 ```typescript
-export const MAPLIBRE_STYLE_URL = 'https://tiles.openfreemap.org/styles/liberty';
+export const MAP_STYLE_URL = 'https://tiles.openfreemap.org/styles/liberty';
 ```
 
 This gives a clean, modern look that's perfect for nightlife apps and is completely free!
@@ -184,10 +182,10 @@ This gives a clean, modern look that's perfect for nightlife apps and is complet
 Alternatively, for a darker theme, you could use **Dark Matter**:
 
 ```typescript
-export const MAPLIBRE_STYLE_URL = 'https://basemaps.cartocdn.com/gl/dark-matter-gl-style/style.json';
+export const MAP_STYLE_URL = 'https://basemaps.cartocdn.com/gl/dark-matter-gl-style/style.json';
 ```
 
-⚠️ **Note**: Avoid CartoDB Voyager style as it may require Mapbox authentication.
+⚠️ **Note**: Avoid CartoDB Voyager style as it may require credentials from CartoDB.
 
 ## 🔧 Troubleshooting
 
@@ -195,7 +193,7 @@ export const MAPLIBRE_STYLE_URL = 'https://basemaps.cartocdn.com/gl/dark-matter-
 
 1. Check browser console for errors
 2. Verify the style URL is accessible
-3. Ensure `maplibre-gl` CSS is imported (already done in `MapboxMap.tsx`)
+3. Ensure `maplibre-gl` CSS is imported (already done in `NightlifeMap.tsx`)
 
 ### Style Not Applying?
 

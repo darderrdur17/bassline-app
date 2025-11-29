@@ -6,7 +6,7 @@ import { Filter, List, Map } from 'lucide-react';
 import dynamic from 'next/dynamic';
 
 // Dynamic imports for better performance with preloading
-const MapboxMap = dynamic(() => import('@/components/Map/MapboxMap'), {
+const NightlifeMap = dynamic(() => import('@/components/Map/NightlifeMap'), {
   ssr: false,
   loading: () => (
     <div className="h-96 sm:h-[650px] rounded-2xl bg-gray-100 animate-pulse flex items-center justify-center">
@@ -34,7 +34,7 @@ import { moodMapping as initialMoodMapping } from '@/data/moodMapping';
 import { useVenueStore, useVenueSelectors } from '@/stores/useVenueStore';
 import { useRealtimeStore, initializeRealtime } from '@/stores/useRealtimeStore';
 import { Venue, MoodMapping } from '@/types/venue';
-import { getMapboxShareUrl } from '@/utils/mapboxLinks';
+import { getMapShareUrl } from '@/utils/mapLinks';
 
 export default function Home() {
   // State management with Zustand
@@ -130,12 +130,12 @@ export default function Home() {
       const mapSection = document.getElementById('venue-map');
       mapSection?.scrollIntoView({ behavior: 'smooth', block: 'start' });
 
-      const mapboxLink = getMapboxShareUrl(
+      const shareLink = getMapShareUrl(
         venue.coordinates.latitude,
         venue.coordinates.longitude,
         16
       );
-      window.open(mapboxLink, '_blank', 'noopener,noreferrer');
+      window.open(shareLink, '_blank', 'noopener,noreferrer');
     }
   }, [setMapCenter, setMapZoom, setMapFocusVenueId, setSelectedVenue, setCurrentView]);
 
@@ -298,7 +298,7 @@ export default function Home() {
             {/* Map View */}
             {currentView === 'map' && (
               <div className="h-96 sm:h-[650px] rounded-2xl overflow-hidden shadow-[0_25px_60px_rgba(15,23,42,0.35)] border border-white/60 bg-gray-100/60 mx-6 sm:mx-10 mb-10 relative">
-                <MapboxMap
+                <NightlifeMap
                   enable3DBuildings={true}
                 />
               </div>

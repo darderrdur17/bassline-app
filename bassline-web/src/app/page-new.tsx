@@ -5,7 +5,7 @@ import { motion } from 'framer-motion';
 import dynamic from 'next/dynamic';
 
 // Dynamic imports for better performance
-const MapboxMap = dynamic(() => import('@/components/Map/MapboxMap'), {
+const NightlifeMap = dynamic(() => import('@/components/Map/NightlifeMap'), {
   ssr: false,
   loading: () => (
     <div className="h-96 sm:h-[600px] bg-ui-background rounded-xl animate-pulse flex items-center justify-center">
@@ -253,7 +253,7 @@ export default function Home() {
           </div>
 
           <div className="h-96 sm:h-[650px] rounded-2xl overflow-hidden shadow-2xl mx-6 sm:mx-8 mb-8 relative">
-            <MapboxMap
+            <NightlifeMap
               enable3DBuildings={true}
             />
           </div>

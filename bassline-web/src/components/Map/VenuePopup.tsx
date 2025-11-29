@@ -14,7 +14,7 @@ interface VenuePopupProps {
   anchor?: 'top' | 'bottom' | 'left' | 'right' | 'top-left' | 'top-right' | 'bottom-left' | 'bottom-right';
   onSelectNext?: () => void;
   onSelectPrev?: () => void;
-  onOpenInMapbox?: (venue: Venue) => void;
+  onOpenInMaps?: (venue: Venue) => void;
 }
 
 const VenuePopup: React.FC<VenuePopupProps> = ({
@@ -23,7 +23,7 @@ const VenuePopup: React.FC<VenuePopupProps> = ({
   anchor = 'bottom',
   onSelectNext,
   onSelectPrev,
-  onOpenInMapbox,
+  onOpenInMaps,
 }) => {
   const { toggleFavorite } = useVenueStore();
   const { isFavorite } = useVenueSelectors();
@@ -271,11 +271,11 @@ const VenuePopup: React.FC<VenuePopupProps> = ({
               View Details
             </button>
             <button
-              onClick={() => onOpenInMapbox?.(venue)}
+              onClick={() => onOpenInMaps?.(venue)}
               className="btn-secondary text-sm py-2 px-3 flex items-center gap-2"
             >
               <MapPin size={14} />
-              Mapbox
+              Open in Maps
             </button>
             {venue.website && (
               <a

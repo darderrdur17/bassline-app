@@ -1,6 +1,5 @@
-// Mapbox configuration
-// Using standard Mapbox Streets style - most reliable option
-export const MAPBOX_STYLE_URL = 'mapbox://styles/mapbox/streets-v11';
+// Map configuration (using free MapLibre-compatible style)
+export const MAP_STYLE_URL = 'https://tiles.openfreemap.org/styles/liberty';
 
 // API endpoints (for future backend integration)
 export const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL || 'http://localhost:3001';

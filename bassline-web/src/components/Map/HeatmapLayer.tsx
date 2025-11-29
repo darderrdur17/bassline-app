@@ -9,7 +9,7 @@ interface HeatmapLayerProps {
 }
 
 const HeatmapLayer: React.FC<HeatmapLayerProps> = ({ venues }) => {
-  // Heatmap with Mapbox GL JS is complex and requires specific setup
+  // Heatmap with MapLibre GL JS is complex and requires specific setup
   // For now, we'll just return null and implement this later
   // This is a placeholder for future heatmap implementation
 

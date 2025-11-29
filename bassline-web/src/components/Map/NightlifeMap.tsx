@@ -2,15 +2,8 @@
 
 import React, { useEffect, useRef, useState, useCallback } from 'react';
 import Map, { NavigationControl, FullscreenControl, ScaleControl } from 'react-map-gl';
-import mapboxgl from 'mapbox-gl';
-import 'mapbox-gl/dist/mapbox-gl.css';
-
-const MAPBOX_TOKEN = process.env.NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN || 'pk.eyJ1IjoiZGFyZGVycmR1ciIsImEiOiJjbWk4dTA0Mm0wZnZ4MnNwbzYwNWp2Mjg5In0.bG_gG2vKSCKUHd2kXEtBLQ';
-
-// Set Mapbox access token globally
-if (typeof window !== 'undefined') {
-  mapboxgl.accessToken = MAPBOX_TOKEN;
-}
+import maplibregl from 'maplibre-gl';
+import 'maplibre-gl/dist/maplibre-gl.css';
 import { Venue, VenueLight, MapViewport } from '@/types/venue';
 import { useVenueStore, useVenueSelectors } from '@/stores/useVenueStore';
 import VenueMarker from './VenueMarker';
@@ -18,15 +11,15 @@ import VenuePopup from './VenuePopup';
 import MapControls from './MapControls';
 import HeatmapLayer from './HeatmapLayer';
 import ClusterLayer from './ClusterLayer';
-import { MAPBOX_STYLE_URL } from '@/lib/config';
-import { getMapboxShareUrl } from '@/utils/mapboxLinks';
+import { MAP_STYLE_URL } from '@/lib/config';
+import { getMapShareUrl } from '@/utils/mapLinks';
 
-interface MapboxMapProps {
+interface NightlifeMapProps {
   className?: string;
   enable3DBuildings?: boolean;
 }
 
-const MapboxMap: React.FC<MapboxMapProps> = ({
+const NightlifeMap: React.FC<NightlifeMapProps> = ({
   className = '',
   enable3DBuildings = true,
 }) => {
@@ -249,20 +242,15 @@ const MapboxMap: React.FC<MapboxMapProps> = ({
     }
   }, [selectedIndex, allVenues, focusOnVenue]);
 
-  const handleOpenInMapbox = useCallback((venue: Venue) => {
+  const handleOpenInMaps = useCallback((venue: Venue) => {
     if (typeof window === 'undefined') return;
-    const shareUrl = getMapboxShareUrl(
+    const shareUrl = getMapShareUrl(
       venue.coordinates.latitude,
       venue.coordinates.longitude,
       Math.round(viewport.zoom ?? 15)
     );
     window.open(shareUrl, '_blank', 'noopener,noreferrer');
   }, [viewport.zoom]);
-
-  // Using Mapbox - single style URL
-  const getMapStyle = () => {
-    return MAPBOX_STYLE_URL;
-  };
 
   return (
     <div className={`relative w-full h-full ${className}`}>
@@ -296,9 +284,8 @@ const MapboxMap: React.FC<MapboxMapProps> = ({
         {...viewport}
         onMove={handleViewportChange}
         style={{ width: '100%', height: '100%', cursor: isMoving ? 'grabbing' : 'grab' }}
-        mapStyle={MAPBOX_STYLE_URL}
-        mapLib={mapboxgl as any}
-        mapboxAccessToken={MAPBOX_TOKEN}
+        mapStyle={MAP_STYLE_URL}
+        mapLib={maplibregl as any}
         dragPan={true}
         dragRotate={false}
         scrollZoom={true}
@@ -383,7 +370,7 @@ const MapboxMap: React.FC<MapboxMapProps> = ({
             anchor="bottom"
             onSelectNext={() => selectRelativeVenue(1)}
             onSelectPrev={() => selectRelativeVenue(-1)}
-            onOpenInMapbox={handleOpenInMapbox}
+            onOpenInMaps={handleOpenInMaps}
           />
         )}
       </Map>
@@ -400,9 +387,9 @@ const MapboxMap: React.FC<MapboxMapProps> = ({
 
 
       {/* Venue Count Badge */}
-        <div className="absolute top-4 left-4 bg-ui-surface/95 backdrop-blur-sm rounded-xl px-4 py-2 shadow-lg border border-ui-border pointer-events-none select-none">
-          <div className="flex items-center gap-2">
-            <span className="text-2xl">📍</span>
+      <div className="absolute top-4 left-4 bg-ui-surface/95 backdrop-blur-sm rounded-xl px-4 py-2 shadow-lg border border-ui-border pointer-events-none select-none">
+        <div className="flex items-center gap-2">
+          <span className="text-2xl">📍</span>
           {venues.length > 0 ? (
             <div className="flex flex-col">
               <span className="text-ui-text font-semibold font-body">
@@ -419,7 +406,7 @@ const MapboxMap: React.FC<MapboxMapProps> = ({
               <span className="text-ui-text-secondary font-body text-sm">
                 {isMoving ? 'Filtering venues...' : 'Loading venues...'}
               </span>
-          </div>
+            </div>
           )}
         </div>
       </div>
@@ -427,4 +414,4 @@ const MapboxMap: React.FC<MapboxMapProps> = ({
   );
 };
 
-export default MapboxMap;
+export default NightlifeMap;

@@ -9,7 +9,7 @@ interface ClusterLayerProps {
 }
 
 const ClusterLayer: React.FC<ClusterLayerProps> = ({ venues }) => {
-  // Clustering with Mapbox GL JS is complex and requires SuperCluster or similar
+  // Clustering with MapLibre GL JS is complex and requires SuperCluster or similar
   // For now, we'll just return null and implement this later
   // This is a placeholder for future clustering implementation
 
