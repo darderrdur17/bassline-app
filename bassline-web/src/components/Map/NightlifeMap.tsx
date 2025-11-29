@@ -56,7 +56,7 @@ const NightlifeMap: React.FC<NightlifeMapProps> = ({
   const allVenues = getFilteredVenues();
 
   // Optimized venue filtering with progressive loading
-  const venues = React.useMemo(() => {
+  const displayedVenues = React.useMemo(() => {
     // Show limited venues initially for faster loading
     if (!isMapLoaded) {
       return allVenues.slice(0, 20); // Show first 20 venues while loading
@@ -194,9 +194,9 @@ const NightlifeMap: React.FC<NightlifeMapProps> = ({
 
   // Fit bounds to show all venues
   const fitBoundsToVenues = useCallback(() => {
-    if (venues.length === 0 || !mapRef.current) return;
+    if (displayedVenues.length === 0 || !mapRef.current) return;
 
-    const bounds = venues.reduce(
+    const bounds = displayedVenues.reduce(
       (acc, venue) => {
         const { latitude, longitude } = venue.coordinates;
         return {
@@ -207,10 +207,10 @@ const NightlifeMap: React.FC<NightlifeMapProps> = ({
         };
       },
       {
-        minLat: venues[0].coordinates.latitude,
-        maxLat: venues[0].coordinates.latitude,
-        minLng: venues[0].coordinates.longitude,
-        maxLng: venues[0].coordinates.longitude,
+        minLat: displayedVenues[0].coordinates.latitude,
+        maxLat: displayedVenues[0].coordinates.latitude,
+        minLng: displayedVenues[0].coordinates.longitude,
+        maxLng: displayedVenues[0].coordinates.longitude,
       }
     );
 
@@ -221,15 +221,15 @@ const NightlifeMap: React.FC<NightlifeMapProps> = ({
       ],
       { padding: 50, duration: 1000 }
     );
-  }, [venues]);
+  }, [displayedVenues]);
 
   // Auto-fit bounds when venues change and map is loaded
   useEffect(() => {
-    if (venues.length > 0 && isMapLoaded) {
+    if (displayedVenues.length > 0 && isMapLoaded) {
       // Immediate fit bounds instead of delayed
       fitBoundsToVenues();
     }
-  }, [venues, isMapLoaded, fitBoundsToVenues]);
+  }, [displayedVenues, isMapLoaded, fitBoundsToVenues]);
 
   useEffect(() => {
     if (isMapLoaded || mapError) return;
@@ -252,21 +252,23 @@ const NightlifeMap: React.FC<NightlifeMapProps> = ({
     setHoveredVenue(venue);
   }, []);
 
-  const selectedIndex = selectedVenue ? allVenues.findIndex(v => v.id === selectedVenue.id) : -1;
+  const selectedIndex = selectedVenue
+    ? displayedVenues.findIndex(v => v.id === selectedVenue.id)
+    : -1;
 
   const selectRelativeVenue = useCallback((offset: number) => {
-    if (!allVenues.length) return;
+    if (!displayedVenues.length) return;
     let nextIndex = selectedIndex;
     if (nextIndex === -1) {
-      nextIndex = 0;
+      nextIndex = offset > 0 ? 0 : displayedVenues.length - 1;
     }
-    nextIndex = (nextIndex + offset + allVenues.length) % allVenues.length;
-    const nextVenue = allVenues[nextIndex];
+    nextIndex = (nextIndex + offset + displayedVenues.length) % displayedVenues.length;
+    const nextVenue = displayedVenues[nextIndex];
     if (nextVenue) {
       setSelectedVenue(nextVenue);
       focusOnVenue(nextVenue, 16);
     }
-  }, [selectedIndex, allVenues, focusOnVenue]);
+  }, [selectedIndex, displayedVenues, focusOnVenue]);
 
   const handleOpenInMaps = useCallback((venue: Venue) => {
     if (typeof window === 'undefined') return;
@@ -380,13 +382,13 @@ const NightlifeMap: React.FC<NightlifeMapProps> = ({
         <ScaleControl position="bottom-left" />
 
         {/* Heatmap Layer */}
-        {showHeatmap && <HeatmapLayer venues={venues} />}
+        {showHeatmap && <HeatmapLayer venues={displayedVenues} />}
 
         {/* Cluster Layer */}
-        {showClusters && venues.length > 20 && <ClusterLayer venues={venues} />}
+        {showClusters && displayedVenues.length > 20 && <ClusterLayer venues={displayedVenues} />}
 
         {/* Individual Venue Markers */}
-        {(!showClusters || venues.length <= 20) && venues.map((venue) => (
+        {(!showClusters || displayedVenues.length <= 20) && displayedVenues.map((venue) => (
           <VenueMarker
             key={venue.id}
             venue={venue}
@@ -417,7 +419,7 @@ const NightlifeMap: React.FC<NightlifeMapProps> = ({
         onToggleClusters={() => setShowClusters(!showClusters)}
         showHeatmap={showHeatmap}
         showClusters={showClusters}
-        venueCount={venues.length}
+        venueCount={displayedVenues.length}
       />
 
 
@@ -425,10 +427,10 @@ const NightlifeMap: React.FC<NightlifeMapProps> = ({
       <div className="absolute top-4 left-4 bg-ui-surface/95 backdrop-blur-sm rounded-xl px-4 py-2 shadow-lg border border-ui-border pointer-events-none select-none">
         <div className="flex items-center gap-2">
           <span className="text-2xl">📍</span>
-          {venues.length > 0 ? (
+          {displayedVenues.length > 0 ? (
             <div className="flex flex-col">
               <span className="text-ui-text font-semibold font-body">
-                {venues.length} venue{venues.length !== 1 ? 's' : ''}
+                {displayedVenues.length} venue{displayedVenues.length !== 1 ? 's' : ''}
                 {isMoving && <span className="text-xs text-brand-red ml-1">•</span>}
               </span>
               <span className="text-xs text-ui-text-secondary">
