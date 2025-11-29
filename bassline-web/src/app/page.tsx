@@ -134,7 +134,8 @@ export default function Home() {
         venue.coordinates.latitude,
         venue.coordinates.longitude,
         16,
-        'google'
+        'google',
+        `${venue.name} ${venue.neighborhood ?? ''}`.trim()
       );
       window.open(shareLink, '_blank', 'noopener,noreferrer');
     }

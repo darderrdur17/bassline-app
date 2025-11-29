@@ -101,18 +101,19 @@ const NightlifeMap: React.FC<NightlifeMapProps> = ({
   }, [allVenues, mapBounds, isMapLoaded, isMoving]);
 
   const focusOnVenue = useCallback((venue: Venue, zoomOverride?: number) => {
-    if (!mapRef.current) return;
-    
+    const mapInstance = mapRef.current?.getMap?.() ?? mapRef.current;
+    if (!mapInstance) return;
+
     const targetZoom = zoomOverride ?? Math.max(viewport.zoom, 15);
-    
+
     // Use flyTo for smooth animation
-    mapRef.current.flyTo({
+    mapInstance.flyTo({
       center: [venue.coordinates.longitude, venue.coordinates.latitude],
       zoom: targetZoom,
       duration: 1000,
       essential: true,
-    });
-    
+    } as any);
+
     // Also update viewport state for consistency
     setViewport(prev => ({
       ...prev,
@@ -273,7 +274,8 @@ const NightlifeMap: React.FC<NightlifeMapProps> = ({
       venue.coordinates.latitude,
       venue.coordinates.longitude,
       Math.round(viewport.zoom ?? 15),
-      'google'
+      'google',
+      `${venue.name} ${venue.neighborhood ?? ''}`.trim()
     );
     window.open(shareUrl, '_blank', 'noopener,noreferrer');
   }, [viewport.zoom]);
