@@ -1,5 +1,6 @@
 'use client';
 
+import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import { Venue } from '@/types/venue';
@@ -42,10 +43,13 @@ export default function VenuePageClient({ venue }: VenuePageClientProps) {
       <div className="relative w-full h-80 sm:h-96 overflow-hidden">
         {venue.heroImage && (
           <>
-            <img
-              src={typeof venue.heroImage === 'string' ? venue.heroImage : undefined}
+            <Image
+              src={venue.heroImage}
               alt={venue.name}
-              className="w-full h-full object-cover"
+              fill
+              priority
+              sizes="100vw"
+              className="object-cover"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent"></div>
             <div className="absolute bottom-6 left-6 right-6 text-white">
@@ -108,11 +112,15 @@ export default function VenuePageClient({ venue }: VenuePageClientProps) {
             <div className="flex gap-4">
               {venue.gallery.map((image, index) => (
                 <div key={index} className="flex-shrink-0">
-                  <img
-                    src={image}
-                    alt={`${venue.name} gallery ${index + 1}`}
-                    className="h-48 w-64 object-cover rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300"
-                  />
+                  <div className="h-48 w-64 relative">
+                    <Image
+                      src={image}
+                      alt={`${venue.name} gallery ${index + 1}`}
+                      fill
+                      sizes="(max-width: 640px) 80vw, 256px"
+                      className="object-cover rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300"
+                    />
+                  </div>
                 </div>
               ))}
             </div>
@@ -248,7 +256,7 @@ export default function VenuePageClient({ venue }: VenuePageClientProps) {
                 {venue.whereToGoIf && (
                   <div>
                     <h3 className="text-xl font-bold mb-4 text-[#E53935] font-title">Perfect For</h3>
-                    <p className="text-gray-700 font-body italic">"{venue.whereToGoIf}"</p>
+                    <p className="text-gray-700 font-body italic">“{venue.whereToGoIf}”</p>
                   </div>
                 )}
 

@@ -2,6 +2,7 @@
 
 import React from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import Image from 'next/image';
 import { Venue } from '@/types/venue';
 import { X, Star, Clock, MapPin, Phone, Globe, Instagram, Heart, ExternalLink } from 'lucide-react';
 import { useVenueStore } from '@/stores/useVenueStore';
@@ -49,10 +50,12 @@ const VenueModal: React.FC<VenueModalProps> = ({ venue, onClose, onGetDirections
         >
           {/* Header Image */}
           <div className="relative h-64 overflow-hidden">
-            <img
+            <Image
               src={venue.heroImage}
               alt={venue.name}
-              className="w-full h-full object-cover"
+              fill
+              sizes="(max-width: 768px) 100vw, 800px"
+              className="object-cover"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
 

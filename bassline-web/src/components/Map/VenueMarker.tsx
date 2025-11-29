@@ -183,7 +183,7 @@ const VenueMarker: React.FC<VenueMarkerProps> = React.memo(({
   const realtimeData = allRealtimeData.get(venue.id);
 
   // Memoize the marker component to prevent unnecessary re-renders
-  const markerComponent = React.useMemo(() => (
+  const markerComponent = useMemo(() => (
     <VenueMarkerComponent
       venue={venue}
       realtimeData={realtimeData}
@@ -192,7 +192,7 @@ const VenueMarker: React.FC<VenueMarkerProps> = React.memo(({
       onClick={() => onClick(venue)}
       onHover={onHover}
     />
-  ), [venue.id, realtimeData, isSelected, isHovered, onHover, onClick]);
+  ), [venue, realtimeData, isSelected, isHovered, onHover, onClick]);
 
   return (
     <Marker

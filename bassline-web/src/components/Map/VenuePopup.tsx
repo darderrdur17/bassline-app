@@ -1,6 +1,7 @@
 'use client';
 
 import React from 'react';
+import Image from 'next/image';
 import { Popup } from 'react-map-gl';
 import { Venue } from '@/types/venue';
 import { motion } from 'framer-motion';
@@ -68,10 +69,13 @@ const VenuePopup: React.FC<VenuePopupProps> = ({
       >
         {/* Header Image */}
         <div className="relative h-32 overflow-hidden">
-          <img
+          <Image
             src={venue.heroImage}
             alt={venue.name}
+            width={640}
+            height={256}
             className="w-full h-full object-cover"
+            priority={false}
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
 

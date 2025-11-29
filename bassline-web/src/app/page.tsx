@@ -69,10 +69,10 @@ export default function Home() {
 
     // Load full venue data in the background after initial render
     const loadFullData = async () => {
-      const module = await import('@/data/venues');
+      const venuesModule = await import('@/data/venues');
       if (!isMounted) return;
-      setVenues(module.venues);
-      setActiveMoodMapping(module.moodMapping ?? initialMoodMapping);
+      setVenues(venuesModule.venues);
+      setActiveMoodMapping(venuesModule.moodMapping ?? initialMoodMapping);
     };
 
     if (typeof window !== 'undefined' && 'requestIdleCallback' in window) {
@@ -391,7 +391,7 @@ export default function Home() {
                 >
                   <span className="text-2xl">📍</span>
                   <span className="text-ui-text font-semibold font-body">
-                    Showing {startIndex + 1}-{Math.min(endIndex, filteredVenues.length)} of {filteredVenues.length} venue{filteredVenues.length !== 1 ? 's' : ''}
+                    Showing {startIndex + 1}-{Math.min(endIndex, filteredVenues.length)} of {filteredVenues.length} venue{filteredVenues.length !== 1 ? '’s' : ''}
                   </span>
                 </motion.div>
               )}
@@ -408,7 +408,7 @@ export default function Home() {
           </h2>
           <div className="w-24 h-1 bg-brand-red mx-auto mb-6 rounded-full"></div>
           <p className="text-xl text-ui-text-secondary font-body max-w-2xl mx-auto">
-            Handpicked gems that define San Francisco's nightlife scene
+            Handpicked gems that define San Francisco’s nightlife scene
           </p>
         </div>
 

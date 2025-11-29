@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { MapPin, Star, Clock, Music, Users, Heart, ExternalLink } from 'lucide-react';
+import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import { Venue } from '@/types/venue';
 import { useVenueStore, useVenueSelectors } from '@/stores/useVenueStore';
@@ -109,14 +110,15 @@ const VenueCard: React.FC<VenueCardProps> = ({
       <div className={`relative overflow-hidden rounded-t-xl ${imageHeights[variant]}`}>
         {!imageError ? (
           <>
-            <img
+            <Image
               src={venue.heroImage}
               alt={`${venue.name} interior`}
-              loading="lazy"
-              className={`w-full h-full object-cover transition-transform duration-500 hover:scale-110 ${
+              fill
+              sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 400px"
+              className={`object-cover transition-transform duration-500 hover:scale-110 ${
                 imageLoaded ? 'opacity-100' : 'opacity-0'
               }`}
-              onLoad={() => setImageLoaded(true)}
+              onLoadingComplete={() => setImageLoaded(true)}
               onError={() => setImageError(true)}
             />
             {!imageLoaded && (
@@ -352,11 +354,15 @@ const VenueCard: React.FC<VenueCardProps> = ({
                 {galleryVenue.heroImage && (
                   <div>
                     <h4 className="text-lg font-semibold mb-2 text-gray-800">Main Image</h4>
-                    <img
-                      src={galleryVenue.heroImage}
-                      alt={`${galleryVenue.name} main`}
-                      className="w-full h-64 object-cover rounded-lg"
-                    />
+                    <div className="relative w-full h-64">
+                      <Image
+                        src={galleryVenue.heroImage}
+                        alt={`${galleryVenue.name} main`}
+                        fill
+                        sizes="(max-width: 768px) 100vw, 800px"
+                        className="object-cover rounded-lg"
+                      />
+                    </div>
                   </div>
                 )}
 
@@ -368,12 +374,15 @@ const VenueCard: React.FC<VenueCardProps> = ({
                     </h4>
                     <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
                       {galleryVenue.gallery.map((image, index) => (
-                        <img
-                          key={index}
-                          src={image}
-                          alt={`${galleryVenue.name} gallery ${index + 1}`}
-                          className="w-full h-32 object-cover rounded-lg hover:scale-105 transition-transform cursor-pointer"
-                        />
+                        <div key={index} className="relative w-full h-32">
+                          <Image
+                            src={image}
+                            alt={`${galleryVenue.name} gallery ${index + 1}`}
+                            fill
+                            sizes="(max-width: 768px) 50vw, 200px"
+                            className="object-cover rounded-lg hover:scale-105 transition-transform cursor-pointer"
+                          />
+                        </div>
                       ))}
                     </div>
                   </div>

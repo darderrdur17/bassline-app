@@ -14,6 +14,8 @@ import ClusterLayer from './ClusterLayer';
 import { MAP_STYLE_URL } from '@/lib/config';
 import { getMapShareUrl } from '@/utils/mapLinks';
 
+const FALLBACK_MAP_STYLE_URL = 'https://demotiles.maplibre.org/style.json';
+
 interface NightlifeMapProps {
   className?: string;
   enable3DBuildings?: boolean;
@@ -24,11 +26,14 @@ const NightlifeMap: React.FC<NightlifeMapProps> = ({
   enable3DBuildings = true,
 }) => {
   const mapRef = useRef<any>();
+  const boundsTimeoutRef = useRef<NodeJS.Timeout | null>(null);
   const [viewport, setViewport] = useState<MapViewport>({
     latitude: 37.7749,
     longitude: -122.4194,
     zoom: 12, // Slightly zoomed out to show more of SF initially
   });
+  const [mapStyleUrl, setMapStyleUrl] = useState(MAP_STYLE_URL);
+  const [hasTriedFallback, setHasTriedFallback] = useState(false);
   const [selectedVenue, setSelectedVenue] = useState<Venue | null>(null);
   const [hoveredVenue, setHoveredVenue] = useState<Venue | VenueLight | null>(null);
   const [isMapLoaded, setIsMapLoaded] = useState(false);
@@ -139,19 +144,23 @@ const NightlifeMap: React.FC<NightlifeMapProps> = ({
   }, [mapCenter, mapZoom]);
 
   // Debounced bounds update to prevent excessive filtering during map movement
-  const debouncedSetBounds = useCallback(
-    (() => {
-      let timeoutId: NodeJS.Timeout;
-      return (bounds: any) => {
-        clearTimeout(timeoutId);
-        timeoutId = setTimeout(() => {
-          setMapBounds(bounds);
-          setIsMoving(false);
-        }, 150); // 150ms debounce
-      };
-    })(),
-    []
-  );
+  const debouncedSetBounds = useCallback((bounds: any) => {
+    if (boundsTimeoutRef.current) {
+      clearTimeout(boundsTimeoutRef.current);
+    }
+    boundsTimeoutRef.current = setTimeout(() => {
+      setMapBounds(bounds);
+      setIsMoving(false);
+    }, 150);
+  }, [setMapBounds, setIsMoving]);
+
+  useEffect(() => {
+    return () => {
+      if (boundsTimeoutRef.current) {
+        clearTimeout(boundsTimeoutRef.current);
+      }
+    };
+  }, []);
 
   // Handle viewport changes - only update store, let useEffect handle viewport updates
   const handleViewportChange = useCallback((newViewport: any) => {
@@ -270,6 +279,8 @@ const NightlifeMap: React.FC<NightlifeMapProps> = ({
             onClick={() => {
               setMapError(null);
               setIsMapLoaded(false);
+              setHasTriedFallback(false);
+              setMapStyleUrl(MAP_STYLE_URL);
               setTimeout(() => mapRef.current?.resize(), 0);
             }}
             className="btn-primary px-4 py-2 text-sm"
@@ -284,7 +295,7 @@ const NightlifeMap: React.FC<NightlifeMapProps> = ({
         {...viewport}
         onMove={handleViewportChange}
         style={{ width: '100%', height: '100%', cursor: isMoving ? 'grabbing' : 'grab' }}
-        mapStyle={MAP_STYLE_URL}
+        mapStyle={mapStyleUrl}
         mapLib={maplibregl as any}
         dragPan={true}
         dragRotate={false}
@@ -321,6 +332,11 @@ const NightlifeMap: React.FC<NightlifeMapProps> = ({
         pitchWithRotate={true}
         onError={(error) => {
           console.error('Map error:', error);
+          if (!hasTriedFallback) {
+            setHasTriedFallback(true);
+            setMapStyleUrl(FALLBACK_MAP_STYLE_URL);
+            return;
+          }
           setMapError(error?.error?.message || 'Unable to load map right now.');
         }}
         interactiveLayerIds={['venue-markers']}

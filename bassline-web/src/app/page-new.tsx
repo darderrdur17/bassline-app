@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import dynamic from 'next/dynamic';
+import Image from 'next/image';
 
 // Dynamic imports for better performance
 const NightlifeMap = dynamic(() => import('@/components/Map/NightlifeMap'), {
@@ -74,10 +75,14 @@ export default function Home() {
       onClick={() => setSelectedVenue(venue)}
     >
       <div className="relative overflow-hidden rounded-t-xl">
-        <img
+        <Image
           src={venue.heroImage}
           alt={`${venue.name} interior`}
-          className="venue-card-image"
+          width={640}
+          height={360}
+          priority={index < 3}
+          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+          className="venue-card-image object-cover"
         />
         <div className="venue-card-overlay" />
         <div className="absolute top-4 right-4">
@@ -110,7 +115,7 @@ export default function Home() {
               <span className="text-lg">📍</span>
               <span className="font-medium">{venue.neighborhood}</span>
             </span>
-            <span className="text-xs text-ui-text-muted font-body bg-ui-background px-2 py-1 rounded-full">
+              <span className="text-xs text-ui-text-muted font-body bg-ui-background px-2 py-1 rounded-full">
               {venue.hours || 'Hours vary'}
             </span>
           </div>
@@ -180,7 +185,7 @@ export default function Home() {
               className="max-w-3xl mx-auto mb-12"
             >
               <p className="text-lg sm:text-xl mb-8 opacity-90 font-body text-white/95 leading-relaxed">
-                Discover San Francisco's best nightlife venues with mood-based discovery and real-time exploration
+                Discover San Francisco’s best nightlife venues with mood-based discovery and real-time exploration
               </p>
             </motion.div>
 
@@ -248,7 +253,7 @@ export default function Home() {
               <h2 className="text-3xl sm:text-4xl font-title text-brand-red mb-2">
                 VENUE MAP
               </h2>
-              <p className="text-ui-text-secondary font-body">Explore San Francisco's nightlife scene</p>
+              <p className="text-ui-text-secondary font-body">Explore San Francisco’s nightlife scene</p>
             </div>
           </div>
 
@@ -264,7 +269,7 @@ export default function Home() {
               <div className="inline-flex items-center gap-3 bg-white/80 backdrop-blur-sm rounded-full px-6 py-3 shadow-lg border border-ui-border">
                 <span className="text-2xl">📍</span>
                 <span className="text-ui-text font-semibold font-body">
-                  Showing {filteredVenues.length} venue{filteredVenues.length !== 1 ? 's' : ''}
+                  Showing {filteredVenues.length} venue{filteredVenues.length !== 1 ? '’s' : ''}
                 </span>
               </div>
             )}
@@ -280,7 +285,7 @@ export default function Home() {
           </h2>
           <div className="w-24 h-1 bg-brand-red mx-auto mb-6 rounded-full"></div>
           <p className="text-xl text-ui-text-secondary font-body max-w-2xl mx-auto">
-            Handpicked gems that define San Francisco's nightlife scene
+            Handpicked gems that define San Francisco’s nightlife scene
           </p>
         </div>
 

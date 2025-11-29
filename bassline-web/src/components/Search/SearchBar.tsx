@@ -3,6 +3,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Search, X, MapPin, Filter, Star, Clock, Users, Music } from 'lucide-react';
+import Image from 'next/image';
 import { useVenueStore, useVenueSelectors } from '@/stores/useVenueStore';
 
 interface SearchBarProps {
@@ -161,9 +162,11 @@ const SearchBar: React.FC<SearchBarProps> = ({
                     {/* Venue Image */}
                     <div className="flex-shrink-0 w-12 h-12 rounded-lg overflow-hidden bg-gray-200">
                       {venue.heroImage ? (
-                        <img
+                        <Image
                           src={venue.heroImage}
                           alt={venue.name}
+                          width={48}
+                          height={48}
                           className="w-full h-full object-cover"
                         />
                       ) : (
