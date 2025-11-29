@@ -24,7 +24,7 @@ export const getMapShareUrl = (
   latitude: number,
   longitude: number,
   zoom?: number,
-  provider: 'osm' | 'google' = 'osm'
+  provider: 'osm' | 'google' = 'google'
 ) => {
   if (provider === 'google') {
     return getGoogleMapsShareUrl(latitude, longitude);

@@ -1,7 +1,13 @@
 'use client';
 
 import React, { useEffect, useRef, useState, useCallback } from 'react';
-import Map, { NavigationControl, FullscreenControl, ScaleControl } from 'react-map-gl/maplibre';
+import Map, {
+  NavigationControl,
+  FullscreenControl,
+  ScaleControl,
+  type MapRef,
+  type ViewStateChangeEvent,
+} from 'react-map-gl/maplibre';
 import maplibregl from 'maplibre-gl';
 import 'maplibre-gl/dist/maplibre-gl.css';
 import { Venue, VenueLight, MapViewport } from '@/types/venue';
@@ -25,7 +31,7 @@ const NightlifeMap: React.FC<NightlifeMapProps> = ({
   className = '',
   enable3DBuildings = true,
 }) => {
-  const mapRef = useRef<any>();
+  const mapRef = useRef<MapRef | null>(null);
   const boundsTimeoutRef = useRef<NodeJS.Timeout | null>(null);
   const [viewport, setViewport] = useState<MapViewport>({
     latitude: 37.7749,
@@ -163,17 +169,27 @@ const NightlifeMap: React.FC<NightlifeMapProps> = ({
   }, []);
 
   // Handle viewport changes - only update store, let useEffect handle viewport updates
-  const handleViewportChange = useCallback((newViewport: any) => {
-    setMapCenter([newViewport.latitude, newViewport.longitude]);
-    setMapZoom(newViewport.zoom);
-    setIsMoving(true);
+  const handleViewportChange = useCallback(
+    (event: ViewStateChangeEvent) => {
+      const { latitude, longitude, zoom } = event.viewState;
+      setViewport((prev) => ({
+        ...prev,
+        latitude,
+        longitude,
+        zoom,
+      }));
+      setMapCenter([latitude, longitude]);
+      setMapZoom(zoom);
+      setIsMoving(true);
 
-    // Update map bounds with debouncing for performance
-    if (mapRef.current) {
-      const bounds = mapRef.current.getBounds();
-      debouncedSetBounds(bounds);
-    }
-  }, [setMapCenter, setMapZoom, debouncedSetBounds]);
+      // Update map bounds with debouncing for performance
+      if (mapRef.current) {
+        const bounds = mapRef.current.getBounds();
+        debouncedSetBounds(bounds);
+      }
+    },
+    [setMapCenter, setMapZoom, debouncedSetBounds]
+  );
 
   // Fit bounds to show all venues
   const fitBoundsToVenues = useCallback(() => {
@@ -256,7 +272,8 @@ const NightlifeMap: React.FC<NightlifeMapProps> = ({
     const shareUrl = getMapShareUrl(
       venue.coordinates.latitude,
       venue.coordinates.longitude,
-      Math.round(viewport.zoom ?? 15)
+      Math.round(viewport.zoom ?? 15),
+      'google'
     );
     window.open(shareUrl, '_blank', 'noopener,noreferrer');
   }, [viewport.zoom]);

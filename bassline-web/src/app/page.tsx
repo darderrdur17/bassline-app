@@ -133,7 +133,8 @@ export default function Home() {
       const shareLink = getMapShareUrl(
         venue.coordinates.latitude,
         venue.coordinates.longitude,
-        16
+        16,
+        'google'
       );
       window.open(shareLink, '_blank', 'noopener,noreferrer');
     }
