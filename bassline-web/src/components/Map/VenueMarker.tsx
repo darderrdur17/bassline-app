@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useMemo } from 'react';
-import { Marker } from 'react-map-gl';
+import { Marker } from 'react-map-gl/maplibre';
 import { Venue, VenueLight } from '@/types/venue';
 import { motion } from 'framer-motion';
 import { useRealtimeStore } from '@/stores/useRealtimeStore';

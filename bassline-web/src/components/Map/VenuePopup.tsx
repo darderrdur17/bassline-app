@@ -2,7 +2,7 @@
 
 import React from 'react';
 import Image from 'next/image';
-import { Popup } from 'react-map-gl';
+import { Popup } from 'react-map-gl/maplibre';
 import { Venue } from '@/types/venue';
 import { motion } from 'framer-motion';
 import { X, Star, Clock, MapPin, Phone, Globe, Instagram, Heart, Users, TrendingUp, ChevronLeft, ChevronRight } from 'lucide-react';

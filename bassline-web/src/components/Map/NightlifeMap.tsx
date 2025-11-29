@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useEffect, useRef, useState, useCallback } from 'react';
-import Map, { NavigationControl, FullscreenControl, ScaleControl } from 'react-map-gl';
+import Map, { NavigationControl, FullscreenControl, ScaleControl } from 'react-map-gl/maplibre';
 import maplibregl from 'maplibre-gl';
 import 'maplibre-gl/dist/maplibre-gl.css';
 import { Venue, VenueLight, MapViewport } from '@/types/venue';
