@@ -1,0 +1,22 @@
+.custom-marker {
+  transition: transform 0.2s ease-in-out;
+}
+
+.custom-marker:hover {
+  transform: scale(1.2);
+}
+
+.custom-marker.selected {
+  transform: scale(1.4);
+  animation: bounce 0.5s;
+}
+
+@keyframes bounce {
+  0%, 100% {
+    transform: scale(1.4) translateY(0);
+  }
+  50% {
+    transform: scale(1.4) translateY(-5px);
+  }
+}
+

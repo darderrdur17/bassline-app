@@ -44,12 +44,19 @@ cd bassline-web
 npm install
 ```
 
-3. **Start development server**
+3. **Add your Google Maps API key** (for the enhanced clickable map)
+Create a `.env.local` file in `bassline-web` with:
+```
+NEXT_PUBLIC_GOOGLE_MAPS_API_KEY=your_key_here
+```
+Make sure the key is restricted to your deployed domains in Google Cloud.
+
+4. **Start development server**
 ```bash
 npm run dev
 ```
 
-4. **Open your browser**
+5. **Open your browser**
 Navigate to [http://localhost:3000](http://localhost:3000)
 
 ## 🏗️ Project Structure

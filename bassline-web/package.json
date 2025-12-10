@@ -13,6 +13,7 @@
     "@headlessui/react": "^2.1.2",
     "@heroicons/react": "^2.1.5",
     "framer-motion": "^11.5.4",
+    "google-map-react": "^2.2.1",
     "lucide-react": "^0.554.0",
     "maplibre-gl": "^4.7.1",
     "next": "^14.2.15",
