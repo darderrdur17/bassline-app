@@ -5,19 +5,6 @@ import { motion } from 'framer-motion';
 import { Filter, List, Map } from 'lucide-react';
 import dynamic from 'next/dynamic';
 
-// Dynamic imports for better performance with preloading
-const NightlifeMap = dynamic(() => import('@/components/Map/NightlifeMap'), {
-  ssr: false,
-  loading: () => (
-    <div className="h-96 sm:h-[650px] rounded-2xl bg-gray-100 animate-pulse flex items-center justify-center">
-      <div className="text-center">
-        <div className="w-12 h-12 border-4 border-brand-red border-t-transparent rounded-full animate-spin mx-auto mb-2"></div>
-        <p className="text-gray-600 font-body text-sm">Loading map...</p>
-      </div>
-    </div>
-  )
-});
-
 const VenueModal = dynamic(() => import('@/components/VenueModal'), { ssr: false });
 const SearchBar = dynamic(() => import('@/components/Search/SearchBar'), { ssr: false });
 const FilterPanel = dynamic(() => import('@/components/Filters/FilterPanel'), { ssr: false });
@@ -60,8 +47,6 @@ export default function Home() {
   const [showMobileSearch, setShowMobileSearch] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
   const venuesPerPage = 12;
-  const hasGoogleMapsKey = Boolean(process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY);
-
   // Initialize venues and real-time data on mount
   useEffect(() => {
     let isMounted = true;
@@ -302,21 +287,9 @@ export default function Home() {
             {/* Map View */}
             {currentView === 'map' && (
               <div className="h-96 sm:h-[650px] rounded-2xl overflow-hidden shadow-[0_25px_60px_rgba(15,23,42,0.35)] border border-white/60 bg-gray-100/60 mx-6 sm:mx-10 mb-10 relative">
-                {hasGoogleMapsKey ? (
-                  <GoogleNightlifeMap
-                    venues={filteredVenues as Venue[]}
-                  />
-                ) : (
-                  <NightlifeMap
-                    enable3DBuildings={true}
-                  />
-                )}
-
-                {!hasGoogleMapsKey && (
-                  <div className="absolute top-4 right-4 z-20 rounded-full bg-white/90 backdrop-blur-md px-4 py-2 text-xs font-semibold text-gray-700 shadow-md border border-gray-200">
-                    Using MapLibre fallback — add NEXT_PUBLIC_GOOGLE_MAPS_API_KEY for Google Maps styling.
-                  </div>
-                )}
+                <GoogleNightlifeMap
+                  venues={filteredVenues as Venue[]}
+                />
               </div>
             )}
 
