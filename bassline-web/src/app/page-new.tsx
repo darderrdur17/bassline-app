@@ -17,6 +17,17 @@ const NightlifeMap = dynamic(() => import('@/components/Map/NightlifeMap'), {
     </div>
   )
 });
+const GoogleNightlifeMap = dynamic(() => import('@/components/Map/GoogleNightlifeMap'), {
+  ssr: false,
+  loading: () => (
+    <div className="h-96 sm:h-[600px] bg-ui-background rounded-xl animate-pulse flex items-center justify-center">
+      <div className="text-center">
+        <div className="animate-spin rounded-full h-12 w-12 border-4 border-brand-red border-t-transparent mx-auto mb-4"></div>
+        <p className="text-ui-text-secondary font-body">Loading interactive map...</p>
+      </div>
+    </div>
+  )
+});
 
 const VenueModal = dynamic(() => import('@/components/VenueModal'), { ssr: false });
 
@@ -258,9 +269,7 @@ export default function Home() {
           </div>
 
           <div className="h-96 sm:h-[650px] rounded-2xl overflow-hidden shadow-2xl mx-6 sm:mx-8 mb-8 relative">
-            <NightlifeMap
-              enable3DBuildings={true}
-            />
+            <GoogleNightlifeMap venues={filteredVenues as any} />
           </div>
 
           {/* Results Summary */}
