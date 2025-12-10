@@ -5,7 +5,7 @@ interface MapSearchProps {
   venues: Venue[];
   query: string;
   onQueryChange: (query: string) => void;
-  onSelectVenue: (venue: Venue) => void;
+  onVenueSelect: (venue: Venue) => void;
   onHoverVenue?: (venueId: number | null) => void;
 }
 
@@ -13,7 +13,7 @@ const MapSearch: React.FC<MapSearchProps> = ({
   venues,
   query,
   onQueryChange,
-  onSelectVenue,
+  onVenueSelect,
   onHoverVenue,
 }) => {
   const [isFocused, setIsFocused] = useState(false);
@@ -26,6 +26,15 @@ const MapSearch: React.FC<MapSearchProps> = ({
     if (!hasQuery) return [];
     return venues.slice(0, 15); // cap list to avoid long dropdowns
   }, [venues, hasQuery]);
+
+  const handleSelect = (venue: Venue) => {
+    onVenueSelect(venue);
+    onQueryChange(venue.name);
+    setIsFocused(false);
+    setHighlightedIndex(-1);
+    onHoverVenue?.(null);
+    inputRef.current?.blur();
+  };
 
   const handleBlur = () => {
     // Defer blur to allow click selection
@@ -51,9 +60,7 @@ const MapSearch: React.FC<MapSearchProps> = ({
 
     if (e.key === 'Enter') {
       if (highlightedIndex >= 0 && highlightedIndex < results.length) {
-        onSelectVenue(results[highlightedIndex]);
-        setIsFocused(false);
-        inputRef.current?.blur();
+        handleSelect(results[highlightedIndex]);
       }
       return;
     }
@@ -115,7 +122,7 @@ const MapSearch: React.FC<MapSearchProps> = ({
         </div>
       </div>
 
-      {hasQuery && (
+      {hasQuery && isFocused && (
         <div className="mt-2 bg-white/95 backdrop-blur shadow-xl rounded-xl border border-ui-border overflow-hidden">
           {results.length === 0 && (
             <div className="px-4 py-3 text-sm text-gray-600" aria-live="polite">
@@ -138,7 +145,7 @@ const MapSearch: React.FC<MapSearchProps> = ({
                   }`}
                   onMouseEnter={() => onHoverVenue?.(venue.id)}
                   onMouseLeave={() => onHoverVenue?.(null)}
-                  onClick={() => onSelectVenue(venue)}
+                  onClick={() => handleSelect(venue)}
                   onMouseDown={(e) => e.preventDefault()}
                   onFocus={() => setHighlightedIndex(index)}
                 >

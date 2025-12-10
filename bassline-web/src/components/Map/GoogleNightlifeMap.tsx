@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useCallback, useEffect, useMemo, useState } from 'react';
+import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import dynamic from 'next/dynamic';
 import { Venue } from '@/types/venue';
 import { mapStyle } from './mapStyles';
@@ -28,6 +28,7 @@ const DEFAULT_ZOOM = 13;
 const GoogleNightlifeMap: React.FC<GoogleNightlifeMapProps> = ({ venues, className = '' }) => {
   const [selectedVenue, setSelectedVenue] = useState<Venue | null>(null);
   const [hoveredVenueId, setHoveredVenueId] = useState<number | null>(null);
+  const mapInstanceRef = useRef<any>(null);
   const globalSearchQuery = useVenueStore((state) => state.searchQuery);
   const setSearchQuery = useVenueStore((state) => state.setSearchQuery);
   const [searchInput, setSearchInput] = useState(globalSearchQuery);
@@ -62,6 +63,10 @@ const GoogleNightlifeMap: React.FC<GoogleNightlifeMapProps> = ({ venues, classNa
       // Preserve user zoom unless we need to zoom in; never zoom out automatically
       return Math.max(prev, zoom);
     });
+  }, []);
+
+  const handleApiLoaded = useCallback(({ map }: { map: any }) => {
+    mapInstanceRef.current = map;
   }, []);
 
   const handleSearchChange = useCallback(
@@ -166,6 +171,21 @@ const GoogleNightlifeMap: React.FC<GoogleNightlifeMapProps> = ({ venues, classNa
 
   const activeVenues = useMemo(() => searchResults, [searchResults]);
 
+  // Center the map on the selected venue when available
+  useEffect(() => {
+    if (!mapInstanceRef.current || !selectedVenue) return;
+
+    mapInstanceRef.current.panTo({
+      lat: selectedVenue.coordinates.latitude,
+      lng: selectedVenue.coordinates.longitude,
+    });
+
+    const currentZoom = mapInstanceRef.current.getZoom?.();
+    if (typeof currentZoom === 'number' && currentZoom < 15) {
+      mapInstanceRef.current.setZoom(15);
+    }
+  }, [selectedVenue]);
+
   // If the API key is missing, render a helpful message instead of a broken map
   if (!process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY) {
     return (
@@ -184,7 +204,7 @@ const GoogleNightlifeMap: React.FC<GoogleNightlifeMapProps> = ({ venues, classNa
         venues={activeVenues}
         query={searchInput}
         onQueryChange={handleSearchChange}
-        onSelectVenue={handleVenueSelect}
+        onVenueSelect={handleVenueSelect}
         onHoverVenue={setHoveredVenueId}
       />
 
@@ -208,6 +228,8 @@ const GoogleNightlifeMap: React.FC<GoogleNightlifeMapProps> = ({ venues, classNa
             setMapZoom(zoom);
           }
         }}
+        yesIWantToUseGoogleMapApiInternals
+        onGoogleApiLoaded={handleApiLoaded}
       >
         {activeVenues.map((venue) => (
           <Marker
