@@ -8,10 +8,17 @@ interface MarkerProps {
   lng: number;
   onClick: () => void;
   isSelected: boolean;
+  isHighlighted?: boolean;
 }
 
-const Marker: React.FC<MarkerProps> = ({ onClick, isSelected }) => {
-  const markerClass = isSelected ? 'custom-marker selected' : 'custom-marker';
+const Marker: React.FC<MarkerProps> = ({ onClick, isSelected, isHighlighted }) => {
+  const markerClass = [
+    'custom-marker',
+    isHighlighted ? 'highlighted' : '',
+    isSelected ? 'selected' : '',
+  ]
+    .filter(Boolean)
+    .join(' ');
 
   return (
     <div className={markerClass} onClick={onClick} style={{ cursor: 'pointer' }}>

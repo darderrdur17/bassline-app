@@ -6,6 +6,11 @@
   transform: scale(1.2);
 }
 
+.custom-marker.highlighted {
+  transform: scale(1.25);
+  filter: drop-shadow(0 0 6px rgba(229, 57, 53, 0.4));
+}
+
 .custom-marker.selected {
   transform: scale(1.4);
   animation: bounce 0.5s;
