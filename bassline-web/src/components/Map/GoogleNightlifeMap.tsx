@@ -8,6 +8,7 @@ import Marker from './Marker';
 import VenueInfoWindow from './VenueInfoWindow';
 import MapSearch from './MapSearch';
 import MapControls from './MapControls';
+import { useVenueStore } from '@/stores/useVenueStore';
 
 // google-map-react depends on window, so load it client-side only
 const GoogleMapReact = dynamic(() => import('google-map-react'), { ssr: false });
@@ -27,7 +28,9 @@ const DEFAULT_ZOOM = 13;
 const GoogleNightlifeMap: React.FC<GoogleNightlifeMapProps> = ({ venues, className = '' }) => {
   const [selectedVenue, setSelectedVenue] = useState<Venue | null>(null);
   const [hoveredVenueId, setHoveredVenueId] = useState<number | null>(null);
-  const [searchInput, setSearchInput] = useState('');
+  const globalSearchQuery = useVenueStore((state) => state.searchQuery);
+  const setSearchQuery = useVenueStore((state) => state.setSearchQuery);
+  const [searchInput, setSearchInput] = useState(globalSearchQuery);
   const [debouncedQuery, setDebouncedQuery] = useState('');
   const [searchResults, setSearchResults] = useState<Venue[]>(venues);
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -61,9 +64,13 @@ const GoogleNightlifeMap: React.FC<GoogleNightlifeMapProps> = ({ venues, classNa
     });
   }, []);
 
-  const handleSearchChange = useCallback((query: string) => {
-    setSearchInput(query);
-  }, []);
+  const handleSearchChange = useCallback(
+    (query: string) => {
+      setSearchInput(query);
+      setSearchQuery(query);
+    },
+    [setSearchQuery]
+  );
 
   // Debounce search input for performance
   useEffect(() => {
@@ -72,6 +79,12 @@ const GoogleNightlifeMap: React.FC<GoogleNightlifeMapProps> = ({ venues, classNa
     }, 180);
     return () => clearTimeout(timer);
   }, [searchInput]);
+
+  // Sync map search input with global search state (e.g., hero search bar)
+  useEffect(() => {
+    setSearchInput(globalSearchQuery);
+    setDebouncedQuery(globalSearchQuery);
+  }, [globalSearchQuery]);
 
   // Re-run search when the base venue list or query changes
   useEffect(() => {

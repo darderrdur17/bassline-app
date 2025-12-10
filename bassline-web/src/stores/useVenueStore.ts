@@ -33,6 +33,7 @@ interface VenueState {
 
   // Filters
   filters: VenueFilters;
+  searchQuery: string;
 
   // Map State
   mapCenter: [number, number];
@@ -47,6 +48,7 @@ interface VenueState {
 
   // Filter Actions
   setSearchText: (text: string) => void;
+  setSearchQuery: (query: string) => void;
   setTypes: (types: string[]) => void;
   setNeighborhoods: (neighborhoods: string[]) => void;
   setPricing: (pricing: string[]) => void;
@@ -102,6 +104,7 @@ export const useVenueStore = create<VenueState>()(
       error: null,
 
       filters: defaultFilters,
+      searchQuery: '',
 
       mapCenter: [37.7749, -122.4194], // San Francisco center
       mapZoom: 13,
@@ -126,6 +129,13 @@ export const useVenueStore = create<VenueState>()(
       setSearchText: (searchText) =>
         set((state) => ({
           filters: { ...state.filters, searchText },
+          searchQuery: searchText,
+        })),
+
+      setSearchQuery: (searchQuery) =>
+        set((state) => ({
+          searchQuery,
+          filters: { ...state.filters, searchText: searchQuery },
         })),
 
       setTypes: (types) =>
@@ -197,6 +207,7 @@ export const useVenueStore = create<VenueState>()(
         set({
           filters: defaultFilters,
           filteredVenues: get().venues,
+          searchQuery: '',
         }),
 
       // Map Actions
@@ -213,10 +224,11 @@ export const useVenueStore = create<VenueState>()(
       partialize: (state) => ({
         favoriteVenues: state.favoriteVenues,
         filters: state.filters,
+        searchQuery: state.searchQuery,
         mapCenter: state.mapCenter,
         mapZoom: state.mapZoom,
       }),
-    version: 1,
+      version: 1,
     }
   )
 );
@@ -378,3 +390,6 @@ export const useVenueSelectors = () => {
     },
   };
 };
+
+// Simple selector hooks for commonly used fields
+export const useSearchQuery = () => useVenueStore((state) => state.searchQuery);

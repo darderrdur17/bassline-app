@@ -17,17 +17,23 @@ const SearchBar: React.FC<SearchBarProps> = ({
   placeholder = "Search venues, neighborhoods, music...",
   className = "max-w-lg"
 }) => {
-  const [query, setQuery] = useState('');
+  const searchQuery = useVenueStore((state) => state.searchQuery);
+  const setSearchQuery = useVenueStore((state) => state.setSearchQuery);
+  const [query, setQuery] = useState(searchQuery);
   const [isFocused, setIsFocused] = useState(false);
   const [showSuggestions, setShowSuggestions] = useState(false);
   const [suggestions, setSuggestions] = useState<any[]>([]);
   const inputRef = useRef<HTMLInputElement>(null);
 
-  const { filters, setSearchText } = useVenueStore();
   const { getFilteredVenues } = useVenueSelectors();
 
   // Get all venues for suggestions
   const allVenues = getFilteredVenues();
+
+  // Keep local query in sync with shared search state (e.g., map search)
+  useEffect(() => {
+    setQuery(searchQuery);
+  }, [searchQuery]);
 
   // Generate suggestions based on query
   useEffect(() => {
@@ -60,14 +66,14 @@ const SearchBar: React.FC<SearchBarProps> = ({
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
     setQuery(value);
-    setSearchText(value);
+    setSearchQuery(value);
     onSearch?.(value);
   };
 
   // Handle suggestion click
   const handleSuggestionClick = (venue: any) => {
     setQuery(venue.name);
-    setSearchText(venue.name);
+    setSearchQuery(venue.name);
     setShowSuggestions(false);
     setIsFocused(false);
     onSearch?.(venue.name);
@@ -76,7 +82,7 @@ const SearchBar: React.FC<SearchBarProps> = ({
   // Clear search
   const handleClear = () => {
     setQuery('');
-    setSearchText('');
+    setSearchQuery('');
     setShowSuggestions(false);
     onSearch?.('');
     inputRef.current?.focus();
