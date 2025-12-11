@@ -115,14 +115,34 @@ const GoogleNightlifeMap: React.FC<GoogleNightlifeMapProps> = ({ venues, classNa
     const shouldRecenter = debouncedQuery.trim().length > 0 || selectedVenue === null;
 
     if (shouldRecenter) {
-      setMapCenter({
+      const newCenter = {
         lat: targetVenue.coordinates.latitude,
         lng: targetVenue.coordinates.longitude,
-      });
+      };
+      
+      setMapCenter(newCenter);
 
-      // Preserve user zoom unless the search explicitly zooms; only bump if zoomed very far out
-      if (debouncedQuery.trim() && mapZoom < 12) {
-        setMapZoom((prev) => (prev < 12 ? 12 : prev));
+      // Use map instance to pan to location if available, otherwise state update will handle it
+      if (mapInstanceRef.current) {
+        mapInstanceRef.current.panTo(newCenter);
+        
+        // Set zoom if needed
+        const currentZoom = mapInstanceRef.current.getZoom?.();
+        const targetZoom = debouncedQuery.trim() && (typeof currentZoom === 'number' && currentZoom < 12) ? 12 : 15;
+        if (typeof currentZoom === 'number' && currentZoom < targetZoom) {
+          mapInstanceRef.current.setZoom(targetZoom);
+          setMapZoom(targetZoom);
+        }
+      } else {
+        // Preserve user zoom unless the search explicitly zooms; only bump if zoomed very far out
+        if (debouncedQuery.trim() && mapZoom < 12) {
+          setMapZoom((prev) => (prev < 12 ? 12 : prev));
+        }
+      }
+
+      // Auto-select the first search result to show info window
+      if (debouncedQuery.trim().length > 0) {
+        setSelectedVenue(targetVenue);
       }
     }
   }, [applySearch, venues, debouncedQuery, selectedVenue, mapZoom]);
@@ -174,6 +194,7 @@ const GoogleNightlifeMap: React.FC<GoogleNightlifeMapProps> = ({ venues, classNa
   const activeVenues = useMemo(() => searchResults, [searchResults]);
 
   // Center the map on the selected venue when available
+  // This ensures the map pans to venue when selected (from clicks, navigation, etc.)
   useEffect(() => {
     if (!mapInstanceRef.current || !selectedVenue) return;
 
