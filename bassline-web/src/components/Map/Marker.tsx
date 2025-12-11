@@ -9,9 +9,10 @@ interface MarkerProps {
   onClick: () => void;
   isSelected: boolean;
   isHighlighted?: boolean;
+  color?: string;
 }
 
-const Marker: React.FC<MarkerProps> = ({ onClick, isSelected, isHighlighted }) => {
+const Marker: React.FC<MarkerProps> = ({ onClick, isSelected, isHighlighted, color = '#E53935' }) => {
   const markerClass = [
     'custom-marker',
     isHighlighted ? 'highlighted' : '',
@@ -20,10 +21,22 @@ const Marker: React.FC<MarkerProps> = ({ onClick, isSelected, isHighlighted }) =
     .filter(Boolean)
     .join(' ');
 
+  const shadowColor = `${color}66`; // add alpha for shadow
+
   return (
-    <div className={markerClass} onClick={onClick} style={{ cursor: 'pointer' }}>
+    <div
+      className={markerClass}
+      onClick={onClick}
+      style={
+        {
+          cursor: 'pointer',
+          '--marker-color': color,
+          '--marker-shadow': shadowColor,
+        } as React.CSSProperties
+      }
+    >
       <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <circle cx="15" cy="15" r="15" fill="#E53935" />
+        <circle cx="15" cy="15" r="15" fill="var(--marker-color, #E53935)" />
         <circle cx="15" cy="15" r="8" fill="white" />
       </svg>
     </div>

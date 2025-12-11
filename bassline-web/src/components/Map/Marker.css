@@ -8,17 +8,17 @@
 
 .custom-marker.highlighted {
   transform: scale(1.25);
-  filter: drop-shadow(0 0 6px rgba(229, 57, 53, 0.4));
+  filter: drop-shadow(0 0 6px var(--marker-shadow, rgba(229, 57, 53, 0.4)));
 }
 
 .custom-marker.selected {
   transform: scale(1.5);
   animation: bounce 0.5s;
-  filter: drop-shadow(0 0 8px rgba(255, 59, 48, 0.4));
+  filter: drop-shadow(0 0 8px var(--marker-shadow, rgba(255, 59, 48, 0.4)));
 }
 
 .custom-marker.selected svg circle:first-child {
-  fill: #ff3b30;
+  fill: var(--marker-color, #ff3b30);
 }
 
 @keyframes bounce {

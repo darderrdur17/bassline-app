@@ -25,6 +25,20 @@ const DEFAULT_CENTER = {
 
 const DEFAULT_ZOOM = 13;
 
+const typeColorMap: Record<string, string> = {
+  bar: '#E53935', // red
+  restaurant: '#F59E0B', // amber/yellow
+  club: '#2E7D32', // green
+};
+
+const getMarkerColor = (type: string) => {
+  const normalized = type.toLowerCase();
+  if (normalized.includes('bar')) return typeColorMap.bar;
+  if (normalized.includes('restaurant')) return typeColorMap.restaurant;
+  if (normalized.includes('club')) return typeColorMap.club;
+  return '#4285F4'; // default blue
+};
+
 const GoogleNightlifeMap: React.FC<GoogleNightlifeMapProps> = ({ venues, className = '' }) => {
   const [selectedVenue, setSelectedVenue] = useState<Venue | null>(null);
   const [hoveredVenueId, setHoveredVenueId] = useState<number | null>(null);
@@ -368,6 +382,7 @@ const GoogleNightlifeMap: React.FC<GoogleNightlifeMapProps> = ({ venues, classNa
             onClick={() => handleMarkerClick(venue)}
             isSelected={selectedVenue?.id === venue.id}
             isHighlighted={hoveredVenueId === venue.id}
+            color={getMarkerColor(venue.type)}
           />
         ))}
 
