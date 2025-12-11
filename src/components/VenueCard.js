@@ -14,6 +14,21 @@ import { colors, typography, spacing, borderRadius, shadows, fonts, responsiveTy
 import GalleryModal from './GalleryModal';
 import { venueImages, nameToImageKey } from '../data/venueImages';
 
+const typeColors = {
+  bar: colors.primary,               // red
+  restaurant: '#FBC02D',             // yellow
+  club: '#4CAF50',                   // green
+};
+
+const getTypeCategory = (type = '') => {
+  const t = type.toLowerCase();
+  if (t.includes('club')) return 'club';
+  if (t.includes('restaurant') || t.includes('food') || t.includes('cafe')) return 'restaurant';
+  return 'bar';
+};
+
+const getTypeColor = (type = '') => typeColors[getTypeCategory(type)] || colors.primary;
+
 const { width } = Dimensions.get('window');
 
 export default function VenueCard({ venue, onPress, onClose, preview = false, onNextRestaurant }) {
@@ -89,10 +104,11 @@ export default function VenueCard({ venue, onPress, onClose, preview = false, on
   } : {};
 
   const heroHeight = preview ? 140 : 0;
+  const typeColor = getTypeColor(venue.type);
 
   return (
     <Animated.View style={[styles.container, preview && { transform: [{ translateY }], opacity } ]}>
-      <TouchableOpacity style={[styles.card, previewStyles]} onPress={onPress} activeOpacity={0.9}>
+      <TouchableOpacity style={[styles.card, previewStyles, { backgroundColor: typeColor }]} onPress={onPress} activeOpacity={0.9}>
         {/* Close Button */}
         {!preview && (
         <TouchableOpacity style={styles.closeButton} onPress={onClose}>
@@ -129,8 +145,11 @@ export default function VenueCard({ venue, onPress, onClose, preview = false, on
                 <Text style={styles.accolades}>{venue.accolades}</Text>
               ) : null}
             </View>
+            <View style={[styles.typeBadge, { backgroundColor: typeColor }]}>
+              <Text style={styles.typeBadgeText}>{getTypeCategory(venue.type).toUpperCase()}</Text>
+            </View>
             <View style={styles.pricingContainer}>
-              <Text style={styles.pricing}>{venue.pricing}</Text>
+              <Text style={[styles.pricing, { color: typeColor }]}>{venue.pricing}</Text>
             </View>
           </View>
 
@@ -163,6 +182,20 @@ export default function VenueCard({ venue, onPress, onClose, preview = false, on
               <View style={styles.infoItem}>
                 <Ionicons name="restaurant-outline" size={16} color={colors.textSecondary} />
                 <Text style={styles.infoText}>{venue.food}</Text>
+              </View>
+            ) : null}
+            {/* Recommended drinks */}
+            {venue.recommendedDrinks && venue.recommendedDrinks.length > 0 && (
+              <View style={styles.infoItem}>
+                <Ionicons name="wine-outline" size={16} color={colors.textSecondary} />
+                <Text style={styles.infoText}>{venue.recommendedDrinks.join(', ')}</Text>
+              </View>
+            )}
+            {/* Cuisine fallback */}
+            {!venue.food && venue.cuisine ? (
+              <View style={styles.infoItem}>
+                <Ionicons name="fast-food-outline" size={16} color={colors.textSecondary} />
+                <Text style={styles.infoText}>{venue.cuisine}</Text>
               </View>
             ) : null}
           </View>
@@ -214,16 +247,16 @@ export default function VenueCard({ venue, onPress, onClose, preview = false, on
           <View style={styles.actionButtons}>
             <TouchableOpacity style={styles.primaryButton}>
               <Ionicons name="navigate-outline" size={16} color={colors.white} />
-              <Text style={styles.primaryButtonText}>DIRECTIONS</Text>
+              <Text style={[styles.primaryButtonText, { color: typeColor }]}>DIRECTIONS</Text>
             </TouchableOpacity>
             
             <TouchableOpacity style={styles.secondaryButton}>
-              <Ionicons name="call-outline" size={16} color={colors.primary} />
+              <Ionicons name="call-outline" size={16} color={typeColor} />
               <Text style={styles.secondaryButtonText}>CALL</Text>
             </TouchableOpacity>
 
             {hasGalleryImages() && (
-              <TouchableOpacity style={styles.galleryButton} onPress={openGallery}>
+              <TouchableOpacity style={[styles.galleryButton, { backgroundColor: typeColor }]} onPress={openGallery}>
                 <Ionicons name="images-outline" size={16} color={colors.white} />
                 <Text style={styles.galleryButtonText}>GALLERY</Text>
               </TouchableOpacity>
@@ -296,7 +329,6 @@ const styles = StyleSheet.create({
     paddingBottom: spacing.lg,
   },
   card: {
-    backgroundColor: colors.primary,
     borderRadius: borderRadius.large,
     overflow: 'hidden',
     ...shadows.large,
@@ -371,6 +403,19 @@ const styles = StyleSheet.create({
     color: colors.primary,
     fontWeight: 'bold',
     fontSize: 16,
+  },
+  typeBadge: {
+    paddingHorizontal: spacing.sm,
+    paddingVertical: spacing.xs,
+    borderRadius: borderRadius.small,
+    alignSelf: 'flex-start',
+    marginRight: spacing.sm,
+  },
+  typeBadgeText: {
+    color: colors.white,
+    fontWeight: 'bold',
+    fontSize: 12,
+    letterSpacing: 0.5,
   },
   quickInfo: {
     marginBottom: spacing.sm,
