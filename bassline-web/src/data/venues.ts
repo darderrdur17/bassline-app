@@ -185,8 +185,16 @@ export const venues: Venue[] = [
     "whereToGoIf": "you love vinyl"
   ,
     "gallery": [
-      "/images/venues/gallery-placeholder-1.jpg",
-      "/images/venues/gallery-placeholder-2.jpg"
+      "/venue-images/Bars/Harlan_Records_drinks_1.jpg",
+      "/venue-images/Bars/Harlan_Records_drinks_2.jpg",
+      "/venue-images/Bars/Harlan_Records_drinks_3.jpg",
+      "/venue-images/Bars/Harlan_Records_drinks_4.jpg",
+      "/venue-images/Bars/Harlan_Records_drinks_5.jpg",
+      "/venue-images/Bars/Harlan_Records_foods_1.jpg",
+      "/venue-images/Bars/Harlan_Records_foods_2.jpeg",
+      "/venue-images/Bars/Harlan_Records_foods_3.jpg",
+      "/venue-images/Bars/Harlan_Records_foods_4.jpg",
+      "/venue-images/Bars/Harlan_Records_foods_5.jpg"
     ]
   },
   {
