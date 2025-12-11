@@ -2,6 +2,7 @@ import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
 import { Venue } from '@/types/venue';
 import { VenueRealtimeData } from '@/lib/realtimeData';
+import { venueCoordinates } from '@/data/venueCoordinates';
 
 interface VenueFilters {
   searchText: string;
@@ -74,6 +75,21 @@ interface VenueState {
   setError: (error: string | null) => void;
 }
 
+// Build a lookup map for accurate coordinates
+const coordinateMap = new Map<number, { latitude: number; longitude: number }>(
+  venueCoordinates.map((v) => [v.id, v.coordinates])
+);
+
+const applyAccurateCoordinates = (venues: Venue[]): Venue[] =>
+  venues.map((venue) => {
+    const coordinates = coordinateMap.get(venue.id);
+    if (!coordinates) return venue;
+    return {
+      ...venue,
+      coordinates,
+    };
+  });
+
 const defaultFilters: VenueFilters = {
   searchText: '',
   types: [],
@@ -111,7 +127,10 @@ export const useVenueStore = create<VenueState>()(
       mapFocusVenueId: null,
 
       // Actions
-      setVenues: (venues) => set({ venues, filteredVenues: venues }),
+      setVenues: (venues) => {
+        const withAccurateCoords = applyAccurateCoordinates(venues);
+        set({ venues: withAccurateCoords, filteredVenues: withAccurateCoords });
+      },
 
       setFilteredVenues: (venues) => set({ filteredVenues: venues }),
 

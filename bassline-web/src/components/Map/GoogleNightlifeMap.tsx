@@ -38,6 +38,8 @@ const GoogleNightlifeMap: React.FC<GoogleNightlifeMapProps> = ({ venues, classNa
   const [mapCenter, setMapCenter] = useState(DEFAULT_CENTER);
   const [mapZoom, setMapZoom] = useState(DEFAULT_ZOOM);
   const [isMapReady, setIsMapReady] = useState(false);
+  const geocoderRef = useRef<any>(null);
+  const geocodeCacheRef = useRef<Map<number, { lat: number; lng: number }>>(new Map());
 
   const applySearch = useCallback((baseVenues: Venue[], query: string) => {
     const trimmed = query.trim().toLowerCase();
@@ -73,6 +75,40 @@ const GoogleNightlifeMap: React.FC<GoogleNightlifeMapProps> = ({ venues, classNa
     setIsMapReady(true);
   }, []);
 
+  const ensureGeocoder = useCallback(() => {
+    if (geocoderRef.current) return geocoderRef.current;
+    if (typeof window !== 'undefined' && (window as any)?.google?.maps?.Geocoder) {
+      geocoderRef.current = new (window as any).google.maps.Geocoder();
+    }
+    return geocoderRef.current;
+  }, []);
+
+  const geocodeVenue = useCallback(
+    async (venue: Venue): Promise<{ lat: number; lng: number } | null> => {
+      const cached = geocodeCacheRef.current.get(venue.id);
+      if (cached) return cached;
+
+      const geocoder = ensureGeocoder();
+      if (!geocoder) return null;
+
+      const query = `${venue.name} ${venue.neighborhood ?? ''} San Francisco`.trim();
+
+      return new Promise((resolve) => {
+        geocoder.geocode({ address: query }, (results: any, status: any) => {
+          if (status === 'OK' && results?.[0]?.geometry?.location) {
+            const loc = results[0].geometry.location;
+            const coords = { lat: loc.lat(), lng: loc.lng() };
+            geocodeCacheRef.current.set(venue.id, coords);
+            resolve(coords);
+          } else {
+            resolve(null);
+          }
+        });
+      });
+    },
+    [ensureGeocoder]
+  );
+
   const handleSearchChange = useCallback(
     (query: string) => {
       setSearchInput(query);
@@ -97,62 +133,105 @@ const GoogleNightlifeMap: React.FC<GoogleNightlifeMapProps> = ({ venues, classNa
 
   // Re-run search when the base venue list or query changes
   useEffect(() => {
-    const results = applySearch(venues, debouncedQuery);
-    setSearchResults(results);
-    const hasQuery = debouncedQuery.trim().length > 0;
+    let isCancelled = false;
 
-    if (results.length === 0) {
-      setSelectedVenue(null);
-      setCurrentIndex(0);
-      return;
-    }
+    const run = async () => {
+      let results = applySearch(venues, debouncedQuery);
+      if (isCancelled) return;
 
-    const currentSelectedIndex = selectedVenue
-      ? results.findIndex((venue) => venue.id === selectedVenue.id)
-      : -1;
+      const hasQuery = debouncedQuery.trim().length > 0;
 
-    const nextIndex = currentSelectedIndex >= 0 ? currentSelectedIndex : 0;
-    setCurrentIndex(nextIndex);
+      if (results.length === 0) {
+        setSelectedVenue(null);
+        setCurrentIndex(0);
+        return;
+      }
 
-    const targetVenue = results[nextIndex];
-    const shouldRecenter = debouncedQuery.trim().length > 0 || selectedVenue === null;
+      const currentSelectedIndex = selectedVenue
+        ? results.findIndex((venue) => venue.id === selectedVenue.id)
+        : -1;
 
-    if (shouldRecenter) {
-      const newCenter = {
-        lat: targetVenue.coordinates.latitude,
-        lng: targetVenue.coordinates.longitude,
-      };
-      
-      setMapCenter(newCenter);
+      const nextIndex = currentSelectedIndex >= 0 ? currentSelectedIndex : 0;
+      setCurrentIndex(nextIndex);
 
-      // Use map instance to pan to location if available, otherwise state update will handle it
-      if (isMapReady && mapInstanceRef.current) {
-        mapInstanceRef.current.panTo(newCenter);
-        
-        // Set zoom if needed
-        const currentZoom = mapInstanceRef.current.getZoom?.();
-        const targetZoom = hasQuery ? Math.max(12, typeof currentZoom === 'number' ? currentZoom : mapZoom) : mapZoom;
+      const targetVenue = results[nextIndex];
+      const shouldRecenter = hasQuery || selectedVenue === null;
 
-        if (typeof currentZoom === 'number' && currentZoom < targetZoom) {
-          mapInstanceRef.current.setZoom(targetZoom);
+      if (shouldRecenter) {
+        let newCenter = {
+          lat: targetVenue.coordinates.latitude,
+          lng: targetVenue.coordinates.longitude,
+        };
+        let targetVenueWithGeo = targetVenue;
+
+        if (hasQuery && isMapReady) {
+          const geocoded = await geocodeVenue(targetVenue);
+          if (geocoded && !isCancelled) {
+            newCenter = geocoded;
+            targetVenueWithGeo = {
+              ...targetVenue,
+              coordinates: {
+                latitude: geocoded.lat,
+                longitude: geocoded.lng,
+              },
+            };
+
+            // Update results so markers & info windows use accurate coords
+            results = results.map((v) =>
+              v.id === targetVenue.id
+                ? {
+                    ...v,
+                    coordinates: {
+                      latitude: geocoded.lat,
+                      longitude: geocoded.lng,
+                    },
+                  }
+                : v
+            );
+          }
         }
 
+        if (isCancelled) return;
+
+        setSearchResults(results);
+
+        setMapCenter(newCenter);
+
+        // Use map instance to pan to location if available, otherwise state update will handle it
+        if (isMapReady && mapInstanceRef.current) {
+          mapInstanceRef.current.panTo(newCenter);
+          
+          // Set zoom if needed
+          const currentZoom = mapInstanceRef.current.getZoom?.();
+          const targetZoom = hasQuery ? Math.max(12, typeof currentZoom === 'number' ? currentZoom : mapZoom) : mapZoom;
+
+          if (typeof currentZoom === 'number' && currentZoom < targetZoom) {
+            mapInstanceRef.current.setZoom(targetZoom);
+          }
+
+          if (hasQuery) {
+            setMapZoom((prev) => Math.max(prev, 12));
+          }
+        } else {
+          // Preserve user zoom unless the search explicitly zooms; only bump if zoomed very far out
+          if (hasQuery && mapZoom < 12) {
+            setMapZoom((prev) => (prev < 12 ? 12 : prev));
+          }
+        }
+
+        // Auto-select the first search result to show info window
         if (hasQuery) {
-          setMapZoom((prev) => Math.max(prev, 12));
-        }
-      } else {
-        // Preserve user zoom unless the search explicitly zooms; only bump if zoomed very far out
-        if (hasQuery && mapZoom < 12) {
-          setMapZoom((prev) => (prev < 12 ? 12 : prev));
+          setSelectedVenue(targetVenueWithGeo);
         }
       }
+    };
 
-      // Auto-select the first search result to show info window
-      if (hasQuery) {
-        setSelectedVenue(targetVenue);
-      }
-    }
-  }, [applySearch, venues, debouncedQuery, selectedVenue, mapZoom, isMapReady]);
+    run();
+
+    return () => {
+      isCancelled = true;
+    };
+  }, [applySearch, venues, debouncedQuery, selectedVenue, mapZoom, isMapReady, geocodeVenue]);
 
   const handleVenueSelect = useCallback(
     (venue: Venue) => {
@@ -239,7 +318,7 @@ const GoogleNightlifeMap: React.FC<GoogleNightlifeMapProps> = ({ venues, classNa
       />
 
       <GoogleMapReact
-        bootstrapURLKeys={{ key: process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY }}
+        bootstrapURLKeys={{ key: process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY, libraries: ['places'] as any }}
         center={mapCenter}
         zoom={mapZoom}
         options={{
