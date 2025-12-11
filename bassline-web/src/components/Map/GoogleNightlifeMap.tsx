@@ -41,6 +41,15 @@ const GoogleNightlifeMap: React.FC<GoogleNightlifeMapProps> = ({ venues, classNa
   const geocoderRef = useRef<any>(null);
   const geocodeCacheRef = useRef<Map<number, { lat: number; lng: number }>>(new Map());
 
+  const coordsEqual = useCallback(
+    (a: { lat: number; lng: number } | undefined, b: { lat: number; lng: number }) => {
+      if (!a) return false;
+      const EPS = 1e-6;
+      return Math.abs(a.lat - b.lat) < EPS && Math.abs(a.lng - b.lng) < EPS;
+    },
+    []
+  );
+
   const applySearch = useCallback((baseVenues: Venue[], query: string) => {
     const trimmed = query.trim().toLowerCase();
     if (!trimmed) return baseVenues;
@@ -219,8 +228,17 @@ const GoogleNightlifeMap: React.FC<GoogleNightlifeMapProps> = ({ venues, classNa
           }
         }
 
-        // Auto-select the first search result to show info window
-        if (hasQuery) {
+        // Auto-select the first search result to show info window (avoid infinite re-render if already selected)
+        if (
+          hasQuery &&
+          (!selectedVenue || selectedVenue.id !== targetVenueWithGeo.id || !coordsEqual(
+            {
+              lat: selectedVenue.coordinates.latitude,
+              lng: selectedVenue.coordinates.longitude,
+            },
+            newCenter
+          ))
+        ) {
           setSelectedVenue(targetVenueWithGeo);
         }
       }
