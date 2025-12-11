@@ -42,13 +42,15 @@ const GoogleNightlifeMap: React.FC<GoogleNightlifeMapProps> = ({ venues, classNa
     const trimmed = query.trim().toLowerCase();
     if (!trimmed) return baseVenues;
 
+    // Keep search fields in sync with the global filter (useVenueSelectors)
     return baseVenues.filter((venue) => {
       return (
         venue.name.toLowerCase().includes(trimmed) ||
         venue.neighborhood.toLowerCase().includes(trimmed) ||
         venue.type.toLowerCase().includes(trimmed) ||
-        venue.tags?.some((tag) => tag.toLowerCase().includes(trimmed)) ||
-        venue.description?.toLowerCase().includes(trimmed)
+        venue.description?.toLowerCase().includes(trimmed) ||
+        venue.musicGenre?.some((genre) => genre.toLowerCase().includes(trimmed)) ||
+        venue.tags?.some((tag) => tag.toLowerCase().includes(trimmed))
       );
     });
   }, []);
