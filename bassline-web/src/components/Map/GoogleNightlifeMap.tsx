@@ -37,6 +37,7 @@ const GoogleNightlifeMap: React.FC<GoogleNightlifeMapProps> = ({ venues, classNa
   const [currentIndex, setCurrentIndex] = useState(0);
   const [mapCenter, setMapCenter] = useState(DEFAULT_CENTER);
   const [mapZoom, setMapZoom] = useState(DEFAULT_ZOOM);
+  const [isMapReady, setIsMapReady] = useState(false);
 
   const applySearch = useCallback((baseVenues: Venue[], query: string) => {
     const trimmed = query.trim().toLowerCase();
@@ -69,6 +70,7 @@ const GoogleNightlifeMap: React.FC<GoogleNightlifeMapProps> = ({ venues, classNa
 
   const handleApiLoaded = useCallback(({ map }: { map: any }) => {
     mapInstanceRef.current = map;
+    setIsMapReady(true);
   }, []);
 
   const handleSearchChange = useCallback(
@@ -97,6 +99,7 @@ const GoogleNightlifeMap: React.FC<GoogleNightlifeMapProps> = ({ venues, classNa
   useEffect(() => {
     const results = applySearch(venues, debouncedQuery);
     setSearchResults(results);
+    const hasQuery = debouncedQuery.trim().length > 0;
 
     if (results.length === 0) {
       setSelectedVenue(null);
@@ -123,29 +126,33 @@ const GoogleNightlifeMap: React.FC<GoogleNightlifeMapProps> = ({ venues, classNa
       setMapCenter(newCenter);
 
       // Use map instance to pan to location if available, otherwise state update will handle it
-      if (mapInstanceRef.current) {
+      if (isMapReady && mapInstanceRef.current) {
         mapInstanceRef.current.panTo(newCenter);
         
         // Set zoom if needed
         const currentZoom = mapInstanceRef.current.getZoom?.();
-        const targetZoom = debouncedQuery.trim() && (typeof currentZoom === 'number' && currentZoom < 12) ? 12 : 15;
+        const targetZoom = hasQuery ? Math.max(12, typeof currentZoom === 'number' ? currentZoom : mapZoom) : mapZoom;
+
         if (typeof currentZoom === 'number' && currentZoom < targetZoom) {
           mapInstanceRef.current.setZoom(targetZoom);
-          setMapZoom(targetZoom);
+        }
+
+        if (hasQuery) {
+          setMapZoom((prev) => Math.max(prev, 12));
         }
       } else {
         // Preserve user zoom unless the search explicitly zooms; only bump if zoomed very far out
-        if (debouncedQuery.trim() && mapZoom < 12) {
+        if (hasQuery && mapZoom < 12) {
           setMapZoom((prev) => (prev < 12 ? 12 : prev));
         }
       }
 
       // Auto-select the first search result to show info window
-      if (debouncedQuery.trim().length > 0) {
+      if (hasQuery) {
         setSelectedVenue(targetVenue);
       }
     }
-  }, [applySearch, venues, debouncedQuery, selectedVenue, mapZoom]);
+  }, [applySearch, venues, debouncedQuery, selectedVenue, mapZoom, isMapReady]);
 
   const handleVenueSelect = useCallback(
     (venue: Venue) => {
@@ -196,7 +203,7 @@ const GoogleNightlifeMap: React.FC<GoogleNightlifeMapProps> = ({ venues, classNa
   // Center the map on the selected venue when available
   // This ensures the map pans to venue when selected (from clicks, navigation, etc.)
   useEffect(() => {
-    if (!mapInstanceRef.current || !selectedVenue) return;
+    if (!mapInstanceRef.current || !selectedVenue || !isMapReady) return;
 
     mapInstanceRef.current.panTo({
       lat: selectedVenue.coordinates.latitude,
@@ -207,7 +214,7 @@ const GoogleNightlifeMap: React.FC<GoogleNightlifeMapProps> = ({ venues, classNa
     if (typeof currentZoom === 'number' && currentZoom < 15) {
       mapInstanceRef.current.setZoom(15);
     }
-  }, [selectedVenue]);
+  }, [selectedVenue, isMapReady]);
 
   // If the API key is missing, render a helpful message instead of a broken map
   if (!process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY) {
