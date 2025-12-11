@@ -7,11 +7,12 @@ import './VenueInfoWindow.css';
 interface VenueInfoWindowProps {
   venue: Venue;
   onClose: () => void;
+  onViewDetails?: (venue: Venue) => void;
   lat: number;
   lng: number;
 }
 
-const VenueInfoWindow: React.FC<VenueInfoWindowProps> = ({ venue, onClose }) => {
+const VenueInfoWindow: React.FC<VenueInfoWindowProps> = ({ venue, onClose, onViewDetails }) => {
   return (
     <div className="info-window">
       <button className="close-button" onClick={onClose} aria-label="Close info window">
@@ -22,9 +23,13 @@ const VenueInfoWindow: React.FC<VenueInfoWindowProps> = ({ venue, onClose }) => 
       <p>
         {venue.neighborhood} · {venue.type}
       </p>
-      <a href={`/venues/${venue.id}`} className="details-link">
+      <button
+        className="details-link"
+        onClick={() => onViewDetails?.(venue)}
+        type="button"
+      >
         View Details
-      </a>
+      </button>
     </div>
   );
 };

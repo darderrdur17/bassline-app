@@ -31,6 +31,7 @@ const GoogleNightlifeMap: React.FC<GoogleNightlifeMapProps> = ({ venues, classNa
   const mapInstanceRef = useRef<any>(null);
   const globalSearchQuery = useVenueStore((state) => state.searchQuery);
   const setSearchQuery = useVenueStore((state) => state.setSearchQuery);
+  const setStoreSelectedVenue = useVenueStore((state) => state.setSelectedVenue);
   const [searchInput, setSearchInput] = useState(globalSearchQuery);
   const [debouncedQuery, setDebouncedQuery] = useState('');
   const [searchResults, setSearchResults] = useState<Venue[]>(venues);
@@ -254,13 +255,14 @@ const GoogleNightlifeMap: React.FC<GoogleNightlifeMapProps> = ({ venues, classNa
   const handleVenueSelect = useCallback(
     (venue: Venue) => {
       setSelectedVenue(venue);
+      setStoreSelectedVenue(venue);
       focusOnVenue(venue, 15);
       const index = searchResults.findIndex((v) => v.id === venue.id);
       if (index >= 0) {
         setCurrentIndex(index);
       }
     },
-    [focusOnVenue, searchResults]
+    [focusOnVenue, searchResults, setStoreSelectedVenue]
   );
 
   const handleMarkerClick = useCallback(
@@ -375,6 +377,11 @@ const GoogleNightlifeMap: React.FC<GoogleNightlifeMapProps> = ({ venues, classNa
             lng={selectedVenue.coordinates.longitude}
             venue={selectedVenue}
             onClose={() => setSelectedVenue(null)}
+            onViewDetails={(venue) => {
+              setStoreSelectedVenue(venue);
+              // Keep info window venue selected locally too
+              setSelectedVenue(venue);
+            }}
           />
         )}
       </GoogleMapReact>
