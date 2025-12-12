@@ -23,7 +23,16 @@ export const venues = [
       "https://images.unsplash.com/photo-1514933651103-005eec06c04b?w=800",
       "https://images.unsplash.com/photo-1514933651103-005eec06c04b?w=800",
       "https://images.unsplash.com/photo-1506377247377-2a5b3b417ebb?w=800"
-    ]
+    ],
+    "foodBeverageGallery": [
+      "venue-images/Clubs/1015_Folsom_drinks_1.jpg",
+      "venue-images/Clubs/1015_Folsom_drinks_2.jpg",
+      "venue-images/Clubs/1015_Folsom_drinks_3.jpg",
+      "venue-images/Clubs/1015_Folsom_foods_1.jpg",
+      "venue-images/Clubs/1015_Folsom_foods_2.jpg",
+      "venue-images/Clubs/1015_Folsom_foods_3.jpg"
+    ],
+    "color": "green"
   },
   {
     "id": 24,
@@ -48,7 +57,9 @@ export const venues = [
       "https://images.unsplash.com/photo-1514933651103-005eec06c04b?w=800",
       "https://images.unsplash.com/photo-1506377247377-2a5b3b417ebb?w=800"
     ]
-  },
+  ,
+    "foodBeverageGallery": [],
+    "color": "red"},
   {
     "id": 27,
     "name": "ABV",
@@ -86,7 +97,18 @@ export const venues = [
     "recommendedDrinks": [
       "Cocktails",
       "Beer"
-    ]
+    ],
+    "foodBeverageGallery": [
+      "venue-images/Bars/ABV_drinks_1.jpg",
+      "venue-images/Bars/ABV_drinks_2.jpg",
+      "venue-images/Bars/ABV_drinks_3.jpg",
+      "venue-images/Bars/ABV_drinks_4.jpg",
+      "venue-images/Bars/ABV_foods_1.jpg",
+      "venue-images/Bars/ABV_foods_2.jpg",
+      "venue-images/Bars/ABV_foods_3.jpg",
+      "venue-images/Bars/ABV_foods_4.jpeg"
+    ],
+    "color": "red"
   },
   {
     "id": 5,
@@ -144,7 +166,9 @@ export const venues = [
     ],
     "cuisine": "Seafood / Western",
     "shortDescription": "Leafy, coastal‑vibe seafood and wine bar by the State Bird team.",
-    "instagram": "https://www.instagram.com/theanchovybar"
+    "instagram": "https://www.instagram.com/theanchovybar",
+    "foodBeverageGallery": [],
+    "color": "red"
   },
   {
     "id": 88,
@@ -175,7 +199,9 @@ export const venues = [
       "https://images.unsplash.com/photo-1514933651103-005eec06c04b?w=800",
       "https://images.unsplash.com/photo-1506377247377-2a5b3b417ebb?w=800"
     ]
-  },
+  ,
+    "foodBeverageGallery": [],
+    "color": "red"},
   {
     "id": 51,
     "name": "Arcana",
@@ -199,7 +225,9 @@ export const venues = [
       "https://images.unsplash.com/photo-1514933651103-005eec06c04b?w=800",
       "https://images.unsplash.com/photo-1506377247377-2a5b3b417ebb?w=800"
     ]
-  },
+  ,
+    "foodBeverageGallery": [],
+    "color": "red"},
   {
     "id": 91,
     "name": "Audio",
@@ -223,7 +251,9 @@ export const venues = [
       "https://images.unsplash.com/photo-1514933651103-005eec06c04b?w=800",
       "https://images.unsplash.com/photo-1506377247377-2a5b3b417ebb?w=800"
     ]
-  },
+  ,
+    "foodBeverageGallery": [],
+    "color": "green"},
   {
     "id": 34,
     "name": "Bar April Jean",
@@ -247,7 +277,9 @@ export const venues = [
       "https://images.unsplash.com/photo-1514933651103-005eec06c04b?w=800",
       "https://images.unsplash.com/photo-1506377247377-2a5b3b417ebb?w=800"
     ]
-  },
+  ,
+    "foodBeverageGallery": [],
+    "color": "red"},
   {
     "id": 33,
     "name": "Bar Crenn",
@@ -286,7 +318,9 @@ export const venues = [
       "Cocktails",
       "Wine",
       "Champagne"
-    ]
+    ],
+    "foodBeverageGallery": [],
+    "color": "red"
   },
   {
     "id": 9,
@@ -349,7 +383,9 @@ export const venues = [
     "cuisine": "Western snacks",
     "shortDescription": "Minimal, sleek natural‑wine bar with low‑intervention gems.",
     "instagram": "https://www.instagram.com/bargeminisf",
-    "accolades": "—"
+    "accolades": "—",
+    "foodBeverageGallery": [],
+    "color": "red"
   },
   {
     "id": 49,
@@ -374,7 +410,9 @@ export const venues = [
       "https://images.unsplash.com/photo-1514933651103-005eec06c04b?w=800",
       "https://images.unsplash.com/photo-1506377247377-2a5b3b417ebb?w=800"
     ]
-  },
+  ,
+    "foodBeverageGallery": [],
+    "color": "red"},
   {
     "id": 1,
     "name": "Bar Part Time",
@@ -430,7 +468,9 @@ export const venues = [
       "https://images.unsplash.com/photo-1532634896-26909d0d0b9f?w=400"
     ],
     "cuisine": "None",
-    "shortDescription": "A glittering disco ball crowns a tight dance floor of natural‑wine lovers and vinyl DJs."
+    "shortDescription": "A glittering disco ball crowns a tight dance floor of natural‑wine lovers and vinyl DJs.",
+    "foodBeverageGallery": [],
+    "color": "red"
   },
   {
     "id": 56,
@@ -455,7 +495,9 @@ export const venues = [
       "https://images.unsplash.com/photo-1514933651103-005eec06c04b?w=800",
       "https://images.unsplash.com/photo-1506377247377-2a5b3b417ebb?w=800"
     ]
-  },
+  ,
+    "foodBeverageGallery": [],
+    "color": "red"},
   {
     "id": 18,
     "name": "Bar Sprezzatura",
@@ -495,7 +537,9 @@ export const venues = [
       "Cocktails",
       "Amari"
     ]
-  },
+  ,
+    "foodBeverageGallery": [],
+    "color": "red"},
   {
     "id": 74,
     "name": "Bay Pocha",
@@ -519,7 +563,9 @@ export const venues = [
       "https://images.unsplash.com/photo-1514933651103-005eec06c04b?w=800",
       "https://images.unsplash.com/photo-1506377247377-2a5b3b417ebb?w=800"
     ]
-  },
+  ,
+    "foodBeverageGallery": [],
+    "color": "red"},
   {
     "id": 87,
     "name": "Beaux",
@@ -549,7 +595,9 @@ export const venues = [
       "https://images.unsplash.com/photo-1571266028243-b4e4d3d70130?w=800",
       "https://images.unsplash.com/photo-1506377247377-2a5b3b417ebb?w=800"
     ]
-  },
+  ,
+    "foodBeverageGallery": [],
+    "color": "green"},
   {
     "id": 75,
     "name": "Beep's Burgers",
@@ -573,7 +621,9 @@ export const venues = [
       "https://images.unsplash.com/photo-1514933651103-005eec06c04b?w=800",
       "https://images.unsplash.com/photo-1506377247377-2a5b3b417ebb?w=800"
     ]
-  },
+  ,
+    "foodBeverageGallery": [],
+    "color": "red"},
   {
     "id": 44,
     "name": "Birba",
@@ -597,7 +647,9 @@ export const venues = [
       "https://images.unsplash.com/photo-1514933651103-005eec06c04b?w=800",
       "https://images.unsplash.com/photo-1506377247377-2a5b3b417ebb?w=800"
     ]
-  },
+  ,
+    "foodBeverageGallery": [],
+    "color": "red"},
   {
     "id": 69,
     "name": "Bob's Donut",
@@ -621,7 +673,9 @@ export const venues = [
       "https://images.unsplash.com/photo-1514933651103-005eec06c04b?w=800",
       "https://images.unsplash.com/photo-1506377247377-2a5b3b417ebb?w=800"
     ]
-  },
+  ,
+    "foodBeverageGallery": [],
+    "color": "red"},
   {
     "id": 82,
     "name": "Bodega",
@@ -649,7 +703,9 @@ export const venues = [
       "https://images.unsplash.com/photo-1514933651103-005eec06c04b?w=800",
       "https://images.unsplash.com/photo-1506377247377-2a5b3b417ebb?w=800"
     ]
-  },
+  ,
+    "foodBeverageGallery": [],
+    "color": "red"},
   {
     "id": 11,
     "name": "Bodega North Beach",
@@ -695,7 +751,9 @@ export const venues = [
     ],
     "instagram": "https://www.instagram.com/bodeganorthbeach",
     "accolades": "—"
-  },
+  ,
+    "foodBeverageGallery": [],
+    "color": "red"},
   {
     "id": 14,
     "name": "Buddy",
@@ -735,7 +793,9 @@ export const venues = [
     ],
     "shortDescription": "Chill neighborhood bar with amari, natty wine, and satisfying sandwiches.",
     "instagram": "https://www.instagram.com/buddysf",
-    "accolades": "—"
+    "accolades": "—",
+    "foodBeverageGallery": [],
+    "color": "red"
   },
   {
     "id": 45,
@@ -760,7 +820,9 @@ export const venues = [
       "https://images.unsplash.com/photo-1514933651103-005eec06c04b?w=800",
       "https://images.unsplash.com/photo-1506377247377-2a5b3b417ebb?w=800"
     ]
-  },
+  ,
+    "foodBeverageGallery": [],
+    "color": "red"},
   {
     "id": 31,
     "name": "Cavana",
@@ -784,7 +846,9 @@ export const venues = [
       "https://images.unsplash.com/photo-1514933651103-005eec06c04b?w=800",
       "https://images.unsplash.com/photo-1506377247377-2a5b3b417ebb?w=800"
     ]
-  },
+  ,
+    "foodBeverageGallery": [],
+    "color": "red"},
   {
     "id": 7,
     "name": "Celeste",
@@ -846,7 +910,9 @@ export const venues = [
     "cuisine": "Mediterranean",
     "shortDescription": "Trendy, red‑lit wine bar with upbeat tunes and Mediterranean‑leaning bites.",
     "instagram": "https://www.instagram.com/celestesf",
-    "accolades": "—"
+    "accolades": "—",
+    "foodBeverageGallery": [],
+    "color": "red"
   },
   {
     "id": 21,
@@ -885,7 +951,9 @@ export const venues = [
     "recommendedDrinks": [
       "Cocktails",
       "Wine"
-    ]
+    ],
+    "foodBeverageGallery": [],
+    "color": "red"
   },
   {
     "id": 10,
@@ -946,7 +1014,9 @@ export const venues = [
     "cuisine": "Western",
     "shortDescription": "Euro‑inspired rooftop lounge with fire pits and postcard skyline views.",
     "instagram": "https://www.instagram.com/charmainessf",
-    "accolades": "—"
+    "accolades": "—",
+    "foodBeverageGallery": [],
+    "color": "red"
   },
   {
     "id": 29,
@@ -971,7 +1041,9 @@ export const venues = [
       "https://images.unsplash.com/photo-1514933651103-005eec06c04b?w=800",
       "https://images.unsplash.com/photo-1506377247377-2a5b3b417ebb?w=800"
     ]
-  },
+  ,
+    "foodBeverageGallery": [],
+    "color": "red"},
   {
     "id": 62,
     "name": "Cocobang",
@@ -995,7 +1067,9 @@ export const venues = [
       "https://images.unsplash.com/photo-1514933651103-005eec06c04b?w=800",
       "https://images.unsplash.com/photo-1506377247377-2a5b3b417ebb?w=800"
     ]
-  },
+  ,
+    "foodBeverageGallery": [],
+    "color": "red"},
   {
     "id": 89,
     "name": "Dalva",
@@ -1025,7 +1099,9 @@ export const venues = [
       "https://images.unsplash.com/photo-1571266028243-b4e4d3d70130?w=800",
       "https://images.unsplash.com/photo-1506377247377-2a5b3b417ebb?w=800"
     ]
-  },
+  ,
+    "foodBeverageGallery": [],
+    "color": "red"},
   {
     "id": 46,
     "name": "Decant",
@@ -1049,7 +1125,9 @@ export const venues = [
       "https://images.unsplash.com/photo-1514933651103-005eec06c04b?w=800",
       "https://images.unsplash.com/photo-1506377247377-2a5b3b417ebb?w=800"
     ]
-  },
+  ,
+    "foodBeverageGallery": [],
+    "color": "red"},
   {
     "id": 13,
     "name": "El Chato",
@@ -1101,7 +1179,9 @@ export const venues = [
     ],
     "shortDescription": "Spanish taberna pouring curated wines, vermouth, and pintxos/tapas.",
     "instagram": "https://www.instagram.com/elchatosf",
-    "accolades": "—"
+    "accolades": "—",
+    "foodBeverageGallery": [],
+    "color": "red"
   },
   {
     "id": 47,
@@ -1126,7 +1206,9 @@ export const venues = [
       "https://images.unsplash.com/photo-1514933651103-005eec06c04b?w=800",
       "https://images.unsplash.com/photo-1506377247377-2a5b3b417ebb?w=800"
     ]
-  },
+  ,
+    "foodBeverageGallery": [],
+    "color": "red"},
   {
     "id": 57,
     "name": "Friends and Family",
@@ -1155,7 +1237,9 @@ export const venues = [
       "https://images.unsplash.com/photo-1514933651103-005eec06c04b?w=800",
       "https://images.unsplash.com/photo-1506377247377-2a5b3b417ebb?w=800"
     ]
-  },
+  ,
+    "foodBeverageGallery": [],
+    "color": "red"},
   {
     "id": 12,
     "name": "Gigi's",
@@ -1199,7 +1283,9 @@ export const venues = [
       "https://images.unsplash.com/photo-1506377247377-2a5b3b417ebb?w=800"
     ],
     "shortDescription": "Casual Vietnamese hang with late‑night energy and playful drinks.",
-    "accolades": "—"
+    "accolades": "—",
+    "foodBeverageGallery": [],
+    "color": "red"
   },
   {
     "id": 61,
@@ -1224,7 +1310,9 @@ export const venues = [
       "https://images.unsplash.com/photo-1514933651103-005eec06c04b?w=800",
       "https://images.unsplash.com/photo-1506377247377-2a5b3b417ebb?w=800"
     ]
-  },
+  ,
+    "foodBeverageGallery": [],
+    "color": "red"},
   {
     "id": 72,
     "name": "Gyro Xpress",
@@ -1248,7 +1336,9 @@ export const venues = [
       "https://images.unsplash.com/photo-1514933651103-005eec06c04b?w=800",
       "https://images.unsplash.com/photo-1506377247377-2a5b3b417ebb?w=800"
     ]
-  },
+  ,
+    "foodBeverageGallery": [],
+    "color": "red"},
   {
     "id": 92,
     "name": "Halcyon",
@@ -1272,7 +1362,9 @@ export const venues = [
       "https://images.unsplash.com/photo-1514933651103-005eec06c04b?w=800",
       "https://images.unsplash.com/photo-1506377247377-2a5b3b417ebb?w=800"
     ]
-  },
+  ,
+    "foodBeverageGallery": [],
+    "color": "red"},
   {
     "id": 4,
     "name": "Harlan Records",
@@ -1329,7 +1421,9 @@ export const venues = [
     "cuisine": "None",
     "shortDescription": "Alley‑hidden Japanese‑leaning listening bar with eclectic vinyl sets.",
     "instagram": "https://www.instagram.com/harlanrecordssf",
-    "accolades": "—"
+    "accolades": "—",
+    "foodBeverageGallery": [],
+    "color": "red"
   },
   {
     "id": 86,
@@ -1360,7 +1454,9 @@ export const venues = [
       "https://images.unsplash.com/photo-1514933651103-005eec06c04b?w=800",
       "https://images.unsplash.com/photo-1506377247377-2a5b3b417ebb?w=800"
     ]
-  },
+  ,
+    "foodBeverageGallery": [],
+    "color": "red"},
   {
     "id": 43,
     "name": "High Treason",
@@ -1398,7 +1494,9 @@ export const venues = [
     "recommendedDrinks": [
       "Wine",
       "Beer"
-    ]
+    ],
+    "foodBeverageGallery": [],
+    "color": "red"
   },
   {
     "id": 63,
@@ -1423,7 +1521,9 @@ export const venues = [
       "https://images.unsplash.com/photo-1514933651103-005eec06c04b?w=800",
       "https://images.unsplash.com/photo-1506377247377-2a5b3b417ebb?w=800"
     ]
-  },
+  ,
+    "foodBeverageGallery": [],
+    "color": "red"},
   {
     "id": 53,
     "name": "Jilli",
@@ -1447,7 +1547,9 @@ export const venues = [
       "https://images.unsplash.com/photo-1514933651103-005eec06c04b?w=800",
       "https://images.unsplash.com/photo-1506377247377-2a5b3b417ebb?w=800"
     ]
-  },
+  ,
+    "foodBeverageGallery": [],
+    "color": "red"},
   {
     "id": 67,
     "name": "Joyful Garden",
@@ -1471,7 +1573,9 @@ export const venues = [
       "https://images.unsplash.com/photo-1514933651103-005eec06c04b?w=800",
       "https://images.unsplash.com/photo-1506377247377-2a5b3b417ebb?w=800"
     ]
-  },
+  ,
+    "foodBeverageGallery": [],
+    "color": "red"},
   {
     "id": 2,
     "name": "Key Klub",
@@ -1532,7 +1636,9 @@ export const venues = [
     ],
     "cuisine": "Western",
     "shortDescription": "Glowing lights, New American bites, and natural wine pours in a photogenic space.",
-    "accolades": "—"
+    "accolades": "—",
+    "foodBeverageGallery": [],
+    "color": "red"
   },
   {
     "id": 26,
@@ -1557,7 +1663,9 @@ export const venues = [
       "https://images.unsplash.com/photo-1514933651103-005eec06c04b?w=800",
       "https://images.unsplash.com/photo-1506377247377-2a5b3b417ebb?w=800"
     ]
-  },
+  ,
+    "foodBeverageGallery": [],
+    "color": "red"},
   {
     "id": 80,
     "name": "Kowloon Tong Dessert Cafe",
@@ -1581,7 +1689,9 @@ export const venues = [
       "https://images.unsplash.com/photo-1514933651103-005eec06c04b?w=800",
       "https://images.unsplash.com/photo-1506377247377-2a5b3b417ebb?w=800"
     ]
-  },
+  ,
+    "foodBeverageGallery": [],
+    "color": "red"},
   {
     "id": 22,
     "name": "Left Door",
@@ -1605,7 +1715,9 @@ export const venues = [
       "https://images.unsplash.com/photo-1514933651103-005eec06c04b?w=800",
       "https://images.unsplash.com/photo-1506377247377-2a5b3b417ebb?w=800"
     ]
-  },
+  ,
+    "foodBeverageGallery": [],
+    "color": "red"},
   {
     "id": 84,
     "name": "Li Po Cocktail Lounge",
@@ -1634,7 +1746,9 @@ export const venues = [
       "https://images.unsplash.com/photo-1514933651103-005eec06c04b?w=800",
       "https://images.unsplash.com/photo-1506377247377-2a5b3b417ebb?w=800"
     ]
-  },
+  ,
+    "foodBeverageGallery": [],
+    "color": "red"},
   {
     "id": 30,
     "name": "Madrone Art Bar",
@@ -1658,7 +1772,9 @@ export const venues = [
       "https://images.unsplash.com/photo-1514933651103-005eec06c04b?w=800",
       "https://images.unsplash.com/photo-1506377247377-2a5b3b417ebb?w=800"
     ]
-  },
+  ,
+    "foodBeverageGallery": [],
+    "color": "red"},
   {
     "id": 85,
     "name": "Make‑Out Room",
@@ -1688,7 +1804,9 @@ export const venues = [
       "https://images.unsplash.com/photo-1571266028243-b4e4d3d70130?w=800",
       "https://images.unsplash.com/photo-1506377247377-2a5b3b417ebb?w=800"
     ]
-  },
+  ,
+    "foodBeverageGallery": [],
+    "color": "red"},
   {
     "id": 54,
     "name": "Mari's Mogura",
@@ -1712,7 +1830,9 @@ export const venues = [
       "https://images.unsplash.com/photo-1514933651103-005eec06c04b?w=800",
       "https://images.unsplash.com/photo-1506377247377-2a5b3b417ebb?w=800"
     ]
-  },
+  ,
+    "foodBeverageGallery": [],
+    "color": "red"},
   {
     "id": 6,
     "name": "Millay",
@@ -1775,7 +1895,9 @@ export const venues = [
     "cuisine": "Japanese",
     "shortDescription": "Stylish sake‑and‑wine bar with pink neon, wood seating, and a tiny disco ball.",
     "instagram": "https://www.instagram.com/millaysf",
-    "accolades": "—"
+    "accolades": "—",
+    "foodBeverageGallery": [],
+    "color": "red"
   },
   {
     "id": 90,
@@ -1800,7 +1922,9 @@ export const venues = [
       "https://images.unsplash.com/photo-1514933651103-005eec06c04b?w=800",
       "https://images.unsplash.com/photo-1506377247377-2a5b3b417ebb?w=800"
     ]
-  },
+  ,
+    "foodBeverageGallery": [],
+    "color": "green"},
   {
     "id": 8,
     "name": "Mothership",
@@ -1862,7 +1986,9 @@ export const venues = [
     "shortDescription": "Verdant, space‑themed Mission hideaway with inventive drinks and a lush patio.",
     "instagram": "https://www.instagram.com/mothershipsf",
     "accolades": "—"
-  },
+  ,
+    "foodBeverageGallery": [],
+    "color": "red"},
   {
     "id": 70,
     "name": "Naan N Curry",
@@ -1886,7 +2012,9 @@ export const venues = [
       "https://images.unsplash.com/photo-1514933651103-005eec06c04b?w=800",
       "https://images.unsplash.com/photo-1506377247377-2a5b3b417ebb?w=800"
     ]
-  },
+  ,
+    "foodBeverageGallery": [],
+    "color": "red"},
   {
     "id": 68,
     "name": "Orphan Andy's",
@@ -1910,7 +2038,9 @@ export const venues = [
       "https://images.unsplash.com/photo-1514933651103-005eec06c04b?w=800",
       "https://images.unsplash.com/photo-1506377247377-2a5b3b417ebb?w=800"
     ]
-  },
+  ,
+    "foodBeverageGallery": [],
+    "color": "red"},
   {
     "id": 48,
     "name": "Palm City",
@@ -1948,7 +2078,9 @@ export const venues = [
       "Wine",
       "Beer"
     ]
-  },
+  ,
+    "foodBeverageGallery": [],
+    "color": "yellow"},
   {
     "id": 76,
     "name": "Panchita's Pupuseria Restaurant",
@@ -1972,7 +2104,9 @@ export const venues = [
       "https://images.unsplash.com/photo-1514933651103-005eec06c04b?w=800",
       "https://images.unsplash.com/photo-1506377247377-2a5b3b417ebb?w=800"
     ]
-  },
+  ,
+    "foodBeverageGallery": [],
+    "color": "red"},
   {
     "id": 16,
     "name": "PCH",
@@ -1997,7 +2131,9 @@ export const venues = [
       "https://images.unsplash.com/photo-1514933651103-005eec06c04b?w=800",
       "https://images.unsplash.com/photo-1506377247377-2a5b3b417ebb?w=800"
     ]
-  },
+  ,
+    "foodBeverageGallery": [],
+    "color": "red"},
   {
     "id": 83,
     "name": "PCH (Pacific Cocktail Haven)",
@@ -2027,7 +2163,9 @@ export const venues = [
       "https://images.unsplash.com/photo-1514933651103-005eec06c04b?w=800",
       "https://images.unsplash.com/photo-1506377247377-2a5b3b417ebb?w=800"
     ]
-  },
+  ,
+    "foodBeverageGallery": [],
+    "color": "red"},
   {
     "id": 15,
     "name": "Peacekeeper",
@@ -2067,7 +2205,9 @@ export const venues = [
     "shortDescription": "Bi‑level cocktail bar with a retractable roof and pool/arcade games.",
     "instagram": "https://www.instagram.com/peacekeepersf",
     "accolades": "—"
-  },
+  ,
+    "foodBeverageGallery": [],
+    "color": "red"},
   {
     "id": 28,
     "name": "Phonobar",
@@ -2091,7 +2231,9 @@ export const venues = [
       "https://images.unsplash.com/photo-1514933651103-005eec06c04b?w=800",
       "https://images.unsplash.com/photo-1506377247377-2a5b3b417ebb?w=800"
     ]
-  },
+  ,
+    "foodBeverageGallery": [],
+    "color": "red"},
   {
     "id": 59,
     "name": "Pinecrest",
@@ -2115,7 +2257,9 @@ export const venues = [
       "https://images.unsplash.com/photo-1514933651103-005eec06c04b?w=800",
       "https://images.unsplash.com/photo-1506377247377-2a5b3b417ebb?w=800"
     ]
-  },
+  ,
+    "foodBeverageGallery": [],
+    "color": "red"},
   {
     "id": 42,
     "name": "Press Club",
@@ -2154,7 +2298,9 @@ export const venues = [
       "Wine",
       "Champagne"
     ]
-  },
+  ,
+    "foodBeverageGallery": [],
+    "color": "red"},
   {
     "id": 77,
     "name": "Primo Pizza",
@@ -2178,7 +2324,9 @@ export const venues = [
       "https://images.unsplash.com/photo-1514933651103-005eec06c04b?w=800",
       "https://images.unsplash.com/photo-1506377247377-2a5b3b417ebb?w=800"
     ]
-  },
+  ,
+    "foodBeverageGallery": [],
+    "color": "red"},
   {
     "id": 64,
     "name": "Public Izakaya",
@@ -2202,7 +2350,9 @@ export const venues = [
       "https://images.unsplash.com/photo-1514933651103-005eec06c04b?w=800",
       "https://images.unsplash.com/photo-1506377247377-2a5b3b417ebb?w=800"
     ]
-  },
+  ,
+    "foodBeverageGallery": [],
+    "color": "red"},
   {
     "id": 93,
     "name": "Public Works",
@@ -2226,7 +2376,9 @@ export const venues = [
       "https://images.unsplash.com/photo-1514933651103-005eec06c04b?w=800",
       "https://images.unsplash.com/photo-1506377247377-2a5b3b417ebb?w=800"
     ]
-  },
+  ,
+    "foodBeverageGallery": [],
+    "color": "red"},
   {
     "id": 40,
     "name": "Roaming Goat",
@@ -2250,7 +2402,9 @@ export const venues = [
       "https://images.unsplash.com/photo-1514933651103-005eec06c04b?w=800",
       "https://images.unsplash.com/photo-1506377247377-2a5b3b417ebb?w=800"
     ]
-  },
+  ,
+    "foodBeverageGallery": [],
+    "color": "red"},
   {
     "id": 41,
     "name": "robberbaron",
@@ -2274,7 +2428,9 @@ export const venues = [
       "https://images.unsplash.com/photo-1514933651103-005eec06c04b?w=800",
       "https://images.unsplash.com/photo-1506377247377-2a5b3b417ebb?w=800"
     ]
-  },
+  ,
+    "foodBeverageGallery": [],
+    "color": "red"},
   {
     "id": 79,
     "name": "Sam's",
@@ -2298,7 +2454,9 @@ export const venues = [
       "https://images.unsplash.com/photo-1514933651103-005eec06c04b?w=800",
       "https://images.unsplash.com/photo-1506377247377-2a5b3b417ebb?w=800"
     ]
-  },
+  ,
+    "foodBeverageGallery": [],
+    "color": "red"},
   {
     "id": 20,
     "name": "Shoji",
@@ -2338,7 +2496,9 @@ export const venues = [
       "Cocktails",
       "Sake"
     ]
-  },
+  ,
+    "foodBeverageGallery": [],
+    "color": "red"},
   {
     "id": 17,
     "name": "Shuggie's Trash Pizza",
@@ -2362,7 +2522,9 @@ export const venues = [
       "https://images.unsplash.com/photo-1514933651103-005eec06c04b?w=800",
       "https://images.unsplash.com/photo-1506377247377-2a5b3b417ebb?w=800"
     ]
-  },
+  ,
+    "foodBeverageGallery": [],
+    "color": "red"},
   {
     "id": 35,
     "name": "Smuggler's Cove",
@@ -2401,7 +2563,9 @@ export const venues = [
       "Rum",
       "Tiki Cocktails"
     ]
-  },
+  ,
+    "foodBeverageGallery": [],
+    "color": "red"},
   {
     "id": 55,
     "name": "Snail Bar",
@@ -2429,7 +2593,9 @@ export const venues = [
       "https://images.unsplash.com/photo-1514933651103-005eec06c04b?w=800",
       "https://images.unsplash.com/photo-1506377247377-2a5b3b417ebb?w=800"
     ]
-  },
+  ,
+    "foodBeverageGallery": [],
+    "color": "red"},
   {
     "id": 23,
     "name": "Starlite",
@@ -2453,7 +2619,9 @@ export const venues = [
       "https://images.unsplash.com/photo-1514933651103-005eec06c04b?w=800",
       "https://images.unsplash.com/photo-1506377247377-2a5b3b417ebb?w=800"
     ]
-  },
+  ,
+    "foodBeverageGallery": [],
+    "color": "red"},
   {
     "id": 60,
     "name": "Taishan",
@@ -2477,7 +2645,9 @@ export const venues = [
       "https://images.unsplash.com/photo-1514933651103-005eec06c04b?w=800",
       "https://images.unsplash.com/photo-1506377247377-2a5b3b417ebb?w=800"
     ]
-  },
+  ,
+    "foodBeverageGallery": [],
+    "color": "red"},
   {
     "id": 58,
     "name": "Tallboy",
@@ -2514,7 +2684,9 @@ export const venues = [
       "https://images.unsplash.com/photo-1514933651103-005eec06c04b?w=800",
       "https://images.unsplash.com/photo-1506377247377-2a5b3b417ebb?w=800"
     ]
-  },
+  ,
+    "foodBeverageGallery": [],
+    "color": "red"},
   {
     "id": 66,
     "name": "Taqueria El Farolito",
@@ -2538,7 +2710,9 @@ export const venues = [
       "https://images.unsplash.com/photo-1514933651103-005eec06c04b?w=800",
       "https://images.unsplash.com/photo-1506377247377-2a5b3b417ebb?w=800"
     ]
-  },
+  ,
+    "foodBeverageGallery": [],
+    "color": "red"},
   {
     "id": 96,
     "name": "Temple",
@@ -2562,7 +2736,9 @@ export const venues = [
       "https://images.unsplash.com/photo-1514933651103-005eec06c04b?w=800",
       "https://images.unsplash.com/photo-1506377247377-2a5b3b417ebb?w=800"
     ]
-  },
+  ,
+    "foodBeverageGallery": [],
+    "color": "red"},
   {
     "id": 39,
     "name": "The Halfway Club",
@@ -2586,7 +2762,9 @@ export const venues = [
       "https://images.unsplash.com/photo-1514933651103-005eec06c04b?w=800",
       "https://images.unsplash.com/photo-1506377247377-2a5b3b417ebb?w=800"
     ]
-  },
+  ,
+    "foodBeverageGallery": [],
+    "color": "red"},
   {
     "id": 95,
     "name": "The Midway",
@@ -2610,7 +2788,9 @@ export const venues = [
       "https://images.unsplash.com/photo-1514933651103-005eec06c04b?w=800",
       "https://images.unsplash.com/photo-1506377247377-2a5b3b417ebb?w=800"
     ]
-  },
+  ,
+    "foodBeverageGallery": [],
+    "color": "red"},
   {
     "id": 37,
     "name": "Tommy's Mexican Restaurant",
@@ -2649,7 +2829,9 @@ export const venues = [
       "Tequila",
       "Margaritas"
     ]
-  },
+  ,
+    "foodBeverageGallery": [],
+    "color": "yellow"},
   {
     "id": 65,
     "name": "Toyose",
@@ -2673,7 +2855,9 @@ export const venues = [
       "https://images.unsplash.com/photo-1514933651103-005eec06c04b?w=800",
       "https://images.unsplash.com/photo-1506377247377-2a5b3b417ebb?w=800"
     ]
-  },
+  ,
+    "foodBeverageGallery": [],
+    "color": "red"},
   {
     "id": 19,
     "name": "Trick Dog",
@@ -2711,7 +2895,9 @@ export const venues = [
     "recommendedDrinks": [
       "Cocktails"
     ]
-  },
+  ,
+    "foodBeverageGallery": [],
+    "color": "red"},
   {
     "id": 36,
     "name": "True Laurel",
@@ -2750,7 +2936,9 @@ export const venues = [
       "Cocktails",
       "Low‑ABV"
     ]
-  },
+  ,
+    "foodBeverageGallery": [],
+    "color": "red"},
   {
     "id": 73,
     "name": "Turtle Tower",
@@ -2774,7 +2962,9 @@ export const venues = [
       "https://images.unsplash.com/photo-1514933651103-005eec06c04b?w=800",
       "https://images.unsplash.com/photo-1506377247377-2a5b3b417ebb?w=800"
     ]
-  },
+  ,
+    "foodBeverageGallery": [],
+    "color": "red"},
   {
     "id": 78,
     "name": "Uncle Boy's",
@@ -2798,7 +2988,9 @@ export const venues = [
       "https://images.unsplash.com/photo-1514933651103-005eec06c04b?w=800",
       "https://images.unsplash.com/photo-1506377247377-2a5b3b417ebb?w=800"
     ]
-  },
+  ,
+    "foodBeverageGallery": [],
+    "color": "red"},
   {
     "id": 50,
     "name": "Ungrafted",
@@ -2837,7 +3029,9 @@ export const venues = [
       "Wine",
       "Champagne"
     ]
-  },
+  ,
+    "foodBeverageGallery": [],
+    "color": "yellow"},
   {
     "id": 3,
     "name": "Verjus",
@@ -2898,7 +3092,9 @@ export const venues = [
     ],
     "cuisine": "French",
     "shortDescription": "Parisian cave à manger with open kitchen and vintage hi‑fi; feels like a dinner party.",
-    "instagram": "https://www.instagram.com/verjus_sf"
+    "instagram": "https://www.instagram.com/verjus_sf",
+    "foodBeverageGallery": [],
+    "color": "red"
   },
   {
     "id": 25,
@@ -2923,7 +3119,9 @@ export const venues = [
       "https://images.unsplash.com/photo-1514933651103-005eec06c04b?w=800",
       "https://images.unsplash.com/photo-1506377247377-2a5b3b417ebb?w=800"
     ]
-  },
+  ,
+    "foodBeverageGallery": [],
+    "color": "red"},
   {
     "id": 32,
     "name": "White Rabbit",
@@ -2947,7 +3145,9 @@ export const venues = [
       "https://images.unsplash.com/photo-1514933651103-005eec06c04b?w=800",
       "https://images.unsplash.com/photo-1506377247377-2a5b3b417ebb?w=800"
     ]
-  },
+  ,
+    "foodBeverageGallery": [],
+    "color": "red"},
   {
     "id": 38,
     "name": "Wildhawk",
@@ -2986,7 +3186,9 @@ export const venues = [
       "Cocktails",
       "Sherry"
     ]
-  },
+  ,
+    "foodBeverageGallery": [],
+    "color": "red"},
   {
     "id": 71,
     "name": "Wok Station",
@@ -3010,7 +3212,9 @@ export const venues = [
       "https://images.unsplash.com/photo-1514933651103-005eec06c04b?w=800",
       "https://images.unsplash.com/photo-1506377247377-2a5b3b417ebb?w=800"
     ]
-  },
+  ,
+    "foodBeverageGallery": [],
+    "color": "red"},
   {
     "id": 52,
     "name": "Yokai",
@@ -3034,7 +3238,9 @@ export const venues = [
       "https://images.unsplash.com/photo-1514933651103-005eec06c04b?w=800",
       "https://images.unsplash.com/photo-1506377247377-2a5b3b417ebb?w=800"
     ]
-  },
+  ,
+    "foodBeverageGallery": [],
+    "color": "red"},
   {
     "id": 81,
     "name": "ZZAN",
@@ -3057,7 +3263,9 @@ export const venues = [
       "https://images.unsplash.com/photo-1514933651103-005eec06c04b?w=800",
       "https://images.unsplash.com/photo-1514933651103-005eec06c04b?w=800",
       "https://images.unsplash.com/photo-1506377247377-2a5b3b417ebb?w=800"
-    ]
+    ],
+    "foodBeverageGallery": [],
+    "color": "red"
   }
 ];
 
